@@ -2,6 +2,8 @@
 	"name": "svelte-starter",
 	"version": "5.13.0",
 	"scripts": {
+		"tags": "node tasks/combine-tags.js",
+		"tags2": "node tasks/combine-tags-2.js",
 		"gdoc": "node tasks/fetch-google.js",
 		"style": "node tasks/style-dictionary.js",
 		"dev": "vite dev",
@@ -36,5 +38,8 @@
 	"engines": {
 		"node": ">= 18.12.0"
 	},
-	"browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11"
+	"browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
+	"dependencies": {
+		"fs": "^0.0.1-security"
+	}
 }
