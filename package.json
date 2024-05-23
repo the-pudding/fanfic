@@ -3,7 +3,9 @@
 	"version": "5.13.0",
 	"scripts": {
 		"tags": "node tasks/combine-tags.js",
-		"tags2": "node tasks/combine-tags-2.js",
+		"counts": "node tasks/get-counts.js",
+		"countCats": "node tasks/count-categories.js",
+		"combineBig": "node tasks/combine-big-tag-sheets.js",
 		"gdoc": "node tasks/fetch-google.js",
 		"style": "node tasks/style-dictionary.js",
 		"dev": "vite dev",
