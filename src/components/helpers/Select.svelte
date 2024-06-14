@@ -1,19 +1,38 @@
 <script>
+	import { characterPairSTORE } from "$stores/misc.js";
+	import charactersData from "$data/characters.csv";
+	import { csvFormat } from "d3";
+
 	export let options = [];
 	export let label = "";
 	export let disabled = false;
 	export let value = options.length ? options[0].value : "";
+	export let position;
+	export let id;
 
-	const id = `select-${Math.floor(Math.random() * 1000000)}`;
+	function findMatchingID(characterName) {
+		const match = charactersData.findIndex(d => d.character == characterName);
+		return match
+	}
+
+	function onChange() {
+		const oppSelect = position == "left" ? "rightSelect" : "leftSelect";
+		const oppSelectVal = document.getElementById(oppSelect).value;
+		const leftCharacter = position == "left" ? value : oppSelectVal;
+		const rightCharacter = position == "right" ? value : oppSelectVal;
+		const characterPair = [findMatchingID(leftCharacter), findMatchingID(rightCharacter)]
+		
+		characterPairSTORE.set(characterPair)
+	}
 </script>
 
 <div class="select">
 	{#if label}
 		<label for={id}>{label}</label>
 	{/if}
-	<select {id} bind:value {disabled}>
+	<select {id} bind:value {disabled} on:change={onChange}>
 		{#each options as option}
-			<option>{option.label || option.value}</option>
+			<option>{option.character}</option>
 		{/each}
 	</select>
 </div>
@@ -21,6 +40,8 @@
 <style>
 	.select {
 		position: relative;
+		font-family: var(--sans);
+		width: 18rem;
 	}
 
 	label {
