@@ -19,6 +19,21 @@
         return [leftCharacter, rightCharacter]
     }
 
+    // Only if the characters need to be different
+    function filterDropDownData(charactersData, position) {
+        const currLeftCharacter = charactersData[$characterPairSTORE[0]].character;
+        const currRightCharacter = charactersData[$characterPairSTORE[1]].character;
+        
+        const leftFilteredData = charactersData.filter(d => d.character !== currRightCharacter);
+        const rightFilteredData = charactersData.filter(d => d.character !== currLeftCharacter);
+
+        if (position == "left") {
+            return leftFilteredData
+        } else {
+            return rightFilteredData
+        }
+    }
+
     function randomClick() {
         characterPairSTORE.set(generateRandom());
     }
@@ -31,12 +46,12 @@
         <Character characterID={$characterPairSTORE[1]} position={"right"} />
     </div>
 	<div class="controls">
-        <Select id="leftSelect" options={charactersData} value={charactersData[$characterPairSTORE[0]].character} position={"left"}/>
+        <Select id="leftSelect" options={filterDropDownData(charactersData, "left")} value={charactersData[$characterPairSTORE[0]].character} position={"left"}/>
         <button on:click={randomClick} id="random-characters">
             <span>Random</span>
             <Icon name="shuffle" />
         </button>
-        <Select id="rightSelect" options={charactersData} value={charactersData[$characterPairSTORE[1]].character} position={"right"}/>
+        <Select id="rightSelect" options={filterDropDownData(charactersData, "right")} value={charactersData[$characterPairSTORE[1]].character} position={"right"}/>
     </div>
 </section>
 
