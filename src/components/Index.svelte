@@ -1,6 +1,7 @@
 <script>
 	import { getContext } from "svelte";
 	import CharacterSwap from "$components/CharacterSwap.svelte";
+	import IntroScroll from "$components/Intro.Scroll.svelte";
 	// import Footer from "$components/Footer.svelte";
 
 	// const copy = getContext("copy");
@@ -8,4 +9,5 @@
 </script>
 
 <CharacterSwap />
+<IntroScroll />
 <!-- <Footer /> -->

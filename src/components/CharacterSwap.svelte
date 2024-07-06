@@ -37,7 +37,7 @@
     function randomClick() {
         characterPairSTORE.set(generateRandom());
     }
-    $: console.log($characterPairSTORE)
+    // $: console.log($characterPairSTORE)
 </script>
 
 <section id="character-swap">
