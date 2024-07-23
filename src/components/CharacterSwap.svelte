@@ -42,7 +42,7 @@
         characterPairSTORE.set(generateRandom());
     }
     // Log the character pair every time it changes
-    $: console.log($characterPairSTORE)
+    // $: console.log($characterPairSTORE)
 </script>
 
 <section id="character-swap">

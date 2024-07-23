@@ -31,9 +31,11 @@
 		width: 100%;
 		height: 100%;
 		min-height: 100vh;
+		background: var(--color-black);
+		color: var(--color-white);
 	}
 
-	.slide-slash {
+	/* .slide-slash {
 		background: red;
 	}
 
@@ -43,5 +45,5 @@
 
 	.slide-realpeople {
 		background: green;
-	}
+	} */
 </style>

@@ -132,32 +132,16 @@
 		color: var(--color-white);
 	}
 
-	.option:first-of-type input[type="radio"]:checked + label {
-		background: red;
-	}
-
-	.option:nth-of-type(2) input[type="radio"]:checked + label {
-		background: blue;
-	}
-
-	.option:last-of-type input[type="radio"]:checked + label {
-		background: green;
+	.option input[type="radio"]:checked + label {
+		background: var(--color-black);
 	}
 
 	input[type="radio"]:hover + label {
 		background: var(--color-gray-100);
 	}
 
-	.option:first-of-type input[type="radio"]:focus + label {
-		box-shadow: 0 0 4px 0 red;
-	}
-
-	.option:nth-of-type(2) input[type="radio"]:focus + label {
-		box-shadow: 0 0 4px 0 blue;
-	}
-
-	.option:last-of-type input[type="radio"]:focus + label {
-		box-shadow: 0 0 4px 0 green;
+	.option input[type="radio"]:focus + label {
+		box-shadow: 0 0 4px 0 var(--color-black);
 	}
 
 	input[type="radio"]:disabled + label {

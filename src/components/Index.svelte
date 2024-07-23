@@ -6,6 +6,7 @@
 	import ButtonSet from "$components/helpers/ButtonSet.svelte";
 	import Slider from "$components/helpers/Slider.svelte";
 	import Slide from "$components/helpers/Slider.Slide.svelte";
+	import FanFicSection from "$components/FanFicSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
@@ -75,21 +76,19 @@
 </script>
 
 <CharacterSwap />
-<!-- <IntroScroll />
+<!-- <IntroScroll /> -->
 <ButtonSet options={sections} bind:userSelected={value} {sliderEl}/>
 <div class="tap-wrapper">
 	<Tap on:tap={onTap} full={true} enableKeyboard={true} size={"50%"} />
 	<Slider bind:this={sliderEl}>
 		{#each sections as section}
 			<Slide className={stripCharacters(section)}>
-				{#each copy[stripCharacters(section)] as text, i}
-					<p>{text.value}</p>
-				{/each}
+				<FanFicSection section={stripCharacters(section)} />
 			</Slide>
 		{/each}
 	</Slider>
 </div>
-<Footer /> -->
+<!-- <Footer /> -->
 
 <style>
 	.tap-wrapper {
