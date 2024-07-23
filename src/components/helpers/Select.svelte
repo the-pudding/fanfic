@@ -1,7 +1,8 @@
 <script>
-	import { characterPairSTORE } from "$stores/misc.js";
+	import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
 	import charactersData from "$data/characters.csv";
 	import { csvFormat } from "d3";
+	import filterCharacters from "$utils/filterCharacters";
 
 	export let options = [];
 	export let label = "";
@@ -20,9 +21,8 @@
 		const oppSelectVal = document.getElementById(oppSelect).value;
 		const leftCharacter = position == "left" ? value : oppSelectVal;
 		const rightCharacter = position == "right" ? value : oppSelectVal;
-		const characterPair = [findMatchingID(leftCharacter), findMatchingID(rightCharacter)]
-		
-		characterPairSTORE.set(characterPair)
+		const characterPair = [findMatchingID(leftCharacter), findMatchingID(rightCharacter)];
+		characterPairSTORE.set(characterPair)	
 	}
 </script>
 

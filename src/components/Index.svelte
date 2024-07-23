@@ -12,6 +12,8 @@
 	import copy from "$data/copy.json";
 	import {select, selectAll} from "d3";
 
+	console.log(copy)
+
 	let sliderEl; // component binding
 	let sections = ["Slash", "Non-Canon", "Real People"];
 	let value;
@@ -76,7 +78,7 @@
 </script>
 
 <CharacterSwap />
-<!-- <IntroScroll /> -->
+<IntroScroll />
 <ButtonSet options={sections} bind:userSelected={value} {sliderEl}/>
 <div class="tap-wrapper">
 	<Tap on:tap={onTap} full={true} enableKeyboard={true} size={"50%"} />

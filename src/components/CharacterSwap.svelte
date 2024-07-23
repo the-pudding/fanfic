@@ -3,9 +3,8 @@
     import charactersData from "$data/characters.csv";
     import Icon from "$components/helpers/Icon.svelte";
     import Select from "$components/helpers/Select.svelte";
-    import { characterPairSTORE } from "$stores/misc.js";
-
-    characterPairSTORE.set(generateRandom());
+    import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
+    import filterCharacters from "$utils/filterCharacters";
 
     function generateRandom() {
         const min = 1;
@@ -16,33 +15,29 @@
 
         // Only if the characters need to be different
         rightCharacter = leftCharacter == rightCharacter ? (rightCharacter % max) + 1 : rightCharacter;
-
         return [leftCharacter, rightCharacter]
-    }
-
-    // Only if the characters need to be different
-    function filterDropDownData(charactersData, position) {
-        // Finds the current character for each position
-        const currLeftCharacter = charactersData[$characterPairSTORE[0]].character;
-        const currRightCharacter = charactersData[$characterPairSTORE[1]].character;
-        
-        // Filters out current character from opposite position
-        const leftFilteredData = charactersData.filter(d => d.character !== currRightCharacter);
-        const rightFilteredData = charactersData.filter(d => d.character !== currLeftCharacter);
-
-        if (position == "left") {
-            return leftFilteredData
-        } else {
-            return rightFilteredData
-        }
     }
 
     function randomClick() {
         // When the random button is clicked, generate a new pair of random characters and set the store to them
         characterPairSTORE.set(generateRandom());
+
+        // Filter dropdown!!
+        dropdownOptionsLEFT = filterCharacters(charactersData, $characterPairSTORE, "left");
+        dropdownOptionsRIGHT = filterCharacters(charactersData, $characterPairSTORE, "right");
+
+        charactersDataLEFT.set(dropdownOptionsLEFT);
+        charactersDataRIGHT.set(dropdownOptionsRIGHT);
     }
-    // Log the character pair every time it changes
-    // $: console.log($characterPairSTORE)
+    // Every the character pair changes
+    // Filter the dropdowns
+    $: dropdownOptionsLEFT = filterCharacters(charactersData, $characterPairSTORE, "left");
+    $: dropdownOptionsRIGHT = filterCharacters(charactersData, $characterPairSTORE, "right");
+    // Set the pair stores
+    $: characterPairSTORE.set(generateRandom());
+    // Set the dropdown stores
+    $: charactersDataLEFT.set(dropdownOptionsLEFT);
+    $: charactersDataRIGHT.set(dropdownOptionsRIGHT);
 </script>
 
 <section id="character-swap">
@@ -51,12 +46,12 @@
         <Character characterID={$characterPairSTORE[1]} position={"right"} />
     </div>
 	<div class="controls">
-        <Select id="leftSelect" options={filterDropDownData(charactersData, "left")} value={charactersData[$characterPairSTORE[0]].character} position={"left"}/>
+        <Select id="leftSelect" options={$charactersDataLEFT} value={charactersData[$characterPairSTORE[0]].character} position={"left"}/>
         <button on:click={randomClick} id="random-characters">
             <span>Random</span>
             <Icon name="shuffle" />
         </button>
-        <Select id="rightSelect" options={filterDropDownData(charactersData, "right")} value={charactersData[$characterPairSTORE[1]].character} position={"right"}/>
+        <Select id="rightSelect" options={$charactersDataRIGHT} value={charactersData[$characterPairSTORE[1]].character} position={"right"}/>
     </div>
 </section>
 
