@@ -63,11 +63,11 @@
 
 <style>
 	section {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: calc(100% - 10rem);
 		z-index: var(--z-overlay);
 		pointer-events: none;
 	}
@@ -89,9 +89,9 @@
 		cursor: not-allowed;
 	}
 
-	button:hover {
+	/* button:hover {
 		background-color: rgba(255, 255, 255, 0.2);
-	}
+	} */
 
 	.left {
 		left: 0;

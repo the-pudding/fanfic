@@ -10,6 +10,7 @@
     function generateRandom() {
         const min = 1;
         const max = charactersData.length - 1;
+        // Generates a random integer between min (included) and max (included)
         const leftCharacter = Math.floor(Math.random() * (max - min + 1)) + min;
         let rightCharacter = Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -21,9 +22,11 @@
 
     // Only if the characters need to be different
     function filterDropDownData(charactersData, position) {
+        // Finds the current character for each position
         const currLeftCharacter = charactersData[$characterPairSTORE[0]].character;
         const currRightCharacter = charactersData[$characterPairSTORE[1]].character;
         
+        // Filters out current character from opposite position
         const leftFilteredData = charactersData.filter(d => d.character !== currRightCharacter);
         const rightFilteredData = charactersData.filter(d => d.character !== currLeftCharacter);
 
@@ -35,9 +38,11 @@
     }
 
     function randomClick() {
+        // When the random button is clicked, generate a new pair of random characters and set the store to them
         characterPairSTORE.set(generateRandom());
     }
-    // $: console.log($characterPairSTORE)
+    // Log the character pair every time it changes
+    $: console.log($characterPairSTORE)
 </script>
 
 <section id="character-swap">

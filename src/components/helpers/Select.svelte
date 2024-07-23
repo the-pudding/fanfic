@@ -10,8 +10,6 @@
 	export let position;
 	export let id;
 
-	console.log(options, value)
-
 	function findMatchingID(characterName) {
 		const match = charactersData.findIndex(d => d.character == characterName);
 		return match

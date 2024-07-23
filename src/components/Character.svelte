@@ -9,6 +9,7 @@
     let forceFlyRight = false;
     const flyDir = position == "left" ? -200 : 200;
 
+    // If the left character changes reset animation
     function storeChangeLeft() {
         forceFlyLeft = false;
         setTimeout(() => {
@@ -16,6 +17,7 @@
         }, 500);
     }
 
+     // If the right character changes reset animation
     function storeChangeRight() {
         forceFlyRight = false;
         setTimeout(() => {
@@ -31,11 +33,9 @@
 </script>
 
 <div class="character character_{position}">
-    <!-- {#if forceFly} -->
-        <div class="fly-container fly-container_{position}" class:forceFlyLeft={forceFlyLeft} class:forceFlyRight={forceFlyRight}>
-            <img transition:fly={{ delay: 250, duration: 300, x: flyDir}} src="/assets/images/characters/character{characterID}_{position}.png" alt="character"/>
-        </div>
-    <!-- {/if} -->
+    <div class="fly-container fly-container_{position}" class:forceFlyLeft={forceFlyLeft} class:forceFlyRight={forceFlyRight}>
+        <img transition:fly={{ delay: 250, duration: 300, x: flyDir}} src="/assets/images/characters/character{characterID}_{position}.png" alt="character"/>
+    </div>
 </div>
 
 <style>

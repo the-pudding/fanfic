@@ -1,20 +1,25 @@
 <script>
+	import { currSectionSTORE } from "$stores/misc.js";
+
 	export let options = [];
 	export let legend = "";
 	export let legendPosition = "top";
 	export let labelClass = "";
 	export let disabled = false;
-	export let value = options.length ? options[0].value : "";
+	export let value = options.length ? options[0] : "";
+	export let sliderEl;
 
 	const id = `legend-${Math.floor(Math.random() * 1000000)}`;
 	const makeSlug = (str = "") => `${str}`.toLowerCase().replace(/\W/g, "");
 
 	$: optionsWithSlug = options.map((d) => ({
 		...d,
-		val: d.value,
-		slug: makeSlug(d.value)
+		val: d,
+		slug: makeSlug(d)
 	}));
 	$: isTop = legendPosition === "top";
+
+	$: currSectionSTORE.set(value);
 </script>
 
 <div class="button-set">
@@ -28,18 +33,18 @@
 		{#if legend}<div class="legend" id="legend-{id}">{legend}</div>{/if}
 		<div class="options">
 			{#each optionsWithSlug as option}
-				<div class="option">
+				<div class="option" id={`tab-${option.slug}`}>
 					<input
 						type="radio"
 						id={`${id}-${option.slug}`}
 						name="name-{id}"
-						class="sr-only"
-						value={option.value}
+						class="sr-only input-{option.slug}"
+						value={option.val}
 						{disabled}
 						bind:group={value}
 					/>
 					<label class="option {labelClass}" for={`${id}-${option.slug}`}>
-						{option.label || option.value}
+						{option.val}
 					</label>
 				</div>
 			{/each}
@@ -49,13 +54,17 @@
 
 <style>
 	.button-set {
-		display: inline-block;
-		margin-bottom: 4px;
+		display: flex;
+		position: sticky;
+		top: 0;
+		width: 100%;
+		z-index: 1000;
 	}
 
 	.group {
 		display: flex;
 		align-items: center;
+		width: 100%;
 	}
 
 	.group.is-top {
@@ -74,6 +83,7 @@
 
 	.options {
 		display: flex;
+		width: 100%;
 	}
 
 	label {
@@ -81,9 +91,9 @@
 		user-select: none;
 		line-height: 1;
 		margin: 0;
-		padding: 0.5em;
+		padding: 1em;
 		border-radius: 0;
-		border: 2px solid var(--color-gray-900);
+		/* border: 2px solid var(--color-gray-900); */
 		outline: none;
 		cursor: pointer;
 		font-family: inherit;
@@ -91,7 +101,11 @@
 		display: inline-block;
 	}
 
-	.option + .option label {
+	.option {
+		width: 100%;
+	}
+
+	/* .option + .option label {
 		border-left-width: 0;
 	}
 
@@ -105,7 +119,7 @@
 
 	.option + .option > label {
 		border-left-width: 0;
-	}
+	} */
 
 	input[type="radio"] + label {
 		background: var(--color-white);
@@ -118,12 +132,32 @@
 		color: var(--color-white);
 	}
 
+	.option:first-of-type input[type="radio"]:checked + label {
+		background: red;
+	}
+
+	.option:nth-of-type(2) input[type="radio"]:checked + label {
+		background: blue;
+	}
+
+	.option:last-of-type input[type="radio"]:checked + label {
+		background: green;
+	}
+
 	input[type="radio"]:hover + label {
 		background: var(--color-gray-100);
 	}
 
-	input[type="radio"]:focus + label {
-		box-shadow: 0 0 4px 0 var(--color-focus);
+	.option:first-of-type input[type="radio"]:focus + label {
+		box-shadow: 0 0 4px 0 red;
+	}
+
+	.option:nth-of-type(2) input[type="radio"]:focus + label {
+		box-shadow: 0 0 4px 0 blue;
+	}
+
+	.option:last-of-type input[type="radio"]:focus + label {
+		box-shadow: 0 0 4px 0 green;
 	}
 
 	input[type="radio"]:disabled + label {
