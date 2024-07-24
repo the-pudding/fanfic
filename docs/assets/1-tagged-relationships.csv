@@ -1,0 +1,70 @@
+fileName,relationship,relType,isCanon,isRPF
+ao3_dean_castiel.csv,Castiel/Dean Winchester,M/M,Semi-Canon,No
+ao3_derek_stiles.csv,Derek Hale/Stiles Stilinski,M/M,No,No
+ao3_sherlock_john.csv,Sherlock Holmes/John Watson,M/M,No,No
+ao3_draco_harry.csv,Draco Malfoy/Harry Potter,M/M,No,No
+ao3_bucky_steve.csv,"James ""Bucky"" Barnes/Steve Rogers",M/M,No,No
+ao3_kara_lena.csv,Kara Danvers/Lena Luthor,F/F,No,No
+ao3_regina_emma.csv,Evil Queen | Regina Mills/Emma Swan,F/F,No,No
+ao3_clarke_lexa.csv,Clarke Griffin/Lexa,F/F,Yes,No
+ao3_amity_luz.csv,Amity Blight/Luz Noceda,F/F,Yes,No
+ao3_robin_nancy.csv,Robin Buckley/Nancy Wheeler,F/F,No,No
+ao3_rey_ben.csv,Rey/Ben Solo | Kylo Ren,F/M,Yes,No
+ao3_hermione_draco.csv,Hermione Granger/Draco Malfoy,F/M,No,No
+ao3_lily_james.csv,Lily Evans Potter/James Potter,F/M,Yes,No
+ao3_pepper_tony.csv,Pepper Potts/Tony Stark,F/M,Yes,No
+ao3_hermione_ron.csv,Hermione Granger/Ron Weasley,F/M,Yes,No
+ao3_adrien_marinette.csv,Adrien Agreste | Chat Noir & Marinette Dupain-Cheng | Ladybug,Gen,Yes,No
+ao3_peter_tony.csv,Peter Parker & Tony Stark,Gen,Yes,No
+ao3_scrape_wilbur_and_tommy.csv,Wilbur Soot & TommyInnit,Gen,Yes,Yes
+ao3_wilbur_techno_tommy_phil.csv,Wilbur Soot & Technoblade & TommyInnit & Phil Watson | Philza,Gen,Yes,Yes
+ao3_sherlock_john_friendship.csv,Sherlock Holmes & John Watson,Gen,Yes,No
+ao3_lanzhan_weiying.csv,Lán Zhàn | Lán Wàngjī/Wèi Yīng | Wèi Wúxiàn,M/M,Yes,No
+ao3_magnusbane_aleclightwood_romantic.csv,Magnus Bane/Alec Lightwood,M/M,Yes,No
+ao3_willgraham_hanniballecter_romantic.csv,Will Graham/Hannibal Lecter,M/M,Yes,No
+ao3_katsuki_victor_romantic.csv,Katsuki Yuuri/Victor Nikiforov,M/M,Yes,No
+ao3_blaineanderson_kurthummel.csv,Blaine Anderson/Kurt Hummel,M/M,Yes,No
+ao3_sirius_remus_romantic.csv,Sirius Black/Remus Lupin,M/M,No,No
+ao3_adora_catra.csv,Adora/Catra,F/F,Yes,No
+ao3_blakebelladonna_yangxiaolong.csv,Blake Belladonna/Yang Xiao Long,F/F,Yes,No
+ao3_korra_asami.csv,Korra/Asami Sato,F/F,Yes,No
+ao3_marlene_dorcas.csv,Marlene McKinnon/Dorcas Meadowes,F/F,No,No
+ao3_Jirou_yaoyorozu.csv,Jirou Kyouka/Yaoyorozu Momo,F/F,No,No
+ao3_harry_ginny.csv,Harry Potter/Ginny Weasley,F/M,Yes,No
+ao3_bellamy_clarke.csv,Bellamy Blake/Clarke Griffin,F/M,No,No
+ao3_clint_natasha.csv,Clint Barton/Natasha Romanov,F/M,No,No
+ao3_Hermione-Granger_Severus-Snape.csv,Hermione Granger/Severus Snape,F/M,No,No
+ao3_Jon-Snow_Sansa-Stark.csv,Jon Snow/Sansa Stark,F/M,No,No
+ao3_Jeon-Jungkook_and_Park-Jimin.csv,Jeon Jungkook & Park Jimin,Gen,No,Yes
+ao3_Peter-Parker_and_Morgan-Stark.csv,Peter Parker & Morgan Stark,Gen,No,No
+ao3_Harley-Keener_and_Peter-Parker.csv,Harley Keener & Peter Parker,Gen,No,No
+ao3_Bakugou-Katsuki_and_Uraraka-Ochako.csv,Bakugou Katsuki & Uraraka Ochako,Gen,No,No
+ao3_Jeon-Jungkook_and_Kim-Taehyung.csv,Jeon Jungkook & Kim Taehyung | V,Gen,No,Yes
+ao3_Harry-Styles_Louis-Tomlinson.csv,Harry Styles/Louis Tomlinson,M/M,No,Yes
+ao3_Jeon-Jungkook_Kim-Taehyung.csv,Jeon Jeongguk | Jungkook/Kim Taehyung | V,M/M,No,Yes
+ao3_Jeon-Jungkook_Park-Jimin.csv,Jeon Jungkook/Park Jimin,M/M,No,Yes
+ao3_Min-Yoongi_Park-Jimin.csv,Min Yoongi | Suga/Park Jimin,M/M,No,Yes
+ao3_Clay-Dream_GeorgeNotFound.csv,Clay | Dream/GeorgeNotFound,M/M,No,Yes
+ao3_Tobin-Heath_Christen-Press.csv,Tobin Heath/Christen Press,F/F,Yes,Yes
+ao3_Im-Nayeon_Myoui-Mina.csv,Im Nayeon/Myoui Mina,F/F,No,Yes
+ao3_Im-Nayeon_Yoo-Jeongyeon.csv,Im Nayeon/Yoo Jeongyeon,F/F,No,Yes
+ao3_Bae-Joohyun_Kang-Seulgi.csv,Bae Joohyun | Irene/Kang Seulgi,F/F,No,Yes
+ao3_Kim-Yongsun_Solar-Moon-Byulyi.csv,Kim Yongsun | Solar/Moon Byulyi | Moonbyul,F/F,No,Yes
+ao3_Kristin-Rosales_Phil-Watson-Philza.csv,Kristin Rosales Watson/Phil Watson | Philza,F/M,Yes,Yes
+ao3_perrie-edwards_zayn-malik.csv,Perrie Edwards/Zayn Malik,F/M,No,Yes
+ao3_scott-moir_tessa-virtue.csv,Scott Moir/Tessa Virtue,F/M,No,Yes
+ao3_eleanor-calder_louis-tomlinson.csv,Eleanor Calder/Louis Tomlinson,F/M,Yes,Yes
+ao3_joel_lizzy.csv,Joel | SmallishBeans/Lizzie | LDShadowLady,F/M,Yes,Yes
+ao3_tubbo_tommyinnit.csv,Toby Smith | Tubbo & TommyInnit,Gen,Yes,Yes
+ao3_technoblade_tommyinnit.csv,Technoblade & TommyInnit,Gen,Yes,Yes
+ao3_ranboo_tubbo.csv,Ranboo & Toby Smith | Tubbo,Gen,Yes,Yes
+ao3_bakuguo-katsuki_midoriya-izuku.csv,Bakugou Katsuki & Midoriya Izuku,Gen,Yes,No
+ao3_aziraphale_crowley.csv,Aziraphale & Crowley,Gen,Yes,No
+ao3_dan-howell_phil-lester.csv,Dan Howell/Phil Lester,M/M,Yes,Yes
+ao3_jimmy_scott-major.csv,Jimmy | Solidarity/Scott Major | Smajor1995,M/M,Yes,Yes
+ao3_ashlyn-harris_ali-krieger.csv,Ashlyn Harris/Ali Krieger,F/F,Yes,Yes
+ao3_cara_niki.csv,Cara | CaptainPuffy/Niki | Nihachu,F/F,No,Yes
+ao3_jungkook_suga.csv,Jeon Jungkook & Min Yoongi | Suga,Gen,No,Yes
+ao3_v_park-jimin.csv,Kim Taehyung | V & Park Jimin,Gen,No,Yes
+a03_peter-parker_wade-wilson.csv,Peter Parker & Wade Wilson,Gen,No,No
+ao3_harry-potter_original.csv,Harry Potter & Original Character(s),Gen,No,No
