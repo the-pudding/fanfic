@@ -11,8 +11,7 @@
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
 	import {select, selectAll} from "d3";
-
-	console.log(copy)
+	// import Footer from "$components/Footer.svelte";
 
 	let sliderEl; // component binding
 	let sections = ["Slash", "Non-Canon", "Real People"];
@@ -23,77 +22,62 @@
 		return stripped;
 	} 
 
-	function resetTabs($currSectionSTORE, detail) {
-		const slashTab = select("#tab-slash input").node();
-		const noncanonTab = select("#tab-noncanon input").node();
-		const realpeopleTab = select("#tab-realpeople input").node();
-		if (detail == "right") {
-			if (slashTab.checked) {
-				slashTab.checked = false;
-				noncanonTab.checked = true;
-			} else if (noncanonTab.checked) {
-				noncanonTab.checked = false;
-				realpeopleTab.checked = true;
-			}
-		} else {
-			if (realpeopleTab.checked) {
-				realpeopleTab.checked = false;
-				noncanonTab.checked = true;
-			} else if (noncanonTab.checked) {
-				noncanonTab.checked = false;
-				slashTab.checked = true;
-			}
-		}
-	}
-
 	const onTap = async ({ detail }) => {
 		if (detail == "right") {
-			sliderEl.next();
-			resetTabs($currSectionSTORE, detail);
-		} else {
-			sliderEl.prev();
-			resetTabs($currSectionSTORE, detail);
+			if ($currSectionSTORE == "Slash") {
+				currSectionSTORE.set("Non-Canon")
+			} else if ($currSectionSTORE == "Non-Canon") {
+				currSectionSTORE.set("Real People")
+			}	
+		} else { 
+			if ($currSectionSTORE == "Real People") {
+				currSectionSTORE.set("Non-Canon")
+			} else if ($currSectionSTORE == "Non-Canon") {
+				currSectionSTORE.set("Slash")
+			}
 		}
 	};
 
+	$: currSectionSTORE.set(value);
+	$: console.log($currSectionSTORE)
+	$: translate = $currSectionSTORE == "Slash"
+		? "translate(0vw, 0px)"
+		: $currSectionSTORE == "Non-Canon"
+		? "translate(-85vw, 0px)"
+		: "translate(-170vw, 0px)";
 
-	function setSection($currSectionSTORE) {
-		if (sliderEl !== undefined) {
-			if ($currSectionSTORE == "Slash") {
-				sliderEl.jump(0);
-			} else if ($currSectionSTORE == "Non-Canon") {
-				sliderEl.jump(1);
-			} else if ($currSectionSTORE == "Real People") {
-				sliderEl.jump(2);
-			}
-		}
-	}
-
-	$: setSection($currSectionSTORE)
-	$: value == $currSectionSTORE;
-	// import Footer from "$components/Footer.svelte";
-
-	// const copy = getContext("copy");
-	// const data = getContext("data");
 </script>
 
 <CharacterSwap />
 <IntroScroll />
 <ButtonSet options={sections} bind:userSelected={value} {sliderEl}/>
+
+
 <div class="tap-wrapper">
-	<Tap on:tap={onTap} full={true} enableKeyboard={true} size={"50%"} />
-	<Slider bind:this={sliderEl}>
-		{#each sections as section}
-			<Slide className={stripCharacters(section)}>
-				<FanFicSection section={stripCharacters(section)} />
-			</Slide>
-		{/each}
-	</Slider>
+	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
+</div>
+<div class="inner" style="transform:{translate}">
+	{#each sections as section}
+		<FanFicSection section={stripCharacters(section)} />
+	{/each}
 </div>
 <!-- <Footer /> -->
 
 <style>
+	.inner {
+		transform: translate(0vw, 0px);
+		width: 300vw;
+		display: flex;
+		transition: transform 0.5s;
+	}
+
 	.tap-wrapper {
-		position: relative;
+		width: 100%;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: var(--z-overlay);
+		pointer-events: none;
 	}
 </style>

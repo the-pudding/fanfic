@@ -6,6 +6,8 @@
     import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
     import filterCharacters from "$utils/filterCharacters";
 
+    characterPairSTORE.set(generateRandom());
+
     function generateRandom() {
         const min = 1;
         const max = charactersData.length - 1;

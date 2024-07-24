@@ -3,15 +3,21 @@
     import Prose from "$components/Prose.svelte";
     import InlineChart from "$components/InlineChart.svelte";
     import FullChart from "$components/FullChart.svelte";
+    import { currSectionSTORE } from "$stores/misc.js";
 
     import copy from "$data/copy.json";
 
     const sectionCopy = copy[section];
 
-    // console.log(sectionCopy)
+    function stripCharacters(string) {
+		let stripped = string.replace(/[^A-Z0-9]/ig, '').toLowerCase();
+		return stripped;
+	} 
+
+    $: isActive = stripCharacters($currSectionSTORE) == section ? true : false;
 </script>
 
-<section id="{section}-slide">
+<section id="{section}-slide" class:isActive={isActive}>
     {#each sectionCopy as chunk, i}
             {#if chunk.contentType == "prose"}
                 <div class="prose">
@@ -39,6 +45,14 @@
 </section>
 
 <style>
+    section {
+        border: 1px solid red;
+        width: 90vw;
+        opacity: 0.5;
+    }
+    section.isActive {
+        opacity: 1;
+    }
     .prose, .hed, .inline-chart {
         max-width: 700px;
         margin: 0 auto;

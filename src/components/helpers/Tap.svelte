@@ -1,6 +1,7 @@
 <script>
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
+	import { currSectionSTORE } from "$stores/misc.js";
 
 	export let debug = false;
 	export let enableKeyboard = false;
@@ -38,11 +39,11 @@
 
 <svelte:window on:keydown={onKeyDown} bind:innerHeight />
 
-<section class:debug style="height: {innerHeight}px;">
+<section class:debug >
 	{#each directions as dir}
+		{#if dir == "left" && $currSectionSTORE !== "Slash"}
 		<button
 			on:click={dispatch("tap", dir)}
-			style="width: {getW(dir)}; height: {getH(dir)};"
 			aria-label={dir}
 			class="{dir} {arrowPosition}"
 			class:full
@@ -50,14 +51,33 @@
 		>
 			{#if visibleArrows.includes(dir)}
 				<span style="font-size: {arrowSize};">
-					{#if dir === "left"}
-						<ChevronLeft color={arrowStroke} strokeWidth={arrowStrokeWidth} />
-					{:else if dir === "right"}
-						<ChevronRight color={arrowStroke} strokeWidth={arrowStrokeWidth} />
-					{/if}
+					<ChevronLeft
+						color={arrowStroke}
+						strokeWidth={arrowStrokeWidth}
+						size={"2rem"}
+					/>
 				</span>
 			{/if}
 		</button>
+		{:else if dir == "right" && $currSectionSTORE !== "Real People"}
+		<button
+			on:click={dispatch("tap", dir)}
+			aria-label={dir}
+			class="{dir} {arrowPosition}"
+			class:full
+			disabled={disable.includes(dir)}
+		>
+			{#if visibleArrows.includes(dir)}
+				<span style="font-size: {arrowSize};">
+					<ChevronRight
+						color={arrowStroke}
+						strokeWidth={arrowStrokeWidth}
+						size={"2rem"}
+					/>
+				</span>
+			{/if}
+		</button>
+		{/if}
 	{/each}
 </section>
 
@@ -67,21 +87,25 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: calc(100% - 10rem);
+		height: 100vh;
 		z-index: var(--z-overlay);
 		pointer-events: none;
 	}
 
 	button {
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
 		position: absolute;
 		cursor: pointer;
-		background: none;
+		background: var(--color-white);
 		border-radius: 0;
 		outline: none;
 		border: none;
 		box-shadow: none;
 		pointer-events: auto;
 		display: flex;
+		z-index: 1000;
 	}
 
 	button:disabled {
