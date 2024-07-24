@@ -3,63 +3,53 @@
 	import { currSectionSTORE } from "$stores/misc.js";
 	import CharacterSwap from "$components/CharacterSwap.svelte";
 	import IntroScroll from "$components/Intro.Scroll.svelte";
-	import ButtonSet from "$components/helpers/ButtonSet.svelte";
-	import Slider from "$components/helpers/Slider.svelte";
-	import Slide from "$components/helpers/Slider.Slide.svelte";
+	import Tabs from "$components/Tabs.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
 	import {select, selectAll} from "d3";
-	// import Footer from "$components/Footer.svelte";
 
-	let sliderEl; // component binding
-	let sections = ["Slash", "Non-Canon", "Real People"];
+	let sections = ["slash", "noncanon", "realpeople"];
 	let value;
-
-	function stripCharacters(string) {
-		let stripped = string.replace(/[^A-Z0-9]/ig, '').toLowerCase();
-		return stripped;
-	} 
 
 	const onTap = async ({ detail }) => {
 		if (detail == "right") {
-			if ($currSectionSTORE == "Slash") {
-				currSectionSTORE.set("Non-Canon")
-			} else if ($currSectionSTORE == "Non-Canon") {
-				currSectionSTORE.set("Real People")
+			if ($currSectionSTORE == "slash") {
+				currSectionSTORE.set("noncanon")
+			} else if ($currSectionSTORE == "noncanon") {
+				currSectionSTORE.set("realpeople")
 			}	
 		} else { 
-			if ($currSectionSTORE == "Real People") {
-				currSectionSTORE.set("Non-Canon")
-			} else if ($currSectionSTORE == "Non-Canon") {
-				currSectionSTORE.set("Slash")
+			if ($currSectionSTORE == "realpeople") {
+				currSectionSTORE.set("noncanon")
+			} else if ($currSectionSTORE == "noncanon") {
+				currSectionSTORE.set("slash")
 			}
 		}
 	};
 
-	$: currSectionSTORE.set(value);
 	$: console.log($currSectionSTORE)
-	$: translate = $currSectionSTORE == "Slash"
+	$: translate = $currSectionSTORE == "slash" || $currSectionSTORE == undefined
 		? "translate(0vw, 0px)"
-		: $currSectionSTORE == "Non-Canon"
+		: $currSectionSTORE == "noncanon"
 		? "translate(-85vw, 0px)"
 		: "translate(-170vw, 0px)";
-
 </script>
 
 <CharacterSwap />
 <IntroScroll />
-<ButtonSet options={sections} bind:userSelected={value} {sliderEl}/>
-
+<Tabs options={sections} />
 
 <div class="tap-wrapper">
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
 <div class="inner" style="transform:{translate}">
-	{#each sections as section}
-		<FanFicSection section={stripCharacters(section)} />
-	{/each}
+	{#if sections}
+		{#each sections as section}
+			<FanFicSection {section} />
+		{/each}
+	{/if}
 </div>
 <!-- <Footer /> -->
 

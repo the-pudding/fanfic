@@ -41,7 +41,7 @@
 
 <section class:debug >
 	{#each directions as dir}
-		{#if dir == "left" && $currSectionSTORE !== "Slash"}
+		{#if dir == "left" && $currSectionSTORE !== "slash"}
 		<button
 			on:click={dispatch("tap", dir)}
 			aria-label={dir}
@@ -59,7 +59,7 @@
 				</span>
 			{/if}
 		</button>
-		{:else if dir == "right" && $currSectionSTORE !== "Real People"}
+		{:else if dir == "right" && $currSectionSTORE !== "realpeople"}
 		<button
 			on:click={dispatch("tap", dir)}
 			aria-label={dir}

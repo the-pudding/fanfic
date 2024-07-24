@@ -7,41 +7,39 @@
 
     import copy from "$data/copy.json";
 
-    const sectionCopy = copy[section];
+    let sectionCopy = copy[section];
 
-    function stripCharacters(string) {
-		let stripped = string.replace(/[^A-Z0-9]/ig, '').toLowerCase();
-		return stripped;
-	} 
 
-    $: isActive = stripCharacters($currSectionSTORE) == section ? true : false;
+    $: isActive = $currSectionSTORE == section ? true : false;
 </script>
 
 <section id="{section}-slide" class:isActive={isActive}>
-    {#each sectionCopy as chunk, i}
-            {#if chunk.contentType == "prose"}
-                <div class="prose">
-                    <Prose copy={chunk.text}/>
-                </div>
-                {:else if chunk.contentType == "hed"}
-                    <div class="hed">
-                        <h3>{chunk.hed}</h3>
+    {#if sectionCopy !== undefined}
+        {#each sectionCopy as chunk, i}
+                {#if chunk.contentType == "prose"}
+                    <div class="prose">
+                        <Prose copy={chunk.text}/>
                     </div>
-                {:else if chunk.contentType == "quote"}
-                    <div class="quote">
-                        <p>{chunk.text}</p>
-                        <p>{chunk.attribution}</p>
-                    </div>
-                {:else if chunk.contentType == "inlineChart"}
-                    <div class="inline-chart">
-                        <InlineChart />
-                    </div>
-                {:else if chunk.contentType == "fullChart"}
-                    <div class="full-chart">
-                        <FullChart />
-                    </div>
-            {/if}
-    {/each}  
+                    {:else if chunk.contentType == "hed"}
+                        <div class="hed">
+                            <h3>{chunk.hed}</h3>
+                        </div>
+                    {:else if chunk.contentType == "quote"}
+                        <div class="quote">
+                            <p>{chunk.text}</p>
+                            <p>{chunk.attribution}</p>
+                        </div>
+                    {:else if chunk.contentType == "inlineChart"}
+                        <div class="inline-chart">
+                            <InlineChart />
+                        </div>
+                    {:else if chunk.contentType == "fullChart"}
+                        <div class="full-chart">
+                            <FullChart />
+                        </div>
+                {/if}
+        {/each} 
+    {/if} 
 </section>
 
 <style>
