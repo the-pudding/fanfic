@@ -4,6 +4,9 @@
  -->
 <script>
 	import { getContext } from 'svelte';
+	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
+
+	export let curve = curveStep;
 
 	const { data, xGet, yGet, zGet } = getContext('LayerCake');
 
@@ -14,8 +17,6 @@
 			})
 			.join('L');
 	};
-
-	console.log($data)
 </script>
 
 <g class="line-group">
@@ -33,6 +34,6 @@
 		fill: none;
 		stroke-linejoin: round;
 		stroke-linecap: round;
-		stroke-width: 3px;
+		stroke-width: 2px;
 	}
 </style>

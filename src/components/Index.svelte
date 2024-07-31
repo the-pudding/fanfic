@@ -29,7 +29,6 @@
 		}
 	};
 
-	$: console.log($currSectionSTORE)
 	$: translate = $currSectionSTORE == "slash" || $currSectionSTORE == undefined
 		? "translate(0vw, 0px)"
 		: $currSectionSTORE == "noncanon"

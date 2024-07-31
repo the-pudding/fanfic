@@ -29,8 +29,6 @@
     }
     
     export let id;
-
-    $: console.log(isEntered)
 </script>
 
 <figure>

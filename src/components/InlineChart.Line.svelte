@@ -20,12 +20,10 @@
 
     onMount(async () => {
         if (id) {
-            console.log(id)
             const dataPath = `./src/data/RPF/${id}.csv`
             data = await d3.csv(dataPath);
             xKey = findKeyMatch(id, "x");
-            yKey = findKeyMatch(id, "y")
-
+            yKey = findKeyMatch(id, "y");
         }
 
         data.forEach(d => {
@@ -47,7 +45,7 @@
     export let id;
 </script>
 
-<figure>
+<div class="chart-container">
     <LayerCake
         padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
         x={xKey}
@@ -61,11 +59,11 @@
             <Line />
         </Svg>
     </LayerCake>
-</figure>
+</div>
 
 
 <style>
-    figure {
+    .chart-container {
         width: 100%;
         height: 400px;
     }
