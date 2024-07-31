@@ -31,7 +31,7 @@
                         </div>
                     {:else if chunk.contentType == "inlineChart"}
                         <div class="inline-chart">
-                            <InlineChart />
+                            <InlineChart chartType={chunk.chartType} id={chunk.id} title={chunk.title}/>
                         </div>
                     {:else if chunk.contentType == "fullChart"}
                         <div class="full-chart">
@@ -57,8 +57,6 @@
     }
 
     .inline-chart {
-        height: 500px;
-        background: var(--color-gray-400);
         margin: 2rem auto;
     }
 

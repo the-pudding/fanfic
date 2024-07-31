@@ -14,6 +14,8 @@
 			})
 			.join('L');
 	};
+
+	console.log($data)
 </script>
 
 <g class="line-group">

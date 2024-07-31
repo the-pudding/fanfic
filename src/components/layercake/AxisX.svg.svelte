@@ -59,6 +59,9 @@
 </g>
 
 <style>
+	.x-axis {
+		font-family: var(--mono);
+	}
 	.tick {
 		font-size: 0.725em;
 		font-weight: 200;
@@ -67,11 +70,11 @@
 	line,
 	.tick line {
 		stroke: var(--color-gray-300);
-		stroke-dasharray: 2;
+		stroke-dasharray: 4;
 	}
 
 	.tick text {
-		fill: var(--color-gray-600);
+		color: var(--color-gray-900);
 	}
 
 	.tick .tick-mark,

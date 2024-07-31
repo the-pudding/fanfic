@@ -1,12 +1,12 @@
 <script>
 	import { getContext } from "svelte";
-	import { line, curveLinear } from "d3";
+	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
 
 	const { data, xGet, yGet } = getContext("LayerCake");
 
-	export let stroke = "#ccc";
+	export let stroke = "#1B2AA6";
 
-	export let curve = curveLinear;
+	export let curve = curveStep;
 
 	$: path = line().x($xGet).y($yGet).curve(curve);
 	$: pathD = path($data);
@@ -17,8 +17,6 @@
 <style>
 	path {
 		fill: none;
-		stroke-linejoin: round;
-		stroke-linecap: round;
-		stroke-width: 2;
+		stroke-width: 4;
 	}
 </style>
