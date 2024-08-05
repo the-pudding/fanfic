@@ -31,7 +31,7 @@
                         </div>
                     {:else if chunk.contentType == "inlineChart"}
                         <div class="inline-chart">
-                            <InlineChart chartType={chunk.chartType} id={chunk.id} title={chunk.title}/>
+                            <InlineChart chunk={chunk} chartType={chunk.chartType} id={chunk.id} title={chunk.title}/>
                         </div>
                     {:else if chunk.contentType == "fullChart"}
                         <div class="full-chart">
@@ -44,11 +44,14 @@
 
 <style>
     section {
-        border: 1px solid red;
         width: 90vw;
         opacity: 0.5;
     }
     section.isActive {
+        opacity: 1;
+    }
+    #intro-slide {
+        width: 100%;;
         opacity: 1;
     }
     .prose, .hed, .inline-chart {

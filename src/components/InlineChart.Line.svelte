@@ -6,6 +6,8 @@
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
 
+    export let inview;
+
     let data;
     let xKey = "year";
     let yKey = "yes_percent";
@@ -15,12 +17,18 @@
             id: "RPF_percentRPF",
             xKey: "year",
             yKey: "yes_percent"
+        },
+        {
+            id: "INTRO_topStats",
+            xKey: "year",
+            yKey: "uniqueFandoms"
         }
     ];
 
     onMount(async () => {
         if (id) {
-            const dataPath = `./src/data/RPF/${id}.csv`
+            const dataFolder = id.split("_")[0]
+            const dataPath = `./src/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
             xKey = findKeyMatch(id, "x");
             yKey = findKeyMatch(id, "y");

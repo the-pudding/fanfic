@@ -1,6 +1,7 @@
 <script>
 	import { getContext } from "svelte";
 	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
+	import { draw } from 'svelte/transition';
 
 	const { data, xGet, yGet } = getContext("LayerCake");
 
@@ -12,7 +13,7 @@
 	$: pathD = path($data);
 </script>
 
-<path d={pathD} {stroke} />
+<path in:draw={{ duration: 1000 }} d={pathD} {stroke} />
 
 <style>
 	path {

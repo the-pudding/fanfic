@@ -1,6 +1,6 @@
 <script>
 	import { getContext } from "svelte";
-    import top20Data from "$data/top20.csv";
+    import top20Data from "$data/INTRO/INTRO_top20.csv";
     import IntroTableChunk from "$components/Intro.Table.Chunk.svelte"
 	// import Footer from "$components/Footer.svelte";
 

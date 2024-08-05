@@ -1,6 +1,6 @@
 <script>
 	import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
-	import charactersData from "$data/characters.csv";
+	import charactersData from "$data/INTRO/INTRO_characters.csv";
 	import { csvFormat } from "d3";
 	import filterCharacters from "$utils/filterCharacters";
 

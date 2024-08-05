@@ -1,6 +1,6 @@
 <script>
     import Character from "$components/Character.svelte";
-    import charactersData from "$data/characters.csv";
+    import charactersData from "$data/INTRO/INTRO_characters.csv";
     import Icon from "$components/helpers/Icon.svelte";
     import Select from "$components/helpers/Select.svelte";
     import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";

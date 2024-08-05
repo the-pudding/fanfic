@@ -10,13 +10,15 @@
 
 	const { data, xGet, yGet, zGet } = getContext('LayerCake');
 
-	$: path = values => {
-		return 'M' + values
-			.map(d => {
-				return $xGet(d) + ',' + $yGet(d);
-			})
-			.join('L');
-	};
+	// $: path = values => {
+	// 	return 'M' + values
+	// 		.map(d => {
+	// 			return $xGet(d) + ',' + $yGet(d);
+	// 		})
+	// 		.join('L');
+	// };
+
+	$: path = line().x($xGet).y($yGet).curve(curve);
 </script>
 
 <g class="line-group">
