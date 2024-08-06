@@ -9,11 +9,24 @@
 
     export let id;
 
-    const xKey = 'year';
-    const yKey = 'fanfics';
-    const zKey = 'fandom';
-
     let data;
+    let xKey = 'year';
+    let yKey = 'fanfics';
+    let zKey = 'fandom';
+
+    let axisKeys = [
+        {
+            id: "CANON_percentCanon",
+            xKey: "year",
+            yKey: "canon_status"
+        },
+        {
+            id: "RPF_topFandomsTime",
+            xKey: "year",
+            yKey: "fanfics"
+        }
+    ];
+
     let seriesNames;
     let groupedData;
 
@@ -21,9 +34,14 @@
 
     onMount(async () => {
         if (id) {
-            const dataPath = `./src/data/RPF/${id}.csv`
+            const dataFolder = id.split("_")[0];
+            const dataPath = `./src/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
+            console.log(data)
+            xKey = findKeyMatch(id, "x");
+            yKey = findKeyMatch(id, "y");
             seriesNames = Object.keys(data[0]).filter(d => d !== xKey);
+            console.log(seriesNames)
         }
 
         data.forEach(d => {
@@ -37,6 +55,16 @@
             valueTo: yKey
         });
 	});
+
+    function findKeyMatch(id, axis) {
+        if (axis == "x") {
+            let match = axisKeys.find(element => element.id === id).xKey;
+            return match
+        } else if (axis == "y") {
+            let match = axisKeys.find(element => element.id === id).yKey;
+            return match
+        }
+    }
 </script>
 
 <div class="chart-container">

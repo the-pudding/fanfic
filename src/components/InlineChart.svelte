@@ -19,7 +19,7 @@
             <InlineChartLine {id}/>
         {/if}
         {#if chartType == "smallmultline"}
-            <InlineChartSmallMultLine {id}/>
+            <InlineChartSmallMultLine {id} />
         {/if}
         {#if chartType == "nums"}
             <InlineChartNums {id} {chunk}/>
@@ -30,7 +30,7 @@
         {/if}
         {#if chartType == "multiline"}
             {#if title}<h3>{title}</h3>{/if}
-            <InlineChartMultiline {id}/>
+            <InlineChartMultiline {id} />
         {/if}
 </div>
 

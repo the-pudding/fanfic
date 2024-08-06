@@ -19,7 +19,7 @@ function setTitle(option) {
     let title = option == "slash"
     ? "Slash"
     : option == "noncanon"
-    ? "Non-Canon" :
+    ? "Canon" :
     "Real People"
     return title;
 }
