@@ -34,7 +34,7 @@
 
 <div class="character character_{position}">
     <div class="fly-container fly-container_{position}" class:forceFlyLeft={forceFlyLeft} class:forceFlyRight={forceFlyRight}>
-        <img transition:fly={{ delay: 250, duration: 300, x: flyDir}} src="/assets/images/characters/character{characterID}_{position}.png" alt="character"/>
+        <img transition:fly={{ delay: 250, duration: 300, x: flyDir}} src="./assets/images/characters/character{characterID}_{position}.png" alt="character"/>
     </div>
 </div>
 

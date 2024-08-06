@@ -53,8 +53,8 @@
     >
         <div class="content-wrapper">
             <div class="heads">
-                <img src="/assets/images/characters/heads/character1-head.png" alt="character"/>
-                <img src="/assets/images/characters/heads/character2-head.png" alt="character"/>
+                <img src="./assets/images/characters/heads/character1-head.png" alt="character"/>
+                <img src="./assets/images/characters/heads/character2-head.png" alt="character"/>
             </div>
             <div class="details">
                 <p class="rank">{start+i+1}</p>
