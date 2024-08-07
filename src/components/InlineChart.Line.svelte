@@ -28,7 +28,7 @@
     onMount(async () => {
         if (id) {
             const dataFolder = id.split("_")[0];
-            const dataPath = `../data/${dataFolder}/${id}.csv`
+            const dataPath = `../src/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
             xKey = findKeyMatch(id, "x");
             yKey = findKeyMatch(id, "y");
