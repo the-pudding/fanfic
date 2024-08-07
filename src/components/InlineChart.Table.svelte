@@ -10,7 +10,7 @@
 
     onMount(async () => {
         if (id) {
-            const dataPath = `/src/data/RPF/${id}.csv`
+            const dataPath = `./assets/data/RPF/${id}.csv`
             data = await d3.csv(dataPath);
             data.columns.unshift("rank");
         }
