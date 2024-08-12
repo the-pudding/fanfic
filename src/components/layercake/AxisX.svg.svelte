@@ -11,11 +11,15 @@
 	export let ticks = undefined;
 	/** If this is a number, it passes that along to the [d3Scale.ticks](https://github.com/d3/d3-scale) function. If this is an array, hardcodes the ticks to those values. If it's a function, passes along the default tick values and expects an array of tick values in return. If nothing, it uses the default ticks supplied by the D3 function. */
 
+	$: isBandwidth = typeof $xScale.bandwidth === 'function';
+
 	$: tickVals = Array.isArray(ticks)
-		? ticks
-		: typeof ticks === "function"
-		? ticks($xScale.ticks())
-		: $xScale.ticks(ticks);
+    ? ticks
+    : isBandwidth
+      ? $xScale.domain()
+      : typeof ticks === 'function'
+        ? ticks($xScale.ticks())
+        : $xScale.ticks(ticks);
 
 	const textAnchor = (i) => {
 		if (snapTicks === true) {

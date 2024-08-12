@@ -35,7 +35,7 @@
                         </div>
                     {:else if chunk.contentType == "fullChart"}
                         <div class="full-chart">
-                            <FullChart />
+                            <FullChart chunk={chunk} chartType={chunk.chartType} id={chunk.id} title={chunk.title} />
                         </div>
                 {/if}
         {/each} 
@@ -64,9 +64,6 @@
     }
 
     .full-chart {
-        width: 100%;
-        margin: 0;
-        height: 500px;
-        background: var(--color-gray-400);
+        margin: 2rem auto;
     }
 </style>

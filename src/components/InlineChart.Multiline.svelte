@@ -37,11 +37,9 @@
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            console.log(data)
             xKey = findKeyMatch(id, "x");
             yKey = findKeyMatch(id, "y");
             seriesNames = Object.keys(data[0]).filter(d => d !== xKey);
-            console.log(seriesNames)
         }
 
         data.forEach(d => {

@@ -32,6 +32,10 @@
             {#if title}<h3>{title}</h3>{/if}
             <InlineChartMultiline {id} />
         {/if}
+        {#if chartType == "stackedBarTable"}
+            {#if title}<h3>{title}</h3>{/if}
+            <InlineChartStackedBarTable {id} />
+        {/if}
 </div>
 
 <style>
