@@ -4,6 +4,9 @@
 	import { csvFormat } from "d3";
 	import filterCharacters from "$utils/filterCharacters";
 
+	const leftData = charactersData.filter(d => d.position == "left");
+    const rightData = charactersData.filter(d => d.position == "right");
+
 	export let options = [];
 	export let label = "";
 	export let disabled = false;
@@ -11,8 +14,13 @@
 	export let position;
 	export let id;
 
-	function findMatchingID(characterName) {
-		const match = charactersData.findIndex(d => d.character == characterName);
+	function findMatchingID(characterName, position) {
+		let match;
+		if (position == "left") {
+			match = leftData.findIndex(d => d.character == characterName);
+		} else if (position == "right") {
+			match = rightData.findIndex(d => d.character == characterName);
+		}
 		return match
 	}
 
@@ -21,7 +29,7 @@
 		const oppSelectVal = document.getElementById(oppSelect).value;
 		const leftCharacter = position == "left" ? value : oppSelectVal;
 		const rightCharacter = position == "right" ? value : oppSelectVal;
-		const characterPair = [findMatchingID(leftCharacter), findMatchingID(rightCharacter)];
+		const characterPair = [findMatchingID(leftCharacter, "left"), findMatchingID(rightCharacter, "right")];
 		characterPairSTORE.set(characterPair)	
 	}
 </script>
