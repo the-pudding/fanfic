@@ -57,6 +57,7 @@
     .prose, .hed, .inline-chart {
         max-width: 700px;
         margin: 0 auto;
+        color: var(--color-white);
     }
 
     .inline-chart {

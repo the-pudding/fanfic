@@ -38,7 +38,7 @@
 	{#if label}
 		<label for={id}>{label}</label>
 	{/if}
-	<select {id} bind:value {disabled} on:change={onChange}>
+	<select class="select-{position}" {id} bind:value {disabled} on:change={onChange}>
 		{#each options as option}
 			<option>{option.character}</option>
 		{/each}
@@ -68,11 +68,21 @@
 		cursor: pointer;
 		background: var(--color-white);
 		color: var(--color-gray-900);
-		border: 2px solid var(--color-gray-900);
-		border-radius: 4px;
+		border-width:2px;
+        border-color:#FFFFFF #151515 #151515 #FFFFFF;
+        border-style:solid;
 		padding: 0.5em;
 		appearance: none;
 		line-height: 1.4;
+		color: var(--fanfic-black);
+	}
+
+	.select-left {
+		background: var(--fanfic-pink);
+	}
+
+	.select-right {
+		background: var(--fanfic-highlighter);
 	}
 
 	select::-ms-expand {

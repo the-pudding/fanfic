@@ -39,4 +39,22 @@
 </div>
 
 <style>
+    .chart-wrapper {
+        background: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-style:solid;
+    }
+
+    h3 {
+        width: 100%;
+        background: var(--fanfic-blue);
+        color: var(--fanfic-highlighter);
+        font-family: var(--mono);
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+        font-size: var(--18px);
+        padding: 0.25rem 0;
+    }
 </style>

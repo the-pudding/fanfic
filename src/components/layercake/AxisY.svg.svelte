@@ -52,6 +52,7 @@
 	.tick {
 		font-size: 0.725em;
 		font-weight: 200;
+		fill: white;
 	}
 
 	.y-axis .tick line {

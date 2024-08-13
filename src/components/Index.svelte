@@ -61,9 +61,21 @@
 		{/each}
 	{/if}
 </div>
+<div class="texture"></div>
 <!-- <Footer /> -->
 
 <style>
+	.texture {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		pointer-events: none;
+		z-index: -5;
+		background: url("/assets/images/cloud-ascii-a.png");
+		opacity: 0.025;
+	}
 	.inner {
 		transform: translate(0vw, 0px);
 		width: 300vw;

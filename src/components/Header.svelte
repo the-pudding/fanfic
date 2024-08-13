@@ -1,5 +1,5 @@
 <script>
-	import wordmark from "$svg/wordmark.svg";
+	import wordmark from "$svg/wordmark-shadow.svg";
 </script>
 
 <header>
@@ -15,6 +15,7 @@
 		max-width: 10em;
 		margin: 0 auto;
 		padding: 1em 0;
+		transform: rotate(-2deg);
 	}
 
 	.wordmark a {
@@ -27,7 +28,7 @@
 		background-color: transparent;
 	}
 
-	:global(.wordmark svg path) {
+	/* :global(.wordmark svg path) {
 		fill: currentColor;
-	}
+	} */
 </style>

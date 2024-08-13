@@ -101,5 +101,7 @@
   .chart-container {
     width: 100%;
     height: 400px;
+    background: var(--color-white);
+    padding: 2rem;
   }
   </style>
