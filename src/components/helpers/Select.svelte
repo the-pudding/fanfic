@@ -69,7 +69,7 @@
 		background: var(--color-white);
 		color: var(--color-gray-900);
 		border-width:2px;
-        border-color:#FFFFFF #151515 #151515 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
 		padding: 0.5em;
 		appearance: none;

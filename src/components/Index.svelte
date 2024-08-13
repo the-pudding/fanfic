@@ -72,9 +72,9 @@
 		width: 100%;
 		height: 100vh;
 		pointer-events: none;
-		z-index: -5;
+		z-index: -1;
 		background: url("/assets/images/cloud-ascii-a.png");
-		opacity: 0.025;
+		opacity: 0.05;
 	}
 	.inner {
 		transform: translate(0vw, 0px);

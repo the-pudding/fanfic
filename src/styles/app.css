@@ -8,7 +8,8 @@
 	/* font */
 	--sans: "National 2 Web", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
 	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
-	--mono: Menlo, Consolas, Monaco, monospace;
+	--mono: "IBM Plex Mono", Menlo, Consolas, Monaco, monospace;
+	--script: "Mea Culpa", cursive;
 
 	/* z-index */
 	--z-bottom: -100;
@@ -37,6 +38,9 @@
 
 	/* "1" second duration */
 	--1s: 1ms;
+
+	/* windows styling */
+	--window-button-stroke: #FFFFFF #151515 #151515 #FFFFFF; 
 }
 
 /* dark theme */

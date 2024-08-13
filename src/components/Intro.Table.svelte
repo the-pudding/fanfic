@@ -69,6 +69,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        padding: 2rem;
     }
 
     .chunk {

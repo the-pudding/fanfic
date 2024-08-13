@@ -13,16 +13,15 @@
     export let chunk;
 </script>
 
+{#if chartType == "smallmultline"}
+    <InlineChartSmallMultLine {id} />
+{:else if chartType == "nums"}
+    <InlineChartNums {id} {chunk}/>
+{:else}
 <div class="chart-wrapper">
         {#if chartType == "line"}
             {#if title}<h3>{title}</h3>{/if}
             <InlineChartLine {id}/>
-        {/if}
-        {#if chartType == "smallmultline"}
-            <InlineChartSmallMultLine {id} />
-        {/if}
-        {#if chartType == "nums"}
-            <InlineChartNums {id} {chunk}/>
         {/if}
         {#if chartType == "table"}
             {#if title}<h3>{title}</h3>{/if}
@@ -37,6 +36,7 @@
             <InlineChartStackedBarTable {id} />
         {/if}
 </div>
+{/if}
 
 <style>
     .chart-wrapper {

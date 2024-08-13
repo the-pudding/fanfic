@@ -61,16 +61,20 @@
     figure {
         width: 100%;
         height: auto;
+        background: white;
+        color: var(--fanfic-black);
     }
 
     table {
-        font-family: var(--sans);
+        font-family: var(--mono);
         font-size: var(--14px);
         width: 100%;
+        padding: 1rem;
     }
 
     tr {
         transition: background-color 1s linear;
+        border-bottom: 1px solid white;
     }
 
     th, td {
@@ -82,7 +86,7 @@
     }
 
     tr.isHighlight {
-        background-color: var(--color-gray-300);
+        background-color: var(--fanfic-highlighter);
         transition: background-color 1s linear;
     }
 </style>

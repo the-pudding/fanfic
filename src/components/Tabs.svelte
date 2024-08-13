@@ -41,6 +41,9 @@ function setTitle(option) {
         width: 100%;
         display: flex;
         flex-direction: row;
+        position: sticky;
+        top: 0;
+        z-index: var(--z-overlay);
     }
     button {
         width: 33.33%;
@@ -48,8 +51,18 @@ function setTitle(option) {
         padding: 1rem;
     }
 
-    button.isActive {
-        background: var(--color-black);
-        color: var(--color-white);
+    #tab-slash.isActive {
+        background: var(--fanfic-blue);
+        color: var(--fanfic-highlighter);
+    }
+
+    #tab-noncanon.isActive {
+        background: var(--fanfic-green);
+        color: var(--fanfic-highlighter);
+    }
+
+    #tab-realpeople.isActive {
+        background: var(--fanfic-red);
+        color: var(--fanfic-highlighter);
     }
 </style>

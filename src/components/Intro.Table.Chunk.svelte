@@ -75,12 +75,14 @@
     }
 
     li {
-        border: 1px solid var(--color-fg);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
         padding: 0.5rem;
         margin: 0.5rem 0;
         display: flex;
         flex-direction: row;
-        background-color: var(--color-white);
+        background-color: var(--fanfic-window-gray);
         transition: background-color 250ms linear;
         height: 4.5rem;
     }
@@ -107,6 +109,7 @@
     }
 
     .active {
-        background-color: var(--color-gray-400);
+        background-color: var(--fanfic-blue);
+        color: var(--color-white);
     }
 </style>

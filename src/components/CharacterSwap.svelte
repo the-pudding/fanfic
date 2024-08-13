@@ -74,7 +74,7 @@
         align-items: center;
         background: var(--fanfic-window-gray);
         border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
     }
 
@@ -129,7 +129,7 @@
     #random-characters {
         background: var(--fanfic-blue);
         border-width:2px;
-        border-color:#FFFFFF #151515 #151515 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
         color: white;
     }

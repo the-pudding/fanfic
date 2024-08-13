@@ -54,6 +54,21 @@
         width: 100%;;
         opacity: 1;
     }
+    #slash-slide {
+        background: var(--fanfic-blue);
+        padding: 0 2rem;
+    }
+
+    #noncanon-slide {
+        background: var(--fanfic-green);
+        padding: 0 2rem;
+    }
+
+    #realpeople-slide {
+        background: var(--fanfic-red);
+        padding: 0 2rem;
+    }
+
     .prose, .hed, .inline-chart {
         max-width: 700px;
         margin: 0 auto;
