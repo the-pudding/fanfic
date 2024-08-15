@@ -8,12 +8,17 @@
 	export let stroke = "#1B2AA6";
 
 	export let curve = curveStep;
+	export let inViewTrigger;
+
+	$: console.log(inViewTrigger)
 
 	$: path = line().x($xGet).y($yGet).curve(curve);
 	$: pathD = path($data);
 </script>
 
-<path in:draw={{ duration: 1000 }} d={pathD} {stroke} />
+{#if inViewTrigger}
+	<path in:draw={{ duration: 1000 }} d={pathD} {stroke} />
+{/if}
 
 <style>
 	path {

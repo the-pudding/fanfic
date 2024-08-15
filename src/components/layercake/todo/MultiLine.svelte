@@ -18,7 +18,10 @@
 	// 		.join('L');
 	// };
 
+
 	$: path = line().x($xGet).y($yGet).curve(curve);
+
+	console.log($data)
 </script>
 
 <g class="line-group">

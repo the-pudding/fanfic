@@ -37,7 +37,7 @@
     const mmSeriesNames = Object.keys(mmData[0]).filter(d => d !== xKey);
     const ffSeriesNames = Object.keys(ffData[0]).filter(d => d !== xKey);
     const fmSeriesNames = Object.keys(fmData[0]).filter(d => d !== xKey);
-    const seriesColors = ['#C7FF25', '#cccccc', '#FFACBD'];
+    const seriesColors = ['#1B2AA6', '#119C72', '#D03200'];
 
 
     mmData.forEach(d => {
@@ -93,7 +93,7 @@
                     data={data}
                 >
                     <Svg>
-                    <AxisX gridlines={false} />
+                    <AxisX gridlines={false} ticks={2} />
                     <AxisY ticks={4} gridlines={false} />
                     <ColumnStacked />
                     </Svg>
@@ -127,12 +127,21 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        background: white;
+        padding: 2rem;
+    }
+
+    h3 {
+        text-align: center;
+        font-family: var(--mono);
+        font-size: var(--20px);
     }
 
     .key-wrapper {
         width: 100%;
         display: flex;
         flex-direction: row;
+        justify-content: center;
     }
 
     .chart-wrapper {
@@ -148,7 +157,7 @@
 
     .chart-container {
         width: 100%;
-        height: 400px;
+        height: 240px;
     }
 
     table {
@@ -169,43 +178,52 @@
         text-align: right;
     }
 
-    .canon-Semi-Canon {
-        background: #cccccc;
-    }
     .canon-Yes {
-        background: #FFACBD;
+        background: #D03200;
+    }
+    .canon-Semi-Canon {
+        background: #119C72;
     }
     .canon-No {
-        background: #C7FF25;
+        background: #1B2AA6;
     }
 
     .key-wrapper p {
         margin-right: 2rem;
+        font-family: var(--mono);
+        text-transform: uppercase;
+        margin: 0 1rem;
     }
 
     .key-Non-Canon::before {
         display: inline-block;
+        position: relative;
+        top: 0.125rem;
         content: "";
         width: 1rem;
         height: 1rem;
-        background: #C7FF25;
-        margin: 0 0.25rem 0 0;
+        background: #1B2AA6;
+        margin: 0 0.125rem 0 0;
     }
 
     .key-Canon::before {
         display: inline-block;
+        position: relative;
+        top: 0.125rem;
         content: "";
         width: 1rem;
         height: 1rem;
-        background: #FFACBD;
-        margin: 0 0.25rem 0 0;
+        background: #D03200;
+        margin: 0 0.125rem 0 0;
     }
     .key-Semi-Canon::before {
         display: inline-block;
+        position: relative;
+        top: 0.125rem;
         content: "";
         width: 1rem;
         height: 1rem;
-        background: #cccccc;
-        margin: 0 0.25rem 0 0;
+        background: #119C72;
+        margin: 0 0.125rem 0 0;
     }
   </style>

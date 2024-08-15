@@ -5,8 +5,7 @@
     import Line from "$components/layercake/Line.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
-
-    export let inview;
+    import inView from "$actions/inView.js";
 
     let data;
     let xKey = "year";
@@ -51,9 +50,18 @@
     }
     
     export let id;
+
+    let inViewTrigger = false;
+
+    function inViewDraw() { inViewTrigger = true; }
+    function exitViewDraw() { inViewTrigger = false; }
 </script>
 
-<div class="chart-container">
+<div class="chart-container"
+    use:inView
+    on:enter={inViewDraw}
+    on:exit={exitViewDraw}
+>
     <LayerCake
         padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
         x={xKey}
@@ -64,7 +72,7 @@
         <Svg>
             <AxisX gridlines={false} />
             <AxisY snapBaselineLabel gridlines={true}/>
-            <Line />
+            <Line inViewTrigger={inViewTrigger} />
         </Svg>
     </LayerCake>
 </div>

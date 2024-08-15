@@ -2,10 +2,11 @@
 <script>
     import { onMount } from "svelte";
     import * as d3 from "d3";
-    import { LayerCake, Svg, groupLonger, flatten } from 'layercake';
+    import { LayerCake, Svg, groupLonger, flatten, Html } from 'layercake';
     import MultiLine from "$components/layercake/todo/MultiLine.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
+    import GroupLabel from "$components/layercake/GroupLabel.svelte";
 
     export let id;
 
@@ -30,7 +31,7 @@
     let seriesNames;
     let groupedData;
 
-    const seriesColors = ['#cccccc'];
+    const seriesColors = ['#1B2AA6', '#119C72', '#D03200'];
 
     onMount(async () => {
         if (id) {
@@ -79,14 +80,19 @@
             data={groupedData}
         >
             <Svg>
-            <AxisX
-                gridlines={false}
-                ticks={data.map(d => d[xKey]).sort((a, b) => a - b)}
-                snapLabels
-            />
-            <AxisY ticks={4} />
-            <MultiLine />
+                <AxisX
+                    gridlines={false}
+                    ticks={data.map(d => d[xKey]).sort((a, b) => a - b)}
+                    snapLabels
+                />
+                <AxisY ticks={4} />
+                <MultiLine />
             </Svg>
+            {#if id == "CANON_percentCanon"}
+                <Html>
+                    <GroupLabel zRange={seriesColors} />
+                </Html>
+            {/if}
         </LayerCake>
     {/if}
 </div>

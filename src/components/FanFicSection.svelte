@@ -22,7 +22,8 @@
                     </div>
                     {:else if chunk.contentType == "hed"}
                         <div class="hed">
-                            <h3>{chunk.hed}</h3>
+                            <h3 class="hed-script">{chunk.hed}</h3>
+                            <h3 class="hed-sans">{chunk.hed}</h3>
                         </div>
                     {:else if chunk.contentType == "quote"}
                         <div class="quote">
@@ -81,5 +82,27 @@
 
     .full-chart {
         margin: 2rem auto;
+    }
+
+    .hed {
+        position: relative;
+        height: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hed-script, .hed-sans {
+        position: absolute;
+    }
+
+    .hed-script {
+        font-family: var(--script);
+        opacity: 0.25;
+        font-size: 100px;
+    }
+
+    .hed-sans {
+        font-family: var(--sans);
     }
 </style>

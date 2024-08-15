@@ -5,6 +5,7 @@
     import Line from "$components/layercake/Line.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
+    import inView from "$actions/inView.js";
 
     let data;
     const xKey = "year";
@@ -28,9 +29,18 @@
 	});
     
     export let id;
+
+    let inViewTrigger = false;
+
+    function inViewDraw() { inViewTrigger = true; }
+    function exitViewDraw() { inViewTrigger = false; }
 </script>
 
-<div class="multiple-wrapper">
+<div class="multiple-wrapper"
+    use:inView
+    on:enter={inViewDraw}
+    on:exit={exitViewDraw}
+>
     <div class="chart-container">
         <h3>Unqiue fandoms</h3>
         <div class="chart">
@@ -44,7 +54,7 @@
                 <Svg>
                     <AxisX gridlines={false} ticks={["2013", "2023"]}/>
                     <AxisY snapBaselineLabel gridlines={true} ticks={5}/>
-                    <Line />
+                    <Line inViewTrigger={inViewTrigger} />
                 </Svg>
             </LayerCake>
         </div>
@@ -62,7 +72,7 @@
                 <Svg>
                     <AxisX gridlines={false} ticks={["2013", "2023"]}/>
                     <AxisY snapBaselineLabel gridlines={true} ticks={5}/>
-                    <Line />
+                    <Line inViewTrigger={inViewTrigger} />
                 </Svg>
             </LayerCake>
         </div>
