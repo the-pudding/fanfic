@@ -9,7 +9,6 @@
 
     let isEntered = false;
     let usersValue = 0;
-    let worksValue = 0;
 
     const usersVal = tweened(usersValue, {
         duration: 500,
@@ -17,19 +16,11 @@
         easing: linear
     })
 
-    const worksVal = tweened(worksValue, {
-        duration: 500,
-        delay: 0,
-        easing: linear
-    })
-
     function updateValue() {
         if (isEntered) {
-            usersVal.set(+chunk.nums[0].count)
-            worksVal.set(+chunk.nums[1].count)
+            usersVal.set(+chunk.count)
         } else {
             usersVal.set(0)
-            worksVal.set(0)
         }
     }
 
@@ -40,65 +31,24 @@
 </script>
 
 {#if chunk}
-    <div class="multiple-wrapper" 
+    <div class="num-wrapper"
         use:inView
         on:enter={enterNums}
         on:exit={exitNums}
     >
-        <div class="num-wrapper">
-            <div class="inner">
-                <h3>Number of Users</h3>
-                <p class="count">{Math.round($usersVal)}</p>
-            </div>
-        </div>
-        <div class="num-wrapper">
-            <div class="inner">
-                <h3>Number of Fanfics</h3>
-                <p class="count">{Math.round($worksVal)}</p>
-            </div>
-        </div>
+        <p class="count">{Math.round($usersVal)}</p>
     </div>
 {/if}
 
 
 <style>
-    .multiple-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
     .num-wrapper {
-        width: 50%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: var(--fanfic-window-gray);
-        border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
-        border-style:solid;
-    }
-
-    .num-wrapper:last-of-type {
-        margin: 2rem 0 0 2rem;
-    }
-
-    .inner {
         background: white;
-        width: 100%;
-    }
-
-    h3 {
-        width: 100%;
-        background: var(--fanfic-blue);
-        color: var(--fanfic-highlighter);
-        font-family: var(--mono);
-        text-transform: uppercase;
-        text-align: center;
-        margin: 0;
-        font-size: var(--18px);
-        padding: 0.25rem 0;
     }
 
     .count {

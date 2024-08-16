@@ -8,9 +8,7 @@
 	export let stroke = "#1B2AA6";
 
 	export let curve = curveStep;
-	export let inViewTrigger;
-
-	$: console.log(inViewTrigger)
+	export let inViewTrigger; 
 
 	$: path = line().x($xGet).y($yGet).curve(curve);
 	$: pathD = path($data);

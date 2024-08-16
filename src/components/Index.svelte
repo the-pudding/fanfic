@@ -2,8 +2,8 @@
 	import { getContext } from "svelte";
 	import { currSectionSTORE } from "$stores/misc.js";
 	import CharacterSwap from "$components/CharacterSwap.svelte";
-	import IntroScroll from "$components/Intro.Scroll.svelte";
 	import Tabs from "$components/Tabs.svelte";
+	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
@@ -34,16 +34,15 @@
 	$: translate = $currSectionSTORE == "slash" || $currSectionSTORE == undefined
 		? "translate(0vw, 0px)"
 		: $currSectionSTORE == "noncanon"
-		? "translate(-85vw, 0px)"
-		: "translate(-170vw, 0px)";
+		? "translate(-96vw, 0px)"
+		: "translate(-192vw, 0px)";
 
 	function showTap() { tapVisible = true; }
 	function hideTap() { tapVisible = false; }
 </script>
 
 <CharacterSwap />
-<FanFicSection section={"intro"} />
-<IntroScroll />
+<IntroSection />
 <Tabs options={sections} />
 
 

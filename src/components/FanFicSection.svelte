@@ -1,6 +1,7 @@
 <script>
     export let section;
     import Prose from "$components/Prose.svelte";
+    import Quote from "$components/Quote.svelte";
     import InlineChart from "$components/InlineChart.svelte";
     import FullChart from "$components/FullChart.svelte";
     import { currSectionSTORE } from "$stores/misc.js";
@@ -26,10 +27,7 @@
                             <h3 class="hed-sans">{chunk.hed}</h3>
                         </div>
                     {:else if chunk.contentType == "quote"}
-                        <div class="quote">
-                            <p>{chunk.text}</p>
-                            <p>{chunk.attribution}</p>
-                        </div>
+                        <Quote copy={chunk}/>
                     {:else if chunk.contentType == "inlineChart"}
                         <div class="inline-chart">
                             <InlineChart chunk={chunk} chartType={chunk.chartType} id={chunk.id} title={chunk.title}/>
@@ -45,29 +43,27 @@
 
 <style>
     section {
-        width: 90vw;
-        opacity: 0.5;
-    }
-    section.isActive {
         opacity: 1;
     }
-    #intro-slide {
-        width: 100%;;
+    section.isActive {
         opacity: 1;
     }
     #slash-slide {
         background: var(--fanfic-blue);
         padding: 0 2rem;
+        width: 98vw;
     }
 
     #noncanon-slide {
         background: var(--fanfic-green);
         padding: 0 2rem;
+        width: 96vw;
     }
 
     #realpeople-slide {
         background: var(--fanfic-red);
         padding: 0 2rem;
+        width: 98vw;
     }
 
     .prose, .hed, .inline-chart {

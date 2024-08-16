@@ -4,6 +4,7 @@
 
    import FullChartStackedBarTable from "$components/FullChart.StackedBarTable.svelte";
    import FullChartScroll from "$components/FullChart.Scroll.svelte";
+   import FullChartFloatingMultiples from "$components/FullChart.FloatingMultiples.svelte";
 
    export let chartType;
    export let id;
@@ -15,6 +16,10 @@
     {#if chartType == "stackedBarTable"}
         {#if title}<h3>{title}</h3>{/if}
         <FullChartStackedBarTable {id} />
+    {/if}
+    {#if chartType == "floatingMultiples"}
+        {#if title}<h3>{title}</h3>{/if}
+        <FullChartFloatingMultiples {id} />
     {/if}
     {#if chartType == "scroll"}
         {#if title}<h3>{title}</h3>{/if}

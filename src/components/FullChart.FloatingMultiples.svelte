@@ -8,24 +8,16 @@
     import inView from "$actions/inView.js";
 
     let data;
-    let xKey = "year";
-    let yKey = "yes_percent";
+    const xKey = "year";
+    const yKeyFandoms = "uniqueFandoms";
+    const yKeyShips = "uniqueShips";
+    const yKeyFics = "totalFics";
 
     let axisKeys = [
         {
-            id: "RPF_percentRPF",
-            xKey: "year",
-            yKey: "yes_percent"
-        },
-        {
-            id: "INTRO_topStats_fandoms",
+            id: "INTRO_topStats",
             xKey: "year",
             yKey: "uniqueFandoms"
-        },
-        {
-            id: "INTRO_topStats_ships",
-            xKey: "year",
-            yKey: "uniqueShips"
         }
     ];
 
@@ -34,13 +26,13 @@
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            xKey = findKeyMatch(id, "x");
-            yKey = findKeyMatch(id, "y");
         }
 
         data.forEach(d => {
-            d[yKey] = +d[yKey];
-            d[yKey] = +d[yKey];
+            d[xKey] = +d[xKey];
+            d[yKeyFandoms] = +d[yKeyFandoms];
+            d[yKeyShips] = +d[yKeyShips];
+            d[yKeyFics] = +d[yKeyFics];
         });
 	});
 
@@ -70,7 +62,26 @@
     <LayerCake
         padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
         x={xKey}
-        y={yKey}
+        y={yKeyFandoms}
+        yDomain={[0, null]}
+        data={data}
+    >
+        <Svg>
+            <AxisX gridlines={false} />
+            <AxisY snapBaselineLabel gridlines={true}/>
+            <Line inViewTrigger={inViewTrigger} />
+        </Svg>
+    </LayerCake>
+</div>
+<div class="chart-container"
+    use:inView
+    on:enter={inViewDraw}
+    on:exit={exitViewDraw}
+>
+    <LayerCake
+        padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
+        x={xKey}
+        y={yKeyShips}
         yDomain={[0, null]}
         data={data}
     >
