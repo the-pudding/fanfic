@@ -5,8 +5,10 @@
 <script>
 	import { getContext } from 'svelte';
 	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
+	import { draw } from 'svelte/transition';
 
 	export let curve = curveStep;
+	export let inViewTrigger; 
 
 	const { data, xGet, yGet, zGet } = getContext('LayerCake');
 
@@ -24,11 +26,14 @@
 
 <g class="line-group">
 	{#each $data as group}
+		{#if inViewTrigger}
 		<path
+			in:draw={{ duration: 1000 }}
 			class='path-line'
 			d='{path(group.values)}'
 			stroke="{$zGet(group)}"
 		></path>
+		{/if}
 	{/each}
 </g>
 

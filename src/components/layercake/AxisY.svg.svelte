@@ -1,5 +1,6 @@
 <script>
 	import { getContext } from "svelte";
+	import * as d3 from "d3";
 
 	const { padding, xRange, yScale } = getContext("LayerCake");
 
@@ -12,6 +13,7 @@
 	export let textAnchor = "start";
 	export let formatTick = (d) => d;
 	export let ticks = 4;
+	export let id;
 	/** If this is a number, it passes that along to the [d3Scale.ticks](https://github.com/d3/d3-scale) function. If this is an array, hardcodes the ticks to those values. If it's a function, passes along the default tick values and expects an array of tick values in return. */
 
 	$: tickVals = Array.isArray(ticks)
@@ -19,6 +21,17 @@
 		: typeof ticks === "function"
 		? ticks($yScale.ticks())
 		: $yScale.ticks(ticks);
+	
+	const commaFormat = d3.format(",");
+	const percentFormat = d3.format(".000%");
+
+	function formatYTick(id, tick) {
+		if (id == "RPF_topFandomsTime" || id == "INTRO_topStats_fandoms" || id == "INTRO_topStats_ships") {
+			return commaFormat(tick)
+		} else {
+			return tick + "%"
+		}
+	}
 </script>
 
 <g class="axis y-axis" transform="translate({-$padding.left}, 0)">
@@ -38,7 +51,7 @@
 				y={yTick}
 				dx={dxTick}
 				dy={dyTick}
-				style="text-anchor:{textAnchor};">{formatTick(tick)}</text
+				style="text-anchor:{textAnchor};">{formatYTick(id, tick)}</text
 			>
 		</g>
 	{/each}

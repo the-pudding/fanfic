@@ -16,6 +16,14 @@
 </script>
 
 <section id="intro">
+    <div class="headline-container">
+        <h1>Who Gets</h1>
+        <h1>Shipped</h1>
+        <h1>And Why?</h1>
+    </div>
+    <p class="byline">
+        By Ashley Cai, Florina Sutanto, Jan Diehm, & Caitlyn Ralph
+    </p>
     <div class="prose">
         <Prose copy={copy.intro[0].text}/>
     </div>
@@ -63,6 +71,47 @@
     #intro-slide {
         width: 100%;;
         opacity: 1;
+    }
+    
+    .headline-container {
+        width: 100%;
+        padding: 1rem;
+        margin: 4rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        color: var(--fanfic-pink);
+        text-transform: uppercase;
+        font-family: var(--mono);
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+        font-size: 100px;
+        line-height: 0.85;
+    }
+
+    h1:first-of-type {
+        margin-right: 30%;
+    }
+
+    h1:last-of-type {
+        margin-left: 30%;
+        color: var(--fanfic-highlighter);
+        font-family: var(--script);
+        text-transform: none;
+        font-size: 150px
+    }
+
+    .byline {
+        color: var(--fanfic-highlighter);
+        font-family: var(--mono);
+        text-transform: uppercase;
+        font-weight:700;
+        margin: 0 auto;
+        max-width: 700px;
     }
 
     .popups {

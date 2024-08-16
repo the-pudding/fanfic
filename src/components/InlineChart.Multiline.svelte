@@ -7,6 +7,7 @@
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
     import GroupLabel from "$components/layercake/GroupLabel.svelte";
+    import inView from "$actions/inView.js";
 
     export let id;
 
@@ -19,7 +20,7 @@
         {
             id: "CANON_percentCanon",
             xKey: "year",
-            yKey: "canon_status"
+            yKey: "canon_status",
         },
         {
             id: "RPF_topFandomsTime",
@@ -31,7 +32,9 @@
     let seriesNames;
     let groupedData;
 
-    const seriesColors = ['#1B2AA6', '#119C72', '#D03200'];
+    const seriesColors = id == "CANON_percentCanon"
+        ? ['#1B2AA6', '#119C72', '#D03200']
+        : ['#1B2AA6', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#119C72'];
 
     onMount(async () => {
         if (id) {
@@ -64,9 +67,18 @@
             return match
         }
     }
+
+    let inViewTrigger = false;
+
+    function inViewDraw() { inViewTrigger = true; }
+    function exitViewDraw() { inViewTrigger = false; }
 </script>
 
-<div class="chart-container">
+<div class="chart-container"
+    use:inView
+    on:enter={inViewDraw}
+    on:exit={exitViewDraw}
+>
     {#if groupedData}
         <LayerCake
             padding={{ top: 7, right: 10, bottom: 20, left: 25 }}
@@ -85,14 +97,12 @@
                     ticks={data.map(d => d[xKey]).sort((a, b) => a - b)}
                     snapLabels
                 />
-                <AxisY ticks={4} />
-                <MultiLine />
+                <AxisY ticks={4} {id} />
+                <MultiLine inViewTrigger={inViewTrigger} />
             </Svg>
-            {#if id == "CANON_percentCanon"}
-                <Html>
-                    <GroupLabel zRange={seriesColors} />
-                </Html>
-            {/if}
+            <Html>
+                <GroupLabel {id} zRange={seriesColors} inViewTrigger={inViewTrigger} />
+            </Html>
         </LayerCake>
     {/if}
 </div>

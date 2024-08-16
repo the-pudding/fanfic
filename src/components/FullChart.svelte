@@ -4,7 +4,7 @@
 
    import FullChartStackedBarTable from "$components/FullChart.StackedBarTable.svelte";
    import FullChartScroll from "$components/FullChart.Scroll.svelte";
-   import FullChartFloatingMultiples from "$components/FullChart.FloatingMultiples.svelte";
+   import ChartHeader from "$components/ChartHeader.svelte";
 
    export let chartType;
    export let id;
@@ -14,15 +14,11 @@
 
 <div class="chart-wrapper">
     {#if chartType == "stackedBarTable"}
-        {#if title}<h3>{title}</h3>{/if}
+        {#if title}<ChartHeader {title} />{/if}
         <FullChartStackedBarTable {id} />
     {/if}
-    {#if chartType == "floatingMultiples"}
-        {#if title}<h3>{title}</h3>{/if}
-        <FullChartFloatingMultiples {id} />
-    {/if}
     {#if chartType == "scroll"}
-        {#if title}<h3>{title}</h3>{/if}
+        {#if title}<ChartHeader {title} />{/if}
         <FullChartScroll {id} />
     {/if}
 </div>

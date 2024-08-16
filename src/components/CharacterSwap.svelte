@@ -49,6 +49,7 @@
     <h3>Build your own ship</h3>
     <p class="instructions">Press the buttons below to switch out the characters</p>
     <div class="stage">
+        <p class="stage-bg">The Pudding</p>
         <Character characterID={$characterPairSTORE[0]} position={"left"} />
         <Character characterID={$characterPairSTORE[1]} position={"right"} />
     </div>
@@ -109,6 +110,22 @@
         flex-direction: row;
         justify-content: space-between;
         background: var(--color-white);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .stage-bg {
+        position: absolute;
+        margin: 0;
+        font-family: var(--script);
+        color: var(--fanfic-blue);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 300px;
+        pointer-events: none;
+        text-wrap: nowrap;
+
     }
     .controls {
         margin: 1rem auto;

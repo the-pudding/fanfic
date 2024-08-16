@@ -76,7 +76,7 @@
     >
         <Svg>
             <AxisX gridlines={false} />
-            <AxisY snapBaselineLabel gridlines={true}/>
+            <AxisY snapBaselineLabel gridlines={true} {id}/>
             <Line inViewTrigger={inViewTrigger} />
         </Svg>
     </LayerCake>
