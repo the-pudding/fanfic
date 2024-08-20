@@ -2,8 +2,6 @@
 	import { getContext } from 'svelte';
 
 	const { data, xGet, yGet, zGet, xScale } = getContext('LayerCake');
-
-
 </script>
 
 <g class="column-group">

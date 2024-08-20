@@ -1,20 +1,38 @@
 <script>
+    import inView from "$actions/inView.js";
+    import { fly } from 'svelte/transition';
+    import { sineInOut } from 'svelte/easing';
+
     export let copy;
+
+    let inViewTrigger = false;
+
+    // Uses inView on "quote" to trigger flying window divs	
+    function inViewQuote() { inViewTrigger = true; }
+    function exitViewQuote() { inViewTrigger = false; }
 </script>
 
-<div class="quote">
-    <div class="bg"></div>
-    <div class="bg"></div>
-    <div class="real">
-        <div class="attribution">
-            <img src="" />
-            <div class="credit">
-                <p class="name">{copy.attribute}</p>
-                <p class="title">{copy.title}</p>
+<div class="quote"
+    use:inView={{ bottom: 100 }} 
+    on:enter={inViewQuote}
+    on:exit={exitViewQuote}
+>
+    {#if inViewTrigger == true}
+        <div class="bg" transition:fly={{ delay: 750, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
+        <div class="bg" transition:fly={{ delay: 500, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
+        <div class="real"
+        transition:fly={{ delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut }}
+        >
+            <div class="attribution">
+                <img src="" />
+                <div class="credit">
+                    <p class="name">{copy.attribute}</p>
+                    <p class="title">{copy.title}</p>
+                </div>
             </div>
+            <p class="text">{copy.text}</p>
         </div>
-        <p class="text">{copy.text}</p>
-    </div>
+    {/if}
 </div>
 
 <style>
@@ -37,12 +55,12 @@
         height: 300px;
     }
 
-    .bg:first-of-type {
+    .bg{
         top: 0.5rem;
         left: -0.5rem;
     }
 
-    .bg {
+    .bg:first-of-type  {
         top: 1rem;
         left: -1rem;
     }

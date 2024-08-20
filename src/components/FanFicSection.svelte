@@ -1,9 +1,10 @@
 <script>
     export let section;
     import Prose from "$components/Prose.svelte";
+    import SectionSubhed from "$components/SectionSubhed.svelte";
     import Quote from "$components/Quote.svelte";
-    import InlineChart from "$components/InlineChart.svelte";
-    import FullChart from "$components/FullChart.svelte";
+    import InlineChart from "$components/chartpages/inline/InlineChart.svelte";
+    import FullChart from "$components/chartpages/full/FullChart.svelte";
     import { currSectionSTORE } from "$stores/misc.js";
 
     import copy from "$data/copy.json";
@@ -23,8 +24,7 @@
                     </div>
                     {:else if chunk.contentType == "hed"}
                         <div class="hed">
-                            <h3 class="hed-script">{chunk.hed}</h3>
-                            <h3 class="hed-sans">{chunk.hed}</h3>
+                            <SectionSubhed copy={chunk.hed} />
                         </div>
                     {:else if chunk.contentType == "quote"}
                         <Quote copy={chunk}/>
@@ -66,10 +66,16 @@
         width: 98vw;
     }
 
-    .prose, .hed, .inline-chart {
+    .prose, .inline-chart {
         max-width: 700px;
         margin: 0 auto;
         color: var(--color-white);
+    }
+
+    .hed {
+        max-width: 1400px;
+        margin: 10rem auto 0 auto;
+        color: var(--fanfic-pink);
     }
 
     .inline-chart {

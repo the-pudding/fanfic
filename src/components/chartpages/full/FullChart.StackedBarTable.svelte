@@ -1,45 +1,49 @@
 
 <script>
-    import { onMount } from "svelte";
     import * as d3 from "d3";
     import { LayerCake, Svg, flatten, stack } from 'layercake';
     import ColumnStacked from "$components/layercake/ColumnStacked.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
-
     import data from "$data/CANON/CANON_percentRelType.csv";
     import tableData from "$data/CANON/CANON_topShipRelType.csv";
 
+    export let id;
+
+    // Comma formatting
     const format = d3.format(",");
 
+    // Filters the data so that we're only getting columns that start with "mm", "ff", "fm"
     function filterData(data, starter) {
-        const mmProps = {};
         const filteredData = data.map(d => {
-            const mmProps = {};
+            const props = {};
             for (let key in d) {
                 if (key.startsWith(starter) || key == "year") {
-                    mmProps[key] = d[key];
+                    props[key] = d[key];
                 }
             }
-            return mmProps;
+            return props;
         })
         return filteredData;
     }
 
+    // Data
     const mmData = filterData(data, "mm");
     const ffData = filterData(data, "ff");
     const fmData = filterData(data, "fm");
     
+    // Keys
     const xKey = "year";
     const yKey = [0,1];
     const zKey = "key";
 
+    // Gets the series names aka columns
     const mmSeriesNames = Object.keys(mmData[0]).filter(d => d !== xKey);
     const ffSeriesNames = Object.keys(ffData[0]).filter(d => d !== xKey);
     const fmSeriesNames = Object.keys(fmData[0]).filter(d => d !== xKey);
     const seriesColors = ['#1B2AA6', '#119C72', '#D03200'];
 
-
+    // Makes sure the data is in number format
     mmData.forEach(d => {
         mmSeriesNames.forEach(name => {
         d[name] = +d[name];
@@ -56,16 +60,16 @@
         });
     });
 
+    // Stacks the data as needed for layercake
     const mmStackedData = stack(mmData, mmSeriesNames);
     const ffStackedData = stack(ffData, ffSeriesNames);
     const fmStackedData = stack(fmData, fmSeriesNames);
 
+    // Creates arrays to loop through below
     const dataArray = [mmStackedData, ffStackedData, fmStackedData];
     const seriesArray = [mmSeriesNames, ffSeriesNames, fmSeriesNames];
     const titleArray = ["M/M", "F/F", "F/M"];
     const canonArray = ["Non-Canon", "Semi-Canon", "Canon"];
-
-    export let id;
 </script>
 
 <div class="viz-wrapper">
@@ -85,7 +89,6 @@
                     y={yKey}
                     z={zKey}
                     xScale={d3.scaleBand().paddingInner(0.05).round(true)}
-                    xDomainSort={false}
                     zScale={d3.scaleOrdinal()}
                     zDomain={seriesArray[i]}
                     zRange={seriesColors}

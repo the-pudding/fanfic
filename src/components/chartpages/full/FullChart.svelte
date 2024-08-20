@@ -2,9 +2,9 @@
    import { onMount } from "svelte";
    import * as d3 from "d3";
 
-   import FullChartStackedBarTable from "$components/FullChart.StackedBarTable.svelte";
-   import FullChartScroll from "$components/FullChart.Scroll.svelte";
-   import ChartHeader from "$components/ChartHeader.svelte";
+   import FullChartStackedBarTable from "$components/chartpages/full/FullChart.StackedBarTable.svelte";
+   import FullChartScroll from "$components/chartpages/full/FullChart.Scroll.svelte";
+   import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
    export let id;

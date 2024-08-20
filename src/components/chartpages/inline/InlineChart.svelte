@@ -1,19 +1,18 @@
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
-    import InlineChartLine from "$components/InlineChart.Line.svelte";
-    import InlineChartSmallMultLine from "$components/InlineChart.SmallMultLine.svelte";
-    import InlineChartTable from "$components/InlineChart.Table.svelte";
-    import InlineChartMultiline from "$components/InlineChart.Multiline.svelte";
-    import InlineChartNums from "$components/InlineChart.Nums.svelte";
-    import ChartHeader from "$components/ChartHeader.svelte";
+    import InlineChartLine from "$components/chartpages/inline/InlineChart.Line.svelte";
+    import InlineChartTable from "$components/chartpages/inline/InlineChart.Table.svelte";
+    import InlineChartMultiline from "$components/chartpages/inline/InlineChart.Multiline.svelte";
+    import InlineChartNums from "$components/chartpages/inline/InlineChart.Nums.svelte";
+    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     
+    // These are things that get passed into this component
     export let chartType;
     export let id;
     export let title;
     export let chunk;
 </script>
 
+<!-- Changes the type of chart depending on the chartType -->
 <div class="chart-wrapper">
         {#if chartType == "nums"}
             {#if title}<ChartHeader {title}/>{/if}
@@ -30,10 +29,6 @@
         {#if chartType == "multiline"}
             {#if title}<ChartHeader {title}/>{/if}
             <InlineChartMultiline {id} />
-        {/if}
-        {#if chartType == "stackedBarTable"}
-            {#if title}<ChartHeader {title}/>{/if}
-            <InlineChartStackedBarTable {id} />
         {/if}
 </div>
 

@@ -46,11 +46,13 @@
     }
 
     .fly-container_left {
+        height: 100%;
         transform: translateX(-100%);
         transition: transform 0.25s;
     }
 
     .fly-container_right {
+        height: 100%;
         transform: translateX(100%);
         transition: transform 0.25s;
     }

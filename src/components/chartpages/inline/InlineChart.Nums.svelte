@@ -1,6 +1,4 @@
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
     import inView from "$actions/inView.js";
     import { tweened } from "svelte/motion";
     import { linear } from "svelte/easing";
@@ -24,6 +22,7 @@
         }
     }
 
+    // Uses inView on "num-wrapper" to trigger the tweened numbers
     function enterNums() { isEntered = true; }
     function exitNums() { isEntered = false; }
 

@@ -1,21 +1,28 @@
 <script>
-    import Prose from "$components/Prose.svelte";
-    import InlineChart from "$components/InlineChart.svelte";
-    import FullChart from "$components/FullChart.svelte";
-    import IntroScroll from "$components/Intro.Scroll.svelte";
     import { fly } from 'svelte/transition';
     import { sineInOut } from 'svelte/easing';
+    import CharacterSwap from "$components/CharacterSwap.svelte";
+    import Prose from "$components/Prose.svelte";
+    import InlineChart from "$components/chartpages/inline/InlineChart.svelte";
+    import IntroScroll from "$components/Intro.Scroll.svelte";
+    import Sparkles from "$components/Sparkles.svelte";
     import inView from "$actions/inView.js";
-
     import copy from "$data/copy.json";
 
     let inViewTrigger = false;
+    let introW;
+    let introH;
 
+    // Uses inView on "popup" to trigger flying window divs	
     function inViewPopup() { inViewTrigger = true; }
     function exitViewPopup() { inViewTrigger = false; }
 </script>
 
-<section id="intro">
+<section id="intro" 
+    bind:clientWidth={introW}
+    bind:clientHeight={introH}
+>
+    <CharacterSwap />
     <div class="headline-container">
         <h1>Who Gets</h1>
         <h1>Shipped</h1>
@@ -33,39 +40,44 @@
         on:exit={exitViewPopup}
     >
         {#if inViewTrigger == true}
+            <!-- A little hacky compared to the other sections, but we know the order, so we can do this to customize it-->
             <div 
-                transition:fly={{ delay: 250, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
-                class="inline-chart inline-chart-sm" style="top:50px; left: 40%;"
+                transition:fly={{ delay: 250, duration: 500, y: 500, easing: sineInOut }}
+                class="inline-chart inline-chart-sm" style="top:50px; left: 10%;"
             >
                 <InlineChart chunk={copy.intro[1]} chartType={copy.intro[1].chartType} id={copy.intro[1].id} title={copy.intro[1].title}/>
             </div>
             <div 
-                transition:fly={{ delay: 500, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
-                class="inline-chart inline-chart-sm" style="top:100px; left: 60%;"
+                transition:fly={{ delay: 500, duration: 500, y: 500, easing: sineInOut }}
+                class="inline-chart inline-chart-sm" style="top:100px; right: 10%;"
             >
                 <InlineChart chunk={copy.intro[2]} chartType={copy.intro[2].chartType} id={copy.intro[2].id} title={copy.intro[2].title}/>
             </div>
             <div 
-                transition:fly={{ delay: 750, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
-                class="inline-chart inline-chart-lg" style="top:250px; left: 35%;"
+                transition:fly={{ delay: 750, duration: 500, y: 500, easing: sineInOut }}
+                class="inline-chart inline-chart-lg" style="top:250px; left: 0;"
             >
                 <InlineChart chunk={copy.intro[3]} chartType={copy.intro[3].chartType} id={copy.intro[3].id} title={copy.intro[3].title}/>
             </div>
             <div 
                 transition:fly={{ delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
-                class="inline-chart inline-chart-lg" style="top:300px; left: 69%;"
+                class="inline-chart inline-chart-lg" style="top:300px; right:0;"
             >
                 <InlineChart chunk={copy.intro[4]} chartType={copy.intro[4].chartType} id={copy.intro[4].id} title={copy.intro[4].title}/>
             </div>
         {/if}
     </div>
     <IntroScroll />
+    {#if introW && introH}
+        <Sparkles {introW} {introH}/>
+    {/if}
 </section>
 
 <style>
     section {
         width: 100%;
         opacity: 1;
+        padding: 0 1rem;
     }
 
     #intro-slide {
@@ -86,7 +98,7 @@
         color: var(--fanfic-pink);
         text-transform: uppercase;
         font-family: var(--mono);
-        font-weight: 400;
+        font-weight: 300;
         margin: 0;
         padding: 0;
         font-size: 100px;
@@ -119,6 +131,8 @@
         position: relative;
         height: 100vh;
         padding: 4rem;
+        max-width: 1100px;
+        margin: 0 auto;
     }
 
     .prose, .hed, .inline-chart {
@@ -129,7 +143,7 @@
 
     .inline-chart {
         position: absolute;
-        transform: translate(-50%,0);
+        /* transform: translate(-50%,0); */
     }
 
     .inline-chart-sm {

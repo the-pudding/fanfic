@@ -17,10 +17,10 @@ function onClick() {
 
 function setTitle(option) {
     let title = option == "slash"
-    ? "Slash"
+    ? "CH1: Slash"
     : option == "noncanon"
-    ? "Canon" :
-    "Real People"
+    ? "CH2: Canon" :
+    "CH3: Real People"
     return title;
 }
 </script>
@@ -42,18 +42,31 @@ function setTitle(option) {
         display: flex;
         flex-direction: row;
         position: sticky;
+        gap: 1rem;
+        padding: 0.5rem;
         top: 0;
         z-index: var(--z-overlay);
+        /* background: var(--fanfic-black); */
     }
     button {
         width: 33.33%;
         border-radius: 0;
+        height: 3rem;
+        display: flex;
+        align-items: center;
         padding: 1rem;
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        text-transform: uppercase;
+        font-family: var(--sans);
+        text-align: left;
     }
 
     #tab-slash.isActive {
         background: var(--fanfic-blue);
         color: var(--fanfic-highlighter);
+        font-weight: 700;
     }
 
     #tab-noncanon.isActive {

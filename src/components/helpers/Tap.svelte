@@ -95,17 +95,19 @@
 	button {
 		width: 60px;
 		height: 60px;
-		border-radius: 50%;
 		position: absolute;
 		cursor: pointer;
-		background: var(--color-white);
-		border-radius: 0;
+		background: var(--fanfic-window-gray);
 		outline: none;
-		border: none;
 		box-shadow: none;
 		pointer-events: auto;
 		display: flex;
+		align-items: center;
+		justify-content: center;
 		z-index: 1000;
+		border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
 	}
 
 	button:disabled {
@@ -118,13 +120,13 @@
 	} */
 
 	.left {
-		left: 0;
+		left: 1rem;
 		top: 0;
 		/* text-align: left; */
 	}
 
 	.right {
-		right: 0;
+		right: 1rem;
 		top: 0;
 		/* text-align: right; */
 	}

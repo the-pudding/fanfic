@@ -1,14 +1,12 @@
 
 <script>
-    import { onMount } from "svelte";
-    import * as d3 from "d3";
     import Scrolly from "$components/helpers/Scrolly.svelte";
-
     import data from "$data/SLASH/SLASH_topFandoms.csv";
 
     export let id;
 
     let scrollIndex;
+    // To replace with copy once copy is set
     let steps = [0,1,2,3,4,5];
 </script>
 

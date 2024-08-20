@@ -49,7 +49,7 @@
 	.select {
 		position: relative;
 		font-family: var(--sans);
-		width: 18rem;
+		width: 50%;
 	}
 
 	label {

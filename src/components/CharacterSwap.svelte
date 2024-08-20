@@ -65,9 +65,10 @@
 
 <style>
 	#character-swap {
-        width: 100%;
+        width: calc(100% - 2rem);
+        aspect-ratio: 2 / 1;
         display: flex;
-        margin: 0 auto;
+        margin: 1rem auto;
         max-width: 70rem;
         padding: 0.25rem;
         flex-direction: column;
@@ -105,7 +106,7 @@
 
     .stage {
         width: 100%;
-        height: 50vh;
+        height: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -131,7 +132,7 @@
         margin: 1rem auto;
         display: flex;
         flex-direction: row;
-        gap: 2rem;
+        gap: 1.5rem;
         justify-content: center;
         align-items: center;
     }
@@ -141,6 +142,7 @@
         gap: 0.5rem;
         flex-direction: row;
         align-items: center;
+        height: 50px;
     }
 
     #random-characters {

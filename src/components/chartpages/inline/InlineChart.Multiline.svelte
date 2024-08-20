@@ -11,12 +11,21 @@
 
     export let id;
 
+    // Defaults
     let data;
     let xKey = 'year';
     let yKey = 'fanfics';
     let zKey = 'fandom';
+    let seriesNames;
+    let groupedData;
+    let inViewTrigger = false;
 
-    let axisKeys = [
+    const seriesColors = id == "CANON_percentCanon"
+        ? ['#1B2AA6', '#119C72', '#D03200']
+        : ['#1B2AA6', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#119C72'];
+
+    // Used to match the data to its keys
+    const axisKeys = [
         {
             id: "CANON_percentCanon",
             xKey: "year",
@@ -28,30 +37,27 @@
             yKey: "fanfics"
         }
     ];
-
-    let seriesNames;
-    let groupedData;
-
-    const seriesColors = id == "CANON_percentCanon"
-        ? ['#1B2AA6', '#119C72', '#D03200']
-        : ['#1B2AA6', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#119C72'];
-
+    
+    // Dynamically loads the data based on the id
     onMount(async () => {
         if (id) {
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
+            // Finds matching keys
             xKey = findKeyMatch(id, "x");
             yKey = findKeyMatch(id, "y");
             seriesNames = Object.keys(data[0]).filter(d => d !== xKey);
         }
 
+        // Makes sure values are numbers
         data.forEach(d => {
             seriesNames.forEach(name => {
             d[name] = +d[name];
             });
         });
 
+        // Groups the data as needed for layercake
         groupedData = groupLonger(data, seriesNames, {
             groupTo: zKey,
             valueTo: yKey
@@ -68,8 +74,7 @@
         }
     }
 
-    let inViewTrigger = false;
-
+    // Uses inView on "chart-container" and then passes this info to the MultiLine component to draw	
     function inViewDraw() { inViewTrigger = true; }
     function exitViewDraw() { inViewTrigger = false; }
 </script>

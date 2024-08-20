@@ -69,12 +69,17 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        padding: 2rem;
+        height: 100vh;
+        padding: 2rem 0;
+        position: relative;
     }
 
     .chunk {
         display: flex;
         flex-direction: row;
         width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -25%);
     }
 </style>

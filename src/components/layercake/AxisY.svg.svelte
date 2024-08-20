@@ -23,7 +23,6 @@
 		: $yScale.ticks(ticks);
 	
 	const commaFormat = d3.format(",");
-	const percentFormat = d3.format(".000%");
 
 	function formatYTick(id, tick) {
 		if (id == "RPF_topFandomsTime" || id == "INTRO_topStats_fandoms" || id == "INTRO_topStats_ships") {

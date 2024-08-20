@@ -3,11 +3,13 @@
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
 
+    export let id;
+
     let data;
-    let dataColumns;
     const format = d3.format(",");
     let isEntered = false;
 
+    // Dynamically loads the data based on the id
     onMount(async () => {
         if (id) {
             const dataPath = `./assets/data/RPF/${id}.csv`
@@ -16,6 +18,7 @@
         }
 	});
 
+    // Uses inView on table to trigger highlights
     function highlightBoyBands() {
         setTimeout(() => {
             isEntered = true; 
@@ -27,8 +30,6 @@
             isEntered = false; 
         }, 500)
     }
-    
-    export let id;
 </script>
 
 <figure>

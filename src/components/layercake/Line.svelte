@@ -1,12 +1,11 @@
 <script>
 	import { getContext } from "svelte";
-	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
+	import { line, curveStep } from "d3";
 	import { draw } from 'svelte/transition';
 
 	const { data, xGet, yGet } = getContext("LayerCake");
 
 	export let stroke = "#1B2AA6";
-
 	export let curve = curveStep;
 	export let inViewTrigger; 
 

@@ -1,20 +1,17 @@
 <script>
-	import { getContext } from "svelte";
 	import { currSectionSTORE } from "$stores/misc.js";
-	import CharacterSwap from "$components/CharacterSwap.svelte";
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
-	import copy from "$data/copy.json";
-	import {select, selectAll} from "d3";
 	import inView from "$actions/inView.js";
 
 	let sections = ["slash", "noncanon", "realpeople"];
-	let value;
 	let tapVisible = false;
 
+	// Handles tap events for slash, canon, and RPF sections
+	// A little hacky, but we can do it this way because we know the exact behaviors
 	const onTap = async ({ detail }) => {
 		if (detail == "right") {
 			if ($currSectionSTORE == "slash") {
@@ -31,20 +28,21 @@
 		}
 	};
 
+	// Sets the translation style for the "inner" div, it's a long ternary statment that works like if/else
 	$: translate = $currSectionSTORE == "slash" || $currSectionSTORE == undefined
 		? "translate(0vw, 0px)"
 		: $currSectionSTORE == "noncanon"
 		? "translate(-96vw, 0px)"
 		: "translate(-192vw, 0px)";
 
+	// Uses inView on the sections to hide/show the tap arrows	
 	function showTap() { tapVisible = true; }
 	function hideTap() { tapVisible = false; }
 </script>
 
-<CharacterSwap />
+<!-- PAGE HTML STARTS HERE -->
 <IntroSection />
 <Tabs options={sections} />
-
 
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
@@ -60,9 +58,11 @@
 		{/each}
 	{/if}
 </div>
-<div class="texture"></div>
-<!-- <Footer /> -->
+<div class="texture">
+</div>
+<Footer />
 
+<!-- CSS STARTS HERE -->
 <style>
 	.texture {
 		position: fixed;
@@ -74,6 +74,12 @@
 		z-index: -1;
 		background: url("/assets/images/cloud-ascii-a.png");
 		opacity: 0.05;
+	}
+	.sparkle {
+		position: absolute;
+		top: 2rem;
+		left: 2rem;
+		z-index: 1000;
 	}
 	.inner {
 		transform: translate(0vw, 0px);

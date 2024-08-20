@@ -7,11 +7,16 @@
     import AxisY from "$components/layercake/AxisY.svg.svelte";
     import inView from "$actions/inView.js";
 
+    export let id;
+
+    // Defaults
     let data;
     let xKey = "year";
     let yKey = "yes_percent";
+    let inViewTrigger = false;
 
-    let axisKeys = [
+    // Used to match the data to its keys
+    const axisKeys = [
         {
             id: "RPF_percentRPF",
             xKey: "year",
@@ -29,15 +34,18 @@
         }
     ];
 
+    // Dynamically loads the data based on the id
     onMount(async () => {
         if (id) {
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
+            // Finds matching keys
             xKey = findKeyMatch(id, "x");
             yKey = findKeyMatch(id, "y");
         }
 
+        // Makes sure values are numbers
         data.forEach(d => {
             d[yKey] = +d[yKey];
             d[yKey] = +d[yKey];
@@ -53,11 +61,8 @@
             return match
         }
     }
-    
-    export let id;
 
-    let inViewTrigger = false;
-
+    // Uses inView on "chart-container" and then passes this info to the Line component to draw	
     function inViewDraw() { inViewTrigger = true; }
     function exitViewDraw() { inViewTrigger = false; }
 </script>
