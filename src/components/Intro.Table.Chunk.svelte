@@ -96,6 +96,7 @@
 
     .details {
         margin: 0 0 0 1rem;
+        font-family: var(--sans);
     }
     
     .heads img {

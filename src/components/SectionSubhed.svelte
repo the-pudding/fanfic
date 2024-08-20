@@ -21,11 +21,12 @@
 <style>
     h3 {
         font-size: var(--80px);
-        line-height: 1.65;
-        margin: 2rem 0;
+        line-height: 1;
+        margin: 2rem auto;
         text-transform: uppercase;
         font-family: var(--mono);
         font-weight: 300;
+        text-align: center;
     }
 
     .hedspan-true {

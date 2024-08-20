@@ -72,10 +72,12 @@ function setTitle(option) {
     #tab-noncanon.isActive {
         background: var(--fanfic-green);
         color: var(--fanfic-highlighter);
+        font-weight: 700;
     }
 
     #tab-realpeople.isActive {
         background: var(--fanfic-red);
         color: var(--fanfic-highlighter);
+        font-weight: 700;
     }
 </style>

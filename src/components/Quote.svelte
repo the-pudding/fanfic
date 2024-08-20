@@ -39,7 +39,7 @@
     .quote {
         position: relative;
         max-width: 550px;
-        margin: 0 auto;
+        margin: 6rem auto;
         height: 300px;
     }
 
