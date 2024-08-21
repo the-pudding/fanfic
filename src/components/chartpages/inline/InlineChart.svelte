@@ -3,6 +3,7 @@
     import InlineChartTable from "$components/chartpages/inline/InlineChart.Table.svelte";
     import InlineChartMultiline from "$components/chartpages/inline/InlineChart.Multiline.svelte";
     import InlineChartNums from "$components/chartpages/inline/InlineChart.Nums.svelte";
+    import InlineChartWaffle from "$components/chartpages/inline/InlineChart.Waffle.svelte";
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     
     // These are things that get passed into this component
@@ -29,6 +30,10 @@
         {#if chartType == "multiline"}
             {#if title}<ChartHeader {title}/>{/if}
             <InlineChartMultiline {id} />
+        {/if}
+        {#if chartType == "waffle"}
+            {#if title}<ChartHeader {title}/>{/if}
+            <InlineChartWaffle {id} />
         {/if}
 </div>
 

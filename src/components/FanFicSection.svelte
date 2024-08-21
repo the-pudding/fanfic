@@ -1,5 +1,6 @@
 <script>
     export let section;
+    import OpeningShip from "$components/OpeningShip.svelte";
     import Prose from "$components/Prose.svelte";
     import SectionSubhed from "$components/SectionSubhed.svelte";
     import Quote from "$components/Quote.svelte";
@@ -18,10 +19,14 @@
 <section id="{section}-slide" class:isActive={isActive}>
     {#if sectionCopy !== undefined}
         {#each sectionCopy as chunk, i}
-                {#if chunk.contentType == "prose"}
-                    <div class="prose">
-                        <Prose copy={chunk.text}/>
+                {#if chunk.contentType == "openingShip"}
+                    <div class="opening-ship">
+                        <OpeningShip copy={chunk}/>
                     </div>
+                    {:else if chunk.contentType == "prose"}
+                        <div class="prose">
+                            <Prose copy={chunk.text}/>
+                        </div>
                     {:else if chunk.contentType == "hed"}
                         <div class="hed">
                             <SectionSubhed copy={chunk.hed} />
@@ -70,6 +75,11 @@
         max-width: 700px;
         margin: 0 auto;
         color: var(--color-white);
+    }
+
+    .opening-ship {
+        max-width: 1400px;
+        margin:4rem auto 0 auto; 
     }
 
     .hed {

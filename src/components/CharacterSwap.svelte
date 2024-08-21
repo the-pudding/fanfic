@@ -123,7 +123,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        font-size: 300px;
+        font-size: 200px;
         pointer-events: none;
         text-wrap: nowrap;
 

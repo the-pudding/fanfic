@@ -4,6 +4,7 @@
 
    import FullChartStackedBarTable from "$components/chartpages/full/FullChart.StackedBarTable.svelte";
    import FullChartScroll from "$components/chartpages/full/FullChart.Scroll.svelte";
+   import FullChartPictogram from "$components/chartpages/full/FullChart.Pictogram.svelte";
    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
@@ -20,6 +21,10 @@
     {#if chartType == "scroll"}
         {#if title}<ChartHeader {title} />{/if}
         <FullChartScroll {id} />
+    {/if}
+    {#if chartType == "pictogram"}
+        {#if title}<ChartHeader {title} />{/if}
+        <FullChartPictogram {id} />
     {/if}
 </div>
 

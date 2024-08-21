@@ -1,0 +1,251 @@
+<script>
+    import { onMount } from "svelte";
+    import * as d3 from "d3";
+    import inView from "$actions/inView.js";
+    import { currSectionSTORE } from "$stores/misc.js";
+
+    let data;
+    let groupedData;
+    const format = d3.format(",");
+
+    let axisKeys = [
+        {
+            id: "INTRO_topStats",
+            xKey: "year",
+            yKey: "uniqueFandoms"
+        }
+    ];
+
+    onMount(async () => {
+        if (id) {
+            const dataFolder = id.split("_")[0];
+            const dataPath = `./assets/data/${dataFolder}/${id}.csv`
+            data = await d3.csv(dataPath);
+            groupedData = d3.groups(data, d => d.isCanon);
+            groupedData = groupedData.sort((a, b) => b[1].length - a[1].length);
+        }
+	});
+    
+    export let id;
+
+    let inViewTrigger = false;
+    let tooltipVisible = false;
+
+    function inViewDraw() { inViewTrigger = true; }
+    function exitViewDraw() { inViewTrigger = false; }
+
+    function handleMouseEnter(e, ship) {
+
+        // Get the target element
+        const element = e.currentTarget;
+        const rect = element.getBoundingClientRect();
+
+        // Get the container element
+        const container = document.querySelector(`#chart-${id}`);
+        const containerRect = container.getBoundingClientRect();
+
+        // Preps tooltip
+        const tooltip = d3.select(".tooltip");
+        const tooltipShip = tooltip.select(".ship-text");
+        const tooltipFandom = tooltip.select(".fandom-text");
+        const tooltipWorks = tooltip.select(".works-text");
+        const bgColor = ship.isCanon == "No"
+            ? "#D03200"
+            : ship.isCanon == "Yes"
+            ? "#1B2AA6"
+            : "#119C72";
+
+        // Positions tooltip
+        const tooltipY = rect.top - containerRect.top + container.scrollTop;
+
+        // Checks tooltip position
+        const tooltipWidth = 216;
+
+        if (rect.left > innerWidth / 2) {
+            const tooltipRight = containerRect.right - rect.right;
+            tooltip
+                .style("right", `${tooltipRight}px`)
+                .style("left", "auto");
+        } else {
+            const tooltipX = rect.left - containerRect.left;
+            tooltip
+                .style("left", `${tooltipX}px`)
+                .style("right", "auto"); 
+        }
+
+        tooltip
+            .style("top", `${tooltipY}px`)
+            .style('background', bgColor)
+            .style("opacity", "1")
+            .style("width", "1rem")
+            .style("height", "1rem")
+
+        tooltip
+            .transition()
+            .duration(250)
+            .style("width", "14.5rem")
+            .style("height", "14.5rem")
+
+        tooltipShip.text(`${(ship.ship).replace("/", " / ")}`)
+        tooltipFandom.text(`${ship.fandom}`)
+        tooltipWorks.text(`${format(ship.totalWorks)} fanfics`)
+
+    }
+
+    function handleMouseLeave() {
+        const tooltip = d3.select(".tooltip");
+        tooltip
+            .transition()
+            .duration(250)
+            .style("width", "1rem")
+            .style("height", "1rem")
+            .style("opacity", "0")
+    }
+
+    $: innerWidth = 0;
+
+    function setLabelText(canon) {
+        let labelText = canon == "Yes"
+            ? "Canon"
+            : canon == "No"
+            ? "Non-canon"
+            : "Semi-canon";
+        return labelText;
+    }
+    function setLabelWidth(canon) {
+        let labelWidth = canon == "Yes"
+            ? 4.5 : 5.5;
+        return labelWidth;
+    }
+</script>
+
+<svelte:window bind:innerWidth />
+
+<div 
+    id="chart-{id}"
+    class="chart-container"
+    use:inView
+    on:enter={inViewDraw}
+    on:exit={exitViewDraw}
+>
+    <div class="tooltip">
+        <p class="ship-text"></p>
+        <p class="fandom-text"></p>
+        <p class="works-text"></p>
+    </div>
+    {#if groupedData}
+        {#each groupedData as canon}
+            {#each canon[1] as ship, i (ship)}
+                {#if i == 0} 
+                    <p class="label label-{canon[0]}">{setLabelText(canon[0])}</p>
+                {/if}
+                <div 
+                    on:mouseenter={(e) => handleMouseEnter(e, ship)}
+                    on:mouseleave={handleMouseLeave}
+                    id="id-{canon[0]}-{i}"
+                    class="ship ship-{canon[0]}"
+                >
+                </div>
+            {/each}
+        {/each}
+    {/if}
+</div>
+
+
+<style>
+    .chart-container {
+        width: 100%;
+        background: var(--color-white);
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.125rem;
+        position: relative;
+    }
+
+    .tooltip {
+        position: absolute;
+        width: 1rem;
+        height:1rem;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        outline: 2px solid white;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0;
+        padding: 1rem;
+        font-family: var(--mono);
+        font-size: var(--14px);
+    }
+
+    .tooltip .ship-text, .tooltip .fandom-text {
+        margin: 0;
+        padding: 0;
+    }
+
+    .tooltip .ship-text {
+        font-weight: 700;
+    }
+
+    .tooltip .works-text {
+        border-top: 1px solid white;
+        padding-top: 0.25rem;
+    }
+    
+    .ship {
+        width: 1rem;
+        height: 1rem;
+        position: relative;
+        transition: all 0.5s linear;
+        display: flex;
+    }
+
+    .ship-No {
+        background: var(--fanfic-red);
+    }
+
+    .label {
+        background: white;
+        font-family: var(--mono);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5.5rem;
+        height: 1rem;
+        top: 2.25rem;
+        left: 0rem;
+        z-index: 900;
+        padding: 0;
+        margin: 0;
+        color: var(--fanfic-red);
+        text-transform: uppercase;
+        font-size: var(--14px);
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    .label-Yes {
+        color: var(--fanfic-blue);
+        width: 4.375rem;
+    }
+
+    .label-No{
+        color: var(--fanfic-red);
+        width: 5.5rem;
+    }
+
+    .label-Semi-Canon {
+        color: var(--fanfic-green);
+        width: 5.5rem;
+    }
+
+    .ship-Yes {
+        background: var(--fanfic-blue);
+    }
+
+    .ship-Semi-Canon {
+        background: var(--fanfic-green);
+    }
+</style>
