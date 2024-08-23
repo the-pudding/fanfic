@@ -4,6 +4,7 @@
     import InlineChartMultiline from "$components/chartpages/inline/InlineChart.Multiline.svelte";
     import InlineChartNums from "$components/chartpages/inline/InlineChart.Nums.svelte";
     import InlineChartWaffle from "$components/chartpages/inline/InlineChart.Waffle.svelte";
+    import InlineChartTreemap from "$components/chartpages/inline/InlineChart.Treemap.svelte";
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     
     // These are things that get passed into this component
@@ -11,6 +12,8 @@
     export let id;
     export let title;
     export let chunk;
+
+    console.log(chartType)
 </script>
 
 <!-- Changes the type of chart depending on the chartType -->
@@ -34,6 +37,10 @@
         {#if chartType == "waffle"}
             {#if title}<ChartHeader {title}/>{/if}
             <InlineChartWaffle {id} />
+        {/if}
+        {#if chartType == "treemap"}
+            {#if title}<ChartHeader {title}/>{/if}
+            <InlineChartTreemap {id} />
         {/if}
 </div>
 
