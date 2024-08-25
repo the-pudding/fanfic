@@ -4,9 +4,10 @@
 	import IntroTable from "$components/Intro.Table.svelte";
 	// import Footer from "$components/Footer.svelte";
 
-	// const copy = getContext("copy");
+	const copy = getContext("copy");
 	// const data = getContext("data");
 
+	console.log(copy.introSlides)
 	let scrollIndex;
     let steps = [0,1,2,3,4,5];
 </script>
@@ -16,10 +17,12 @@
 		<IntroTable scrollIndex={scrollIndex} />
     </div>
 	<Scrolly bind:value={scrollIndex}>
-        {#if steps}
-            {#each steps as text, i}
+        {#if copy.introSlides}
+            {#each copy.introSlides as text, i}
                 <div class="step">
-                    <p>{@html i}</p>
+					<div class="step-inner">
+						<p>{@html text.value}</p>
+					</div>
                 </div>
             {/each}
         {/if}
@@ -47,5 +50,10 @@
         max-width: 30rem;
         margin: 0 auto;
 		pointer-events: none;
+	}
+
+	.step-inner {
+		padding: 1rem;
+		background-color: white;
 	}
 </style>
