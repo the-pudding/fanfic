@@ -6,7 +6,14 @@
 	import { fade } from 'svelte/transition';
 	import * as yootils from 'yootils';
     import Treemap from "$components/pancake/Treemap.svelte";
-	import data from '$data/SLASH/treemapData.js';
+	import slashData from '$data/SLASH/treemapData.js';
+	import canonData from '$data/CANON/treemapData.js';
+
+	export let id;
+
+	let data = id == "CANON_AUtags" ? canonData : slashData;
+
+	console.log(id, data)
 
 	const treemap = d3.treemap();
 
@@ -38,10 +45,17 @@
 					class="node"
 					class:leaf={!node.children}
 				>
-					<div class="contents contents-{(node.data.name).replace("/", "")}">
-						<strong>{node.data.name}</strong>
-						<span>{yootils.commas(node.value)}</span>
-					</div>
+					{#if id == "CANON_AUtags"}
+						<div class="contents contents-{(node.data.setting)}">
+							<strong>{node.data.name}</strong>
+							<span>{yootils.commas(node.value)}</span>
+						</div>
+					{:else}
+						<div class="contents contents-{(node.data.name).replace("/", "")}">
+							<strong>{node.data.name}</strong>
+							<span>{yootils.commas(node.value)}</span>
+						</div>
+					{/if}
 				</div>
 		</Treemap>
 	</Pancake.Chart>
@@ -111,6 +125,10 @@
     .contents-Multi {
         background-color: gray; 
     }
+
+	.contents-mudane {
+		background-color: var(--fanfic-red); 
+	}
 
 	strong, span {
 		display: block;

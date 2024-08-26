@@ -24,10 +24,10 @@
         transition:fly={{ delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut }}
         >
             <div class="attribution">
-                <img src="" />
+                <img src="./assets/images/quote-icons/{copy.imgSlug}.png" />
                 <div class="credit">
                     <p class="name">{copy.attribute}</p>
-                    <p class="title">{copy.title}</p>
+                    <a href="{copy.url}"><p class="title">{copy.title}</p></a>
                 </div>
             </div>
             <p class="text">{copy.text}</p>
@@ -71,8 +71,8 @@
     }
 
     .attribution img {
-        width: 5rem;
-        height: 5rem;
+        width: 4rem;
+        height: 4rem;
         background: var(--fanfic-window-gray);
         margin: 0 1rem 0 0;
     }
