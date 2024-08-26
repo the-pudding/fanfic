@@ -35,3 +35,41 @@
 	font-stretch: normal;
 	font-display: swap;
 }
+
+/* Geist */
+@font-face {
+	font-family: "Geist";
+	src: url("https://pudding.cool/assets/fonts/geist/Geist-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geist";
+	src: url("https://pudding.cool/assets/fonts/geist/Geist-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+/* Geist Mono */
+@font-face {
+	font-family: "Geist Mono";
+	src: url("https://pudding.cool/assets/fonts/geist-mono/GeistMono-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Geist Mono";
+	src: url("https://pudding.cool/assets/fonts/geist-mono/GeistMono-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
