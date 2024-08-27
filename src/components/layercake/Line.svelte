@@ -30,11 +30,11 @@
 	>
 	</rect>
 	<text
-		x={$width/2 - $width/20 + 10}
+		x={$width/2 - $width/20 + 20}
 		y={$height/2}
 		transform="rotate(-90,{$width/2},{$height/2-4})"
 	>
-		Missing data
+	No data collected in 2018
 	</text>
 </g>
 
