@@ -83,8 +83,8 @@
         tooltip
             .transition()
             .duration(250)
-            .style("width", "14.5rem")
-            .style("height", "14.5rem")
+            .style("width", "10rem")
+            .style("height", "10rem")
 
         tooltipShip.text(`${(ship.ship).replace("/", " / ")}`)
         tooltipFandom.text(`${ship.fandom}`)
@@ -106,16 +106,11 @@
 
     function setLabelText(canon) {
         let labelText = canon == "Yes"
-            ? "Canon"
+            ? "Canon 12%"
             : canon == "No"
-            ? "Non-canon"
-            : "Semi-canon";
+            ? "Non-canon 83%"
+            : "Semi-canon 5%";
         return labelText;
-    }
-    function setLabelWidth(canon) {
-        let labelWidth = canon == "Yes"
-            ? 4.5 : 5.5;
-        return labelWidth;
     }
 </script>
 
@@ -177,7 +172,8 @@
         opacity: 0;
         padding: 1rem;
         font-family: var(--mono);
-        font-size: var(--14px);
+        font-size: var(--12px);
+        line-height: 1.125;
     }
 
     .tooltip .ship-text, .tooltip .fandom-text {
@@ -200,6 +196,7 @@
         position: relative;
         transition: all 0.5s linear;
         display: flex;
+        cursor: pointer;
     }
 
     .ship-No {
@@ -211,17 +208,16 @@
         font-family: var(--mono);
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 5.5rem;
+        width: 8.5rem;
         height: 1rem;
         top: 2.25rem;
         left: 0rem;
         z-index: 900;
-        padding: 0;
+        padding: 0 0 0 0.125rem;
         margin: 0;
         color: var(--fanfic-red);
         text-transform: uppercase;
-        font-size: var(--14px);
+        font-size: var(--12px);
         font-weight: bold;
         pointer-events: none;
     }
@@ -233,12 +229,12 @@
 
     .label-No{
         color: var(--fanfic-red);
-        width: 5.5rem;
+        width: 6.625rem;
     }
 
     .label-Semi-Canon {
         color: var(--fanfic-green);
-        width: 5.5rem;
+        width: 6.625rem;
     }
 
     .ship-Yes {

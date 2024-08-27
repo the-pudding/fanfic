@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
+    import Rank from "$components/Rank.svelte";
 
     let data;
 
@@ -22,8 +23,8 @@
 
     function findMatchingPictogram(ship, letter) {
         let gender = letter == "A"
-            ? (ship.relType).split("/")[0]
-            : (ship.relType).split("/")[1];
+            ? (ship.gender).split("/")[0]
+            : (ship.gender).split("/")[1];
             gender = gender == "M"
                 ? "man"
                 : gender == "F"
@@ -52,6 +53,16 @@
         expanded = !expanded
         btnText = btnText == "Show more" ? "Hide" : "Show more"
     }
+
+    function handleMouseOver() {
+        let textBlock = d3.select(this).select(".text-wrapper");
+        textBlock.style("transform", "translate(0,0)")
+    }
+
+    function handleMouseLeave() {
+        let textBlock = d3.selectAll(".list-wrapper .text-wrapper");
+        textBlock.style("transform", "translate(0,105%)")
+    }
 </script>
 
 <div class="chart-container" class:isExpanded={expanded}>  
@@ -70,7 +81,40 @@
             </div>
         {/each}
     </div> 
-    <div class="table-wrapper">
+    <div class="list-wrapper">
+        {#if data}
+        <ul>
+            {#each data as ship, i}
+                <li 
+                    on:mouseover={handleMouseOver}
+                    on:mouseleave={handleMouseLeave}
+                >
+                    <Rank rank={i+1} />    
+                    <div class="img-wrapper">
+                        {#if ship.gender !== "Multi"}
+                            <img src="./assets/images/icons/{findMatchingPictogram(ship, "A")}.png" alt="character"/>
+                            <img src="./assets/images/icons/{findMatchingPictogram(ship, "B")}.png" alt="character"/>
+                        {:else}
+                            <div class="img-inset">
+                                <img class="multi-img" src="./assets/images/icons/man-white.png" alt="character"/>
+                                <img class="multi-img" src="./assets/images/icons/man-white.png" alt="character"/>
+                            </div>
+                            <div class="img-inset">
+                                <img class="multi-img" src="./assets/images/icons/man-white.png" alt="character"/>
+                                <img class="multi-img" src="./assets/images/icons/man-white.png" alt="character"/>
+                            </div>
+                        {/if}
+                    </div>
+                    <div class="text-wrapper">
+                        <p>{ship.ship}</p>
+                        <p>{ship.fandom}</p>
+                    </div>
+                </li>
+            {/each}
+        </ul>
+        {/if}
+    </div>
+    <!-- <div class="table-wrapper">
         <table>
             {#if data}
                 <tr>
@@ -115,7 +159,7 @@
                 {/each}
             {/if}
         </table>      
-    </div>
+    </div> -->
     <button on:click={expandClick} class="expand">{btnText}</button>
 </div>
 
@@ -127,7 +171,7 @@
         padding: 2rem;
         display: flex;
         flex-direction: column;
-        max-height: 1050px;
+        max-height: 800px;
         overflow-y: hidden;
         position: relative;
         transition: max-height 1s linear;
@@ -143,17 +187,18 @@
     .key-block {
         display: flex;
         flex-direction: row;
-        margin: 0 1rem 2rem 1rem;
+        margin: 0 0.75rem 2rem 0.75rem;
         align-items: center;
     }
 
     .key-text p {
         font-family: var(--mono);
-        font-size: var(--12px);
+        font-size: 10px;
         font-weight: 700;
         text-transform: uppercase;
-        margin: 0 0.25rem 0 0;
+        margin: 0 0.125rem 0 0;
         text-align: right;
+        line-height: 1.125;
     }
 
     .key-text p:last-of-type {
@@ -166,7 +211,7 @@
     }
 
     .img-block img {
-        width: 28px;
+        width: 24px;
         margin-right: -0.25rem;
     }
 
@@ -176,14 +221,128 @@
         transition: max-height 1s linear;
     }
 
-    .table-wrapper {
+    .list-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+    }
+
+    ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        list-style: none;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    li {
+        width: 9%;
+        min-width: 90px;
+        aspect-ratio: 1;
+        border: 1px solid var(--fanfic-black);
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        margin: 0.25rem;
+        padding: 0;
+        overflow-y: hidden;
+        cursor: pointer;
+    }
+
+    li .rank {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: white;
+        background: var(--fanfic-black);
+        padding: 0 0.125rem;
+        z-index: 999;
+    }
+
+    li .img-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .img-wrapper img {
+        width: 40%;
+    }
+
+    .img-inset {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: -1rem 0;
+    }
+
+    .img-inset .multi-img {
+        width: 25%;
+    }
+
+    li .text-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(0, 105%);
+        font-family: var(--mono);
+        font-size: 10px;
+        transition: transform 0.5s linear;
+        background-color: rgba(255,255,255,0.85);
+        z-index: 700;
+        box-shadow: 0 -1px 0 var(--fanfic-black);
+        padding: 1rem 0.25rem 0 0.25rem;
+    }
+
+    .text-wrapper p {
+        margin: 0;
+        padding: 0;
+        line-height: 1.125;
+    }
+
+    .text-wrapper p:first-of-type {
+        font-weight: 700;
+    }
+
+    .expand {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        background: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        color: var(--fanfic-black);
+        transform: translate(-50%, 0);
+        z-index: 1000;
+        font-family: var(--mono);
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: var(--12px);
+    }
+
+    /* .table-wrapper {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-    }
+    } */
 
-    table {
+    /* table {
         width: calc(50% - 1.25rem);
     }
 
@@ -236,5 +395,5 @@
         border-style:solid;
         color: var(--fanfic-black);
         transform: translate(-50%, 0);
-    }
+    } */
 </style>

@@ -68,6 +68,8 @@
     #intro-table {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         height: 100vh;
         padding: 2rem 0;
@@ -77,9 +79,8 @@
     .chunk {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -25%);
     }
 </style>

@@ -79,7 +79,7 @@
 
     .opening-ship {
         max-width: 1400px;
-        margin:4rem auto 0 auto; 
+        margin: 0 auto; 
     }
 
     .hed {

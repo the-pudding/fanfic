@@ -4,11 +4,12 @@
     import data from "$data/SLASH/SLASH_topFandoms.csv";
     import { fade } from 'svelte/transition';
     import * as d3 from 'd3';
+    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
+    import Rank from "$components/Rank.svelte";
 
     export let id;
 
     const genres = [...new Set(data.map(item => item.genre))];
-    console.log(genres)
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])
@@ -49,32 +50,37 @@
 
 <section id="scrolly">
     <div class="sticky">
-        <div class="key">
-            {#if scrollIndex == 1}
-            <p>More men</p>
-            <div class="key-box-gender"></div>
-            <p>More women</p>
-            {:else if scrollIndex == 2}
-                {#each genres as genre}
-                    <p style="background-color: {genreColorScale(genre)}">{genre}</p>
-                {/each}
-            {/if}
-        </div>
         <div class="chart-wrapper">
-            {#each data as fandom, i}
-                {#if scrollIndex >= 0}
-                    <div 
-                        in:fade={{ delay: i*50, duration: 300 }}
-                        out:fade={{ delay: 50, duration: 300 }}
-                        class="fandom-block"
-                        style="background-color: {setColorScale(scrollIndex, fandom)}">
-                        <div class="deets">
-                            <p class="rank">{i+1}</p>
-                            <p class="fandom-name">{fandom.fandom}</p>
-                        </div>
-                    </div>
-                {/if}
-            {/each}
+            <ChartHeader title={"TKTK"} />
+            <div class="content-wrapper">
+                <div class="key">
+                    {#if scrollIndex == 1}
+                    <p>More men</p>
+                    <div class="key-box-gender"></div>
+                    <p>More women</p>
+                    {:else if scrollIndex == 2}
+                        {#each genres as genre}
+                            <p style="background-color: {genreColorScale(genre)}">{genre}</p>
+                        {/each}
+                    {/if}
+                </div>
+                <div class="fandom-wrapper">
+                    {#each data as fandom, i}
+                        {#if scrollIndex >= 0 || scrollIndex == undefined}
+                            <div 
+                                in:fade={{ delay: i*50, duration: 300 }}
+                                out:fade={{ delay: 50, duration: 300 }}
+                                class="fandom-block"
+                                style="background-color: {setColorScale(scrollIndex, fandom)}">
+                                <Rank rank={i+1} />
+                                <div class="deets">
+                                    <p class="fandom-name">{fandom.fandom}</p>
+                                </div>
+                            </div>
+                        {/if}
+                    {/each}
+                </div>
+            </div>
         </div>
     </div>
     <Scrolly bind:value={scrollIndex}>
@@ -97,7 +103,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-		top: 6rem;
+		top: 0;
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;
@@ -110,8 +116,13 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        height: 5rem;
-        font-family: var(--sans);
+        height: 1.5rem;
+        margin: 1.5rem 0 0.5rem 0;
+        font-family: var(--mono);
+        font-size: var(--12px);
+    }
+    .key p {
+        margin: 0;
     }
     .key-box-gender {
         background-image: linear-gradient(to right, #E2FF8E, #FFAAB9);
@@ -126,21 +137,58 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        /* align-items: start;
-        justify-content: flex-start; */
+        background: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-style:solid;
+    }
+    .content-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+    .fandom-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        padding: 1rem;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
     }
     .fandom-block {
         width: 9%;
+        min-width: 100px;
         aspect-ratio: 1;
         margin: 0.25rem;
         border: 1px solid var(--fanfic-black);
-        padding: 0.5rem;
+        padding: 0rem;
         overflow-y: hidden;
         transition: background-color 0.5s linear;
+        position: relative;
+    }
+    .rank {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: white;
+        background: var(--fanfic-black);
+        padding: 0 0.125rem;
+        z-index: 999;
+        margin: 0;
     }
     .deets {
         font-family: var(--mono);
-        font-size: var(--12px);
+        font-size: 10px;
+        padding: 1rem 0.25rem 0 0.25rem;
+        line-height: 1.125;
     }
     .deets p {
         margin: 0;

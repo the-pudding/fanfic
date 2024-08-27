@@ -13,7 +13,7 @@
     .header-wrapper {
         width: 100%;
         background: var(--fanfic-blue);
-        height: 2.5rem;
+        height: 2.25rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -24,7 +24,8 @@
         font-family: var(--mono);
         text-transform: uppercase;
         margin: 0;
-        font-size: var(--18px);
+        font-weight: 700;
+        font-size: var(--16px);
         padding: 0.25rem 0;
     }
 

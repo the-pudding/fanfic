@@ -48,7 +48,7 @@
 <style>
 	.select {
 		position: relative;
-		font-family: var(--sans);
+		font-family: var(--mono);
 		width: 50%;
 	}
 

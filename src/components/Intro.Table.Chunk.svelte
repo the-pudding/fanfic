@@ -2,10 +2,7 @@
 	import { getContext } from "svelte";
     import top20Data from "$data/INTRO/INTRO_top20.csv";
     import { fade } from 'svelte/transition';
-	// import Footer from "$components/Footer.svelte";
-
-	// const copy = getContext("copy");
-	// const data = getContext("data");
+    import Rank from "$components/Rank.svelte"
 
 	export let scrollIndex;
     export let start;
@@ -51,15 +48,10 @@
         ship-rpf-{stripData(ship.isRPF)}"
         class:active={setState(scrollIndex, ship)}
     >
+        <Rank rank={start+i+1} />
         <div class="content-wrapper">
-            <div class="heads">
-                <img src="./assets/images/characters/heads/character1-head.png" alt="character"/>
-                <img src="./assets/images/characters/heads/character2-head.png" alt="character"/>
-            </div>
-            <div class="details">
-                <p class="rank">{start+i+1}</p>
-                <p>{ship.ship}</p>
-            </div>
+            <p class="ship-name">{ship.ship}</p>
+            <p>{ship.fandom}</p>
         </div>
     </li>
     {/if}
@@ -72,41 +64,55 @@
         width: 100%;
         list-style: none;
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     li {
         border-width:2px;
         border-color: var(--window-button-stroke);
         border-style:solid;
-        padding: 0.5rem;
+        padding: 0;
         margin: 0.5rem 0;
         display: flex;
         flex-direction: row;
         background-color: var(--fanfic-window-gray);
         transition: background-color 250ms linear;
         height: 4.5rem;
+        position: relative;
     }
     
 
-    .content-wrapper, .heads, .details {
+    .content-wrapper {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .details {
-        margin: 0 0 0 1rem;
-        font-family: var(--sans);
-    }
-    
-    .heads img {
-        width: 3.5rem;
-        margin: 0 -0.75rem;
+        flex-direction: column;
+        padding: 0.5rem 1rem 0.5rem 2rem;
     }
 
     .rank {
         font-family: var(--mono);
         margin-right: 1rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0 0.25rem;
+        margin: 0;
+        color: white;
+        background: var(--fanfic-black);
+        font-size: 10px;
+    }
+
+    p {
+        font-family: var(--mono);
+        font-size: var(--14px);
+        padding: 0;
+        margin: 0;
+        line-height: 1.125;
+    }
+
+    .ship-name {
+        font-weight: 700;
     }
 
     .active {

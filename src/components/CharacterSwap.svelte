@@ -5,6 +5,7 @@
     import Select from "$components/helpers/Select.svelte";
     import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
     import filterCharacters from "$utils/filterCharacters";
+    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
     const leftData = charactersData.filter(d => d.position == "left");
     const rightData = charactersData.filter(d => d.position == "right");
@@ -46,7 +47,7 @@
 </script>
 
 <section id="character-swap">
-    <h3>Build your own ship</h3>
+    <ChartHeader title={"Build your own ship"}/>
     <p class="instructions">Press the buttons below to switch out the characters</p>
     <div class="stage">
         <p class="stage-bg">The Pudding</p>
@@ -143,6 +144,7 @@
         flex-direction: row;
         align-items: center;
         height: 50px;
+        font-family: var(--mono);
     }
 
     #random-characters {

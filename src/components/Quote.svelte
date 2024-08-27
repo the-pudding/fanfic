@@ -98,5 +98,6 @@
         font-family: var(--sans);
         font-size: var(--18px);
         font-weight: 700;
+        font-style: italic;
     }
 </style>

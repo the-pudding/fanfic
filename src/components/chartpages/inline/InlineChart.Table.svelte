@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
+    import Rank from "$components/Rank.svelte"
 
     export let id;
 
@@ -38,7 +39,6 @@
         on:exit={unhighlightBoyBands}>
         {#if data}
             <tr>
-                <th class="right-align" style="width: 7%">No.</th>
                 <th style="width: 40%">Ship</th>
                 <th style="width: 20%">Fandom</th>
                 <th style="width: 10%">Category</th>
@@ -46,11 +46,13 @@
             </tr>
             {#each data as ship, i}
                 <tr class:isHighlight={ship.category == "boy band" && isEntered}>
-                    <td class="right-align" style="width: 7%">{i+1}</td>
-                    <td style="width: 35%">{ship.ship}</td>
-                    <td style="width: 25%">{ship.fandom}</td>
-                    <td style="width: 10%">{ship.category}</td>
-                    <td class="right-align" style="width: 10%">{format(ship.fics)}</td>
+                    <td class="with-rank" style="width: 35%">
+                        <Rank rank={i+1} />
+                        <p>{ship.ship}</p>
+                    </td>
+                    <td style="width: 25%"><p>{ship.fandom}</p></td>
+                    <td style="width: 10%"><p>{ship.category}</p></td>
+                    <td class="right-align" style="width: 10%"><p>{format(ship.fics)}</p></td>
                 </tr>
             {/each}
         {/if}
@@ -71,15 +73,43 @@
         font-size: var(--14px);
         width: 100%;
         padding: 1rem;
+        border-collapse: separate;
+        border-spacing:0 4px;
+        font-size: var(--12px);
     }
 
     tr {
         transition: background-color 1s linear;
-        border-bottom: 1px solid white;
+        border: 1px solid var(--fanfic-black);
     }
 
-    th, td {
+    th {
+        font-size: var(--12px);
+        text-transform: uppercase;
+        padding: 0 0.5rem;
+    }
+
+    td {
+        padding: 0;
+        border-top: 1px solid var(--fanfic-black);
+        border-bottom: 1px solid var(--fanfic-black);
+    }
+
+    td:first-of-type {
+        border-left: 1px solid var(--fanfic-black); 
+    }
+
+    td:last-of-type {
+        border-right: 1px solid var(--fanfic-black); 
+    }
+
+    td p {
         padding: 0.5rem;
+        margin: 0;
+    }
+
+    .with-rank p {
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     }
 
     .right-align {

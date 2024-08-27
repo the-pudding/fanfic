@@ -1,7 +1,9 @@
 
 <script>
     import * as d3 from "d3";
-    import { LayerCake, Svg, flatten, stack } from 'layercake';
+    import { fade } from 'svelte/transition';
+    import { LayerCake, Svg, flatten, stack, Html } from 'layercake';
+    import Rank from "$components/Rank.svelte";
     import ColumnStacked from "$components/layercake/ColumnStacked.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
@@ -9,6 +11,12 @@
     import tableData from "$data/CANON/CANON_topShipRelType.csv";
 
     export let id;
+
+    let receivedData = '';
+
+    function handleCustomEvent(event) {
+        receivedData = event.detail.data;
+    }
 
     // Comma formatting
     const format = d3.format(",");
@@ -69,10 +77,24 @@
     const dataArray = [mmStackedData, ffStackedData, fmStackedData];
     const seriesArray = [mmSeriesNames, ffSeriesNames, fmSeriesNames];
     const titleArray = ["M/M", "F/F", "F/M"];
-    const canonArray = ["Non-Canon", "Semi-Canon", "Canon"];
+    const canonArray = ["Canon", "Semi-Canon", "Non-Canon"];
+
+    // $: console.log(receivedData)
 </script>
 
 <div class="viz-wrapper">
+    {#if receivedData && receivedData[0].tooltipVisible}
+        <div class="tooltip"
+            transition:fade={{ duration: 300 }}
+            style="top: {receivedData[0].yPos}px;
+                    left: {receivedData[0].xPos}px"
+        >   
+            <p class="year">{receivedData[0].yearValTooltip} {receivedData[0].relType}</p>
+            <p class="yes-text"> Canon: {receivedData[0].yesValTooltip}%</p>
+            <p class="semi-text">Semi-canon: {receivedData[0].semiValTooltip}%</p>
+            <p class="no-text">Non-canon: {receivedData[0].noValTooltip}%</p>
+        </div>
+    {/if}
     <div class="key-wrapper">
         {#each canonArray as canon}
             <p class="key-{canon}">{canon}</p>
@@ -84,11 +106,11 @@
             <h3>{titleArray[i]}</h3>
             <div class="chart-container">
                 <LayerCake
-                    padding={{ top: 0, right: 0, bottom: 20, left: 20 }}
+                    padding={{ top: 0, right: 0, bottom: 0, left: 24 }}
                     x={d => d.data[xKey]}
                     y={yKey}
                     z={zKey}
-                    xScale={d3.scaleBand().paddingInner(0.05).round(true)}
+                    xScale={d3.scaleBand().paddingInner(0.1).round(true)}
                     zScale={d3.scaleOrdinal()}
                     zDomain={seriesArray[i]}
                     zRange={seriesColors}
@@ -96,21 +118,28 @@
                     data={data}
                 >
                     <Svg>
-                    <AxisX gridlines={false} ticks={2} />
-                    <AxisY ticks={4} gridlines={false} />
-                    <ColumnStacked />
+                    {#if i == 0}
+                        <AxisY ticks={2} gridlines={false} textAnchor={"end"} />
+                    {/if}
+                    <AxisX ticks={["2013","2023"]} baseline={true} gridlines={false} snapTicks={true} />
+                    <ColumnStacked on:customEvent={handleCustomEvent} />
                     </Svg>
                 </LayerCake>
             </div>
             <table>
                 <tr>
-                    <th style="width: 77%">Ship</th>
-                    <th class="right-align" style="width: 23%">Fanfics</th>
+                    <th style="width: 70%">Ship</th>
+                    <th class="right-align" style="width: 30%">Fanfics</th>
                 </tr>
                 {#each tableData.filter(d => d.relType == titleArray[i]) as ship, i}
-                    <tr class="canon-{ship.isCanon}">
-                        <td style="width: 77%">{ship.ship}</td>
-                        <td class="right-align" style="width: 23%">{format(ship.totalWorks)}</td>
+                    <tr class="canon-row canon-{ship.isCanon}">
+                        <td class="ship-name" style="width: 70%">
+                            <Rank rank={i+1} />
+                            <p>{(ship.ship).replace("/", " / ")}</p>
+                        </td>
+                        <td class="canon-row canon-{ship.isCanon} right-align" style="width: 30%">
+                            <p>{format(ship.totalWorks)}</p>
+                        </td>
                     </tr>
                 {/each}
         </table>
@@ -120,6 +149,29 @@
 </div>
 
 <style>
+    .tooltip {
+        position: absolute;
+        overflow: hidden;
+        border: 1px solid var(--fanfic-black);
+        pointer-events: none;
+        z-index: 1000;
+        /* opacity: 0; */
+        padding: 0.75rem;
+        font-family: var(--mono);
+        font-size: var(--12px);
+        line-height: 1.125;
+        background: white;
+        transform: translate(-50%, -100%);
+        min-width: 9.5rem;
+    }
+    .tooltip p {
+        padding: 0;
+        margin: 0;
+    }
+    .tooltip .year {
+        font-weight: 700;
+        text-transform: uppercase;
+    }
   /*
     The wrapper div needs to have an explicit width and height in CSS.
     It can also be a flexbox child or CSS grid element.
@@ -132,12 +184,15 @@
         flex-direction: column;
         background: white;
         padding: 2rem;
+        position: relative;
     }
 
     h3 {
         text-align: center;
         font-family: var(--mono);
-        font-size: var(--20px);
+        font-weight: 700;
+        font-size: var(--18px);
+        margin: 0 0 0.5rem 24px;
     }
 
     .key-wrapper {
@@ -151,10 +206,17 @@
         width: 100%;
         display: flex;
         flex-direction: row;
+        margin: 2rem 0 0 0;
     }
 
     .group-wrapper {
-        width: calc(33.33% - 1rem);
+        width: 33.33%;
+        padding: 0 1.5rem 0 0;
+    }
+
+    .group-wrapper:nth-of-type(2) {
+        border-left: 1px solid var(--fanfic-black);
+        border-right: 1px solid var(--fanfic-black);
         margin: 0 0.5rem;
     }
 
@@ -163,70 +225,154 @@
         height: 240px;
     }
 
+    .html-axis {
+        width: calc(100% - 29px);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 0 0 26px;
+        border-top: 1px solid var(--fanfic-black);
+    }
+
+    .html-axis p {
+        margin: 0;
+        padding: 0.125rem 0;
+        font-size: 12px;
+        font-family: var(--mono);
+    }
+
     table {
-        font-family: var(--sans);
+        font-family: var(--mono);
         font-size: var(--14px);
-        width: 100%;
+        width: calc(100% - 24px);
+        margin: 4rem 0 0 24px;
+        border-collapse: separate;
+        border-spacing:0 4px;
     }
 
     tr {
         transition: background-color 1s linear;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--fanfic-black);
+        font-size: var(--12px);
+    }
+    .canon-row {
+        border: 1px solid var(--fanfic-black);
     }
 
-    th, td {
-        padding: 0.5rem;
+    th{
+        padding: 0 0 0.25rem 0;
+        text-transform: uppercase;
+        border: none;
+    }
+
+    td {
+        position: relative;
+        padding: 0;
+        font-family: var(--mono);
+        font-weight: 400;
+        height: 3rem;
+    }
+
+    .ship-name {
+        border-top: 1px solid var(--fanfic-black);
+        border-bottom: 1px solid var(--fanfic-black);
+        border-left: 1px solid var(--fanfic-black);
+    }
+
+    .ship-name p {
+        margin: 0 0 0 1.5rem;
+        padding: 0.5rem 0;
+        line-height: 1.25;
+        font-size: var(--12px);
     }
 
     .right-align {
         text-align: right;
+        padding: 0 0.25rem;
+        font-size: var(--12px);
+        line-height: 1.25;
+    }
+    .right-align p {
+        padding: 0.5rem 0;
+        margin: 0;
+    }
+
+    .canon-row .right-align {
+        border-top: 1px solid var(--fanfic-black);
+        border-bottom: 1px solid var(--fanfic-black);
+        border-right: 1px solid var(--fanfic-black);
+        border-left: none;
     }
 
     .canon-Yes {
         background: #D03200;
     }
+
+    .canon-Yes .right-align {
+        border-left: 1px solid #D03200;
+    }
+    .canon-Yes .ship-name {
+        border-right: 1px solid #D03200;
+    }
     .canon-Semi-Canon {
         background: #119C72;
     }
+    .canon-Semi-Canon .right-align {
+        border-left: 1px solid #119C72;
+    }
+    .canon-Semi-Canon .ship-name {
+        border-right: 1px solid #119C72;
+    }
     .canon-No {
         background: #1B2AA6;
+    }
+    .canon-No .right-align {
+        border-left: 1px solid #1B2AA6;
+    }
+    .canon-No .ship-name {
+        border-right: 1px solid #1B2AA6;
     }
 
     .key-wrapper p {
         margin-right: 2rem;
         font-family: var(--mono);
+        font-size: var(--14px);
         text-transform: uppercase;
         margin: 0 1rem;
     }
 
-    .key-Non-Canon::before {
+    .key-Non-Canon::before, .no-text::before {
         display: inline-block;
         position: relative;
-        top: 0.125rem;
+        top: 0.05rem;
         content: "";
-        width: 1rem;
-        height: 1rem;
+        width: 0.75rem;
+        height: 0.75rem;
         background: #1B2AA6;
-        margin: 0 0.125rem 0 0;
+        margin: 0 0.25rem 0 0;
     }
 
-    .key-Canon::before {
+    .key-Canon::before, .yes-text::before {
         display: inline-block;
         position: relative;
-        top: 0.125rem;
+        top: 0.05rem;
         content: "";
-        width: 1rem;
-        height: 1rem;
+        width: 0.75rem;
+        height: 0.75rem;
         background: #D03200;
-        margin: 0 0.125rem 0 0;
+        margin: 0 0.25rem 0 0;
     }
-    .key-Semi-Canon::before {
+    .key-Semi-Canon::before, .semi-text::before {
         display: inline-block;
         position: relative;
-        top: 0.125rem;
+        top: 0.05rem;
         content: "";
-        width: 1rem;
-        height: 1rem;
+        width: 0.75rem;
+        height: 0.75rem;
         background: #119C72;
-        margin: 0 0.125rem 0 0;
+        margin: 0 0.25rem 0 0;
     }
   </style>

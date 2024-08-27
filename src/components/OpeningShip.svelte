@@ -16,22 +16,27 @@
     on:exit={exitViewFly}  
 >   
     {#if inViewTrigger}
-        <img transition:fly={{ delay: 250, duration: 300, x: -200}} src="./assets/images/faceA.png" alt="character"/>
-        <img transition:fly={{ delay: 250, duration: 300, x: 200}} src="./assets/images/faceB.png" alt="character"/>
+        <img transition:fly={{ delay: 250, duration: 300, x: -200}} src="./assets/images/heads/{copy.imgA}.png" alt="character"/>
+        <img transition:fly={{ delay: 250, duration: 300, x: 200}} src="./assets/images/heads/{copy.imgB}.png" alt="character"/>
     {/if}
+    <p class="bg-connecter">{copy.connector}</p>
 </div>
 <div class="names">
     <div class="name nameA">
-        <h5 class="name-mono">{copy.nameAfirst}</h5> 
         {#if copy.nameAlast !== undefined}
+            <h5 class="name-mono">{copy.nameAfirst}</h5> 
             <h5 class="name-script">{copy.nameAlast}</h5> 
+        {:else}
+            <h5 class="name-script">{copy.nameAfirst}</h5> 
         {/if}
     </div>
     <h5 class="connector">{copy.connector}</h5>
     <div class="name nameB">
-        <h5 class="name-mono">{copy.nameBfirst}</h5> 
         {#if copy.nameBlast !== undefined}
+            <h5 class="name-mono">{copy.nameBfirst}</h5> 
             <h5 class="name-script">{copy.nameBlast}</h5> 
+        {:else}
+            <h5 class="name-script">{copy.nameBfirst}</h5> 
         {/if}
     </div>
 </div>
@@ -44,10 +49,26 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        position: relative;
     }
 
     .faces img {
-        width: 200px;
+        width: 250px;
+        z-index: 1000;
+    }
+
+    .faces img:nth-of-type(1) {
+        margin-top: 7rem;
+    }
+
+    .bg-connecter {
+        position: absolute;
+        font-family: var(--script);
+        color: white;
+        opacity: 0.05;
+        font-size: 400px;
+        z-index: 500;
+        padding-top: 7rem;
     }
 
     .names {
@@ -55,7 +76,7 @@
         display: flex;
         flex-direction: row;
         gap: 2rem;
-        align-items: center;
+        align-items: end;
         justify-content: center;
     }
 
@@ -85,9 +106,9 @@
     }
 
     h5.connector {
-        font-weight: 100;
-        font-size: var(--128px);
-        font-family: var(--mono);
+        font-weight: 400;
+        font-size: var(--48px);
+        font-family: var(--script);
         color: var(--fanfic-black);
     }
 

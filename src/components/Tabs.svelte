@@ -56,11 +56,13 @@ function setTitle(option) {
         align-items: center;
         padding: 1rem;
         border-width:2px;
+        background: var(--fanfic-window-gray);
         border-color: var(--window-button-stroke);
         border-style:solid;
         text-transform: uppercase;
-        font-family: var(--sans);
+        font-family: var(--mono);
         text-align: left;
+        font-size: var(--16px);
     }
 
     #tab-slash.isActive {

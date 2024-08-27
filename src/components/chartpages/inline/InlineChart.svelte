@@ -12,8 +12,6 @@
     export let id;
     export let title;
     export let chunk;
-
-    console.log(chartType)
 </script>
 
 <!-- Changes the type of chart depending on the chartType -->

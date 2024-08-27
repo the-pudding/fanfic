@@ -6,8 +6,6 @@
 
 	const copy = getContext("copy");
 	// const data = getContext("data");
-
-	console.log(copy.introSlides)
 	let scrollIndex;
     let steps = [0,1,2,3,4,5];
 </script>
@@ -33,7 +31,7 @@
 <style>
     .sticky {
 		position: sticky;
-		top: 6rem;
+		top: 0;
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;

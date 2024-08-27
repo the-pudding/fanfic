@@ -120,13 +120,13 @@
 	} */
 
 	.left {
-		left: 1rem;
+		left: 0.5rem;
 		top: 0;
 		/* text-align: left; */
 	}
 
 	.right {
-		right: 1rem;
+		right: 0.5rem;
 		top: 0;
 		/* text-align: right; */
 	}

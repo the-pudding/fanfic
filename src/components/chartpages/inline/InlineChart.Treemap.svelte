@@ -13,8 +13,6 @@
 
 	let data = id == "CANON_AUtags" ? canonData : slashData;
 
-	console.log(id, data)
-
 	const treemap = d3.treemap();
 
 	const hierarchy = d3.hierarchy(data)

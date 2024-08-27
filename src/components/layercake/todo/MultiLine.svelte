@@ -5,12 +5,12 @@
 <script>
 	import { getContext } from 'svelte';
 	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
-	import { draw } from 'svelte/transition';
+	import { draw, fade } from 'svelte/transition';
 
 	export let curve = curveStep;
 	export let inViewTrigger; 
 
-	const { data, xGet, yGet, zGet } = getContext('LayerCake');
+	const { data, xGet, yGet, zGet, width, height } = getContext('LayerCake');
 
 	$: path = line().x($xGet).y($yGet).curve(curve);
 </script>
@@ -27,6 +27,21 @@
 		{/if}
 	{/each}
 </g>
+<g class="rect-overlay">
+	<rect 
+		x={$width/2 - $width/20 + 10}
+		width={$width/10 - 20}
+		height={$height}
+	>
+	</rect>
+	<text
+		x={$width/2 - $width/20 + 10}
+		y={$height/2}
+		transform="rotate(-90,{$width/2},{$height/2-4})"
+	>
+		Missing data
+	</text>
+</g>
 
 <style>
 	.path-line {
@@ -34,5 +49,17 @@
 		stroke-linejoin: round;
 		stroke-linecap: round;
 		stroke-width: 2px;
+	}
+
+	rect {
+		fill: #e9e5ed;
+	}
+
+	text {
+		font-family: var(--mono);
+		text-transform: uppercase;
+		text-anchor: middle;
+		font-size: 12px;
+		fill: var(--fanfic-black);
 	}
 </style>

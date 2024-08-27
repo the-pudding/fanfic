@@ -35,9 +35,10 @@
 
 <g class="axis y-axis" transform="translate({-$padding.left}, 0)">
 	{#each tickVals as tick}
+	{@const translate = textAnchor == "start" ? $xRange[0] : 24}
 		<g
 			class="tick tick-{tick}"
-			transform="translate({$xRange[0]}, {$yScale(tick)})"
+			transform="translate({translate}, {$yScale(tick)})"
 		>
 			{#if gridlines !== false}
 				<line class="gridline" x2="100%" y1={yTick} y2={yTick} />

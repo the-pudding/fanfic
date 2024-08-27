@@ -27,7 +27,7 @@
 				return "start";
 			}
 			if (i === tickVals.length - 1) {
-				return "end";
+				return "start";
 			}
 		}
 		return "middle";
@@ -46,9 +46,11 @@
 			{#if tickMarks === true}
 				<line class="tick-mark" y1={0} y2={6} x1={0} x2={0} />
 			{/if}
-			<text x={0} y={yTick} dx="" dy="" text-anchor={textAnchor(i)}
-				>{formatTick(tick)}</text
-			>
+			{#if formatTick(tick) !== 2018}
+				<text x={0} y={yTick} dx="" dy="" text-anchor={textAnchor(i)}
+					>{formatTick(tick)}</text
+				>
+			{/if}
 		</g>
 	{/each}
 	{#if baseline === true}
@@ -73,12 +75,12 @@
 
 	line,
 	.tick line {
-		stroke: var(--color-gray-300);
+		stroke: var(--fanfic-black);
 		stroke-dasharray: 4;
 	}
 
 	.tick text {
-		color: var(--color-gray-900);
+		color: var(--fanfic-black);
 	}
 
 	.tick .tick-mark,

@@ -13,20 +13,20 @@
    export let chunk;
 </script>
 
-<div class="chart-wrapper">
-    {#if chartType == "stackedBarTable"}
-        {#if title}<ChartHeader {title} />{/if}
-        <FullChartStackedBarTable {id} />
-    {/if}
-    {#if chartType == "scroll"}
-        {#if title}<ChartHeader {title} />{/if}
-        <FullChartScroll {id} />
-    {/if}
-    {#if chartType == "pictogram"}
-        {#if title}<ChartHeader {title} />{/if}
-        <FullChartPictogram {id} />
-    {/if}
-</div>
+{#if chartType == "scroll"}
+    <FullChartScroll {id} />
+{:else}
+    <div class="chart-wrapper">
+        {#if chartType == "stackedBarTable"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartStackedBarTable {id} />
+        {/if}
+        {#if chartType == "pictogram"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartPictogram {id} />
+        {/if}
+    </div>
+{/if}
 
 <style>
     .chart-wrapper {
