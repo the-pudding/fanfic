@@ -2,6 +2,7 @@
     import inView from "$actions/inView.js";
     import { fly } from 'svelte/transition';
     import { sineInOut } from 'svelte/easing';
+    import Icon from "$components/helpers/Icon.svelte";
 
     export let copy;
 
@@ -27,10 +28,45 @@
                 <img src="./assets/images/quote-icons/{copy.imgSlug}.png" />
                 <div class="credit">
                     <p class="name">{copy.attribute}</p>
-                    <a href="{copy.url}"><p class="title">{copy.title}</p></a>
+                    <p class="title">{copy.title}</p>
                 </div>
             </div>
             <p class="text">{copy.text}</p>
+            {#if copy.source}
+                <div class="underline">
+                    <div>
+                        {#if copy.attribute == "Sun Jung" || copy.attribute == "Stefan Robinson"}
+                            <Icon name="newspaper" />
+                        {:else}
+                            <Icon name="book-open" />
+                        {/if}
+                        <a href="{copy.url}"><p>{copy.source}</p></a>
+                    </div>
+                </div>
+            {/if}
+            {#if copy.attribute == "@thvsparadise"}
+                <div class="underline">
+                    <div>
+                        <a href="{copy.url}"><p>11:55 PM · Nov 5, 2020</p></a>
+                    </div>
+                    <div>
+                        <Icon name="message-circle" />
+                        <p>43</p>
+                    </div>
+                    <div>
+                        <Icon name="repeat-2" />
+                        <p>908</p>
+                    </div>
+                    <div>
+                        <Icon name="heart" />
+                        <p>4.9K</p>
+                    </div>
+                    <div>
+                        <Icon name="bookmark" />
+                        <p>133</p>
+                    </div>
+                </div>
+            {/if}
         </div>
     {/if}
 </div>
@@ -40,7 +76,7 @@
         position: relative;
         max-width: 550px;
         margin: 6rem auto;
-        height: 300px;
+        height: 340px;
     }
 
     .real, .bg {
@@ -52,7 +88,7 @@
         background: var(--fanfic-highlighter);
         padding: 1rem;
         position: absolute;
-        height: 300px;
+        height: 340px;
     }
 
     .bg{
@@ -91,7 +127,7 @@
     .title {
         margin: 0;
         font-family: var(--mono);
-        font-size: var(--14px);
+        font-size: var(--12px);
     }
 
     .text {
@@ -99,5 +135,30 @@
         font-size: var(--18px);
         font-weight: 700;
         font-style: italic;
+    }
+
+    .underline {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: 2rem;
+        gap: 2rem;
+    }
+
+    .underline div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    :global(.underline div svg) {
+        margin: 0.25rem 0.25rem 0 0;
+    }
+
+    .underline div p {
+        font-family: var(--mono);
+        padding: 0;
+        margin: 0;
+        font-size: var(--12px);
     }
 </style>
