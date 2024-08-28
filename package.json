@@ -43,6 +43,7 @@
 	"browserslist": "> 0.5%, last 4 versions, not ie <= 11, not ie_mob <= 11",
 	"dependencies": {
 		"@egjs/grid": "^1.16.0",
+		"@leveluptuts/svelte-fit": "^1.0.3",
 		"@lucide/lab": "^0.1.2",
 		"@sveltejs/pancake": "^0.0.18",
 		"fs": "^0.0.1-security",

@@ -33,4 +33,10 @@
         font-family: var(--script);
         color: var(--fanfic-highlighter);
     }
+
+    @media (max-width: 600px) {
+        h3 {
+            font-size: var(--48px);
+        }
+    }
 </style>

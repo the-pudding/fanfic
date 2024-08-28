@@ -375,4 +375,16 @@
         background: #119C72;
         margin: 0 0.25rem 0 0;
     }
+
+    @media (max-width: 600px) { 
+        .key-wrapper {
+            flex-direction: column;
+        }
+        .chart-wrapper {
+            flex-direction: column;
+        }
+        .group-wrapper {
+            width: 100%;
+        }
+    }
   </style>

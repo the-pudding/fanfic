@@ -20,7 +20,7 @@ function setTitle(option) {
     ? "CH1: Slash"
     : option == "noncanon"
     ? "CH2: Canon" :
-    "CH3: Real People"
+    "CH3: RPF"
     return title;
 }
 </script>
@@ -82,4 +82,12 @@ function setTitle(option) {
         color: var(--fanfic-highlighter);
         font-weight: 700;
     }
+
+    @media (max-width: 600px) {
+        button {
+            font-size: var(--14px);
+            height: 2.5rem;
+            padding: 0.5rem;
+        }
+	}
 </style>

@@ -122,4 +122,32 @@
         text-align: center;
         padding: 3rem 0;
     }
+
+    @media (max-width: 600px) {
+        .faces img {
+            width: 50%;
+            z-index: 1000;
+        }
+
+        .faces img:nth-of-type(1) {
+            margin-top: 5rem;
+        }
+
+        .bg-connecter {
+            font-size: 300px;
+        }
+
+        .name-mono {
+            font-size: var(--24px);
+        }
+        
+        .name-script {
+            font-size: var(--40px);
+            margin: -1rem 0 0 0;
+        }
+
+        .tag {
+            font-size: var(--18px);
+        }
+	}
 </style>

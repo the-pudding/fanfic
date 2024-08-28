@@ -228,4 +228,19 @@
 		background: orange;
 		opacity: 0.5;
 	}
+
+	@media (max-width: 600px) {
+		button {
+			width: 40px;
+			height: 40px;
+		}
+
+		.left {
+			left: 0.25rem;
+		}
+
+		.right {
+			right: 0.25rem;
+		}
+	}
 </style>

@@ -50,7 +50,7 @@
     >
         <Rank rank={start+i+1} />
         <div class="content-wrapper">
-            <p class="ship-name">{ship.ship}</p>
+            <p class="ship-name">{(ship.ship).replace("/", " / ")}</p>
             <p>{ship.fandom}</p>
         </div>
     </li>
@@ -67,6 +67,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 0 0.5rem;
+        margin: 0;
     }
 
     li {
@@ -116,7 +118,15 @@
     }
 
     .active {
-        background-color: var(--fanfic-blue);
-        color: var(--color-white);
+        background-color: var(--fanfic-highlighter);
     }
+
+    @media (max-width: 600px) {
+        li {
+            height: 4rem;
+        }
+		p {
+            font-size: var(--12px); 
+        }
+	}
 </style>

@@ -19,6 +19,10 @@
     let seriesNames;
     let groupedData;
     let inViewTrigger = false;
+    $: innerWidth = 0;
+    $: ticks = innerWidth < 600 || innerWidth == undefined
+        ? ["2013", "2023"]
+        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
     const seriesColors = id == "CANON_percentCanon"
         ? ['#1B2AA6', '#119C72', '#D03200']
@@ -79,6 +83,8 @@
     function exitViewDraw() { inViewTrigger = false; }
 </script>
 
+<svelte:window bind:innerWidth />
+
 <div class="chart-container"
     use:inView
     on:enter={inViewDraw}
@@ -99,7 +105,7 @@
             <Svg>
                 <AxisX
                     gridlines={false}
-                    ticks={data.map(d => d[xKey]).sort((a, b) => a - b)}
+                    ticks={ticks}
                     snapLabels
                 />
                 <AxisY ticks={4} {id} />

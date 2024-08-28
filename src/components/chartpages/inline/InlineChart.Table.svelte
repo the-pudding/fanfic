@@ -13,20 +13,22 @@
     // Dynamically loads the data based on the id
     onMount(async () => {
         if (id) {
-            const dataPath = `./assets/data/RPF/${id}.csv`
+            const dataFolder = id.split("_")[0];
+            const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            data.columns.unshift("rank");
+            console.log(id)
+            // data.columns.unshift("rank");
         }
 	});
 
     // Uses inView on table to trigger highlights
-    function highlightBoyBands() {
+    function highlightRow() {
         setTimeout(() => {
             isEntered = true; 
         }, 500)
     }
 
-    function unhighlightBoyBands() {
+    function unhighlightRow() {
         setTimeout(() => {
             isEntered = false; 
         }, 500)
@@ -35,25 +37,38 @@
 
 <figure>
     <table use:inView
-        on:enter={highlightBoyBands}
-        on:exit={unhighlightBoyBands}>
+        on:enter={highlightRow}
+        on:exit={unhighlightRow}>
         {#if data}
             <tr>
-                <th style="width: 40%">Ship</th>
-                <th style="width: 20%">Fandom</th>
-                <th style="width: 10%">Category</th>
-                <th class="right-align" style="width: 10%">Fanfics</th>
+                {#if id == "CANON_AUtags"}
+                    <th style="width: 70%">Tag</th>
+                    <th class="right-align" style="width: 30%">Count</th>
+                {:else}
+                    <th style="width: 40%">Ship</th>
+                    <th style="width: 20%">Fandom</th>
+                    <th class="right-align" style="width: 10%">Fanfics</th>
+                {/if}
             </tr>
             {#each data as ship, i}
+                {#if id == "CANON_AUtags"}
+                <tr class:isHighlight={ship.setting == "mundane" && isEntered}>
+                    <td class="with-rank" style="width: 35%">
+                        <Rank rank={i+1} />
+                        <p>{ship.tag}</p>
+                    </td>
+                        <td class="right-align" style="width: 30%"><p>{format(ship.count)}</p></td>
+                </tr>
+                {:else}
                 <tr class:isHighlight={ship.category == "boy band" && isEntered}>
                     <td class="with-rank" style="width: 35%">
                         <Rank rank={i+1} />
                         <p>{ship.ship}</p>
                     </td>
                     <td style="width: 25%"><p>{ship.fandom}</p></td>
-                    <td style="width: 10%"><p>{ship.category}</p></td>
                     <td class="right-align" style="width: 10%"><p>{format(ship.fics)}</p></td>
                 </tr>
+                {/if}
             {/each}
         {/if}
     </table>

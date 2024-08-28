@@ -46,24 +46,26 @@
             {/if}
             {#if copy.attribute == "@thvsparadise"}
                 <div class="underline">
-                    <div>
+                    <div class="left">
                         <a href="{copy.url}"><p>11:55 PM · Nov 5, 2020</p></a>
                     </div>
-                    <div>
-                        <Icon name="message-circle" />
-                        <p>43</p>
-                    </div>
-                    <div>
-                        <Icon name="repeat-2" />
-                        <p>908</p>
-                    </div>
-                    <div>
-                        <Icon name="heart" />
-                        <p>4.9K</p>
-                    </div>
-                    <div>
-                        <Icon name="bookmark" />
-                        <p>133</p>
+                    <div class="right">
+                        <div>
+                            <Icon name="message-circle" />
+                            <p>43</p>
+                        </div>
+                        <div>
+                            <Icon name="repeat-2" />
+                            <p>908</p>
+                        </div>
+                        <div>
+                            <Icon name="heart" />
+                            <p>4.9K</p>
+                        </div>
+                        <div>
+                            <Icon name="bookmark" />
+                            <p>133</p>
+                        </div>
                     </div>
                 </div>
             {/if}
@@ -122,12 +124,14 @@
         font-family: var(--mono);
         font-weight: 700;
         text-transform: uppercase;
+        line-height: 1.25;
     }
 
     .title {
         margin: 0;
         font-family: var(--mono);
         font-size: var(--12px);
+        line-height: 1.25;
     }
 
     .text {
@@ -151,6 +155,12 @@
         align-items: center;
     }
 
+    .right {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem; 
+    }
+
     :global(.underline div svg) {
         margin: 0.25rem 0.25rem 0 0;
     }
@@ -160,5 +170,39 @@
         padding: 0;
         margin: 0;
         font-size: var(--12px);
+        line-height: 1.25;
+    }
+
+    @media (max-width: 600px) {
+        .quote, .real, .bg {
+            height: 420px;
+        }
+        .quote {
+            margin: 4rem 0;
+        }
+        .attribution img {
+            width: 3rem;
+            height: 3rem;
+        }
+        .name {
+            font-size: var(--12px);
+            line-height: 1.25;
+        }
+        .title, .underline div p {
+            font-size: 10px;
+            line-height: 1.25;
+        }
+
+        .text {
+            font-size: var(--14px);
+        }
+
+        .underline {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .right {
+            justify-content: space-between;
+        }
     }
 </style>

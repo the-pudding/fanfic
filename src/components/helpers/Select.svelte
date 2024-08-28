@@ -98,9 +98,8 @@
 		width: 1em;
 		height: 1em;
 		z-index: 1;
-		background: var(--color-gray-900);
+		background: var(--fanfic-black);
 		clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
-		border-radius: 4px;
 		transform-origin: center center;
 		transform: rotate(-45deg);
 		pointer-events: none;
@@ -118,4 +117,27 @@
 		cursor: not-allowed;
 		background-color: var(--color-gray-300);
 	}
+
+	@media (max-width: 600px) {
+       select {
+			font-size: var(--12px);
+			height: 40px;
+	   }
+
+	   .select::after {
+			display: block;
+			content: "";
+			position: absolute;
+			bottom: 1.125em;
+			right: 0.75em;
+			width: 0.75em;
+			height: 0.75em;
+			z-index: 1;
+			background: var(--fanfic-black);
+			clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+			transform-origin: center center;
+			transform: rotate(-45deg);
+			pointer-events: none;
+		}
+    }
 </style>

@@ -3,9 +3,9 @@
     import charactersData from "$data/INTRO/INTRO_characters.csv";
     import Icon from "$components/helpers/Icon.svelte";
     import Select from "$components/helpers/Select.svelte";
-    import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
-    import filterCharacters from "$utils/filterCharacters";
+    import { characterPairSTORE } from "$stores/misc.js";
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
+    import { fit, parent_style } from "@leveluptuts/svelte-fit";
 
     const leftData = charactersData.filter(d => d.position == "left");
     const rightData = charactersData.filter(d => d.position == "right");
@@ -27,30 +27,18 @@
     function randomClick() {
         // When the random button is clicked, generate a new pair of random characters and set the store to them
         characterPairSTORE.set(generateRandom());
-
-        // Filter dropdown!!
-        // dropdownOptionsLEFT = filterCharacters(leftData, $characterPairSTORE, "left");
-        // dropdownOptionsRIGHT = filterCharacters(rightData, $characterPairSTORE, "right");
-
-        // charactersDataLEFT.set(leftData);
-        // charactersDataRIGHT.set(rightData);
     }
-    // Every the character pair changes
-    // Filter the dropdowns
-    // $: dropdownOptionsLEFT = filterCharacters(leftData, $characterPairSTORE, "left");
-    // $: dropdownOptionsRIGHT = filterCharacters(rightData, $characterPairSTORE, "right");
-    // Set the pair stores
+    // Everytime the character pair changes
     $: characterPairSTORE.set(generateRandom());
-    // Set the dropdown stores
-    // $: charactersDataLEFT.set(leftData);
-    // $: charactersDataRIGHT.set(rightData);
 </script>
 
 <section id="character-swap">
     <ChartHeader title={"Build your own ship"}/>
-    <p class="instructions">Press the buttons below to switch out the characters</p>
+    <p class="instructions">Press the buttons below to swap the characters</p>
     <div class="stage">
-        <p class="stage-bg">The Pudding</p>
+        <div class="text-fit-wrapper" style={parent_style}>
+            <p use:fit={{min_size: 12, max_size:400 }} class="stage-bg">The Pudding</p>
+        </div>
         <Character characterID={$characterPairSTORE[0]} position={"left"} />
         <Character characterID={$characterPairSTORE[1]} position={"right"} />
     </div>
@@ -66,10 +54,9 @@
 
 <style>
 	#character-swap {
-        width: calc(100% - 2rem);
+        width: 100%;
         aspect-ratio: 2 / 1;
         display: flex;
-        margin: 1rem auto;
         max-width: 70rem;
         padding: 0.25rem;
         flex-direction: column;
@@ -79,6 +66,10 @@
         border-width:2px;
         border-color: var(--window-button-stroke);
         border-style:solid;
+    }
+
+    .text-fit-wrapper {
+        position: absolute;
     }
 
     h3 {
@@ -157,5 +148,18 @@
 
     :global(button svg) {
         margin-top: 0.25rem;
+    }
+
+    @media (max-width: 600px) {
+        .instructions {
+            font-size: 10px;
+        }
+        .controls {
+            gap: 0.5rem;
+        }
+        button {
+            height: 40px;
+            font-size: var(--12px);
+        }
     }
 </style>

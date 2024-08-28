@@ -20,6 +20,8 @@
       : typeof ticks === 'function'
         ? ticks($xScale.ticks())
         : $xScale.ticks(ticks);
+	
+	console.log(ticks)
 
 	const textAnchor = (i) => {
 		if (snapTicks === true) {
@@ -46,7 +48,7 @@
 			{#if tickMarks === true}
 				<line class="tick-mark" y1={0} y2={6} x1={0} x2={0} />
 			{/if}
-			{#if formatTick(tick) !== 2018}
+			{#if formatTick(tick) !== "2018"}
 				<text x={0} y={yTick} dx="" dy="" text-anchor={textAnchor(i)}
 					>{formatTick(tick)}</text
 				>

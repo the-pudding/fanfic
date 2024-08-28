@@ -19,14 +19,18 @@
         font-family: var(--sans);
     }
 
-    :global(.strong a) {
+    :global(a, .strong a) {
         color: var(--fanfic-highlighter);
         font-weight: 700;
         font-family: var(--sans);
     }
 
-    :global(.strong a:hover) {
+    :global(a:hover, .strong a:hover) {
         color: white;
+    }
+
+    :global(.quote a) {
+        color: var(--fanfic-black);
     }
 
     :global(.ao3 a) {
@@ -67,5 +71,13 @@
     :global(span.ship a:hover) {
         background-color: var(--fanfic-blue);
         color: white;
+    }
+
+    @media (max-width: 600px) {
+        p {
+            font-size: var(--16px);
+            line-height: 1.65;
+            margin: 1.5rem 0;
+        }
     }
 </style>

@@ -40,30 +40,33 @@
         on:exit={exitViewPopup}
     >
         {#if inViewTrigger == true}
-            <!-- A little hacky compared to the other sections, but we know the order, so we can do this to customize it-->
-            <div 
-                transition:fly={{ delay: 250, duration: 500, y: 500, easing: sineInOut }}
-                class="inline-chart inline-chart-sm" style="top:50px; left: 10%;"
-            >
-                <InlineChart chunk={copy.intro[1]} chartType={copy.intro[1].chartType} id={copy.intro[1].id} title={copy.intro[1].title}/>
+            <div class="fly-box left-fly">
+                <div 
+                    transition:fly={{ delay: 250, duration: 500, y: 500, easing: sineInOut }}
+                    class="inline-chart inline-chart-sm"
+                >
+                    <InlineChart chunk={copy.intro[1]} chartType={copy.intro[1].chartType} id={copy.intro[1].id} title={copy.intro[1].title}/>
+                </div>
+                <div 
+                    transition:fly={{ delay: 750, duration: 500, y: 500, easing: sineInOut }}
+                    class="inline-chart inline-chart-lg"
+                >
+                    <InlineChart chunk={copy.intro[3]} chartType={copy.intro[3].chartType} id={copy.intro[3].id} title={copy.intro[3].title}/>
+                </div>
             </div>
-            <div 
-                transition:fly={{ delay: 500, duration: 500, y: 500, easing: sineInOut }}
-                class="inline-chart inline-chart-sm" style="top:100px; right: 10%;"
-            >
-                <InlineChart chunk={copy.intro[2]} chartType={copy.intro[2].chartType} id={copy.intro[2].id} title={copy.intro[2].title}/>
-            </div>
-            <div 
-                transition:fly={{ delay: 750, duration: 500, y: 500, easing: sineInOut }}
-                class="inline-chart inline-chart-lg" style="top:250px; left: 0;"
-            >
-                <InlineChart chunk={copy.intro[3]} chartType={copy.intro[3].chartType} id={copy.intro[3].id} title={copy.intro[3].title}/>
-            </div>
-            <div 
-                transition:fly={{ delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
-                class="inline-chart inline-chart-lg" style="top:300px; right:0;"
-            >
-                <InlineChart chunk={copy.intro[4]} chartType={copy.intro[4].chartType} id={copy.intro[4].id} title={copy.intro[4].title}/>
+            <div class="fly-box right-fly">
+                <div 
+                    transition:fly={{ delay: 500, duration: 500, y: 500, easing: sineInOut }}
+                    class="inline-chart inline-chart-sm"
+                >
+                    <InlineChart chunk={copy.intro[2]} chartType={copy.intro[2].chartType} id={copy.intro[2].id} title={copy.intro[2].title}/>
+                </div>
+                <div 
+                    transition:fly={{ delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
+                    class="inline-chart inline-chart-lg"
+                >
+                    <InlineChart chunk={copy.intro[4]} chartType={copy.intro[4].chartType} id={copy.intro[4].id} title={copy.intro[4].title}/>
+                </div>
             </div>
         {/if}
     </div>
@@ -130,9 +133,10 @@
         width: 100%;
         position: relative;
         height: 100vh;
-        padding: 4rem;
         max-width: 1100px;
         margin: 0 auto;
+        display: flex;
+        flex-direction: row;
     }
 
     .prose, .hed, .inline-chart {
@@ -141,18 +145,45 @@
         color: var(--color-white);
     }
 
+    .fly-box {
+        width: 50%;
+        position: relative;
+    }
+
+    .left-fly .inline-chart:nth-of-type(1) {
+        top: 0;
+        left: 0;
+    }
+
+    .left-fly .inline-chart:nth-of-type(2) {
+        top: 20%;
+        left: 5%;
+    }
+
+    .right-fly .inline-chart:nth-of-type(1) {
+        top: 5%;
+        right: 10%;
+    }
+
+    .right-fly .inline-chart:nth-of-type(2) {
+        top: 25%;
+        right: 5%;
+    }
+
+
     .inline-chart {
         position: absolute;
-        /* transform: translate(-50%,0); */
     }
 
     .inline-chart-sm {
-        width: 360px;
+        width: 90%;
+        max-width: 500px;
         height: 200px;
     }
 
     .inline-chart-lg {
-        width: 560px;
+        width: 90%;
+        max-width: 500px;
         height: 400px;
     }
 
@@ -160,25 +191,35 @@
         margin: 2rem auto;
     }
 
-    .hed {
-        position: relative;
-        height: 10rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hed-script, .hed-sans {
-        position: absolute;
-    }
-
-    .hed-script {
-        font-family: var(--script);
-        opacity: 0.25;
-        font-size: 100px;
-    }
-
-    .hed-sans {
-        font-family: var(--sans);
+    @media (max-width: 600px) {
+        h1:first-of-type {
+            margin-right: 0%;
+        }
+        h1, h1:last-of-type {
+            font-size: 58px;
+        } 
+        h1:last-of-type {
+            margin-left: 0%;
+        }
+        .popups {
+            padding: 0;
+            flex-direction: column;
+            height: auto;
+        }
+        .fly-box {
+            width: 100%;
+        }
+        .inline-chart {
+            width: 100%;
+            position: relative;
+            height: auto;
+            margin: 2rem 0;
+        }
+        .left-fly .inline-chart:nth-of-type(1), .left-fly .inline-chart:nth-of-type(2),
+        .right-fly .inline-chart:nth-of-type(1), .right-fly .inline-chart:nth-of-type(2) {
+            top: auto;
+            left: auto;
+            right: auto;
+        }
     }
 </style>

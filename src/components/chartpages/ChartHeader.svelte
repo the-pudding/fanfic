@@ -52,4 +52,10 @@
         font-family: var(--mono);
         font-weight: 700;
     }
+
+    @media (max-width: 600px) {
+        h3 {
+            font-size: var(--14px);
+        }
+    }
 </style>

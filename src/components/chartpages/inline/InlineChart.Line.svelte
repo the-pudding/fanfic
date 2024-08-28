@@ -14,6 +14,10 @@
     let xKey = "year";
     let yKey = "yes_percent";
     let inViewTrigger = false;
+    $: innerWidth = 0;
+    $: ticks = innerWidth < 600 || innerWidth == undefined
+        ? ["2013", "2023"]
+        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
     // Used to match the data to its keys
     const axisKeys = [
@@ -67,6 +71,8 @@
     function exitViewDraw() { inViewTrigger = false; }
 </script>
 
+<svelte:window bind:innerWidth />
+
 <div class="chart-container"
     use:inView
     on:enter={inViewDraw}
@@ -80,7 +86,7 @@
         data={data}
     >
         <Svg>
-            <AxisX gridlines={false} />
+            <AxisX gridlines={false} {ticks}/>
             <AxisY snapBaselineLabel gridlines={true} {id}/>
             <Line inViewTrigger={inViewTrigger} />
         </Svg>
