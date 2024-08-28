@@ -1,5 +1,6 @@
 <script>
 	import { getContext } from "svelte";
+    import * as d3 from "d3";
     import top20Data from "$data/INTRO/INTRO_top20.csv";
     import { fade } from 'svelte/transition';
     import Rank from "$components/Rank.svelte"
@@ -10,6 +11,7 @@
     export let totalSets;
     export let set;
     
+    const format = d3.format(",");
     let active;
     let innerWidth;
 
@@ -51,7 +53,7 @@
         <Rank rank={start+i+1} />
         <div class="content-wrapper">
             <p class="ship-name">{(ship.ship).replace("/", " / ")}</p>
-            <p>{ship.fandom}</p>
+            <p>{format(ship.totalWorks)} fics</p>
         </div>
     </li>
     {/if}
@@ -81,7 +83,7 @@
         flex-direction: row;
         background-color: var(--fanfic-window-gray);
         transition: background-color 250ms linear;
-        height: 4.5rem;
+        height: 4rem;
         position: relative;
     }
     
@@ -107,7 +109,7 @@
 
     p {
         font-family: var(--mono);
-        font-size: var(--14px);
+        font-size: var(--12px);
         padding: 0;
         margin: 0;
         line-height: 1.125;

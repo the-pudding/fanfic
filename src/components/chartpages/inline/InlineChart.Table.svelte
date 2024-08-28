@@ -54,7 +54,9 @@
                 <tr class:isHighlight={ship.setting == "mundane" && isEntered}>
                     <td class="with-rank">
                         <Rank rank={i+1} />
-                        <p>{ship.tag}</p>
+                        <div class="deets">
+                            <p class="ship-name">{ship.tag}</p>
+                        </div>
                     </td>
                         <td class="right-align"><p>{format(ship.count)}</p></td>
                 </tr>
@@ -62,8 +64,10 @@
                 <tr class:isHighlight={ship.category == "boy band" && isEntered}>
                     <td class="with-rank">
                         <Rank rank={i+1} />
-                        <p>{ship.ship}</p>
-                        <p>{ship.fandom}</p>
+                        <div class="deets">
+                            <p class="ship-name">{ship.ship}</p>
+                            <p>{ship.fandom}</p>
+                        </div>
                     </td>
                     <td class="right-align" style="width: 10%"><p>{format(ship.fics)}</p></td>
                 </tr>
@@ -122,10 +126,6 @@
         margin: 0;
     }
 
-    .with-rank p {
-        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-    }
-
     .right-align {
         text-align: right;
     }
@@ -133,6 +133,18 @@
     tr.isHighlight {
         background-color: var(--fanfic-highlighter);
         transition: background-color 1s linear;
+    }
+
+    .deets {
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    }
+
+    .deets p {
+        padding: 0;
+    }
+
+    .deets p:first-of-type {
+        font-weight: 700;
     }
 
     @media (max-width: 600px) { 
