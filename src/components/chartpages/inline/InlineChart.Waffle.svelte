@@ -59,7 +59,7 @@
         const tooltipY = rect.top - containerRect.top + container.scrollTop;
 
         // Checks tooltip position
-        let tooltipWidth = innerWidth > 600 ? "10rem" : "8.75rem";
+        let tooltipWidth = innerWidth > 600 ? "10rem" : "142px";
 
         if (rect.left > innerWidth / 2) {
             const tooltipRight = containerRect.right - rect.right;
@@ -246,26 +246,29 @@
     }
 
     @media (max-width: 600px) { 
+        .chart-container {
+            padding: 1rem;
+        }
         .ship {
-            width: 0.675rem;
-            height: 0.675rem;
+            width: 10px;
+            height: 10px;
         }
 
         .label {
-            height: 0.675rem;
+            height: 10px;
         }
 
         .label-Yes {
-            width: 4.675rem;
+            width: 82px;
         }
 
         .label-No, .label-Semi-Canon {
-            width: 6.3rem;
+            width: 106px;
         }
         .toolip {
             font-size: 10px;
-            width:  0.75rem;
-            height: 0.75rem;
+            width:  10px;
+            height: 10px;
         }
     }
 </style>

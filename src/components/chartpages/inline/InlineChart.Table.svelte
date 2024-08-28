@@ -43,29 +43,28 @@
             <tr>
                 {#if id == "CANON_AUtags"}
                     <th style="width: 70%">Tag</th>
-                    <th class="right-align" style="width: 30%">Count</th>
+                    <th class="right-align">Count</th>
                 {:else}
                     <th style="width: 40%">Ship</th>
-                    <th style="width: 20%">Fandom</th>
                     <th class="right-align" style="width: 10%">Fanfics</th>
                 {/if}
             </tr>
             {#each data as ship, i}
                 {#if id == "CANON_AUtags"}
                 <tr class:isHighlight={ship.setting == "mundane" && isEntered}>
-                    <td class="with-rank" style="width: 35%">
+                    <td class="with-rank">
                         <Rank rank={i+1} />
                         <p>{ship.tag}</p>
                     </td>
-                        <td class="right-align" style="width: 30%"><p>{format(ship.count)}</p></td>
+                        <td class="right-align"><p>{format(ship.count)}</p></td>
                 </tr>
                 {:else}
                 <tr class:isHighlight={ship.category == "boy band" && isEntered}>
-                    <td class="with-rank" style="width: 35%">
+                    <td class="with-rank">
                         <Rank rank={i+1} />
                         <p>{ship.ship}</p>
+                        <p>{ship.fandom}</p>
                     </td>
-                    <td style="width: 25%"><p>{ship.fandom}</p></td>
                     <td class="right-align" style="width: 10%"><p>{format(ship.fics)}</p></td>
                 </tr>
                 {/if}
@@ -134,5 +133,11 @@
     tr.isHighlight {
         background-color: var(--fanfic-highlighter);
         transition: background-color 1s linear;
+    }
+
+    @media (max-width: 600px) { 
+        table {
+            font-size: 10px;
+        }
     }
 </style>

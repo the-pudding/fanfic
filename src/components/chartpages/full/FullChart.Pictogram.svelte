@@ -335,65 +335,34 @@
         font-size: var(--12px);
     }
 
-    /* .table-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    } */
+    @media (max-width: 600px) { 
+        .chart-container {
+            padding: 1rem;
+        }
+        .key {
+            flex-wrap: wrap;
+            margin-left: -2rem;
+            margin-bottom: 2rem;
+        }
+        .key-block {
+            width: 50%;
+            padding: 0 0.5rem;
+            margin: 0;
+        }
 
-    /* table {
-        width: calc(50% - 1.25rem);
+        .key-text {
+            padding: 0 0 0 0.5rem;
+            width: 100px;
+        }
+        .img-block {
+            padding: 0 0.25rem 0 0;
+        }
+        .img-block img {
+            width: 20px;
+        }
+
+        li {
+            min-width: 70px;
+        }
     }
-
-    tr {
-        border-bottom: 1px solid var(--fanfic-black);
-    }
-
-    th {
-        font-family: var(--mono);
-        text-transform: uppercase;
-        font-size: var(--12px);
-    }
-
-    td {
-        font-family: var(--sans); 
-        padding: 0.5rem;
-    }
-
-    td p {
-        padding: 0;
-        margin: 0;
-    }
-
-    td p:first-of-type {
-        font-weight: 700;
-        font-size: var(--18px);
-    }
-
-    .pictogram {
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-    }
-
-    .pictogram img {
-        width: 36px;
-    }
-
-    .pictogram img:last-of-type {
-        margin-left: -0.75rem;
-    }
-
-    .expand {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        background: var(--fanfic-window-gray);
-        border-width:2px;
-        border-color: var(--window-button-stroke);
-        border-style:solid;
-        color: var(--fanfic-black);
-        transform: translate(-50%, 0);
-    } */
 </style>

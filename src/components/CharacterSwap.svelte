@@ -57,6 +57,7 @@
         width: 100%;
         aspect-ratio: 2 / 1;
         display: flex;
+        margin: 0 auto;
         max-width: 70rem;
         padding: 0.25rem;
         flex-direction: column;

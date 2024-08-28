@@ -101,4 +101,10 @@
         background: var(--color-white);
         padding: 2rem;
     }
+    @media (max-width: 600px) { 
+        .chart-container {
+            padding: 2rem;
+        }
+    }
+
 </style>

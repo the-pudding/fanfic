@@ -80,7 +80,10 @@
     const canonArray = ["Canon", "Semi-Canon", "Non-Canon"];
 
     // $: console.log(receivedData)
+    $: innerWidth = 0;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="viz-wrapper">
     {#if receivedData && receivedData[0].tooltipVisible}
@@ -118,7 +121,7 @@
                     data={data}
                 >
                     <Svg>
-                    {#if i == 0}
+                    {#if i == 0 || innerWidth < 600}
                         <AxisY ticks={2} gridlines={false} textAnchor={"end"} />
                     {/if}
                     <AxisX ticks={["2013","2023"]} baseline={true} gridlines={false} snapTicks={true} />
@@ -377,14 +380,38 @@
     }
 
     @media (max-width: 600px) { 
-        .key-wrapper {
-            flex-direction: column;
+        .viz-wrapper {
+            padding: 1rem;
+        }
+        .key-wrapper p {
+            font-size: var(--12px);
+            margin: 0 0.5rem;
         }
         .chart-wrapper {
             flex-direction: column;
         }
         .group-wrapper {
             width: 100%;
+            margin-bottom: 3.5rem;
+        }
+        .group-wrapper:nth-of-type(2) {
+            border: none;
+            margin: 0;
+            margin-bottom: 3.5rem;
+        }
+        .key-Canon::before, .key-Semi-Canon::before, .key-Non-Canon::before {
+            width: 0.65rem;
+            height: 0.65rem;
+            margin: 0 0.125rem 0 0;
+        }
+        table {
+            margin: 2.5rem 0 0 24px;
+        }
+        td {
+            height: 2.5rem;
+        }
+        .ship-name p, .right-align p {
+            font-size: 10px;
         }
     }
   </style>
