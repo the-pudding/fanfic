@@ -31,10 +31,10 @@
     <div class="byline-wrapper">
         <p class="byline">
             <span>By</span>
-            <span><img src="/assets/images/quote-icons/ashley-cai.png" /><a href="https://centrumlumina.tumblr.com/">Ashley Cai</a></span>
-            <span><img src="/assets/images/quote-icons/florina-sutanto.png" />Florina<br>Sutanto</span>
-            <span><img src="/assets/images/quote-icons/jan-diehm.png" />Jan<br>Diehm</span>
-            <span><img src="/assets/images/quote-icons/caitlyn-ralph.png" />Caitlyn<br>Ralph</span>
+            <span><img src="/assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a></span>
+            <span><img src="/assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a></span>
+            <span><img src="/assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a></span>
+            <span><img src="/assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a></span>
         </p>
         <p class="with">With data from <a href="https://centrumlumina.tumblr.com/">centreoftheselights</a></p>
     </div>
@@ -141,7 +141,6 @@
         max-width: 700px;
         display: flex;
         flex-direction: row;
-        gap: 1.5rem;
     }
 
     .byline span {
@@ -149,6 +148,17 @@
         flex-direction: row;
         align-items: start;
         line-height: 1;
+        width: 6rem;
+        margin-right: 1.5rem
+    }
+
+    .byline span:first-of-type {
+        width: auto;
+        margin-right: 0.5rem;
+    }
+
+    .byline a {
+        font-family: var(--mono);
     }
 
     .byline span img {
