@@ -48,6 +48,7 @@
 		"@sveltejs/pancake": "^0.0.18",
 		"fs": "^0.0.1-security",
 		"layerchart": "^0.44.0",
-		"svelte-bricks": "^0.2.1"
+		"svelte-bricks": "^0.2.1",
+		"svelte-countup": "^0.2.8"
 	}
 }

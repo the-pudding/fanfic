@@ -2,6 +2,7 @@
     import inView from "$actions/inView.js";
     import { tweened } from "svelte/motion";
     import { linear } from "svelte/easing";
+    import Countup from "svelte-countup"
 
     export let chunk;
 
@@ -35,7 +36,16 @@
         on:enter={enterNums}
         on:exit={exitNums}
     >
-        <p class="count">{Math.round($usersVal)}</p>
+        <p class="count">
+            <Countup 
+                initial={0}
+                value={+chunk.count}
+                duration={1000}
+                step={1}
+                roundto={1}
+                format={true}
+            />
+        </p>
     </div>
 {/if}
 
@@ -51,6 +61,7 @@
     }
 
     .count {
+        font-variant-numeric: tabular-nums;
         width: 100%;
         text-align: center;
         color: var(--fanfic-black);
