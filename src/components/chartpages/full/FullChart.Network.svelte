@@ -81,6 +81,7 @@
 		const simulation = d3.forceSimulation(nodes)
 				.force("link", forceLink)
 				.force("charge", forceNode)
+                .force("r", d3.forceRadial(function(d, i) { return innerWidth/50; }))
 				.force("center",  d3.forceCenter())
 				.on("tick", ticked);
 
