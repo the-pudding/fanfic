@@ -1,0 +1,791 @@
+{
+    "nodes": [
+        {
+            "name": "Albus Dumbledore",
+            "group": 1,
+            "index": 0
+        },
+        {
+            "name": "Albus Severus Potter",
+            "group": 1,
+            "index": 1
+        },
+        {
+            "name": "Alice Longbottom",
+            "group": 1,
+            "index": 2
+        },
+        {
+            "name": "Andromeda Black Tonks",
+            "group": 1,
+            "index": 3
+        },
+        {
+            "name": "Angelina Johnson",
+            "group": 1,
+            "index": 4
+        },
+        {
+            "name": "Arthur Weasley",
+            "group": 1,
+            "index": 5
+        },
+        {
+            "name": "Astoria Greengrass",
+            "group": 1,
+            "index": 6
+        },
+        {
+            "name": "Barty Crouch Jr.",
+            "group": 1,
+            "index": 7
+        },
+        {
+            "name": "Bellatrix Black Lestrange",
+            "group": 1,
+            "index": 8
+        },
+        {
+            "name": "Bill Weasley",
+            "group": 1,
+            "index": 9
+        },
+        {
+            "name": "Blaise Zabini",
+            "group": 1,
+            "index": 10
+        },
+        {
+            "name": "Cedric Diggory",
+            "group": 1,
+            "index": 11
+        },
+        {
+            "name": "Daphne Greengrass",
+            "group": 1,
+            "index": 12
+        },
+        {
+            "name": "Dean Thomas",
+            "group": 1,
+            "index": 13
+        },
+        {
+            "name": "Dorcas Meadowes",
+            "group": 1,
+            "index": 14
+        },
+        {
+            "name": "Draco Malfoy",
+            "group": 1,
+            "index": 15
+        },
+        {
+            "name": "Evan Rosier",
+            "group": 1,
+            "index": 16
+        },
+        {
+            "name": "Fleur Delacour",
+            "group": 1,
+            "index": 17
+        },
+        {
+            "name": "Frank Longbottom",
+            "group": 1,
+            "index": 18
+        },
+        {
+            "name": "Fred Weasley",
+            "group": 1,
+            "index": 19
+        },
+        {
+            "name": "Gellert Grindelwald",
+            "group": 1,
+            "index": 20
+        },
+        {
+            "name": "George Weasley",
+            "group": 1,
+            "index": 21
+        },
+        {
+            "name": "Ginny Weasley",
+            "group": 1,
+            "index": 22
+        },
+        {
+            "name": "Hannah Abbott",
+            "group": 1,
+            "index": 23
+        },
+        {
+            "name": "Harry Potter",
+            "group": 1,
+            "index": 24
+        },
+        {
+            "name": "Hermione Granger",
+            "group": 1,
+            "index": 25
+        },
+        {
+            "name": "Jacob Kowalski",
+            "group": 1,
+            "index": 26
+        },
+        {
+            "name": "James Potter",
+            "group": 1,
+            "index": 27
+        },
+        {
+            "name": "Lavender Brown",
+            "group": 1,
+            "index": 28
+        },
+        {
+            "name": "Lily Evans Potter",
+            "group": 1,
+            "index": 29
+        },
+        {
+            "name": "Lucius Malfoy",
+            "group": 1,
+            "index": 30
+        },
+        {
+            "name": "Luna Lovegood",
+            "group": 1,
+            "index": 31
+        },
+        {
+            "name": "Marlene McKinnon",
+            "group": 1,
+            "index": 32
+        },
+        {
+            "name": "Mary Macdonald",
+            "group": 1,
+            "index": 33
+        },
+        {
+            "name": "Molly Weasley",
+            "group": 1,
+            "index": 34
+        },
+        {
+            "name": "Narcissa Black Malfoy",
+            "group": 1,
+            "index": 35
+        },
+        {
+            "name": "Neville Longbottom",
+            "group": 1,
+            "index": 36
+        },
+        {
+            "name": "Newt Scamander",
+            "group": 1,
+            "index": 37
+        },
+        {
+            "name": "Nymphadora Tonks",
+            "group": 1,
+            "index": 38
+        },
+        {
+            "name": "Oliver Wood",
+            "group": 1,
+            "index": 39
+        },
+        {
+            "name": "Pansy Parkinson",
+            "group": 1,
+            "index": 40
+        },
+        {
+            "name": "Percy Weasley",
+            "group": 1,
+            "index": 41
+        },
+        {
+            "name": "Peter Pettigrew",
+            "group": 1,
+            "index": 42
+        },
+        {
+            "name": "Queenie Goldstein",
+            "group": 1,
+            "index": 43
+        },
+        {
+            "name": "Regulus Black",
+            "group": 1,
+            "index": 44
+        },
+        {
+            "name": "Remus Lupin",
+            "group": 1,
+            "index": 45
+        },
+        {
+            "name": "Rodolphus Lestrange",
+            "group": 1,
+            "index": 46
+        },
+        {
+            "name": "Ron Weasley",
+            "group": 1,
+            "index": 47
+        },
+        {
+            "name": "Rose Weasley",
+            "group": 1,
+            "index": 48
+        },
+        {
+            "name": "Scorpius Malfoy",
+            "group": 1,
+            "index": 49
+        },
+        {
+            "name": "Seamus Finnigan",
+            "group": 1,
+            "index": 50
+        },
+        {
+            "name": "Sebastian Sallow",
+            "group": 1,
+            "index": 51
+        },
+        {
+            "name": "Severus Snape",
+            "group": 1,
+            "index": 52
+        },
+        {
+            "name": "Sirius Black",
+            "group": 1,
+            "index": 53
+        },
+        {
+            "name": "Ted Tonks",
+            "group": 1,
+            "index": 54
+        },
+        {
+            "name": "Teddy Lupin",
+            "group": 1,
+            "index": 55
+        },
+        {
+            "name": "Theodore Nott",
+            "group": 1,
+            "index": 56
+        },
+        {
+            "name": "Theseus Scamander",
+            "group": 1,
+            "index": 57
+        },
+        {
+            "name": "Tom Riddle | Voldemort",
+            "group": 1,
+            "index": 58
+        },
+        {
+            "name": "Victoire Weasley",
+            "group": 1,
+            "index": 59
+        },
+        {
+            "name": "Viktor Krum",
+            "group": 1,
+            "index": 60
+        }
+    ],
+    "links": [
+        {
+            "source": 15,
+            "target": 24,
+            "value": 62215,
+            "relType": "M/M"
+        },
+        {
+            "source": 53,
+            "target": 45,
+            "value": 44820,
+            "relType": "M/M"
+        },
+        {
+            "source": 25,
+            "target": 15,
+            "value": 26816,
+            "relType": "F/M"
+        },
+        {
+            "source": 29,
+            "target": 27,
+            "value": 24500,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 47,
+            "value": 19817,
+            "relType": "F/M"
+        },
+        {
+            "source": 24,
+            "target": 22,
+            "value": 16451,
+            "relType": "F/M"
+        },
+        {
+            "source": 24,
+            "target": 52,
+            "value": 15772,
+            "relType": "M/M"
+        },
+        {
+            "source": 24,
+            "target": 58,
+            "value": 11721,
+            "relType": "M/M"
+        },
+        {
+            "source": 44,
+            "target": 47,
+            "value": 11705,
+            "relType": "M/M"
+        },
+        {
+            "source": 25,
+            "target": 52,
+            "value": 8092,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 24,
+            "value": 7549,
+            "relType": "F/M"
+        },
+        {
+            "source": 32,
+            "target": 14,
+            "value": 7279,
+            "relType": "F/F"
+        },
+        {
+            "source": 30,
+            "target": 35,
+            "value": 5687,
+            "relType": "F/M"
+        },
+        {
+            "source": 0,
+            "target": 20,
+            "value": 4802,
+            "relType": "M/M"
+        },
+        {
+            "source": 44,
+            "target": 53,
+            "value": 4679,
+            "relType": "Gen"
+        },
+        {
+            "source": 49,
+            "target": 1,
+            "value": 4487,
+            "relType": "M/M"
+        },
+        {
+            "source": 45,
+            "target": 38,
+            "value": 4062,
+            "relType": "F/M"
+        },
+        {
+            "source": 45,
+            "target": 52,
+            "value": 3766,
+            "relType": "M/M"
+        },
+        {
+            "source": 15,
+            "target": 24,
+            "value": 3698,
+            "relType": "Gen"
+        },
+        {
+            "source": 7,
+            "target": 16,
+            "value": 3496,
+            "relType": "M/M"
+        },
+        {
+            "source": 6,
+            "target": 15,
+            "value": 3317,
+            "relType": "F/M"
+        },
+        {
+            "source": 53,
+            "target": 27,
+            "value": 3229,
+            "relType": "Gen"
+        },
+        {
+            "source": 24,
+            "target": 47,
+            "value": 3083,
+            "relType": "M/M"
+        },
+        {
+            "source": 24,
+            "target": 52,
+            "value": 2969,
+            "relType": "Gen"
+        },
+        {
+            "source": 53,
+            "target": 27,
+            "value": 2741,
+            "relType": "M/M"
+        },
+        {
+            "source": 29,
+            "target": 52,
+            "value": 2689,
+            "relType": "F/M"
+        },
+        {
+            "source": 53,
+            "target": 45,
+            "value": 2655,
+            "relType": "Gen"
+        },
+        {
+            "source": 33,
+            "target": 29,
+            "value": 2571,
+            "relType": "F/F"
+        },
+        {
+            "source": 53,
+            "target": 52,
+            "value": 2429,
+            "relType": "M/M"
+        },
+        {
+            "source": 5,
+            "target": 24,
+            "value": 2409,
+            "relType": "F/M"
+        },
+        {
+            "source": 50,
+            "target": 13,
+            "value": 2392,
+            "relType": "M/M"
+        },
+        {
+            "source": 53,
+            "target": 24,
+            "value": 2375,
+            "relType": "Gen"
+        },
+        {
+            "source": 25,
+            "target": 40,
+            "value": 2318,
+            "relType": "F/F"
+        },
+        {
+            "source": 25,
+            "target": 24,
+            "value": 2247,
+            "relType": "Gen"
+        },
+        {
+            "source": 25,
+            "target": 19,
+            "value": 2192,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 58,
+            "value": 2083,
+            "relType": "F/M"
+        },
+        {
+            "source": 17,
+            "target": 9,
+            "value": 2071,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 8,
+            "value": 2038,
+            "relType": "F/F"
+        },
+        {
+            "source": 36,
+            "target": 31,
+            "value": 2038,
+            "relType": "F/M"
+        },
+        {
+            "source": 24,
+            "target": 58,
+            "value": 2017,
+            "relType": "Gen"
+        },
+        {
+            "source": 2,
+            "target": 18,
+            "value": 1804,
+            "relType": "F/M"
+        },
+        {
+            "source": 15,
+            "target": 22,
+            "value": 1770,
+            "relType": "F/M"
+        },
+        {
+            "source": 15,
+            "target": 47,
+            "value": 1739,
+            "relType": "M/M"
+        },
+        {
+            "source": 31,
+            "target": 24,
+            "value": 1693,
+            "relType": "F/M"
+        },
+        {
+            "source": 3,
+            "target": 54,
+            "value": 1650,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 15,
+            "value": 1620,
+            "relType": "Gen"
+        },
+        {
+            "source": 25,
+            "target": 56,
+            "value": 1610,
+            "relType": "F/M"
+        },
+        {
+            "source": 27,
+            "target": 29,
+            "value": 1534,
+            "relType": "Gen"
+        },
+        {
+            "source": 49,
+            "target": 48,
+            "value": 1504,
+            "relType": "F/M"
+        },
+        {
+            "source": 24,
+            "target": 47,
+            "value": 1503,
+            "relType": "Gen"
+        },
+        {
+            "source": 56,
+            "target": 24,
+            "value": 1492,
+            "relType": "M/M"
+        },
+        {
+            "source": 30,
+            "target": 52,
+            "value": 1487,
+            "relType": "M/M"
+        },
+        {
+            "source": 41,
+            "target": 39,
+            "value": 1487,
+            "relType": "M/M"
+        },
+        {
+            "source": 29,
+            "target": 52,
+            "value": 1446,
+            "relType": "Gen"
+        },
+        {
+            "source": 28,
+            "target": 47,
+            "value": 1429,
+            "relType": "F/M"
+        },
+        {
+            "source": 53,
+            "target": 25,
+            "value": 1418,
+            "relType": "F/M"
+        },
+        {
+            "source": 31,
+            "target": 22,
+            "value": 1410,
+            "relType": "F/F"
+        },
+        {
+            "source": 45,
+            "target": 29,
+            "value": 1389,
+            "relType": "Gen"
+        },
+        {
+            "source": 36,
+            "target": 40,
+            "value": 1379,
+            "relType": "F/M"
+        },
+        {
+            "source": 4,
+            "target": 21,
+            "value": 1327,
+            "relType": "F/M"
+        },
+        {
+            "source": 40,
+            "target": 24,
+            "value": 1313,
+            "relType": "F/M"
+        },
+        {
+            "source": 12,
+            "target": 24,
+            "value": 1311,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 30,
+            "value": 1307,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 60,
+            "value": 1274,
+            "relType": "F/M"
+        },
+        {
+            "source": 17,
+            "target": 25,
+            "value": 1273,
+            "relType": "F/F"
+        },
+        {
+            "source": 11,
+            "target": 24,
+            "value": 1224,
+            "relType": "M/M"
+        },
+        {
+            "source": 22,
+            "target": 10,
+            "value": 1218,
+            "relType": "F/F"
+        },
+        {
+            "source": 37,
+            "target": 57,
+            "value": 1178,
+            "relType": "M/M"
+        },
+        {
+            "source": 30,
+            "target": 24,
+            "value": 1160,
+            "relType": "M/M"
+        },
+        {
+            "source": 8,
+            "target": 46,
+            "value": 1155,
+            "relType": "F/M"
+        },
+        {
+            "source": 53,
+            "target": 24,
+            "value":  1147,
+            "relType": "M/M"
+        },
+        {
+            "source": 15,
+            "target": 40,
+            "value":  1143,
+            "relType": "F/M"
+        },
+        {
+            "source": 43,
+            "target": 26,
+            "value":  1124,
+            "relType": "F/M"
+        },
+        {
+            "source": 45,
+            "target": 24,
+            "value": 1123,
+            "relType": "Gen"
+        },
+        {
+            "source": 27,
+            "target": 52,
+            "value": 1095,
+            "relType": "M/M"
+        },
+        {
+            "source": 23,
+            "target": 36,
+            "value": 1030,
+            "relType": "F/M"
+        },
+        {
+            "source": 44,
+            "target": 7,
+            "value": 1025,
+            "relType": "M/M"
+        },
+        {
+            "source": 55,
+            "target": 59,
+            "value": 1017,
+            "relType": "F/M"
+        },
+        {
+            "source": 25,
+            "target": 22,
+            "value": 1011,
+            "relType": "F/F"
+        },
+        {
+            "source": 40,
+            "target": 47,
+            "value": 1003,
+            "relType": "F/M"
+        }
+    ]
+}

@@ -6,6 +6,7 @@
    import FullChartScroll from "$components/chartpages/full/FullChart.Scroll.svelte";
    import FullChartPictogram from "$components/chartpages/full/FullChart.Pictogram.svelte";
    import FullChartDemographics from "$components/chartpages/full/FullChart.Demographics.svelte";
+   import FullChartNetwork from "$components/chartpages/full/FullChart.Network.svelte";
    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
@@ -29,6 +30,10 @@
         {#if chartType == "demographics"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartDemographics {id} />
+        {/if}
+        {#if chartType == "network"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartNetwork {id} />
         {/if}
     </div>
 {/if}
