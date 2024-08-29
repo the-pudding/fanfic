@@ -187,7 +187,7 @@
     .deets {
         font-family: var(--mono);
         font-size: 10px;
-        padding: 1rem 0.25rem 0 0.25rem;
+        padding: 1.5rem 0.25rem 0 0.25rem;
         line-height: 1.125;
     }
     .deets p {
@@ -205,5 +205,15 @@
         max-width: 30rem;
         margin: 0 auto;
 		pointer-events: none;
+	}
+
+    @media (max-width: 600px) {
+        .sticky {
+            justify-content: start;
+            top: 5rem;
+        }
+        .fandom-block {
+            min-width: 70px;
+        }
 	}
 </style>
