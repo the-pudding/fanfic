@@ -28,9 +28,16 @@
         <h1>Shipped</h1>
         <h1>And Why?</h1>
     </div>
-    <p class="byline">
-        By Ashley Cai, Florina Sutanto, Jan Diehm, & Caitlyn Ralph
-    </p>
+    <div class="byline-wrapper">
+        <p class="byline">
+            <span>By</span>
+            <span><img src="/assets/images/quote-icons/ashley-cai.png" /><a href="https://centrumlumina.tumblr.com/">Ashley Cai</a></span>
+            <span><img src="/assets/images/quote-icons/florina-sutanto.png" />Florina<br>Sutanto</span>
+            <span><img src="/assets/images/quote-icons/jan-diehm.png" />Jan<br>Diehm</span>
+            <span><img src="/assets/images/quote-icons/caitlyn-ralph.png" />Caitlyn<br>Ralph</span>
+        </p>
+        <p class="with">With data from <a href="https://centrumlumina.tumblr.com/">centreoftheselights</a></p>
+    </div>
     <div class="prose">
         <Prose copy={copy.intro[0].text}/>
     </div>
@@ -120,6 +127,11 @@
         font-size: 150px
     }
 
+    .byline-wrapper {
+        margin: 0 auto;
+        max-width: 700px;
+    }
+
     .byline {
         color: var(--fanfic-highlighter);
         font-family: var(--mono);
@@ -127,6 +139,28 @@
         font-weight:700;
         margin: 0 auto;
         max-width: 700px;
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .byline span {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        line-height: 1;
+    }
+
+    .byline span img {
+        width: 32px;
+        margin-right: 0.25rem;
+    }
+
+    .with {
+        color: var(--fanfic-highlighter);
+        font-family: var(--mono);
+        font-style: italic;
+        font-size: var(--12px);
     }
 
     .popups {

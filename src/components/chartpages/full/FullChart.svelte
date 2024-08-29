@@ -17,6 +17,8 @@
 
 {#if chartType == "scroll"}
     <FullChartScroll {id} />
+{:else if chartType == "network"}
+    <FullChartNetwork {id} />
 {:else}
     <div class="chart-wrapper">
         {#if chartType == "stackedBarTable"}
@@ -30,10 +32,6 @@
         {#if chartType == "demographics"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartDemographics {id} />
-        {/if}
-        {#if chartType == "network"}
-            {#if title}<ChartHeader {title} />{/if}
-            <FullChartNetwork {id} />
         {/if}
     </div>
 {/if}
