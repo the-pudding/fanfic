@@ -38,7 +38,7 @@
         font-weight: 700;
         font-size: var(--14px);
         font-family: var(--mono);
-        background-image: url("./assets/images/Archive_of_Our_Own_logo.png");
+        background-image: url("/assets/images/Archive_of_Our_Own_logo.png");
         background-size: 24px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;
