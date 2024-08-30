@@ -9,8 +9,6 @@
 	import QuadTree from "$components/layercake/QuadTree.html.svelte";
   
 	const { data, width, yScale, config } = getContext('LayerCake');
-
-	console.log($data)
   
 	const commas = format(',');
 	const titleCase = d => d.replace(/^\w/, w => w.toUpperCase());

@@ -9,8 +9,6 @@
     import InlineChartTreemap from "$components/chartpages/inline/InlineChart.Treemap.svelte";
     import data from '$data/SLASH/SLASH_genderIdentity.csv';
 
-    console.log(data)
-
     export let id;
     let innerWidth;
 

@@ -20,8 +20,7 @@
       : typeof ticks === 'function'
         ? ticks($xScale.ticks())
         : $xScale.ticks(ticks);
-	
-	console.log(ticks)
+
 
 	const textAnchor = (i) => {
 		if (snapTicks === true) {

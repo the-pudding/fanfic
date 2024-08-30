@@ -16,7 +16,6 @@
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            console.log(id)
             // data.columns.unshift("rank");
         }
 	});

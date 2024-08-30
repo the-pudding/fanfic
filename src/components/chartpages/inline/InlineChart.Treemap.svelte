@@ -12,8 +12,6 @@
 
 	export let id;
 
-	console.log(id)
-
 	let data = id == "SLASH_AO3demographics0"
 		? demo1Data 
 		: id == "SLASH_AO3demographics1"

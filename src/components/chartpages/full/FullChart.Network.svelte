@@ -10,12 +10,99 @@
     let width = innerWidth;
     let element;
 	let element2;
+	let mounted = false;
+
+	let hpNodes;
+	let hpMNodes;
+	let hpFNodes;
+	let hpOtherNodes;
+	let hpLines;
+	let hpMMLines;
+	let hpFFLines;
+	let hpFMLines;
+	let hpOtherLines;
+
+	let mcuNodes;
+	let mcuMNodes;
+	let mcuFNodes;
+	let mcuOtherNodes;
+	let mcuLines;
+	let mcuMMLines;
+	let mcuFFLines;
+	let mcuFMLines;
+	let mcuOtherLines;
+
+	let hpCharacters;
+	let hpMCharPercent;
+	let hpFCharPercent;
+	let hpOCharPercent;
+
+	let mcuCharacters;
+	let mcuMCharPercent;
+	let mcuFCharPercent;
+	let mcuOCharPercent;
+
+	let hpMMLinksPercent;
+	let hpFFLinksPercent;
+	let hpFMLinksPercent;
+	let hpOtherLinksPercent;
+
+	let mcuMMLinksPercent;
+	let mcuFFLinksPercent;
+	let mcuFMLinksPercent;
+	let mcuOtherLinksPercent;
 
     onMount(async function() {
         let data = await d3.json('./assets/data/RPF/network.json');
-		let data2 = await d3.json('./assets/data/RPF/network.json');
+		let data2 = await d3.json('./assets/data/RPF/networkMCU.json');
 
-        let chart = ForceGraph(data, {
+		// HP NODES
+		hpCharacters = data.nodes.length;
+		let hpMCharacters = data.nodes.filter(d => d.gender == "M");
+		let hpFCharacters = data.nodes.filter(d => d.gender == "F");
+		let hpOCharacters = data.nodes.filter(d => d.gender == "Other");
+		hpMCharPercent = hpMCharacters.length/hpCharacters*100;
+		hpFCharPercent = hpFCharacters.length/hpCharacters*100;
+		hpOCharPercent = hpOCharacters.length/hpCharacters*100;
+		console.log({hpMCharPercent, hpFCharPercent, hpOCharPercent});
+
+		// HP LINKS
+		let hpLinks = data.links.length;
+		let hpMMLinks = data.links.filter(d => d.relType == "M/M");
+		let hpFFLinks = data.links.filter(d => d.relType == "F/F");
+		let hpFMLinks = data.links.filter(d => d.relType == "F/M");
+		let hpGenLinks = data.links.filter(d => d.relType == "Gen");
+		let hpOtherLinks = data.links.filter(d => d.relType == "Other");
+		hpMMLinksPercent = hpMMLinks.length/hpLinks*100;
+		hpFFLinksPercent = hpFFLinks.length/hpLinks*100;
+		hpFMLinksPercent = hpFMLinks.length/hpLinks*100;
+		hpOtherLinksPercent = hpOtherLinks.length/hpLinks*100;
+		console.log({hpMMLinksPercent, hpFFLinksPercent, hpFMLinksPercent, hpOtherLinksPercent});
+
+		// MCU NODES
+		mcuCharacters = data2.nodes.length;
+		let mcuMCharacters = data2.nodes.filter(d => d.gender == "M");
+		let mcuFCharacters = data2.nodes.filter(d => d.gender == "F");
+		let mcuOCharacters = data.nodes.filter(d => d.gender == "Other");
+		mcuMCharPercent = mcuMCharacters.length/mcuCharacters*100;
+		mcuFCharPercent = mcuFCharacters.length/mcuCharacters*100;
+		mcuOCharPercent = mcuOCharacters.length/mcuCharacters*100;
+		console.log({mcuMCharPercent, mcuFCharPercent, mcuOCharPercent})
+		
+		// MCU LINKS
+		let mcuLinks = data2.links.length;
+		let mcuMMLinks = data2.links.filter(d => d.relType == "M/M");
+		let mcuFFLinks = data2.links.filter(d => d.relType == "F/F");
+		let mcuFMLinks = data2.links.filter(d => d.relType == "F/M");
+		let mcuGenLinks = data2.links.filter(d => d.relType == "Gen");
+		let mcuOtherLinks = data2.links.filter(d => d.relType == "Other");
+		mcuMMLinksPercent = mcuMMLinks.length/mcuLinks*100;
+		mcuFFLinksPercent = mcuFFLinks.length/mcuLinks*100;
+		mcuFMLinksPercent = mcuFMLinks.length/mcuLinks*100;
+		mcuOtherLinksPercent = mcuOtherLinks.length/mcuLinks*100;
+		console.log({mcuMMLinksPercent, mcuFFLinksPercent, mcuFMLinksPercent, mcuOtherLinksPercent});
+
+		let chart = ForceGraph(data, {
 			nodeId: d => d.index,
 			nodeGender: d => d.gender,
 			nodeTitle: d => `${d.name}`,
@@ -25,7 +112,7 @@
 			height: 600,
 		});
 
-		let chart2 = ForceGraph(data, {
+		let chart2 = ForceGraph(data2, {
 			nodeId: d => d.index,
 			nodeGender: d => d.gender,
 			nodeTitle: d => `${d.name}`,
@@ -37,8 +124,29 @@
 		
 		d3.select(element).append(() => chart);
 		d3.select(element2).append(() => chart2);
-		// Or alternatively, via the native DOM API:
-		// element.appendChild(chart)
+
+		// SELECTIONS
+		hpNodes = d3.selectAll("#hp-network-chart svg g circle");
+		hpMNodes = d3.selectAll("#hp-network-chart svg g .node-m");
+		hpFNodes = d3.selectAll("#hp-network-chart svg g .node-f");
+		hpOtherNodes = d3.selectAll("#hp-network-chart svg g .node-other");
+		hpLines = d3.selectAll("#hp-network-chart svg g line");
+		hpMMLines = d3.selectAll("#hp-network-chart svg g .link-mm");
+		hpFFLines = d3.selectAll("#hp-network-chart svg g .link-ff");
+		hpFMLines = d3.selectAll("#hp-network-chart svg g .link-fm");
+		hpOtherLines = d3.selectAll("#hp-network-chart svg g .link-other");
+
+		mcuNodes = d3.selectAll("#mcu-network-chart svg g circle");
+		mcuMNodes = d3.selectAll("#mcu-network-chart svg g .node-m");
+		mcuFNodes = d3.selectAll("#mcu-network-chart svg g .node-f");
+		mcuOtherNodes = d3.selectAll("#mcu-network-chart svg g .node-other");
+		mcuLines = d3.selectAll("#mcu-network-chart svg g line");
+		mcuMMLines = d3.selectAll("#mcu-network-chart svg g .link-mm");
+		mcuFFLines = d3.selectAll("#mcu-network-chart svg g .link-ff");
+		mcuFMLines = d3.selectAll("#mcu-network-chart svg g .link-fm");
+		mcuOtherLines = d3.selectAll("#mcu-network-chart svg g .link-other");
+		
+		mounted = true;
     })
 
     function ForceGraph({
@@ -77,7 +185,6 @@
 		const W = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
 		const L = typeof linkStroke !== "function" ? null : d3.map(links, linkStroke);
 		const gender = d3.map(nodes, nodeId).map(intern);
-		console.log({G})
 
 		// Replace the input nodes and links with mutable objects for the simulation.
 		nodes = d3.map(nodes, (_, i) => ({id: N[i]}));
@@ -169,26 +276,68 @@
 	let scrollIndex;
 
     // To replace with copy once copy is set
-    let steps = ["Here are the 61 characters from Harry Potter that appear in AO3 ships with more than 1,000 works.",
+    let steps = ["Here are the characters from the Harry Potter (61) and MCU (59) fandoms that appear in AO3 ships with more than 1,000 works.",
 		"38 (62%) of the characters are men and 23 (38%) of the characters are women",
 		"M/M 23, F/F 8, F/M 35, Gen 14 "
 	];
 
-	function updateScrollSteps(scrollIndex) {
-		console.log(scrollIndex)
-		if (scrollIndex == 0 || scrollIndex == undefined) {
-			d3.selectAll("#hp-network-chart svg g line").attr("opacity", 0);
-			d3.selectAll("#hp-network-chart svg g circle").attr("fill", "#C0B9C6");
-		} else if (scrollIndex == 1) {
-			d3.selectAll("#hp-network-chart svg g line").attr("opacity", 0);
-			d3.selectAll("#hp-network-chart svg g .node-m").attr("fill", "#1B2AA6");
-			d3.selectAll("#hp-network-chart svg g .node-f").attr("fill", "#FFAAB9");
-		} else if (scrollIndex == 2) {
-			d3.selectAll("#hp-network-chart svg g line").attr("opacity", 1);
+	function updateScrollSteps(mounted, scrollIndex) {
+		console.log({mounted, scrollIndex})
+		if (mounted && scrollIndex == undefined) {
+			hpLines.style("opacity", 0);
+			hpNodes.style("opacity", 0).style("fill", "#C0B9C6");
+			mcuLines.style("opacity", 0);
+			mcuNodes.style("opacity", 0).style("fill", "#C0B9C6");
+		}
+		else if (mounted && scrollIndex == 0) {
+			hpLines.style("opacity", 0);
+			hpNodes.style("opacity", 1).style("fill", "#C0B9C6");
+			mcuLines.style("opacity", 0);
+			mcuNodes.style("opacity", 1).style("fill", "#C0B9C6");
+		} else if (mounted && scrollIndex == 1) {
+			hpLines.style("opacity", 0);
+			mcuLines.style("opacity", 0);
+			hpMNodes.style("fill", "#1B2AA6");
+			mcuMNodes.style("fill", "#1B2AA6");
+			hpFNodes.style("fill", "#FFAAB9");
+			mcuFNodes.style("fill", "#FFAAB9");
+		} else if (mounted && scrollIndex == 2) {
+			hpMNodes.style("fill", "#1B2AA6");
+			mcuMNodes.style("fill", "#1B2AA6");
+			hpFNodes.style("fill", "#FFAAB9");
+			mcuFNodes.style("fill", "#FFAAB9");
+			hpMMLines.style("opacity", 1);
+			mcuMMLines.style("opacity", 1);
+			hpFFLines.style("opacity", 0);
+			mcuFFLines.style("opacity", 0);
+			hpFMLines.style("opacity", 0);
+			mcuFMLines.style("opacity", 0);
+		} else if (mounted && scrollIndex == 3) {
+			hpMNodes.style("fill", "#1B2AA6");
+			mcuMNodes.style("fill", "#1B2AA6");
+			hpFNodes.style("fill", "#FFAAB9");
+			mcuFNodes.style("fill", "#FFAAB9");
+			hpMMLines.style("opacity", 0);
+			mcuMMLines.style("opacity", 0);
+			hpFFLines.style("opacity", 1);
+			mcuFFLines.style("opacity", 1);
+			hpFMLines.style("opacity", 0);
+			mcuFMLines.style("opacity", 0);
+		} else if (mounted && scrollIndex == 4) {
+			hpMNodes.style("fill", "#1B2AA6");
+			mcuMNodes.style("fill", "#1B2AA6");
+			hpFNodes.style("fill", "#FFAAB9");
+			mcuFNodes.style("fill", "#FFAAB9");
+			hpMMLines.style("opacity", 0);
+			mcuMMLines.style("opacity", 0);
+			hpFFLines.style("opacity", 0);
+			mcuFFLines.style("opacity", 0);
+			hpFMLines.style("opacity", 1);
+			mcuFMLines.style("opacity", 1);
 		}
 	}
 
-	// $: updateScrollSteps(scrollIndex);
+	$: updateScrollSteps(mounted, scrollIndex);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -198,19 +347,48 @@
 		<div class="chart-wrapper">
             <ChartHeader title={"TKTK"} />
 			<div class="viz-wrapper">
-				<div id="hp-network-chart" bind:this={element}>	</div>
-				<div id="mcu-network-chart" bind:this={element2}>	</div>
+				<div class="hed-wrapper">
+					<h3>Harry Potter</h3>
+					<div class="percent-bar">
+						<div class="mm-bar" style="width: {Math.round(hpMMLinksPercent)}%"></div>
+						<div class="ff-bar" style="width: {Math.round(hpFFLinksPercent)}%"></div>
+						<div class="fm-bar" style="width: {Math.round(hpFMLinksPercent)}%"></div>
+					</div>
+					<div id="hp-network-chart" bind:this={element}>	</div>
+				</div>
+				<div class="hed-wrapper">
+					<h3>Marvel Cinematic Universe</h3>
+					<div class="percent-bar">
+						<div class="mm-bar" style="width: {Math.round(mcuMMLinksPercent)}%"></div>
+						<div class="ff-bar" style="width: {Math.round(mcuFFLinksPercent)}%"></div>
+						<div class="fm-bar" style="width: {Math.round(mcuFMLinksPercent)}%"></div>
+					</div>
+					<div id="mcu-network-chart" bind:this={element2}>	</div>
+				</div>
 			</div>
 		</div>
     </div>
     <Scrolly bind:value={scrollIndex}>
-        {#if steps}
-            {#each steps as text, i}
-                <div class="step">
-                    <p>{@html text}</p>
-                </div>
-            {/each}
-        {/if}
+			<div class="step">
+				<p>Here are the characters from the Harry Potter ({hpCharacters}) and MCU ({mcuCharacters}) fandoms that appear in AO3 romantic ships with more than 1,000 works.</p>
+			</div>
+			<div class="step">
+				<p>In Harry Potter {Math.round(hpMCharPercent)}% of the characters are men (blue) and {Math.round(hpFCharPercent)}% of the characters are women (pink).
+					In the MCU {Math.round(mcuMCharPercent)}% of the characters are men (blue) and {Math.round(mcuFCharPercent)}% of the characters are women (pink).
+				</p>
+			</div>
+			<div class="step">
+				<p>M/M relationships make up {Math.round(hpMMLinksPercent)}% of the ships in Harry Potter and make up {Math.round(mcuMMLinksPercent)}% of the ships in the MCU.
+				</p>
+			</div>
+			<div class="step">
+				<p>F/F relationships make up {Math.round(hpFFLinksPercent)}% of the ships in Harry Potter and make up {Math.round(mcuFFLinksPercent)}% of the ships in the MCU.
+				</p>
+			</div>
+			<div class="step">
+				<p>F/M relationships make up {Math.round(hpFMLinksPercent)}% of the ships in Harry Potter and make up {Math.round(mcuFMLinksPercent)}% of the ships in the MCU.
+				</p>
+			</div>
     </Scrolly>
     <div class="spacer" />
 </section>
@@ -243,6 +421,10 @@
 		pointer-events: none;
 	}
 
+	.step p {
+		background: white;
+	}
+
 	.chart-wrapper {
         width: 100%;
         display: flex;
@@ -260,12 +442,46 @@
 		display: flex;
 		flex-direction: row;
 		padding: 2rem 0;
-		height: 500px;
 		align-items: center;
 	}
-	.viz-wrapper div {
+	.hed-wrapper {
 		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 600px;
 	}
+
+	.hed-wrapper h3 {
+		font-family: var(--mono);
+		font-size: var(--20px);
+		font-weight: 700;
+	}
+
+	.percent-bar {
+		width: 80%;
+		height: 1.5rem;
+		display: flex;
+		flex-direction: row;
+		border: 1px solid black;
+		margin-bottom: 4rem;
+	}
+
+	.mm-bar {
+		height: 100%;
+		background: var(--fanfic-blue);
+	}
+
+	.ff-bar {
+		height: 100%;
+		background: var(--fanfic-pink);
+	}
+
+	.fm-bar {
+		height: 100%;
+		background: var(--fanfic-green);
+	}
+
 	:global(.link-mm) {
 		stroke: var(--fanfic-blue);
 	}
@@ -273,9 +489,13 @@
 		stroke: var(--fanfic-pink);
 	}
 	:global(.link-fm) {
-		stroke: var(--fanfic-highlighter);
+		stroke: var(--fanfic-green);
 	}
 	:global(.link-gen) {
 		stroke: var(--fanfic-window-gray);
+	}
+
+	:global(#hp-network-chart svg g circle, #hp-network-chart svg g line) {
+		opacity: 0
 	}
 </style>
