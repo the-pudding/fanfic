@@ -1,121 +1,81 @@
-tag,common,relType,count
-First Time,n,all,5571
-Blow Jobs,n,all,5721
-Domestic Fluff,n,all,5784
-Implied/Referenced Child Abuse,n,all,6117
-Established Relationship,n,all,6126
-Fluff and Smut,n,all,6309
-Light Angst,n,all,6528
-Oral Sex,n,all,6543
-Pining,y,all,6918
-Other Additional Tags to Be Added,n,all,6993
-Alternate Universe - College/University,n,all,7227
-Explicit Sexual Content,n,all,7659
-Mutual Pining,y,all,8016
-Humor,y,all,8166
-Friends to Lovers,y,all,8310
-Happy Ending,y,all,8604
-Emotional Hurt/Comfort,n,all,8724
-Alpha/Beta/Omega Dynamics,y,all,8979
-Romance,y,all,9963
-Anal Sex,n,all,10083
-Alternate Universe,y,all,11616
-Alternate Universe - Modern Setting,y,all,11877
-Alternate Universe - Canon Divergence,y,all,13143
-Smut,y,all,13773
-Angst with a Happy Ending,y,all,14211
-Slow Burn,y,all,14331
-Fluff and Angst,y,all,15210
-Hurt/Comfort,y,all,26592
-Angst,y,all,31998
-Fluff,y,all,42771
-Canon Compliant,n,femslash,394
-Fluff and Humor,n,femslash,403
-Implied/Referenced Child Abuse,n,femslash,425
-Oral Sex,n,femslash,438
-Alternate Universe - High School,n,femslash,443
-First Kiss,n,femslash,464
-Established Relationship,n,femslash,473
-Pining,y,femslash,474
-Happy Ending,y,femslash,486
-Other Additional Tags to Be Added,n,femslash,495
-Eventual Smut,n,femslash,496
-Light Angst,n,femslash,499
-Emotional Hurt/Comfort,n,femslash,505
-Humor,y,femslash,516
-Fluff and Smut,n,femslash,563
-Alpha/Beta/Omega Dynamics,y,femslash,593
-Mutual Pining,y,femslash,700
-Alternate Universe - College/University,n,femslash,732
-Friends to Lovers,y,femslash,774
-Alternate Universe,y,femslash,820
-Romance,y,femslash,837
-Angst with a Happy Ending,y,femslash,897
-Alternate Universe - Canon Divergence,y,femslash,914
-Smut,y,femslash,1206
-Alternate Universe - Modern Setting,y,femslash,1214
-Fluff and Angst,y,femslash,1252
-Slow Burn,y,femslash,1361
-Hurt/Comfort,y,femslash,1614
-Angst,y,femslash,2288
-Fluff,y,femslash,3608
-Alternate Universe - Modern Setting,y,slash,692
-First Kiss,n,slash,730
-Mpreg,n,slash,734
-Dirty Talk,n,slash,748
-Mating Cycles/In Heat,n,slash,783
-Knotting,n,slash,804
-Alternate Universe - College/University,n,slash,861
-Established Relationship,n,slash,909
-Explicit Sexual Content,n,slash,933
-Mutual Pining,y,slash,939
-Friends to Lovers,y,slash,959
-Humor,y,slash,990
-First Time,n,slash,999
-Fluff and Angst,y,slash,1001
-Romance,y,slash,1001
-Pining,y,slash,1028
-Anal Fingering,n,slash,1080
-Blow Jobs,n,slash,1085
-Happy Ending,y,slash,1136
-Rimming,n,slash,1192
-Alternate Universe - Canon Divergence,y,slash,1208
-Angst with a Happy Ending,y,slash,1250
-Alternate Universe,y,slash,1444
-Slow Burn,y,slash,1491
-Smut,y,slash,1524
-Alpha/Beta/Omega Dynamics,y,slash,1726
-Hurt/Comfort,y,slash,1876
-Anal Sex,n,slash,1992
-Angst,y,slash,2522
-Fluff,y,slash,4221
-Praise Kink,n,straight,381
-Alpha/Beta/Omega Dynamics,y,straight,389
-Time Travel,n,straight,399
-Blow Jobs,n,straight,407
-Dirty Talk,n,straight,423
-Post-Traumatic Stress Disorder - PTSD,n,straight,454
-Emotional Hurt/Comfort,n,straight,455
-Eventual Smut,n,straight,474
-Other Additional Tags to Be Added,n,straight,502
-Fluff and Smut,n,straight,508
-Pining,y,straight,527
-Happy Ending,y,straight,575
-Humor,y,straight,583
-Harry Potter Epilogue What Epilogue | EWE,n,straight,606
-Friends to Lovers,y,straight,613
-Anal Sex,n,straight,628
-Mutual Pining,y,straight,689
-Oral Sex,n,straight,741
-Angst with a Happy Ending,y,straight,859
-Alternate Universe,y,straight,888
-Fluff and Angst,y,straight,981
-Explicit Sexual Content,n,straight,1067
-Alternate Universe - Canon Divergence,y,straight,1105
-Romance,y,straight,1119
-Smut,y,straight,1301
-Slow Burn,y,straight,1322
-Hurt/Comfort,y,straight,1410
-Alternate Universe - Modern Setting,y,straight,1553
-Fluff,y,straight,2476
-Angst,y,straight,2525
+tag,type_relationship,type_sexual,relType,count
+Fluff,,,all,42771
+Angst,,,all,31998
+Hurt/Comfort,,,all,26592
+Fluff and Angst,,,all,15210
+Slow Burn,y,,all,14331
+Angst with a Happy Ending,,,all,14211
+Smut,,y,all,13773
+AU - Canon Divergence,,,all,13143
+AU - Modern Setting,,,all,11877
+Alternate Universe,,,all,11616
+Anal Sex,,y,all,10083
+Romance,y,,all,9963
+Alpha/Beta/Omega Dynamics,y,,all,8979
+Emotional Hurt/Comfort,,,all,8724
+Happy Ending,y,,all,8604
+Friends to Lovers,y,,all,8310
+Humor,,,all,8166
+Mutual Pining,y,,all,8016
+Explicit Sexual Content,,y,all,7659
+AU - College/University,,,all,7227
+Fluff,,,f/f,3608
+Angst,,,f/f,2288
+Hurt/Comfort,,,f/f,1614
+Slow Burn,y,,f/f,1361
+Fluff and Angst,,,f/f,1252
+AU - Modern Setting,,,f/f,1214
+Smut,,y,f/f,1206
+AU - Canon Divergence,,,f/f,914
+Angst with a Happy Ending,,,f/f,897
+Romance,y,,f/f,837
+Alternate Universe,,,f/f,820
+Friends to Lovers,y,,f/f,774
+AU - College/University,,,f/f,732
+Mutual Pining,y,,f/f,700
+Alpha/Beta/Omega Dynamics,y,,f/f,593
+Fluff and Smut,,,f/f,563
+Humor,,,f/f,516
+Emotional Hurt/Comfort,,,f/f,505
+Light Angst,,,f/f,499
+Eventual Smut,,y,f/f,496
+Fluff,,,m/m,4221
+Angst,,,m/m,2522
+Anal Sex,,y,m/m,1992
+Hurt/Comfort,,,m/m,1876
+Alpha/Beta/Omega Dynamics,y,,m/m,1726
+Smut,,y,m/m,1524
+Slow Burn,y,,m/m,1491
+Alternate Universe,,,m/m,1444
+Angst with a Happy Ending,,,m/m,1250
+AU - Canon Divergence,,,m/m,1208
+Rimming,,y,m/m,1192
+Happy Ending,y,,m/m,1136
+Blow Jobs,,y,m/m,1085
+Anal Fingering,,y,m/m,1080
+Pining,y,,m/m,1028
+Fluff and Angst,,,m/m,1001
+Romance,y,,m/m,1001
+First Time,,y,m/m,999
+Humor,,,m/m,990
+Friends to Lovers,y,,m/m,959
+Angst,,,f/m,2525
+Fluff,,,f/m,2476
+AU - Modern Setting,,,f/m,1553
+Hurt/Comfort,,,f/m,1410
+Slow Burn,y,,f/m,1322
+Smut,,y,f/m,1301
+Romance,y,,f/m,1119
+AU - Canon Divergence,,,f/m,1105
+Explicit Sexual Content,,y,f/m,1067
+Fluff and Angst,,,f/m,981
+Alternate Universe,,,f/m,888
+Angst with a Happy Ending,,,f/m,859
+Oral Sex,,y,f/m,741
+Mutual Pining,y,,f/m,689
+Anal Sex,,y,f/m,628
+Friends to Lovers,y,,f/m,613
+HP Epilogue What Epilogue,,,f/m,606
+Humor,,,f/m,583
+Happy Ending,y,,f/m,575
+Pining,y,,f/m,527
