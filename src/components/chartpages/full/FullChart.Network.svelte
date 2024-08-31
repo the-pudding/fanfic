@@ -1,11 +1,12 @@
 
 <script>
-    import {onMount} from 'svelte';
+    import {getContext, onMount} from 'svelte';
     import * as d3 from "d3";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 	import NetworkChart from "$components/chartpages/full/FullChart.Network.Chart.svelte";
-
+	
+	const copy = getContext("copy");
 
     const dataArray = [ 
 		{
@@ -17,10 +18,16 @@
 			dataUrl: "./assets/data/SLASH/networkMCU.json"
 		}
 	];
-	const steps = [0,1,2,3,4,5]
 	let scrollIndex;
-	let receivedData;
 	let summaryData = [];
+	let blockReady = false;
+	let showGenderBar = false;
+	let showGenderM = false;
+	let showGenderF = false;
+	let showRelTypeBar = false;
+	let showRelMM = false;
+	let showRelFF = false;
+	let showRelFM = false;
 
 	onMount(async function() {
 		let dataHP = await d3.json("./assets/data/SLASH/networkHP.json");
@@ -28,8 +35,22 @@
 
 		calculateVals(dataHP, "Harry Potter");
 		calculateVals(dataMCU, "Marvel Cinematic Universe");
+		blockReady = true;
 
-		console.log(summaryData)
+
+		d3.selectAll(".span-hp-nodesCount").text(summaryData[0].nodesCount);
+		d3.selectAll(".span-mcu-nodesCount").text(summaryData[1].nodesCount);
+		d3.selectAll(".span-hp-mCount").text(Math.round(summaryData[0].nodesMPercent));
+		d3.selectAll(".span-mcu-mCount").text(Math.round(summaryData[1].nodesMPercent));
+		d3.selectAll(".span-hp-fCount").text(Math.round(summaryData[0].nodesFPercent));
+		d3.selectAll(".span-mcu-fCount").text(Math.round(summaryData[1].nodesFPercent));
+		d3.selectAll(".span-hp-mmCount").text(Math.round(summaryData[0].linksMMPercent));
+		d3.selectAll(".span-mcu-mmCount").text(Math.round(summaryData[1].linksMMPercent));
+		d3.selectAll(".span-hp-ffCount").text(Math.round(summaryData[0].linksFFPercent));
+		d3.selectAll(".span-mcu-ffCount").text(Math.round(summaryData[1].linksFFPercent));
+		d3.selectAll(".span-hp-fmCount").text(Math.round(summaryData[0].linksFMPercent));
+		d3.selectAll(".span-mcu-fmCount").text(Math.round(summaryData[1].linksFMPercent));
+
 	});
 
 	function calculateVals(data, fandom) {
@@ -45,10 +66,10 @@
 
         // LINKS
         const linksCount = data.links.length;
-        const linksMMCount = data.nodes.filter(d => d.relType == "M/M").length;
-        const linksFFCount = data.nodes.filter(d => d.relType == "F/F").length;
-        const linksFMCount = data.nodes.filter(d => d.relType == "F/M").length;
-        const linksOtherCount = data.nodes.filter(d => d.relType == "Other").length;
+        const linksMMCount = data.links.filter(d => d.relType == "M/M").length;
+        const linksFFCount = data.links.filter(d => d.relType == "F/F").length;
+        const linksFMCount = data.links.filter(d => d.relType == "F/M").length;
+        const linksOtherCount = data.links.filter(d => d.relType == "Other").length;
         const linksMMPercent = linksMMCount/linksCount*100;
         const linksFFPercent = linksFFCount/linksCount*100;
         const linksFMPercent = linksFMCount/linksCount*100;
@@ -56,6 +77,18 @@
 
         summaryData.push({fandom, nodesCount, nodesMPercent, nodesFPercent, nodesOtherPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent, linksOtherPercent});
 	}
+
+	function updateScrollSteps(scrollIndex) {
+		showGenderBar = scrollIndex > 0 ? true : false;
+		showGenderF = scrollIndex > 0 ? true : false;
+		showGenderM = scrollIndex > 1 ? true : false;
+		showRelTypeBar = scrollIndex > 3 ? true : false;
+		showRelFF = scrollIndex > 3 ? true : false;
+		showRelMM = scrollIndex > 4 ? true : false;
+		showRelFM = scrollIndex > 5 ? true : false;
+	}
+
+	$: updateScrollSteps(scrollIndex);
 </script>
 
 <section id="scrolly">
@@ -66,6 +99,25 @@
 				{#each dataArray as fandom, i}
 				<div class="fandom-wrapper">
 					<h3>{fandom.fandom}</h3>
+					{#if blockReady}
+						<div class="bars">
+							<div class="bar-wrapper" class:visible={showGenderBar}>
+								<p>Gender</p>
+								<div class="gender-bar">
+									<div class:visible={showGenderF}  class="gender-f" style="width: {summaryData[i].nodesFPercent}%"><p>{Math.round(summaryData[i].nodesFPercent)}%</p></div>
+									<div class:visible={showGenderM}  class="gender-m" style="width: {summaryData[i].nodesMPercent}%"><p>{Math.round(summaryData[i].nodesMPercent)}%</p></div>
+								</div>
+							</div>
+							<div class="bar-wrapper" class:visible={showRelTypeBar}>
+								<p>Relationship</p>
+								<div class="relType-bar">
+									<div class:visible={showRelFF} class="relType-ff" style="width: {summaryData[i].linksFFPercent}%"><p>{Math.round(summaryData[i].linksFFPercent)}%</p></div>
+									<div class:visible={showRelMM} class="relType-mm" style="width: {summaryData[i].linksMMPercent}%"><p>{Math.round(summaryData[i].linksMMPercent)}%</p></div>
+									<div class:visible={showRelFM} class="relType-fm" style="width: {summaryData[i].linksFMPercent}%"><p>{Math.round(summaryData[i].linksFMPercent)}%</p></div>
+								</div>
+							</div>
+						</div>
+					{/if}
 					<NetworkChart {fandom} {scrollIndex}/>
 				</div>					
 				{/each}
@@ -73,9 +125,9 @@
 		</div>
     </div>
     <Scrolly bind:value={scrollIndex}>
-			{#each steps as step, i}
+			{#each copy.slashNetworkSlides as step, i}
 				<div class="step">
-					<p>Step {i}</p>
+					<p>{@html step.value}</p>
 				</div>
 			{/each}
     </Scrolly>
@@ -95,7 +147,6 @@
 		height: 100vh;
         z-index: 1;
         overflow-x: hidden;
-		pointer-events: none;
 	}
 
 	.spacer {
@@ -112,6 +163,9 @@
 
 	.step p {
 		background: white;
+		padding: 1rem;
+		border: 1px solid var(--fanfic-black);
+		pointer-events: auto;
 	}
 
 	.chart-wrapper {
@@ -148,44 +202,99 @@
 		font-weight: 700;
 	}
 
-	.percent-bar {
-		width: 80%;
-		height: 1.5rem;
+	.bars {
+		width: 100%;
 		display: flex;
-		flex-direction: row;
-		border: 1px solid black;
+		flex-direction: column;
 		margin-bottom: 4rem;
 	}
 
-	.mm-bar {
-		height: 100%;
+	.bar-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0 4rem 0.25rem 2rem;
+		opacity: 0;
+		transition: opacity 0.25s linear;
+	}
+
+	.bar-wrapper p {
+		margin: 0;
+		padding: 0 0.25rem 0 0;
+		font-family: var(--mono);
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: 700;
+		width: 10rem;
+		text-align: right;
+		line-height: 1;
+	}
+
+	.gender-bar, .relType-bar {
+		width: 100%;
+		height: 1rem;
+		display: flex;
+		flex-direction: row;
+		font-size: 10px;
+		color: white;
+		font-family: var(--mono);
+		font-weight: 700;
+		text-align: right;
+	}
+
+	.gender-bar p, .relType-bar p {
+		padding: 0.125rem 0.125rem 0 0;
+		margin: 0;
+		width: auto;
+		font-size: 10px;
+	}
+
+	.gender-m, .relType-mm {
 		background: var(--fanfic-blue);
 	}
 
-	.ff-bar {
-		height: 100%;
+	.gender-f, .relType-ff {
 		background: var(--fanfic-pink);
 	}
 
-	.fm-bar {
-		height: 100%;
+	.relType-fm {
 		background: var(--fanfic-green);
 	}
 
-	:global(.link-mm) {
-		stroke: var(--fanfic-blue);
-	}
-	:global(.link-ff) {
-		stroke: var(--fanfic-pink);
-	}
-	:global(.link-fm) {
-		stroke: var(--fanfic-green);
-	}
-	:global(.link-gen) {
-		stroke: var(--fanfic-window-gray);
+	.gender-m, .gender-f, .relType-mm, .relType-ff, .relType-fm {
+		opacity: 0;
+		transition: opacity 0.25s linear;
 	}
 
-	/* :global(#hp-network-chart svg g circle, #hp-network-chart svg g line) {
-		opacity: 0
-	} */
+	.visible {
+		opacity: 1;
+		transition: opacity 0.25s linear;
+	}
+
+	:global(.span-instructions) {
+		font-weight: 700;
+		font-family: var(--sans);
+	}
+
+	:global(.span-f) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-pink);
+		padding: 0.125rem;
+	}
+
+	:global(.span-m) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-blue);
+		color: white;
+		padding: 0.125rem;
+	}
+	:global(.span-fm) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-green);
+		color: white;
+		padding: 0.125rem;
+	}
 </style>

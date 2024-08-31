@@ -6,9 +6,10 @@
     export let fandom;
     export let scrollIndex;
 
-    let innerWidth;
+    let divW;
 
-    let width = innerWidth;
+    let width = divW;
+    let height = divW;
     let element;
 	let mounted = false;
 
@@ -17,12 +18,11 @@
     let mcuNodes;
 	let mNodes;
 	let fNodes;
-    let otherNodes;
     let links;
     let mmLinks;
     let ffLinks;
     let fmLinks;
-    let otherLinks;
+    let containerDiv;
 
     let summaryData = [];
 
@@ -62,27 +62,28 @@
 			linkStrokeWidth: l => Math.sqrt(l.value)/20,
 			linkStroke: l => l.relType,
 			width,
-			height: 600,
+			height,
 		});
 		
 		d3.select(element).append(() => chart);
 
 		// SELECTIONS
-		nodes = d3.selectAll(".network-chart svg g circle");
-        hpNodes = d3.selectAll("#harrypotter-network svg g circle");
-        mcuNodes = d3.selectAll("#marvelcinematicuniverse-network svg g circle");
+		nodes = d3.selectAll(".network-chart svg rect");
+        hpNodes = d3.selectAll("#harrypotter-network svg g rect");
+        mcuNodes = d3.selectAll("#marvelcinematicuniverse-network svg g rect");
 		mNodes = d3.selectAll(".network-chart svg g .node-m");
 		fNodes = d3.selectAll(".network-chart svg g .node-f");
-        otherNodes = d3.selectAll(".network-chart svg g .node-other");
 
         links = d3.selectAll(".network-chart svg g line");
         mmLinks= d3.selectAll(".network-chart svg g .link-mm");
         ffLinks= d3.selectAll(".network-chart svg g .link-ff");
         fmLinks= d3.selectAll(".network-chart svg g .link-fm");
-        otherLinks= d3.selectAll(".network-chart svg g .link-other");
+        containerDiv = d3.selectAll(".network-chart");
 		
 		mounted = true;
     })
+
+    
 
     function ForceGraph({
 		nodes, // an iterable of node objects (typically [{id}, …])
@@ -96,18 +97,19 @@
 		nodeStroke = "#fff", // node stroke color
 		nodeStrokeWidth = 1, // node stroke width, in pixels
 		nodeStrokeOpacity = 1, // node stroke opacity
-		nodeRadius = 10, // node radius, in pixels
+		nodeRadius = 7, // node radius, in pixels
+        nodeWidth = 12,
 		nodeStrength,
 		linkSource = ({source}) => source, // given d in links, returns a node identifier string
 		linkTarget = ({target}) => target, // given d in links, returns a node identifier string
 		linkStroke, // link stroke color
-		linkStrokeOpacity = 0.6, // link stroke opacity
+		linkStrokeOpacity = 0, // link stroke opacity
 		linkStrokeWidth = 1.5, // given d in links, returns a stroke width in pixels
 		linkStrokeLinecap = "round", // link stroke linecap
 		linkStrength,
 		colors = d3.schemeTableau10, // an array of color strings, for the node groups
-		width = innerWidth, // outer width, in pixels
-		height = 400, // outer height, in pixels
+		width = divW, // outer width, in pixels
+		height = divW, // outer height, in pixels
 		invalidation // when this promise resolves, stop the simulation
 	} = {}) {
 		// Compute values.
@@ -127,14 +129,14 @@
 
 		// Construct the forces.
 		const forceNode = d3.forceManyBody().strength(-40);
-		const forceLink = d3.forceLink(links).distance(200).id(({index: i}) => N[i]);
+		const forceLink = d3.forceLink(links).distance(100).id(({index: i}) => N[i]);
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
 		const simulation = d3.forceSimulation(nodes)
 				.force("link", forceLink)
 				.force("charge", forceNode)
-                .force("r", d3.forceRadial(function(d, i) { return innerWidth/5; }))
+                .force("r", d3.forceRadial(function(d, i) { return divW/10; }))
 				.force("center",  d3.forceCenter())
 				.on("tick", ticked);
 
@@ -146,7 +148,6 @@
 
 		const link = svg.append("g")
 				.attr("stroke", typeof linkStroke !== "function" ? linkStroke : null)
-				.attr("stroke-opacity", linkStrokeOpacity)
 				.attr("stroke-width", typeof linkStrokeWidth !== "function" ? linkStrokeWidth : null)
 				.attr("stroke-linecap", linkStrokeLinecap)
                 .selectAll("line")
@@ -158,14 +159,47 @@
 				.attr("stroke", nodeStroke)
 				.attr("stroke-opacity", nodeStrokeOpacity)
 				.attr("stroke-width", nodeStrokeWidth)
-                .selectAll("circle")
+                .selectAll("rect")
                 .data(nodes)
-                .join("circle")
-				.attr("r", nodeRadius)
+                .join("rect")
+				.attr("width", nodeWidth )   
+                .attr("height", nodeWidth )
+                .attr("x", d => d.x - nodeWidth  / 2)
+                .attr("y", d => d.y - nodeWidth  / 2)
 				.attr("fill", "#C0B9C6")
-				// .call(drag(simulation));
+                .on("mouseover", function(event, d) {
+                    node.style("opacity", 0.1);
+                    link.style("opacity", 0.1);
 
-		if (W) link.attr("stroke-width", ({index: i}) => W[i]*2);
+                    d3.select(this).style("opacity", 1);
+
+                    link.filter(function(l) {
+                        return l.source === d || l.target === d;
+                    })
+                    .style('opacity', 0.6)
+                    .each(function(link) {
+                        node.filter(function(n) {
+                            return n === link.source || n === link.target;
+                        }).style('opacity', 1);
+                        textElems.filter(function(t) {
+                            return t === link.source || t === link.target;
+                        }).style('opacity', 1);
+                    });
+                })
+                .on("mouseout", function() {
+                    node.style('opacity', 1);
+                    link.style('opacity', 1);
+                    textElems.style('opacity', 0);
+                })
+
+        const textElems = svg.append("g")
+            .selectAll('text')
+            .data(nodes)
+            .join('text')
+            .text(d => T[d.id])
+            .attr("class", "dot-label")
+
+		if (W) link.attr("stroke-width", ({index: i}) => W[i]*1.5);
 		if (L) link.attr("class", function({index: i}) {
 			let linkColor = L[i] == "M/M"
 				? "link-mm"
@@ -180,7 +214,7 @@
 			let fillColor = G[i] == "M" ? "node-m" : "node-f"
 			return fillColor
 		});
-		if (T) node.append("title").text(({index: i}) => T[i]);
+		if (T) node.append("text").text(({index: i}) => T[i]);
 		if (invalidation != null) invalidation.then(() => simulation.stop());
 
 		function intern(value) {
@@ -194,107 +228,149 @@
 				.attr("x2", d => d.target.x)
 				.attr("y2", d => d.target.y);
 
-			node
-				.attr("cx", d => d.x)
-				.attr("cy", d => d.y);
+            node
+                .attr("x", d => d.x - nodeWidth  / 2)
+                .attr("y", d => d.y - nodeWidth  / 2);
+            
+            textElems
+                .attr("x", d => d.x + 10)
+                .attr("y", d => d.y);
 		}
 
 		return Object.assign(svg.node());
     }
 
 	function updateScrollSteps(mounted, scrollIndex) {
-		// console.log({mounted, scrollIndex})
+		console.log({mounted, scrollIndex})
         if (mounted && scrollIndex == undefined) {
+            containerDiv.style("pointer-events", "none");
             nodes.attr("opacity", 0);
-            links.attr("opacity", 0);
+            links.attr("opacity", 0).attr("stroke", "#C0B9C6");
         } else if (mounted && scrollIndex == 0) {
+            containerDiv.style("pointer-events", "none");
+            links.attr("opacity", 0).attr("stroke", "#C0B9C6");
             hpNodes
                 .attr("fill", "#C0B9C6")
                 .transition()
                 .delay((d,i) => i*20)
-                .duration(1000)
+                .duration(500)
                 .attr("opacity", 1);
             mcuNodes
                 .attr("fill", "#C0B9C6")
                 .transition()
-                .delay((d,i) => i*10)
-                .duration(1000)
+                .delay((d,i) => i*20)
+                .duration(500)
                 .attr("opacity", 1);
-            links.attr("opacity", 0);
         } else if (mounted && scrollIndex == 1) {
-            mNodes
-                .attr("opacity", 1)
-                .transition()
-                .duration(1000)
-                .attr("fill", "#1B2AA6");
+            containerDiv.style("pointer-events", "none");
+            links.attr("opacity", 0).attr("stroke", "#C0B9C6");
             fNodes
                 .attr("opacity", 1)
                 .transition()
-                .duration(1000)
+                .duration(500)
                 .attr("fill", "#FFAAB9");
-            links.attr("opacity", 0);
+            mNodes
+                .attr("opacity", 1)
+                .transition()
+                .duration(500)
+                .attr("fill", "#C0B9C6");
         } else if (mounted && scrollIndex == 2) {
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 0.25).attr("fill", "#FFAAB9");
-            mmLinks
+            containerDiv.style("pointer-events", "none");
+            links.attr("opacity", 0).attr("stroke", "#C0B9C6");
+            fNodes
+                .attr("opacity", 1)
                 .transition()
-                .duration(1000)
-                .attr("opacity", 1);
-            ffLinks
+                .duration(500)
+                .attr("fill", "#C0B9C6");
+            mNodes
+                .attr("opacity", 1)
                 .transition()
-                .duration(1000)
-                .attr("opacity", 0);
-            fmLinks
-                .transition()
-                .duration(1000)
-                .attr("opacity", 0);
+                .duration(500)
+                .attr("fill", "#1B2AA6");
         } else if (mounted && scrollIndex == 3) {
+            containerDiv.style("pointer-events", "none");
+            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            links
+                .transition()
+                .duration(500)
+                .attr("opacity", 0.6);
+        } else if (mounted && scrollIndex == 4) {
+            containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 0.25).attr("fill", "#1B2AA6");
             fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
             mmLinks
                 .transition()
-                .duration(1000)
+                .duration(500)
+                .attr("stroke", "#C0B9C6")
                 .attr("opacity", 0);
             ffLinks
                 .transition()
-                .duration(1000)
-                .attr("opacity", 1);
+                .duration(500)
+                .attr("stroke", "#FFAAB9")
+                .attr("opacity", 0.6);
             fmLinks
                 .transition()
                 .duration(1000)
+                .attr("stroke", "#C0B9C6")
                 .attr("opacity", 0);
-        } else if (mounted && scrollIndex == 4) {
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
-            otherNodes.attr("opacity", 1).attr("fill", "#C0B9C6");
-            mmLinks
-                .transition()
-                .duration(1000)
-                .attr("opacity", 0);
-            ffLinks
-                .transition()
-                .duration(1000)
-                .attr("opacity", 0);
-            fmLinks
-                .transition()
-                .duration(1000)
-                .attr("opacity", 1);
         } else if (mounted && scrollIndex == 5) {
+            containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
-            otherNodes.attr("opacity", 1).attr("fill", "#C0B9C6");
+            fNodes.attr("opacity", 0.25).attr("fill", "#FFAAB9");
             mmLinks
                 .transition()
-                .duration(1000)
-                .attr("opacity", 1);
+                .duration(500)
+                .attr("stroke", "#1B2AA6")
+                .attr("opacity", 0.6);
             ffLinks
                 .transition()
-                .duration(1000)
-                .attr("opacity", 1);
+                .duration(500)
+                .attr("stroke", "#C0B9C6")
+                .attr("opacity", 0);
             fmLinks
                 .transition()
-                .duration(1000)
-                .attr("opacity", 1);
+                .duration(500)
+                .attr("stroke", "#C0B9C6")
+                .attr("opacity", 0);
+        } else if (mounted && scrollIndex == 6) {
+            containerDiv.style("pointer-events", "none");
+            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            mmLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#C0B9C6")
+                .attr("opacity", 0);
+            ffLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#C0B9C6")
+                .attr("opacity", 0);
+            fmLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#119C72")
+                .attr("opacity", 0.6);
+        } else if (mounted && scrollIndex == 7) {
+            containerDiv.style("pointer-events", "auto").style("cursor", "pointer");
+            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            mmLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#1B2AA6")
+                .attr("opacity", 0.6);
+            ffLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#FFAAB9")
+                .attr("opacity", 0.6);
+            fmLinks
+                .transition()
+                .duration(500)
+                .attr("stroke", "#119C72")
+                .attr("opacity", 0.6);
         }
 	}
 
@@ -307,102 +383,24 @@
     }
 </script>
 
-<svelte:window bind:innerWidth />
 
-
-<div class="network-chart" id="{cleanString(fandom.fandom)}-network" bind:this={element}>	</div>
+<div bind:clientWidth={divW} class="network-chart" id="{cleanString(fandom.fandom)}-network" bind:this={element}>	</div>
 
 
 <style>
-	.sticky {
+    .network-chart {
         width: 100%;
-		position: sticky;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-		top: 0;
-		transition: all 1s;
-		height: 100vh;
-        z-index: 1;
-        overflow-x: hidden;
-		pointer-events: none;
-	}
-
-	.spacer {
-		height: 75vh;
-	}
-	.step {
-		height: 80vh;
-		text-align: center;
-        z-index: 1000;
-        max-width: 30rem;
-        margin: 0 auto;
-		pointer-events: none;
-	}
-
-	.step p {
-		background: white;
-	}
-
-	.chart-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        background: var(--fanfic-window-gray);
-        border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
-        border-style:solid;
+        pointer-events: none;
+        cursor: none;
     }
-
-	.viz-wrapper {
-		background-color: white;
-		display: flex;
-		flex-direction: row;
-		padding: 2rem 0;
-		align-items: center;
-	}
-	.hed-wrapper {
-		width: 50%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		height: 600px;
-	}
-
-	.hed-wrapper h3 {
-		font-family: var(--mono);
-		font-size: var(--20px);
-		font-weight: 700;
-	}
-
-	.percent-bar {
-		width: 80%;
-		height: 1.5rem;
-		display: flex;
-		flex-direction: row;
-		border: 1px solid black;
-		margin-bottom: 4rem;
-	}
-
-	.mm-bar {
-		height: 100%;
-		background: var(--fanfic-blue);
-	}
-
-	.ff-bar {
-		height: 100%;
-		background: var(--fanfic-pink);
-	}
-
-	.fm-bar {
-		height: 100%;
-		background: var(--fanfic-green);
-	}
-
-	:global(.link-mm) {
+    :global(.dot-label) {
+        font-family: var(--mono);
+        font-size: 12px;
+        opacity: 0;
+        pointer-events: none;
+        font-weight: bold;
+    }
+	/* :global(.link-mm) {
 		stroke: var(--fanfic-blue);
 	}
 	:global(.link-ff) {
@@ -413,9 +411,5 @@
 	}
 	:global(.link-gen) {
 		stroke: var(--fanfic-window-gray);
-	}
-
-	/* :global(#hp-network-chart svg g circle, #hp-network-chart svg g line) {
-		opacity: 0
 	} */
 </style>

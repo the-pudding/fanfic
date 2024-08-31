@@ -7,12 +7,6 @@
             "index": 0
         },
         {
-            "name": "Aunt May Parker",
-            "gender": "F",
-            "group": 1,
-            "index": 1
-        },
-        {
             "name": "Billy Kaplan",
             "gender": "M",
             "group": 1,
@@ -77,12 +71,6 @@
             "gender": "F",
             "group": 1,
             "index": 12
-        },
-        {
-            "name": "Happy Hogan",
-            "gender": "M",
-            "group": 1,
-            "index": 13
         },
         {
             "name": "Harley Keener",
@@ -187,12 +175,6 @@
             "index": 30
         },
         {
-            "name": "Matt Murdock",
-            "gender": "M",
-            "group": 1,
-            "index": 31
-        },
-        {
             "name": "Melinda May",
             "gender": "F",
             "group": 1,
@@ -203,12 +185,6 @@
             "gender": "F",
             "group": 1,
             "index": 33
-        },
-        {
-            "name": "Miguel O'Hara",
-            "gender": "M",
-            "group": 1,
-            "index": 34
         },
         {
             "name": "Miles Morales",
@@ -223,22 +199,10 @@
             "index": 36
         },
         {
-            "name": "Morgan Stark",
-            "gender": "F",
-            "group": 1,
-            "index": 37
-        },
-        {
             "name": "Natasha Romanov",
             "gender": "F",
             "group": 1,
             "index": 38
-        },
-        {
-            "name": "Ned Leeds",
-            "gender": "M",
-            "group": 1,
-            "index": 39
         },
         {
             "name": "Peggy Carter",
@@ -269,12 +233,6 @@
             "gender": "M",
             "group": 1,
             "index": 44
-        },
-        {
-            "name": "Pietro Maximoff",
-            "gender": "M",
-            "group": 1,
-            "index": 45
         },
         {
             "name": "Sam Wilson",
