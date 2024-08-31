@@ -7,6 +7,7 @@
     export let id;
 
     let data;
+    let transformedData;
     const format = d3.format(",");
     let isEntered = false;
 
@@ -16,7 +17,18 @@
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            // data.columns.unshift("rank");
+            
+            if (id == "SLASH_topTagsByRelType") {
+                data = d3.groups(data, d => d.relType);
+                
+                transformedData = data.map(([relType, items]) => {
+                    items.sort((a, b) => b.count - a.count);
+                    return {
+                    relType,
+                    tags: items.slice(0, 30).map(d => d.tag) // Get the top 30 tags for each relType
+                    };
+                });
+            }
         }
 	});
 
@@ -38,18 +50,23 @@
     <table use:inView
         on:enter={highlightRow}
         on:exit={unhighlightRow}>
-        {#if data}
+        {#if data && transformedData}
             <tr>
                 {#if id == "CANON_AUtags"}
                     <th style="width: 70%">Tag</th>
                     <th class="right-align">Count</th>
+                {:else if id == "SLASH_topTagsByRelType"}
+                    <th style="width: 20%">All</th>
+                    <th style="width: 20%">M/M</th>
+                    <th style="width: 20%">F/F</th>
+                    <th style="width: 20%">F/M</th>
                 {:else}
                     <th style="width: 40%">Ship</th>
                     <th class="right-align" style="width: 10%">Fanfics</th>
                 {/if}
             </tr>
-            {#each data as ship, i}
-                {#if id == "CANON_AUtags"}
+            {#if id == "CANON_AUtags"}
+                {#each data as ship, i}
                 <tr class:isHighlight={ship.setting == "mundane" && isEntered}>
                     <td class="with-rank">
                         <Rank rank={i+1} />
@@ -59,7 +76,17 @@
                     </td>
                         <td class="right-align"><p>{format(ship.count)}</p></td>
                 </tr>
-                {:else}
+                {/each}
+            {:else if id == "SLASH_topTagsByRelType"}
+                    {#each Array(30).fill(0) as _, i}
+                    <tr>
+                    {#each transformedData as column}
+                        <td>{column.tags[i]}</td>
+                    {/each}
+                    </tr>
+                {/each}
+            {:else}
+                {#each data as ship, i}
                 <tr class:isHighlight={ship.category == "boy band" && isEntered}>
                     <td class="with-rank">
                         <Rank rank={i+1} />
@@ -70,8 +97,8 @@
                     </td>
                     <td class="right-align" style="width: 10%"><p>{format(ship.fics)}</p></td>
                 </tr>
-                {/if}
-            {/each}
+                {/each}
+            {/if}
         {/if}
     </table>
 </figure>
