@@ -453,12 +453,6 @@
             "relType": "M/M"
         },
         {
-            "source": 44,
-            "target": 53,
-            "value": 4679,
-            "relType": "Gen"
-        },
-        {
             "source": 49,
             "target": 1,
             "value": 4487,
@@ -477,12 +471,6 @@
             "relType": "M/M"
         },
         {
-            "source": 15,
-            "target": 24,
-            "value": 3698,
-            "relType": "Gen"
-        },
-        {
             "source": 7,
             "target": 16,
             "value": 3496,
@@ -495,22 +483,10 @@
             "relType": "F/M"
         },
         {
-            "source": 53,
-            "target": 27,
-            "value": 3229,
-            "relType": "Gen"
-        },
-        {
             "source": 24,
             "target": 47,
             "value": 3083,
             "relType": "M/M"
-        },
-        {
-            "source": 24,
-            "target": 52,
-            "value": 2969,
-            "relType": "Gen"
         },
         {
             "source": 53,
@@ -523,12 +499,6 @@
             "target": 52,
             "value": 2689,
             "relType": "F/M"
-        },
-        {
-            "source": 53,
-            "target": 45,
-            "value": 2655,
-            "relType": "Gen"
         },
         {
             "source": 33,
@@ -544,7 +514,7 @@
         },
         {
             "source": 5,
-            "target": 24,
+            "target": 34,
             "value": 2409,
             "relType": "F/M"
         },
@@ -555,22 +525,10 @@
             "relType": "M/M"
         },
         {
-            "source": 53,
-            "target": 24,
-            "value": 2375,
-            "relType": "Gen"
-        },
-        {
             "source": 25,
             "target": 40,
             "value": 2318,
             "relType": "F/F"
-        },
-        {
-            "source": 25,
-            "target": 24,
-            "value": 2247,
-            "relType": "Gen"
         },
         {
             "source": 25,
@@ -601,12 +559,6 @@
             "target": 31,
             "value": 2038,
             "relType": "F/M"
-        },
-        {
-            "source": 24,
-            "target": 58,
-            "value": 2017,
-            "relType": "Gen"
         },
         {
             "source": 2,
@@ -640,33 +592,15 @@
         },
         {
             "source": 25,
-            "target": 15,
-            "value": 1620,
-            "relType": "Gen"
-        },
-        {
-            "source": 25,
             "target": 56,
             "value": 1610,
             "relType": "F/M"
-        },
-        {
-            "source": 27,
-            "target": 29,
-            "value": 1534,
-            "relType": "Gen"
         },
         {
             "source": 49,
             "target": 48,
             "value": 1504,
             "relType": "F/M"
-        },
-        {
-            "source": 24,
-            "target": 47,
-            "value": 1503,
-            "relType": "Gen"
         },
         {
             "source": 56,
@@ -687,12 +621,6 @@
             "relType": "M/M"
         },
         {
-            "source": 29,
-            "target": 52,
-            "value": 1446,
-            "relType": "Gen"
-        },
-        {
             "source": 28,
             "target": 47,
             "value": 1429,
@@ -709,12 +637,6 @@
             "target": 22,
             "value": 1410,
             "relType": "F/F"
-        },
-        {
-            "source": 45,
-            "target": 29,
-            "value": 1389,
-            "relType": "Gen"
         },
         {
             "source": 36,
@@ -805,12 +727,6 @@
             "target": 26,
             "value":  1124,
             "relType": "F/M"
-        },
-        {
-            "source": 45,
-            "target": 24,
-            "value": 1123,
-            "relType": "Gen"
         },
         {
             "source": 27,
