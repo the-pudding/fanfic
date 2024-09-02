@@ -1,5 +1,6 @@
 
 <script>
+    import { onMount } from 'svelte';
     import Scrolly from "$components/helpers/Scrolly.svelte";
     import data from "$data/SLASH/SLASH_topFandoms.csv";
     import { fade } from 'svelte/transition';
@@ -9,6 +10,9 @@
     import Rank from "$components/Rank.svelte";
 
     export let id;
+
+    let rows = 10;
+    let cols = 5;
 
     const genres = [...new Set(data.map(item => item.genre))];
 
@@ -47,7 +51,22 @@
 
     // To replace with copy once copy is set
     let steps = [0,1,2,3];
+
+    function calculateBestGrid(innerWidth, innerHeight) {
+        let ratio = innerWidth/innerHeight;
+        
+        grid = ratio > 1 ? [5, 10] : [10, 5];
+
+        console.log(grid)
+    }
+
+    let innerWidth;
+    let innerHeight;
+    let grid = [];
+    $: calculateBestGrid(innerWidth, innerHeight);
 </script>
+
+<svelte:window bind:innerWidth bind:innerHeight/>
 
 <section id="scrolly">
     <div class="sticky">
@@ -66,18 +85,22 @@
                     {/if}
                 </div>
                 <div class="fandom-wrapper">
-                    <ul>
-                    {#each data as fandom, i}
-                            <ListBlock
-                                data={fandom}
-                                topItem={fandom.fandom}
-                                index={i}
-                                blockType={"grid"}
-                                scrollIndex={scrollIndex}
-                                specialClass={setColorScale(scrollIndex, fandom)}
-                            />
-                    {/each}
-                    </ul>
+                    {#if grid}
+                        <div class="grid" style="--rows: {grid[0]}; --cols: {grid[1]};">
+                            {#each data as fandom, i}
+                            <div class="item">
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            </div>
+                            {/each}
+                        </div>
+                    {/if}
                 </div>
             </div>
         </div>
@@ -95,6 +118,31 @@
 </section>
 
 <style>
+    .grid {
+        display: grid;
+        grid-template-rows: repeat(var(--rows), 1fr);
+        grid-template-columns: repeat(var(--cols), 1fr);
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        justify-content: center; 
+        align-content: center;
+        box-sizing: border-box;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    aspect-ratio: 1 / 1;
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 40px;
+    min-height: 40px;
+    box-sizing: border-box;
+  }
+
     .sticky {
         width: 100%;
 		position: sticky;
@@ -139,6 +187,7 @@
         border-width:2px;
         border-color:#FFFFFF #808080 #808080 #FFFFFF;
         border-style:solid;
+        overflow: hidden;
     }
     .content-wrapper {
         width: 100%;
@@ -195,11 +244,13 @@
             justify-content: start;
             top: 5rem;
         }
-        .fandom-block {
-            min-width: 70px;
+        .key p {
+            font-size: 10px;
         }
-        .grid {
-            min-width: 50px;
+        .key-box-gender {
+            height: 1rem;
+            width: 6rem;
+            margin: 0 0.25rem;
         }
 	}
 </style>

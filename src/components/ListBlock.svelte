@@ -96,8 +96,7 @@
     }
 
     .grid {
-        width: 9%;
-        min-width: 100px;
+        width: 100%;
         aspect-ratio: 1;
         overflow: hidden;
     }
@@ -154,12 +153,6 @@
     @media (max-width: 600px) { 
         li {
             font-size: 10px;
-        }
-        .grid {
-            width: 9%;
-            min-width: 40px;
-            aspect-ratio: 1;
-            overflow: hidden;
         }
     }
 </style>

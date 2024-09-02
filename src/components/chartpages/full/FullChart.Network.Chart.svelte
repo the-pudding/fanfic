@@ -133,10 +133,12 @@
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
+        $: console.log({divW})
+
 		const simulation = d3.forceSimulation(nodes)
 				.force("link", forceLink)
 				.force("charge", forceNode)
-                .force("r", d3.forceRadial(function(d, i) { return divW/10; }))
+                .force("r", d3.forceRadial(function(d, i) { return divW/100; }))
 				.force("center",  d3.forceCenter())
 				.on("tick", ticked);
 
@@ -241,7 +243,6 @@
     }
 
 	function updateScrollSteps(mounted, scrollIndex) {
-		console.log({mounted, scrollIndex})
         if (mounted && scrollIndex == undefined) {
             containerDiv.style("pointer-events", "none");
             nodes.attr("opacity", 0);
@@ -392,6 +393,9 @@
         width: 100%;
         pointer-events: none;
         cursor: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     :global(.dot-label) {
         font-family: var(--mono);
@@ -400,16 +404,6 @@
         pointer-events: none;
         font-weight: bold;
     }
-	/* :global(.link-mm) {
-		stroke: var(--fanfic-blue);
+	@media (max-width: 600px) { 
 	}
-	:global(.link-ff) {
-		stroke: var(--fanfic-pink);
-	}
-	:global(.link-fm) {
-		stroke: var(--fanfic-green);
-	}
-	:global(.link-gen) {
-		stroke: var(--fanfic-window-gray);
-	} */
 </style>

@@ -115,6 +115,7 @@
         height: auto;
         background: white;
         color: var(--fanfic-black);
+        padding: 1rem;
     }
 
     .header-row {
@@ -122,7 +123,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;  
-        padding: 1rem 1rem 0 1rem;
+        padding: 0;
     }
 
     .header-row p {
@@ -136,7 +137,7 @@
 
     ul {
         width: 100%;
-        padding: 0 1rem 1rem 1rem;
+        padding: 0;
     }
 
     .set-wrapper {
@@ -144,7 +145,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        padding: 0 1rem;
+        padding: 0;
     }
 
     .set-wrapper ul {
@@ -164,7 +165,7 @@
         text-align: center;
         font-size: var(--18px);
         text-transform: uppercase;
-        margin: 1rem 0 0 0;
+        margin: 0;
         padding: 0;
     }
 

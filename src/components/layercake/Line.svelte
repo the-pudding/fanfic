@@ -23,9 +23,9 @@
 {/if}
 <g class="rect-overlay">
 	<rect 
-		x={$width/2 - $width/20 + 10}
+		x={$width/2 - $width/20}
 		y={-4}
-		width={$width/10 - 20}
+		width={$width/10}
 		height={$height+4}
 	>
 	</rect>

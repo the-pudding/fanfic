@@ -2,8 +2,6 @@
     import { uTooltipVisible } from "$stores/misc.js";
 
     $: innerWidth = 0;
-
-    $: console.log($uTooltipVisible)
 </script>
 
 <svelte:window bind:innerWidth />

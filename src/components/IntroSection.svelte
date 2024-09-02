@@ -29,13 +29,21 @@
         <h1>And Why?</h1>
     </div>
     <div class="byline-wrapper">
-        <p class="byline">
-            <span>By</span>
-            <span><img src="/assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a></span>
-            <span><img src="/assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a></span>
-            <span><img src="/assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a></span>
-            <span><img src="/assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a></span>
-        </p>
+        <div class="top-byline">
+            <p class="byline">By</p>
+            <p class="byline">
+                <img src="/assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a>
+            </p>
+            <p class="byline">
+                <img src="/assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a>
+            </p>
+            <p class="byline">    
+                <img src="/assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a>
+            </p>
+            <p class="byline"> 
+                <img src="/assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a>
+            </p>
+        </div>
         <p class="with">With data from <a href="https://centrumlumina.tumblr.com/">centreoftheselights</a></p>
     </div>
     <div class="prose">
@@ -130,39 +138,36 @@
     .byline-wrapper {
         margin: 0 auto;
         max-width: 700px;
+        flex-wrap: wrap;
+    }
+
+    .top-byline {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .byline {
+        line-height: 1.25;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0.25rem 0.75rem 0.25rem 0;
         color: var(--fanfic-highlighter);
         font-family: var(--mono);
         text-transform: uppercase;
         font-weight:700;
-        margin: 0 auto;
-        max-width: 700px;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .byline span {
-        display: flex;
-        flex-direction: row;
-        align-items: start;
-        line-height: 1;
-        width: 6rem;
-        margin-right: 1.5rem
-    }
-
-    .byline span:first-of-type {
-        width: auto;
-        margin-right: 0.5rem;
     }
 
     .byline a {
         font-family: var(--mono);
     }
 
-    .byline span img {
+    .byline img {
         width: 32px;
+        height: 32px;
         margin-right: 0.25rem;
     }
 

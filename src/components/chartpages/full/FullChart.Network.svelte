@@ -142,7 +142,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-		top: 0;
+		top: 4rem;
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;
@@ -187,33 +187,35 @@
 		flex-direction: row;
 		padding: 2rem 0;
 		align-items: center;
+		gap: 3rem;
+		overflow: hidden;
 	}
 	.fandom-wrapper {
 		width: 50%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		height: 600px;
 	}
 
 	.fandom-wrapper h3 {
 		font-family: var(--mono);
 		font-size: var(--20px);
 		font-weight: 700;
+		margin: 0;
 	}
 
 	.bars {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		margin-bottom: 4rem;
+		margin: 0.5rem 0;
 	}
 
 	.bar-wrapper {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 0 4rem 0.25rem 2rem;
+		padding: 0 4rem 0.125rem 2rem;
 		opacity: 0;
 		transition: opacity 0.25s linear;
 	}
@@ -296,5 +298,20 @@
 		background-color: var(--fanfic-green);
 		color: white;
 		padding: 0.125rem;
+	}
+
+	@media (max-width: 600px) { 
+		.sticky {
+			justify-content: start;
+		}
+		.viz-wrapper {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 1rem 2rem;
+		}
+
+		.fandom-wrapper {
+			width: 100%;
+		}
 	}
 </style>

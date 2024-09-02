@@ -61,7 +61,6 @@
         textBlock.style("transform", "translate(0,0)")
 
         let textArray = textBlock.selectAll("p").nodes().map(node => node.textContent);
-        console.log(textArray)
 
         d3.selectAll(".u-tooltip-container")
             .html(

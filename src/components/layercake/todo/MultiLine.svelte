@@ -29,8 +29,8 @@
 </g>
 <g class="rect-overlay">
 	<rect 
-		x={$width/2 - $width/20 + 10}
-		width={$width/10 - 20}
+		x={$width/2 - $width/20}
+		width={$width/10}
 		height={$height}
 	>
 	</rect>
