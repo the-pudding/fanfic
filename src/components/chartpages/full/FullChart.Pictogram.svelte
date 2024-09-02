@@ -87,7 +87,10 @@
             {#each data as ship, i}
                 <li 
                     on:mouseover={handleMouseOver}
+                    on:focus={handleMouseOver}
                     on:mouseleave={handleMouseLeave}
+                    on:blur={handleMouseLeave}
+
                 >
                     <Rank rank={i+1} />    
                     <div class="img-wrapper">
@@ -114,52 +117,6 @@
         </ul>
         {/if}
     </div>
-    <!-- <div class="table-wrapper">
-        <table>
-            {#if data}
-                <tr>
-                    <th class="right-align" style="width: 10%">No.</th>
-                    <th style="width: 73%">Ship</th>
-                    <th style="width: 50px">Demographics</th>
-                </tr>
-                {#each data.slice(0,50) as ship, i}
-                    <tr>
-                        <td class="right-align" style="width: 10%">{ship.rank}</td>
-                        <td style="width: 73%">
-                            <p>{ship.ship}</p>
-                            <p>{ship.fandom}</p>
-                        </td>
-                        <td class="pictogram" style="width: 50px">
-                            <img src="./assets/images/icons/{findMatchingPictogram(ship, "A")}.png" alt="character"/>
-                            <img src="./assets/images/icons/man-white.png" alt="character"/>
-                        </td>
-                    </tr>
-                {/each}
-            {/if}
-        </table>
-        <table>
-            {#if data}
-                <tr>
-                    <th class="right-align" style="width: 10%">No.</th>
-                    <th style="width: 73%">Ship</th>
-                    <th style="width: 50px">Demographics</th>
-                </tr>
-                {#each data.slice(50,100) as ship, i}
-                    <tr>
-                        <td class="right-align" style="width: 10%">{ship.rank}</td>
-                        <td style="width: 73%">
-                            <p>{ship.ship}</p>
-                            <p>{ship.fandom}</p>
-                        </td>
-                        <td class="pictogram" style="width: 50px">
-                            <img src="./assets/images/icons/{findMatchingPictogram(ship, "A")}.png" alt="character"/>
-                            <img src="./assets/images/icons/{findMatchingPictogram(ship, "B")}.png" alt="character"/>
-                        </td>
-                    </tr>
-                {/each}
-            {/if}
-        </table>      
-    </div> -->
     <button on:click={expandClick} class="expand">{btnText}</button>
 </div>
 

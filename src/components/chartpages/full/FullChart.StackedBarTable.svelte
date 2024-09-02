@@ -1,9 +1,11 @@
 
 <script>
+    import { onMount } from 'svelte';
     import * as d3 from "d3";
     import { fade } from 'svelte/transition';
     import { LayerCake, Svg, flatten, stack, Html } from 'layercake';
-    import Rank from "$components/Rank.svelte";
+    import ListBlock from "$components/ListBlock.svelte";
+    import UniversalTooltip from "$components/UniversalTooltip.svelte";
     import ColumnStacked from "$components/layercake/ColumnStacked.svelte";
     import AxisX from "$components/layercake/AxisX.svg.svelte";
     import AxisY from "$components/layercake/AxisY.svg.svelte";
@@ -12,11 +14,23 @@
 
     export let id;
 
-    let receivedData = '';
+    let receivedData;
+    let tooltipX;
+    let tooltipY;
+    let tooltipContainer;
+    let tooltipVisible = false;
 
     function handleCustomEvent(event) {
         receivedData = event.detail.data;
+        tooltipY = innerWidth > 600 ? receivedData[0].yPos : 0;
+        tooltipX = innerWidth > 600 ? receivedData[0].xPos : 0;
+
+        tooltipVisible = !tooltipVisible;
     }
+
+    onMount(() => {
+        document.body.appendChild(tooltipContainer);
+    });
 
     // Comma formatting
     const format = d3.format(",");
@@ -81,23 +95,26 @@
 
     // $: console.log(receivedData)
     $: innerWidth = 0;
+    $: bottomPos = tooltipVisible ? 0 : "-6rem";
+    $: console.log(tooltipVisible)
 </script>
 
 <svelte:window bind:innerWidth />
 
-<div class="viz-wrapper">
-    {#if receivedData && receivedData[0].tooltipVisible}
-        <div class="tooltip"
-            transition:fade={{ duration: 300 }}
-            style="top: {receivedData[0].yPos}px;
-                    left: {receivedData[0].xPos}px"
-        >   
-            <p class="year">{receivedData[0].yearValTooltip} {receivedData[0].relType}</p>
-            <p class="yes-text"> Canon: {receivedData[0].yesValTooltip}%</p>
-            <p class="semi-text">Semi-canon: {receivedData[0].semiValTooltip}%</p>
-            <p class="no-text">Non-canon: {receivedData[0].noValTooltip}%</p>
+<div bind:this={tooltipContainer} class="tooltip-container" style="bottom: {bottomPos}">
+    <UniversalTooltip posX={tooltipX} posY={tooltipY}>
+        <div slot="tooltip">
+                {#if receivedData}
+                <p class="year">{receivedData[0].yearValTooltip} {receivedData[0].relType}</p>
+                <p class="yes-text"> Canon: {receivedData[0].yesValTooltip}%</p>
+                <p class="semi-text">Semi-canon: {receivedData[0].semiValTooltip}%</p>
+                <p class="no-text">Non-canon: {receivedData[0].noValTooltip}%</p>
+                {/if}
         </div>
-    {/if}
+    </UniversalTooltip>
+</div>
+
+<div class="viz-wrapper">
     <div class="key-wrapper">
         {#each canonArray as canon}
             <p class="key-{canon}">{canon}</p>
@@ -129,29 +146,35 @@
                     </Svg>
                 </LayerCake>
             </div>
-            <table>
-                <tr>
-                    <th style="width: 70%">Ship</th>
-                    <th class="right-align" style="width: 30%">Fanfics</th>
-                </tr>
+            <div class="header-row">
+                    <p>Ship</p>
+                    <p>Fanfics</p>
+            </div>
+            <ul>
                 {#each tableData.filter(d => d.relType == titleArray[i]) as ship, i}
-                    <tr class="canon-row canon-{ship.isCanon}">
-                        <td class="ship-name" style="width: 70%">
-                            <Rank rank={i+1} />
-                            <p>{(ship.ship).replace("/", " / ")}</p>
-                        </td>
-                        <td class="canon-row canon-{ship.isCanon} right-align" style="width: 30%">
-                            <p>{format(ship.totalWorks)}</p>
-                        </td>
-                    </tr>
+                    <ListBlock 
+                        topItem={(ship.ship).replace("/", " / ")}
+                        numItem={format(ship.totalWorks)}
+                        index={i}
+                        specialClass={`canon-${ship.isCanon}`}
+                        height={"2.5rem"}
+                    />
                 {/each}
-        </table>
+            </ul>
         </div>
         {/each}
     </div>
 </div>
 
 <style>
+    .tooltip-container {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        height: 6rem;
+        transition: 0.5s bottom ease-in;
+    }
     .tooltip {
         position: absolute;
         overflow: hidden;
@@ -164,8 +187,8 @@
         font-size: var(--12px);
         line-height: 1.125;
         background: white;
-        transform: translate(-50%, -100%);
         min-width: 9.5rem;
+        width: 100%;
     }
     .tooltip p {
         padding: 0;
@@ -244,99 +267,27 @@
         font-family: var(--mono);
     }
 
-    table {
-        font-family: var(--mono);
-        font-size: var(--14px);
-        width: calc(100% - 24px);
-        margin: 4rem 0 0 24px;
-        border-collapse: separate;
-        border-spacing:0 4px;
+    ul {
+        width: 100%;
+        margin: 0;
     }
 
-    tr {
-        transition: background-color 1s linear;
+    .header-row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;  
+        padding: 1rem 1rem 0 1rem;
+        margin-top: 2rem;
+    }
+
+    .header-row p {
+        font-family: var(--mono);
+        font-size: var(--12px);
         font-weight: 700;
-        margin: 0;
-        padding: 0;
-        border: 1px solid var(--fanfic-black);
-        font-size: var(--12px);
-    }
-    .canon-row {
-        border: 1px solid var(--fanfic-black);
-    }
-
-    th{
-        padding: 0 0 0.25rem 0;
         text-transform: uppercase;
-        border: none;
-    }
-
-    td {
-        position: relative;
         padding: 0;
-        font-family: var(--mono);
-        font-weight: 400;
-        height: 3rem;
-    }
-
-    .ship-name {
-        border-top: 1px solid var(--fanfic-black);
-        border-bottom: 1px solid var(--fanfic-black);
-        border-left: 1px solid var(--fanfic-black);
-    }
-
-    .ship-name p {
-        margin: 0 0 0 1.5rem;
-        padding: 0.5rem 0;
-        line-height: 1.25;
-        font-size: var(--12px);
-    }
-
-    .right-align {
-        text-align: right;
-        padding: 0 0.25rem;
-        font-size: var(--12px);
-        line-height: 1.25;
-    }
-    .right-align p {
-        padding: 0.5rem 0;
         margin: 0;
-    }
-
-    .canon-row .right-align {
-        border-top: 1px solid var(--fanfic-black);
-        border-bottom: 1px solid var(--fanfic-black);
-        border-right: 1px solid var(--fanfic-black);
-        border-left: none;
-    }
-
-    .canon-Yes {
-        background: #D03200;
-    }
-
-    .canon-Yes .right-align {
-        border-left: 1px solid #D03200;
-    }
-    .canon-Yes .ship-name {
-        border-right: 1px solid #D03200;
-    }
-    .canon-Semi-Canon {
-        background: #119C72;
-    }
-    .canon-Semi-Canon .right-align {
-        border-left: 1px solid #119C72;
-    }
-    .canon-Semi-Canon .ship-name {
-        border-right: 1px solid #119C72;
-    }
-    .canon-No {
-        background: #1B2AA6;
-    }
-    .canon-No .right-align {
-        border-left: 1px solid #1B2AA6;
-    }
-    .canon-No .ship-name {
-        border-right: 1px solid #1B2AA6;
     }
 
     .key-wrapper p {

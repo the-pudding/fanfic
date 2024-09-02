@@ -5,6 +5,7 @@
     import { fade } from 'svelte/transition';
     import * as d3 from 'd3';
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
+    import ListBlock from "$components/ListBlock.svelte";
     import Rank from "$components/Rank.svelte";
 
     export let id;
@@ -65,20 +66,17 @@
                     {/if}
                 </div>
                 <div class="fandom-wrapper">
+                    <ul>
                     {#each data as fandom, i}
-                        {#if scrollIndex >= 0 || scrollIndex == undefined}
-                            <div 
-                                in:fade={{ delay: i*50, duration: 300 }}
-                                out:fade={{ delay: 50, duration: 300 }}
-                                class="fandom-block"
-                                style="background-color: {setColorScale(scrollIndex, fandom)}">
-                                <Rank rank={i+1} />
-                                <div class="deets">
-                                    <p class="fandom-name">{fandom.fandom}</p>
-                                </div>
-                            </div>
-                        {/if}
+                            <ListBlock
+                                topItem={fandom.fandom}
+                                index={i}
+                                blockType={"grid"}
+                                scrollIndex={scrollIndex}
+                                specialClass={setColorScale(scrollIndex, fandom)}
+                            />
                     {/each}
+                    </ul>
                 </div>
             </div>
         </div>
@@ -161,38 +159,23 @@
         justify-content: center;
         background-color: white;
     }
-    .fandom-block {
+
+    ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; 
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        list-style: none;
+        gap: 0.25rem;
+    }
+
+    li {
         width: 9%;
         min-width: 100px;
-        aspect-ratio: 1;
-        margin: 0.25rem;
-        border: 1px solid var(--fanfic-black);
-        padding: 0rem;
-        overflow-y: hidden;
-        transition: background-color 0.5s linear;
-        position: relative;
-    }
-    .rank {
-        position: absolute;
-        top: 0;
-        left: 0;
-        font-family: var(--mono);
-        font-size: 10px;
-        color: white;
-        background: var(--fanfic-black);
-        padding: 0 0.125rem;
-        z-index: 999;
-        margin: 0;
-    }
-    .deets {
-        font-family: var(--mono);
-        font-size: 10px;
-        padding: 1.5rem 0.25rem 0 0.25rem;
-        line-height: 1.125;
-    }
-    .deets p {
-        margin: 0;
-        padding: 0;
+        aspect-ratio: 1;  
     }
 
     .spacer {
@@ -214,6 +197,9 @@
         }
         .fandom-block {
             min-width: 70px;
+        }
+        .grid {
+            min-width: 50px;
         }
 	}
 </style>
