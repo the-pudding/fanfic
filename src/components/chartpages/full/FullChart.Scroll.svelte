@@ -69,6 +69,7 @@
                     <ul>
                     {#each data as fandom, i}
                             <ListBlock
+                                data={fandom}
                                 topItem={fandom.fandom}
                                 index={i}
                                 blockType={"grid"}
@@ -106,7 +107,6 @@
 		height: 100vh;
         z-index: 1;
         overflow-x: hidden;
-		pointer-events: none;
 	}
     .key {
         width: 100%;

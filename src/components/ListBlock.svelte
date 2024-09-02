@@ -1,6 +1,8 @@
 <script>
     import Rank from "$components/Rank.svelte";
     import { fade } from 'svelte/transition';
+    import { uTooltipVisible } from "$stores/misc.js";
+    import * as d3 from "d3";
 
     export let topItem;
     export let secondaryItem;
@@ -12,6 +14,26 @@
     export let height;
     export let width;
     export let scrollIndex;
+    export let data;
+
+    const genderColorScale = d3.scaleDiverging()
+      .domain([0, 50, 100])
+      .interpolator(d3.interpolateRgb("#FFAAB9", "#E2FF8E"));
+
+    function handleMouseEnter() {
+        uTooltipVisible.set(true);
+
+        d3.selectAll(".u-tooltip-container")
+            .html(
+                `<p class="fandom">${data.fandom}</p>
+                <p><span style="background-color:${genderColorScale(data.menPercent)}">${Math.round(data.womenPercent)}% women / ${Math.round(data.menPercent)}% men</span></p>
+                <p>${data.genre}</p>`
+            )
+    }
+
+    function handleMouseLeave() {
+        uTooltipVisible.set(false);
+    }
 </script>
 
 {#if blockType !== "grid"}
@@ -38,6 +60,8 @@
     {#if scrollIndex >= 0 || scrollIndex == undefined}
         <li class="grid"
             style="background-color: {specialClass}"
+            on:mouseenter={handleMouseEnter}
+            on:mouseleave={handleMouseLeave}
             in:fade={{ delay: index*50, duration: 300 }}
             out:fade={{ delay: 50, duration: 300 }}>
         <div class="left">
@@ -130,6 +154,12 @@
     @media (max-width: 600px) { 
         li {
             font-size: 10px;
+        }
+        .grid {
+            width: 9%;
+            min-width: 40px;
+            aspect-ratio: 1;
+            overflow: hidden;
         }
     }
 </style>

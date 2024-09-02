@@ -3,6 +3,7 @@
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
     import Rank from "$components/Rank.svelte";
+    import { uTooltipVisible } from "$stores/misc.js";
 
     let data;
 
@@ -55,11 +56,22 @@
     }
 
     function handleMouseOver() {
+        uTooltipVisible.set(true)
         let textBlock = d3.select(this).select(".text-wrapper");
         textBlock.style("transform", "translate(0,0)")
+
+        let textArray = textBlock.selectAll("p").nodes().map(node => node.textContent);
+        console.log(textArray)
+
+        d3.selectAll(".u-tooltip-container")
+            .html(
+                `<p class="ship">${textArray[0]}</p>
+                <p>${textArray[1]}</p>`
+            )
     }
 
     function handleMouseLeave() {
+        uTooltipVisible.set(false)
         let textBlock = d3.selectAll(".list-wrapper .text-wrapper");
         textBlock.style("transform", "translate(0,105%)")
     }
@@ -87,9 +99,7 @@
             {#each data as ship, i}
                 <li 
                     on:mouseover={handleMouseOver}
-                    on:focus={handleMouseOver}
                     on:mouseleave={handleMouseLeave}
-                    on:blur={handleMouseLeave}
 
                 >
                     <Rank rank={i+1} />    

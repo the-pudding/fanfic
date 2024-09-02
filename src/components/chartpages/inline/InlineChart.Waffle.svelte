@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
-    import { currSectionSTORE } from "$stores/misc.js";
+    import { uTooltipVisible } from "$stores/misc.js";
 
     let data;
     let groupedData;
@@ -35,7 +35,7 @@
     function exitViewDraw() { inViewTrigger = false; }
 
     function handleMouseEnter(e, ship) {
-
+        uTooltipVisible.set(true)
         // Get the target element
         const element = e.currentTarget;
         const rect = element.getBoundingClientRect();
@@ -90,9 +90,16 @@
         tooltipFandom.text(`${ship.fandom}`)
         tooltipWorks.text(`${format(ship.totalWorks)} fanfics`)
 
+        d3.selectAll(".u-tooltip-container")
+            .html(
+                `<p class="ship-text"><span class="ship-text-${ship.isCanon}">${(ship.ship).replace("/", " / ")}</span></p>
+                <p class="fandom-text">${ship.fandom}</p>
+                <p class="works-text">${format(ship.totalWorks)} fanfics</p>`
+            )
     }
 
     function handleMouseLeave() {
+        uTooltipVisible.set(false)
         const tooltip = d3.select(".tooltip");
         tooltip
             .transition()

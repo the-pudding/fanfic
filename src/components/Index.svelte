@@ -3,6 +3,7 @@
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
+	import UniversalTooltip from "$components/UniversalTooltip.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
 	import inView from "$actions/inView.js";
@@ -60,6 +61,7 @@
 </div>
 <div class="texture">
 </div>
+<UniversalTooltip />
 <Footer />
 
 <!-- CSS STARTS HERE -->

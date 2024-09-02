@@ -1,7 +1,8 @@
 <script>
 	import { getContext } from 'svelte';
-	import { noValTooltip, semiValTooltip, yesValTooltip } from "$stores/misc.js";
+	import * as d3 from "d3";
 	import { createEventDispatcher } from 'svelte';
+	import { uTooltipVisible } from "$stores/misc.js";
 
 	const { data, xGet, yGet, zGet, xScale } = getContext('LayerCake');
 	const dispatch = createEventDispatcher();
@@ -11,6 +12,7 @@
 	}
 
 	function handleMouseOver(e) {
+		uTooltipVisible.set(true)
 		let xPos = e.clientX;
 		let yPos = e.clientY;
 		let dataIndex = e.target.dataset.id;
@@ -25,9 +27,18 @@
 
 		let tooltipData = [{xPos, yPos, relType, noValTooltip, semiValTooltip, yesValTooltip, yearValTooltip, tooltipVisible}]
 		sendDataToParent(tooltipData)
+
+		d3.selectAll(".u-tooltip-container")
+            .html(
+                `<p class="year">${yearValTooltip} ${relType}</p>
+				<p class="canon-block">Canon: ${yesValTooltip}%</p>
+				<p class="semi-block">Semi-canon: ${semiValTooltip}%</p>
+				<p class="noncanon-block">Non-canon: ${noValTooltip}%</p>`
+            )
 	}
 
 	function handleMouseLeave(e) {
+		uTooltipVisible.set(false)
 		let tooltipVisible = false;
 		let tooltipData = [{tooltipVisible}]
 		sendDataToParent(tooltipData)
