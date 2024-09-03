@@ -9,14 +9,19 @@
 	import slashData from '$data/SLASH/treemapData.js';
 	import demo1Data from '$data/SLASH/treemapData_demographics1.js';
 	import demo2Data from '$data/SLASH/treemapData_demographics2.js';
+	import BTSdata from '$data/RPF/treemapData_BTS.js';
+	import YTdata from '$data/RPF/treemapData_YT.js';
+	
 
 	export let id;
 
-	let data = id == "SLASH_AO3demographics0"
-		? demo1Data 
-		: id == "SLASH_AO3demographics1"
-		? demo2Data 
-		: slashData;
+	let data;
+	
+	if (id == "SLASH_AO3demographics0") { data = demo1Data } 
+	else if (id == "SLASH_AO3demographics1") { data = demo2Data } 
+	else if (id == "RPF_relTypeByFandom0") { data = BTSdata } 
+	else if (id == "RPF_relTypeByFandom1") { data = YTdata } 
+	else { data = slashData } 
 
 	const treemap = d3.treemap();
 
@@ -53,6 +58,11 @@
 							<strong>{node.data.name}</strong>
 							<span>{yootils.commas(node.value)}%</span>
 						</div>
+					{:else if id == "RPF_relTypeByFandom0" || id == "RPF_relTypeByFandom1"}
+						<div class="contents contents-{(node.data.name).replace("/", "")}">
+							<strong>{node.data.name}</strong>
+							<span>{yootils.commas(node.value)}%</span>
+						</div>
 					{:else}
 						<div class="contents contents-{(node.data.name).replace("/", "")}">
 							<strong>{node.data.name}</strong>
@@ -74,8 +84,8 @@
 		padding: 1rem;
 	}
 
-	#SLASH_AO3demographics0, #SLASH_AO3demographics1 {
-		padding: 0;
+	#SLASH_AO3demographics0, #SLASH_AO3demographics1, #RPF_relTypeByFandom0, #RPF_relTypeByFandom1 {
+		padding: 0rem;
 	}
 
 	.node {

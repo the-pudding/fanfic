@@ -9,25 +9,35 @@
 
 	export let curve = curveStep;
 	export let inViewTrigger; 
+	export let id;
 
 	const { data, xGet, yGet, zGet, width, height } = getContext('LayerCake');
 
 	$: path = line().x($xGet).y($yGet).curve(curve);
+
+	function cleanText(str) {
+		let cleanedStr = str.replace(/[^a-zA-Z0-9]/g, '');
+		cleanedStr = cleanedStr.replace(/\s+/g, ' ').trim();
+		cleanedStr = cleanedStr.toLowerCase();
+		return cleanedStr
+	}
 </script>
 
 <g class="line-group">
 	{#each $data as group}
+		<!-- {@debug group} -->
 		{#if inViewTrigger}
 		<path
 			in:draw={{ duration: 1000 }}
 			class='path-line'
+			id='{cleanText(group.fandom)}-path'
 			d='{path(group.values)}'
 			stroke="{$zGet(group)}"
 		></path>
 		{/if}
 	{/each}
 </g>
-<g class="rect-overlay">
+<g class="rect-overlay" class:scrollyRect={id == "RPF_topFandomsTime"}>
 	<rect 
 		x={$width/2 - $width/20}
 		width={$width/10}
@@ -52,7 +62,11 @@
 	}
 
 	rect {
-		fill: #e9e5ed;
+		fill: #f7f7f7;
+	}
+
+	.scrolly-rect {
+		opacity: 0;
 	}
 
 	text {

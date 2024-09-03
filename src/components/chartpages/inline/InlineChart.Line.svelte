@@ -79,7 +79,7 @@
     on:exit={exitViewDraw}
 >
     <LayerCake
-        padding={{ top: 0, right: 0, bottom: 0, left: 0 }}
+        padding={{ top: 10, right: 0, bottom: 0, left: 0 }}
         x={xKey}
         y={yKey}
         yDomain={[0, null]}

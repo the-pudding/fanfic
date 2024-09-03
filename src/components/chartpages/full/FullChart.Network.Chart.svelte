@@ -133,8 +133,6 @@
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
-        $: console.log({divW})
-
 		const simulation = d3.forceSimulation(nodes)
 				.force("link", forceLink)
 				.force("charge", forceNode)

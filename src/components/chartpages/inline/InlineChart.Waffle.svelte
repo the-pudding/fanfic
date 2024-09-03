@@ -8,14 +8,6 @@
     let groupedData;
     const format = d3.format(",");
 
-    let axisKeys = [
-        {
-            id: "INTRO_topStats",
-            xKey: "year",
-            yKey: "uniqueFandoms"
-        }
-    ];
-
     onMount(async () => {
         if (id) {
             const dataFolder = id.split("_")[0];

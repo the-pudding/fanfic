@@ -56,8 +56,6 @@
         let ratio = innerWidth/innerHeight;
         
         grid = ratio > 1 ? [5, 10] : [10, 5];
-
-        console.log(grid)
     }
 
     let innerWidth;

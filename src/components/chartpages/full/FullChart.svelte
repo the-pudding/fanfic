@@ -7,6 +7,8 @@
    import FullChartPictogram from "$components/chartpages/full/FullChart.Pictogram.svelte";
    import FullChartDemographics from "$components/chartpages/full/FullChart.Demographics.svelte";
    import FullChartNetwork from "$components/chartpages/full/FullChart.Network.svelte";
+   import FullChartMultiline from "$components/chartpages/full/FullChart.Multiline.svelte";
+   import FullChartTreemap from "$components/chartpages/full/FullChart.Treemap.svelte";
    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
@@ -19,6 +21,8 @@
     <FullChartScroll {id} />
 {:else if chartType == "network"}
     <FullChartNetwork {id} />
+{:else if chartType == "multiline"}
+    <FullChartMultiline {id} />
 {:else}
     <div class="chart-wrapper">
         {#if chartType == "stackedBarTable"}
@@ -32,6 +36,10 @@
         {#if chartType == "demographics"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartDemographics {id} />
+        {/if}
+        {#if chartType == "treemap"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartTreemap {id} />
         {/if}
     </div>
 {/if}

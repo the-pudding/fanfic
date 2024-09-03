@@ -112,7 +112,7 @@
                 <MultiLine inViewTrigger={inViewTrigger} />
             </Svg>
             <Html>
-                <GroupLabel {id} zRange={seriesColors} inViewTrigger={inViewTrigger} />
+                <GroupLabel {id} zRange={seriesColors} inViewTrigger={inViewTrigger} delay={750} />
             </Html>
         </LayerCake>
     {/if}

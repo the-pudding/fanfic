@@ -12,6 +12,10 @@
   export let zRange;
   export let id;
   export let inViewTrigger;
+  export let inViewLabelA;
+  export let inViewLabelB;
+  export let inViewLabelC;
+  export let delay;
 
 	$: left = values => $xScale(max(values, $x)) / Math.max(...$xRange);
   $: top = function(values) {
@@ -38,6 +42,8 @@
       return "#1B2AA6"
     } else if (group.fandom == "Youtube") {
       return "#119C72"
+    } else if (group.fandom == "One Direction") {
+      return "#D03200"
     } else {
       return "#cccccc"
     }
@@ -45,9 +51,9 @@
 </script>
   
 {#each $data as group,i}
-  {#if inViewTrigger && id == "CANON_percentCanon" || group.fandom == "BTS" || group.fandom == "Youtube"}
+  {#if inViewTrigger && id == "CANON_percentCanon" || inViewLabelC && group.fandom == "BTS" || inViewLabelB && group.fandom == "Youtube" || inViewLabelA && group.fandom == "One Direction"}
       <div
-        transition:fade={{ delay: 750, duration: 250 }}
+        transition:fade={{ delay: delay, duration: 250 }}
         class="label"
         style="
         top:{top(group.values) * 100}%;
@@ -64,13 +70,13 @@
 <style>
   .label {
       position: absolute;
-      transform: translate(-100%, -100%) translateY(1px);
+      transform: translate(-100%, -100%) translateY(6px);
       font-size: 13px;
       color: var(--fanfic-black);
       font-weight: 700;
       font-family: var(--mono);
       text-transform: uppercase;
-      width: 5rem;
+      width: 8rem;
       text-align: right;
   }
 </style>

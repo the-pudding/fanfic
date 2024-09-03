@@ -12,7 +12,7 @@
     export let id;
     let innerWidth;
 
-    const treemapArray = [1, 0];
+    const treemapArray = [0, 1];
 </script>
 
 <svelte:window bind:innerWidth />
