@@ -32,16 +32,16 @@
         <div class="top-byline">
             <p class="byline">By</p>
             <p class="byline">
-                <img src="/assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a>
+                <img src="./assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a>
             </p>
             <p class="byline">
-                <img src="/assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a>
+                <img src="./assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a>
             </p>
             <p class="byline">    
-                <img src="/assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a>
+                <img src="./assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a>
             </p>
             <p class="byline"> 
-                <img src="/assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a>
+                <img src="./assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a>
             </p>
         </div>
         <p class="with">With data from <a href="https://centrumlumina.tumblr.com/">centreoftheselights</a></p>
