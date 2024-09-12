@@ -45,7 +45,7 @@
 	}
 
 	rect {
-		fill: #e9e5ed;
+		fill: #eae9e9;
 	}
 
 	text {

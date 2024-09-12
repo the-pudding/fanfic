@@ -58,10 +58,10 @@
     }
 
     .fly-container_left.forceFlyLeft, .fly-container_right.forceFly {
-        transform: translateX(0%);
+        transform: translateX(30%);
     }
 
     .fly-container_right.forceFlyRight {
-        transform: translateX(0%);
+        transform: translateX(-30%);
     }
 </style>

@@ -16,5 +16,7 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
+		border: 2px solid;
+		border-color: var(--window-inset-stroke);
 	}
 </style>

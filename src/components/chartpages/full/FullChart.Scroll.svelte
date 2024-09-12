@@ -18,7 +18,7 @@
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])
-      .interpolator(d3.interpolateRgb("#FFAAB9", "#E2FF8E"));
+      .interpolator(d3.interpolateRgb("#D03E00", "#1B2AA6"));
     
     const genreColorScale = d3.scaleOrdinal()
         .domain(genres)
@@ -26,10 +26,10 @@
         "#1B2AA6", // Fantasy
         "#D03200", // Superhero
         "#C0B9C6", // Sports
-        "#119C72",  // Video Game
+        "#C0B9C6",  // Video Game
         "#C0B9C6", // Crime
-        "#FFAAB9", // Thriller
-        "#E2FF8E", // Science Fiction
+        "#C0B9C6", // Thriller
+        "#119C72", // Science Fiction
         "#C0B9C6", // Slice of Life
         "#C0B9C6", // Romance
         "#C0B9C6", // Historical
@@ -77,28 +77,23 @@
                     <div class="key-box-gender"></div>
                     <p>More women</p>
                     {:else if scrollIndex == 2}
-                        {#each genres as genre}
-                            <p style="background-color: {genreColorScale(genre)}">{genre}</p>
-                        {/each}
+                        <p class="key-block key-block-fantasy">Fantasy</p>
+                        <p class="key-block key-block-superhero">Superhero</p>
+                        <p class="key-block key-block-scifi">Sci-Fi</p>
+                        <p class="key-block key-block-other">Other</p>
                     {/if}
                 </div>
                 <div class="fandom-wrapper">
-                    {#if grid}
-                        <div class="grid" style="--rows: {grid[0]}; --cols: {grid[1]};">
-                            {#each data as fandom, i}
-                            <div class="item">
-                                <ListBlock
-                                    data={fandom}
-                                    topItem={fandom.fandom}
-                                    index={i}
-                                    blockType={"grid"}
-                                    scrollIndex={scrollIndex}
-                                    specialClass={setColorScale(scrollIndex, fandom)}
-                                />
-                            </div>
-                            {/each}
-                        </div>
-                    {/if}
+                    {#each data as fandom, i}
+                        <ListBlock
+                            data={fandom}
+                            topItem={fandom.fandom}
+                            index={i}
+                            blockType={"grid"}
+                            scrollIndex={scrollIndex}
+                            specialClass={setColorScale(scrollIndex, fandom)}
+                        />
+                    {/each}
                 </div>
             </div>
         </div>
@@ -167,13 +162,45 @@
     }
     .key p {
         margin: 0;
+        text-transform: uppercase;
+        font-weight: 700;
     }
     .key-box-gender {
-        background-image: linear-gradient(to right, #E2FF8E, #FFAAB9);
+        background-image: linear-gradient(to right, #1B2AA6, #D03E00);
         height: 1.5rem;
         width: 10rem;
-        border: 1px solid var(--fanfic-black);
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
         margin: 0 0.5rem;
+    }
+    .key-block {
+        position: relative;
+        padding: 0 1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .key-block::before {
+        width: 1rem;
+        height: 1rem;
+        content: '';
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        display: inline-block;
+        position: relative;
+        top: 0.25rem;
+        margin: 0 0.25rem 0 0;
+    }
+    .key-block-fantasy::before {
+        background: var(--fanfic-blue);
+    }
+    .key-block-superhero::before {
+        background: var(--fanfic-red);
+    }
+    .key-block-scifi::before {
+        background: var(--fanfic-green);
+    }
+    .key-block-other::before {
+        background: var(--fanfic-window-gray);
     }
     .chart-wrapper {
         width: 100%;
@@ -181,19 +208,21 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        background: var(--fanfic-window-gray);
-        border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
-        border-style:solid;
+        background: #f2f2f2;
+        border: 2px solid;
+        border-color: var(--window-button-stroke);
         overflow: hidden;
     }
     .content-wrapper {
-        width: 100%;
+        width: calc(100% - 2rem);
+        margin: 1rem auto 2rem auto;
         display: flex;
         flex-direction: column; 
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: #f2f2f2;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
     .fandom-wrapper {
         width: 100%;
@@ -204,7 +233,7 @@
         padding: 1rem;
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: #f2f2f2;
     }
 
     ul {

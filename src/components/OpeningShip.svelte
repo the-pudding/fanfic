@@ -16,29 +16,25 @@
     on:exit={exitViewFly}  
 >   
     {#if inViewTrigger}
-        <img transition:fly={{ delay: 250, duration: 300, x: -200}} src="./assets/images/heads/{copy.imgA}.png" alt="character"/>
-        <img transition:fly={{ delay: 250, duration: 300, x: 200}} src="./assets/images/heads/{copy.imgB}.png" alt="character"/>
+        <div class="left" transition:fly={{ delay: 250, duration: 300, x: -200}}>
+            <img src="./assets/images/heads/{copy.imgA}.png" alt="character"/>
+            <p>
+                <span>{copy.nameAfirst}</span> 
+                {#if copy.nameAlast}
+                <span>{copy.nameAlast}</span>
+                {/if}
+            </p>
+        </div>
+        <div class="right" transition:fly={{ delay: 250, duration: 300, x: 200}}>
+            <img src="./assets/images/heads/{copy.imgB}.png" alt="character"/>
+            <p>
+                <span>{copy.nameBfirst}</span> 
+                {#if copy.nameBlast}
+                <span>{copy.nameBlast}</span>
+                {/if}
+            </p>
+        </div>
     {/if}
-    <p class="bg-connecter">{copy.connector}</p>
-</div>
-<div class="names">
-    <div class="name nameA">
-        {#if copy.nameAlast !== undefined}
-            <h5 class="name-mono">{copy.nameAfirst}</h5> 
-            <h5 class="name-script">{copy.nameAlast}</h5> 
-        {:else}
-            <h5 class="name-script">{copy.nameAfirst}</h5> 
-        {/if}
-    </div>
-    <h5 class="connector">{copy.connector}</h5>
-    <div class="name nameB">
-        {#if copy.nameBlast !== undefined}
-            <h5 class="name-mono">{copy.nameBfirst}</h5> 
-            <h5 class="name-script">{copy.nameBlast}</h5> 
-        {:else}
-            <h5 class="name-script">{copy.nameBfirst}</h5> 
-        {/if}
-    </div>
 </div>
 <p class="tag">{copy.description}</p>
 
@@ -52,13 +48,53 @@
         position: relative;
     }
 
-    .faces img {
-        width: 250px;
+    .left {
+        border: 2px solid;
+        border-color: var(--window-button-stroke);
+        height: 280px;
+        width: 240px;
+        overflow: hidden;
+        margin-top: 10rem;
+        margin-right: -2rem;
+    }
+
+    .right {
+        height: 280px;
+        width: 240px;
+        overflow: hidden;
+        margin-left: -2rem;
+    }
+
+    .left p {
+        font-family: var(--mono);
+        font-weight: 700;
+        color: var(--fanfic-pink);
+        text-transform: uppercase;
+        font-size: var(--22px);
+        text-align: center;
+        padding: 0;
+        margin: -1rem 0 0 0;
+    }
+
+    .right p {
+        font-family: var(--mono);
+        font-weight: 700;
+        color: var(--fanfic-highlighter);
+        text-transform: uppercase;
+        font-size: var(--22px);
+        text-align: center;
+        padding: 0;
+        margin: -1rem 0 0 0;
+    }
+
+    .left img {
+        width: 100%;
         z-index: 1000;
     }
 
-    .faces img:nth-of-type(1) {
-        margin-top: 7rem;
+    .right img {
+        width: 100%;
+        z-index: 1000;
     }
 
     .bg-connecter {

@@ -53,6 +53,7 @@
     :global(.ao3 a:hover) {
         background-color: var(--fanfic-blue);
         color: white;
+        transform: scale(0.98);
     }
 
     :global(span.ship a) {

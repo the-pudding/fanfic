@@ -6,6 +6,7 @@
     import { characterPairSTORE } from "$stores/misc.js";
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     import { fit, parent_style } from "@leveluptuts/svelte-fit";
+    import Shuffle from "$svg/shuffle-pixel.svg";
 
     const leftData = charactersData.filter(d => d.position == "left");
     const rightData = charactersData.filter(d => d.position == "right");
@@ -49,7 +50,7 @@
         <Select id="leftSelect" options={leftData} value={leftData[$characterPairSTORE[0]].character} position={"left"}/>
         <button on:click={randomClick} id="random-characters" class:shake={shake}>
             <span>Random</span>
-            <Icon name="shuffle" />
+            {@html Shuffle}
         </button>
         <Select id="rightSelect" options={rightData} value={rightData[$characterPairSTORE[1]].character} position={"right"}/>
     </div>
@@ -155,8 +156,17 @@
         color: white;
     }
 
-    :global(button svg) {
-        margin-top: 0.25rem;
+    #random-characters:hover {
+        transform: scale(0.98);
+    }
+
+    :global(#random-characters svg) {
+        width: 1.25rem;
+        margin-top: 0;
+    }
+
+    :global(#random-characters svg rect) {
+        fill: white;
     }
 
     @media (max-width: 600px) {
@@ -178,15 +188,15 @@
         }
         
         20%, 80% {
-            transform: translate3d(2px, 0, 0);
+            transform: translate3d(1px, 0, 0);
         }
 
         30%, 50%, 70% {
-            transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-2px, 0, 0);
         }
 
         40%, 60% {
-            transform: translate3d(4px, 0, 0);
+            transform: translate3d(2px, 0, 0);
         }
     }
 </style>

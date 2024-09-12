@@ -115,7 +115,7 @@
     h1 {
         color: var(--fanfic-pink);
         text-transform: uppercase;
-        font-family: var(--mono);
+        font-family: var(--sans);
         font-weight: 300;
         margin: 0;
         padding: 0;

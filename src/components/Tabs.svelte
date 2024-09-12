@@ -65,6 +65,10 @@ function setTitle(option) {
         font-size: var(--16px);
     }
 
+    button:hover {
+        transform: scale(0.98);
+    }
+
     #tab-slash.isActive {
         background: var(--fanfic-blue);
         color: var(--fanfic-highlighter);

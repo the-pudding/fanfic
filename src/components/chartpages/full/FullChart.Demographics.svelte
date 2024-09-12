@@ -46,11 +46,15 @@
 
 <style>
     .viz-wrapper {
-        background: white;
+        width: calc(100% - 2rem);
+        margin: 1rem auto 2rem auto;
+        background: #f2f2f2;
         padding: 2rem;
         display: flex;
         flex-direction: row;
         gap: 2rem;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .treemap-wrapper {

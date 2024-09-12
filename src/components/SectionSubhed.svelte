@@ -24,9 +24,10 @@
         line-height: 1;
         margin: 2rem auto;
         text-transform: uppercase;
-        font-family: var(--mono);
+        font-family: var(--sans);
         font-weight: 300;
         text-align: center;
+        color: var(--fanfic-highlighter);
     }
 
     .hedspan-true {

@@ -93,10 +93,10 @@
 		display: block;
 		content: "";
 		position: absolute;
-		bottom: 1.25em;
-		right: 0.75em;
-		width: 1em;
-		height: 1em;
+		bottom: 1.35em;
+		right: 1.25em;
+		width: 0.75em;
+		height: 0.75em;
 		z-index: 1;
 		background: var(--fanfic-black);
 		clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
@@ -106,7 +106,7 @@
 	}
 
 	select:hover {
-		background: var(--color-gray-100);
+		transform: scale(0.98);
 	}
 
 	select:focus {

@@ -32,9 +32,12 @@
 
 <style>
     .chart-container {
-        width: 100%;
-        background: var(--color-white);
+        width: calc(100% - 2rem);
+        margin: 1rem auto 2rem auto;
+        background: #f2f2f2;
         padding: 0;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .treemap-wrapper {
@@ -44,7 +47,7 @@
         display: flex;
         flex-direction: row;
 		overflow: hidden;
-        background-color: white;
+        background-color: #f2f2f2;
 		padding: 1rem;
         gap: 2rem;
 	}

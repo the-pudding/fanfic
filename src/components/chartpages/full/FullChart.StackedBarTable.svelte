@@ -185,8 +185,8 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        background: white;
-        padding: 2rem;
+        background: #f2f2f2;
+        padding: 1rem 1rem 2rem 1rem;
         position: relative;
     }
 
@@ -208,19 +208,16 @@
     .chart-wrapper {
         width: 100%;
         display: flex;
+        gap: 2rem;
         flex-direction: row;
         margin: 2rem 0 0 0;
     }
 
     .group-wrapper {
         width: 33.33%;
-        padding: 0 1.5rem 0 0;
-    }
-
-    .group-wrapper:nth-of-type(2) {
-        border-left: 1px solid var(--fanfic-black);
-        border-right: 1px solid var(--fanfic-black);
-        margin: 0 0.5rem;
+        padding: 1rem 1.5rem 1rem 0;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .chart-container {
@@ -348,35 +345,41 @@
     }
 
     .key-Non-Canon::before, .no-text::before {
+        width: 1rem;
+        height: 1rem;
+        content: '';
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
         display: inline-block;
         position: relative;
-        top: 0.05rem;
-        content: "";
-        width: 0.75rem;
-        height: 0.75rem;
-        background: #1B2AA6;
+        top: 0.2rem;
         margin: 0 0.25rem 0 0;
+        background: #1B2AA6;
     }
 
     .key-Canon::before, .yes-text::before {
+        width: 1rem;
+        height: 1rem;
+        content: '';
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
         display: inline-block;
         position: relative;
-        top: 0.05rem;
-        content: "";
-        width: 0.75rem;
-        height: 0.75rem;
-        background: #D03200;
+        top: 0.2rem;
         margin: 0 0.25rem 0 0;
+        background: #D03200;
     }
     .key-Semi-Canon::before, .semi-text::before {
+        width: 1rem;
+        height: 1rem;
+        content: '';
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
         display: inline-block;
         position: relative;
-        top: 0.05rem;
-        content: "";
-        width: 0.75rem;
-        height: 0.75rem;
-        background: #119C72;
+        top: 0.2rem;
         margin: 0 0.25rem 0 0;
+        background: #119C72;
     }
 
     @media (max-width: 600px) { 

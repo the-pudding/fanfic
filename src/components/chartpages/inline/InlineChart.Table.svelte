@@ -111,11 +111,14 @@
 
 <style>
     figure {
-        width: 100%;
+        width: calc(100% - 2rem);
         height: auto;
-        background: white;
+        background: #f2f2f2;
         color: var(--fanfic-black);
         padding: 1rem;
+        border: 2px solid;
+        margin: 1rem auto 2rem auto;
+        border-color: var(--window-inset-stroke);
     }
 
     .header-row {
@@ -186,13 +189,25 @@
     }
 
     .key-relationship span {
-        background-color: var(--fanfic-highlighter);
-        padding: 0.25rem;
+        background-color: var(--fanfic-blue);
+        color: white;
+        padding: 0 0.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: inline-block;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }  
     
     .key-sexual span {
-        background-color: var(--fanfic-pink);
-        padding: 0.25rem;
+        background-color: var(--fanfic-red);
+        color: white;
+        padding: 0 0.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: inline-block;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }   
 
     @media (max-width: 600px) { 

@@ -132,8 +132,9 @@
 
 <style>
     .chart-container {
-        width: 100%;
-        background: var(--color-white);
+        width: calc(100% - 2rem);
+        margin: 1rem auto 2rem auto;
+        background: #f2f2f2;
         padding: 2rem;
         display: flex;
         flex-direction: column;
@@ -141,6 +142,8 @@
         overflow-y: hidden;
         position: relative;
         transition: max-height 1s linear;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .key {
@@ -299,6 +302,10 @@
         text-transform: uppercase;
         font-weight: 700;
         font-size: var(--12px);
+    }
+
+    .expand:hover {
+        transform: translate(-50%, 0) scale(0.95);
     }
 
     @media (max-width: 600px) { 

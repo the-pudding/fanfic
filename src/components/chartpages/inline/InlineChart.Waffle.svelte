@@ -48,18 +48,18 @@
             : "#119C72";
 
         // Positions tooltip
-        const tooltipY = rect.top - containerRect.top + container.scrollTop;
+        const tooltipY = rect.top - containerRect.top + container.scrollTop - 2;
 
         // Checks tooltip position
         let tooltipWidth = innerWidth > 600 ? "10rem" : "142px";
 
         if (rect.left > innerWidth / 2) {
-            const tooltipRight = containerRect.right - rect.right;
+            const tooltipRight = containerRect.right - rect.right -2;
             tooltip
                 .style("right", `${tooltipRight}px`)
                 .style("left", "auto");
         } else {
-            const tooltipX = rect.left - containerRect.left;
+            const tooltipX = rect.left - containerRect.left - 2;
             tooltip
                 .style("left", `${tooltipX}px`)
                 .style("right", "auto"); 
@@ -148,14 +148,17 @@
 
 <style>
     .chart-container {
-        width: 100%;
-        background: var(--color-white);
-        padding: 2rem;
+        width: calc(100% - 2rem);
+        background: #f2f2f2;
+        margin: 1rem auto 2rem auto;
+        padding: 1rem;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 0.125rem;
         position: relative;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .tooltip {
@@ -185,7 +188,7 @@
     }
 
     .tooltip .works-text {
-        border-top: 1px solid white;
+        border-top: 1px solid #f2f2f2;
         padding-top: 0.25rem;
     }
     
@@ -203,7 +206,7 @@
     }
 
     .label {
-        background: white;
+        background: #f2f2f2;
         font-family: var(--mono);
         display: flex;
         align-items: center;

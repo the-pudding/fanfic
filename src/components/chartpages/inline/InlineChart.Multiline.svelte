@@ -92,7 +92,7 @@
 >
     {#if groupedData}
         <LayerCake
-            padding={{ top: 7, right: 10, bottom: 20, left: 25 }}
+            padding={{ top: 16, right: 16, bottom: 32, left: 16 }}
             x={xKey}
             y={yKey}
             z={zKey}
@@ -126,9 +126,12 @@
     expand to fill it.
   */
   .chart-container {
-    width: 100%;
+    width: calc(100% - 2rem);
     height: 400px;
-    background: var(--color-white);
-    padding: 2rem;
+    margin: 1rem auto 2rem auto;
+    background: #f2f2f2;
+    padding: 1rem;
+    border: 2px solid;
+    border-color: var(--window-inset-stroke);
   }
   </style>

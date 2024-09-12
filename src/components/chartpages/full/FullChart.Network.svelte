@@ -174,21 +174,25 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        background: var(--fanfic-window-gray);
-        border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
-        border-style:solid;
+        background: #f2f2f2;
+        border-width: 2px;
+        border-color: var(--window-button-stroke);
+        border-style: solid;
     }
 
 	.viz-wrapper {
-		background-color: white;
-		width: 100%;
+		background-color: #f2f2f2;
+		width: calc(100% - 2rem);
+		margin: 1rem auto 2rem auto;
 		display: flex;
 		flex-direction: row;
-		padding: 2rem 0;
+		padding: 1rem;
 		align-items: center;
-		gap: 3rem;
+		gap: 2rem;
 		overflow: hidden;
+		border-width: 2px;
+        border-color: var(--window-inset-stroke);
+        border-style: solid;
 	}
 	.fandom-wrapper {
 		width: 50%;
@@ -208,7 +212,7 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		margin: 0.5rem 0;
+		margin: 0.5rem 0 1.5rem 0;
 	}
 
 	.bar-wrapper {
@@ -234,7 +238,7 @@
 
 	.gender-bar, .relType-bar {
 		width: 100%;
-		height: 1rem;
+		height: 1.25rem;
 		display: flex;
 		flex-direction: row;
 		font-size: 10px;
@@ -242,10 +246,12 @@
 		font-family: var(--mono);
 		font-weight: 700;
 		text-align: right;
+		border: 2px solid;
+		border-color: var(--window-inset-stroke);
 	}
 
 	.gender-bar p, .relType-bar p {
-		padding: 0.125rem 0.125rem 0 0;
+		padding: 0.25rem 0.25rem 0 0;
 		margin: 0;
 		width: auto;
 		font-size: 10px;
@@ -256,7 +262,7 @@
 	}
 
 	.gender-f, .relType-ff {
-		background: var(--fanfic-pink);
+		background: var(--fanfic-red);
 	}
 
 	.relType-fm {
@@ -281,7 +287,7 @@
 	:global(.span-f) {
 		font-weight: 700;
 		font-family: var(--sans);
-		background-color: var(--fanfic-pink);
+		background-color: var(--fanfic-red);
 		padding: 0.125rem;
 	}
 

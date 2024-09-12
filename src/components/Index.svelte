@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from "svelte";
 	import { currSectionSTORE } from "$stores/misc.js";
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
@@ -28,6 +29,18 @@
 			}
 		}
 	};
+
+	onMount(() => {
+    const spans = document.querySelectorAll('span.slash-ref');
+
+		spans.forEach(span => {
+		span.onclick = function() {
+			console.log('Span clicked!', this);
+			currSectionSTORE.set("slash")
+			// Your onclick function logic here
+		};
+		});
+	});
 
 	// Sets the translation style for the "inner" div, it's a long ternary statment that works like if/else
 	$: translate = $currSectionSTORE == "slash" || $currSectionSTORE == undefined
@@ -103,5 +116,35 @@
 
 	.tap-wrapper.tapVisible {
 		display: block;
+	}
+
+	:global(#realpeople-slide .slash-ref) {
+		color: var(--fanfic-black);
+        font-weight: 700;
+        font-size: var(--14px);
+        font-family: var(--mono);
+        background-color: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        padding: 0.35rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	:global(#realpeople-slide .slash-ref::before) {
+		content: '';
+		/* background-image: url(". d/svg/left-arrow-pixel.svg"); */
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0 0.25rem;
+        padding: 0.35rem 0.35rem 0.35rem 1.125rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	:global(#realpeople-slide .slash-ref:hover) {
+		background-color: var(--fanfic-blue);
+		color: white;
 	}
 </style>

@@ -6,7 +6,7 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Geist", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+	--sans: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
 	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
 	--mono: "Geist Mono", Menlo, Consolas, Monaco, monospace;
 	--script: "Mea Culpa", cursive;
@@ -41,6 +41,7 @@
 
 	/* windows styling */
 	--window-button-stroke: #FFFFFF #151515 #151515 #FFFFFF; 
+	--window-inset-stroke: #151515 #FFFFFF #FFFFFF #151515; 
 }
 
 /* dark theme */

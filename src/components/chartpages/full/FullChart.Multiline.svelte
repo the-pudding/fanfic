@@ -138,7 +138,7 @@
             <div class="content-wrapper">
                 {#if groupedData}
                     <LayerCake
-                        padding={{ top: 20, right: 20, bottom: 20, left: 25 }}
+                        padding={{ top: 16, right: 16, bottom: 32, left: 16 }}
                         x={xKey}
                         y={yKey}
                         z={zKey}
@@ -196,21 +196,24 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        background: var(--fanfic-window-gray);
+        background: #f2f2f2;
         border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
         overflow: hidden;
     }
     .content-wrapper {
-        width: 100%;
-        height: 60vh;
+        width: calc(100% - 2rem);
+        margin: 1rem auto 2rem auto;
+        height: 50vh;
         padding: 1rem;
         display: flex;
         flex-direction: column; 
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: #f2f2f2;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
     .fandom-wrapper {
         width: 100%;
@@ -221,7 +224,7 @@
         padding: 1rem;
         align-items: center;
         justify-content: center;
-        background-color: white;
+        background-color: #f2f2f2;
     }
 
     ul {

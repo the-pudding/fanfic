@@ -3,6 +3,12 @@
     import { fly } from 'svelte/transition';
     import { sineInOut } from 'svelte/easing';
     import Icon from "$components/helpers/Icon.svelte";
+    import Book from "$svg/book-pixel.svg";
+    import Bookmark from "$svg/bookmark-pixel.svg";
+    import Retweet from "$svg/retweet-pixel.svg";
+    import News from "$svg/newspaper-pixel.svg";
+    import Heart from "$svg/heart-pixel.svg";
+    import Quote from "$svg/quote-pixel.svg";
 
     export let copy;
 
@@ -35,11 +41,13 @@
             {#if copy.source}
                 <div class="underline">
                     <div>
-                        {#if copy.attribute == "Sun Jung" || copy.attribute == "Stefan Robinson"}
-                            <Icon name="newspaper" />
-                        {:else}
-                            <Icon name="book-open" />
-                        {/if}
+                        <span class="icon">
+                            {#if copy.attribute == "Sun Jung" || copy.attribute == "Stefan Robinson"}
+                                {@html News}
+                            {:else}
+                                {@html Book}
+                            {/if}
+                        </span>
                         <a href="{copy.url}"><p>{copy.source}</p></a>
                     </div>
                 </div>
@@ -51,19 +59,27 @@
                     </div>
                     <div class="right">
                         <div>
-                            <Icon name="message-circle" />
+                            <span class="icon">
+                                {@html Quote}
+                            </span>
                             <p>43</p>
                         </div>
                         <div>
-                            <Icon name="repeat-2" />
+                            <span class="icon">
+                                {@html Retweet}
+                            </span>
                             <p>908</p>
                         </div>
                         <div>
-                            <Icon name="heart" />
+                            <span class="icon">
+                                {@html Heart}
+                            </span>
                             <p>4.9K</p>
                         </div>
                         <div>
-                            <Icon name="bookmark" />
+                            <span class="icon">
+                                {@html Bookmark}
+                            </span>
                             <p>133</p>
                         </div>
                     </div>
@@ -81,9 +97,23 @@
         height: 340px;
     }
 
+    .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .right .icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    :global(.icon svg rect) {
+        fill: var(--fanfic-black);
+    }
+
     .real, .bg {
         border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
         width: 100%;
         margin: 0;
@@ -159,6 +189,7 @@
         display: flex;
         flex-direction: row;
         gap: 2rem; 
+        color: var(--fanfic-black);
     }
 
     :global(.underline div svg) {

@@ -96,23 +96,24 @@
     }
 
     .grid {
-        width: 100%;
-        aspect-ratio: 1;
+        width: calc(20% - 0.5rem);
+        height: 2.5rem;
         overflow: hidden;
+        margin: 0.25rem;
     }
 
     .item-relationship-y.highlight-true {
-        background-color: var(--fanfic-highlighter);
+        background-color: var(--fanfic-blue);
         transition: background-color 1s linear;
     }
 
     .item-sexual-y.highlight-true {
-        background-color: var(--fanfic-pink);
+        background-color: var(--fanfic-red);
         transition: background-color 1s linear;
     }
 
     .highlight-true {
-        background-color: var(--fanfic-highlighter);
+        background-color: var(--fanfic-red);
     }
 
     .canon-No {

@@ -94,7 +94,7 @@
 		// nodeGroups, // an array of ordinal values representing the node groups
 		nodeTitle, // given d in nodes, a title string
 		nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
-		nodeStroke = "#fff", // node stroke color
+		nodeStroke = "#151515", // node stroke color
 		nodeStrokeWidth = 1, // node stroke width, in pixels
 		nodeStrokeOpacity = 1, // node stroke opacity
 		nodeRadius = 7, // node radius, in pixels
@@ -267,7 +267,7 @@
                 .attr("opacity", 1)
                 .transition()
                 .duration(500)
-                .attr("fill", "#FFAAB9");
+                .attr("fill", "#D03E00");
             mNodes
                 .attr("opacity", 1)
                 .transition()
@@ -289,7 +289,7 @@
         } else if (mounted && scrollIndex == 3) {
             containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
             links
                 .transition()
                 .duration(500)
@@ -297,7 +297,7 @@
         } else if (mounted && scrollIndex == 4) {
             containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 0.25).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
@@ -306,7 +306,7 @@
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#FFAAB9")
+                .attr("stroke", "#D03E00")
                 .attr("opacity", 0.6);
             fmLinks
                 .transition()
@@ -316,7 +316,7 @@
         } else if (mounted && scrollIndex == 5) {
             containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 0.25).attr("fill", "#FFAAB9");
+            fNodes.attr("opacity", 0.25).attr("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
@@ -335,7 +335,7 @@
         } else if (mounted && scrollIndex == 6) {
             containerDiv.style("pointer-events", "none");
             mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
@@ -354,7 +354,7 @@
         } else if (mounted && scrollIndex == 7) {
             containerDiv.style("pointer-events", "auto").style("cursor", "pointer");
             mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#FFAAB9");
+            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
@@ -363,7 +363,7 @@
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#FFAAB9")
+                .attr("stroke", "#D03E00")
                 .attr("opacity", 0.6);
             fmLinks
                 .transition()
@@ -394,11 +394,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        background-color: var(--fanfic-black);
     }
     :global(.dot-label) {
         font-family: var(--mono);
         font-size: 12px;
         opacity: 0;
+        fill: white;
         pointer-events: none;
         font-weight: bold;
     }

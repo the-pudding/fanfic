@@ -35,7 +35,7 @@
         height: 1.25rem;
         width: 1.25rem;
         border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-color:var(--window-button-stroke);
         border-style:solid;
         background: var(--fanfic-window-gray);
         display: flex;

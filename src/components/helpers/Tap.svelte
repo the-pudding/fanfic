@@ -2,6 +2,8 @@
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
 	import { createEventDispatcher } from "svelte";
 	import { currSectionSTORE } from "$stores/misc.js";
+	import LeftArrow from "$svg/left-arrow-pixel.svg";
+	import RightArrow from "$svg/right-arrow-pixel.svg";
 
 	export let debug = false;
 	export let enableKeyboard = false;
@@ -45,17 +47,13 @@
 		<button
 			on:click={dispatch("tap", dir)}
 			aria-label={dir}
-			class="{dir} {arrowPosition}"
+			class="tap {dir} {arrowPosition}"
 			class:full
 			disabled={disable.includes(dir)}
 		>
 			{#if visibleArrows.includes(dir)}
-				<span style="font-size: {arrowSize};">
-					<ChevronLeft
-						color={arrowStroke}
-						strokeWidth={arrowStrokeWidth}
-						size={"2rem"}
-					/>
+				<span>
+					{@html LeftArrow}
 				</span>
 			{/if}
 		</button>
@@ -63,17 +61,13 @@
 		<button
 			on:click={dispatch("tap", dir)}
 			aria-label={dir}
-			class="{dir} {arrowPosition}"
+			class="tap {dir} {arrowPosition}"
 			class:full
 			disabled={disable.includes(dir)}
 		>
 			{#if visibleArrows.includes(dir)}
-				<span style="font-size: {arrowSize};">
-					<ChevronRight
-						color={arrowStroke}
-						strokeWidth={arrowStrokeWidth}
-						size={"2rem"}
-					/>
+				<span>
+					{@html RightArrow}
 				</span>
 			{/if}
 		</button>
@@ -119,6 +113,22 @@
 		background-color: rgba(255, 255, 255, 0.2);
 	} */
 
+	:global(.tap span) {
+		opacity: 1;
+	}
+
+	:global(.tap.left span svg) {
+		width: 2rem;
+		margin-top: 2px;
+		margin-left: -4px;
+	}
+
+	:global(.tap.right span svg) {
+		width: 2rem;
+		margin-top: 2px;
+		margin-left: 2px;
+	}
+
 	.left {
 		left: 0.5rem;
 		top: 0;
@@ -140,6 +150,11 @@
 	.right.center {
 		top: 50%;
 		transform: translateY(-50%);
+	}
+
+	.left.center:hover,
+	.right.center:hover {
+		transform: scale(0.98) translateY(-50%);
 	}
 
 	.left.end,
@@ -206,7 +221,6 @@
 	span {
 		display: inline-block;
 		line-height: 1;
-		opacity: 0.5;
 	}
 
 	.debug .left {

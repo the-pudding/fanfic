@@ -79,7 +79,7 @@
     on:exit={exitViewDraw}
 >
     <LayerCake
-        padding={{ top: 10, right: 0, bottom: 0, left: 0 }}
+        padding={{ top: 16, right: 16, bottom: 32, left: 16 }}
         x={xKey}
         y={yKey}
         yDomain={[0, null]}
@@ -96,14 +96,17 @@
 
 <style>
     .chart-container {
-        width: 100%;
+        width: calc(100% - 2rem);
         height: 400px;
-        background: var(--color-white);
-        padding: 2rem;
+        margin: 1rem auto 2rem auto;
+        background: #f2f2f2;
+        padding: 1rem;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
     @media (max-width: 600px) { 
         .chart-container {
-            padding: 2rem;
+            padding: 1rem;
         }
     }
 

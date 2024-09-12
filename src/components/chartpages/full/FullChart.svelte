@@ -46,9 +46,9 @@
 
 <style>
     .chart-wrapper {
-        background: var(--fanfic-window-gray);
+        background: #f2f2f2;
         border-width:2px;
-        border-color:#FFFFFF #808080 #808080 #FFFFFF;
+        border-color: var(--window-button-stroke);
         border-style:solid;
     }
 

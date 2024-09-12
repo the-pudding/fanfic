@@ -80,7 +80,7 @@
 		height: 500px;
 		margin: 0;
 		overflow: hidden;
-        background-color: white;
+        background-color: #f2f2f2;
 		padding: 1rem;
 	}
 
@@ -104,7 +104,7 @@
 		width: 100%;
 		height: 100%;
 		padding: 0.3rem 0.4rem;
-		border: 1px solid white;
+		border: 1px solid #f2f2f2;
 		background-color: var(--fanfic-window-gray);
 		color: white;
 		box-sizing: border-box;
@@ -112,19 +112,19 @@
 	}
 
     .contents-MM, .contents-no {
-        background-color: var(--fanfic-red); 
+        background-color: var(--fanfic-blue); 
     }
 
     .contents-FM, .contents-yes {
         background-color: var(--fanfic-green); 
     }
 
-    .contents-Gen, .contents-questioning {
-        background-color: var(--fanfic-pink); 
+    .contents-Gen  {
+        background-color: #96AC0B; 
     }
 
-    .contents-FF {
-        background-color: var(--fanfic-highlighter); 
+    .contents-FF, .contents-questioning {
+        background-color: var(--fanfic-red); 
     }
 
     .contents-XReader {
