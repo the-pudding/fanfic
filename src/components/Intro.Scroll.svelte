@@ -29,6 +29,9 @@
 </section>
 
 <style>
+	#scrolly {
+		margin: -15% 0;
+	}
     .sticky {
 		position: sticky;
 		top: 0;
@@ -53,6 +56,10 @@
 	.step-inner {
 		padding: 1rem;
 		background-color: white;
+	}
+
+	:global(.step .strong) {
+		color: var(--fanfic-black);
 	}
 
 	@media (max-width: 600px) {

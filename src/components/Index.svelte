@@ -5,6 +5,7 @@
 	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
 	import UniversalTooltip from "$components/UniversalTooltip.svelte";
+	import MethodsSection from "$components/MethodsSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
 	import inView from "$actions/inView.js";
@@ -31,15 +32,20 @@
 	};
 
 	onMount(() => {
-    const spans = document.querySelectorAll('span.slash-ref');
+		const slashSpans = document.querySelectorAll('span.slash-ref');
+		const canonSpans = document.querySelectorAll('span.canon-ref');
+		const rpfSpans = document.querySelectorAll('span.rpf-ref');
 
-		spans.forEach(span => {
-		span.onclick = function() {
-			console.log('Span clicked!', this);
-			currSectionSTORE.set("slash")
-			// Your onclick function logic here
-		};
-		});
+			slashSpans.forEach(span => {
+				span.onclick = function() {
+					currSectionSTORE.set("slash")
+				};
+			});
+			canonSpans.forEach(span => {
+				span.onclick = function() {
+					currSectionSTORE.set("noncanon")
+				};
+			});
 	});
 
 	// Sets the translation style for the "inner" div, it's a long ternary statment that works like if/else
@@ -74,6 +80,7 @@
 </div>
 <div class="texture">
 </div>
+<MethodsSection />
 <UniversalTooltip />
 <Footer />
 
@@ -118,6 +125,63 @@
 		display: block;
 	}
 
+	:global(#slash-slide .canon-ref) {
+		color: var(--fanfic-black);
+        font-weight: 700;
+        font-size: var(--14px);
+        font-family: var(--mono);
+        background-color: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        padding: 0.35rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	:global(#slash-slide .canon-ref::before) {
+		content: '';
+		background-image: url("src/svg/right-arrow-pixel.svg");
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0 0.25rem;
+        padding: 0.35rem 0.35rem 0.35rem 1.125rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	:global(#slash-slide .canon-ref:hover) {
+		background-color: var(--fanfic-red);
+		color: white;
+	}
+
+	:global(#noncanon-slide .slash-ref) {
+		color: var(--fanfic-black);
+        font-weight: 700;
+        font-size: var(--14px);
+        font-family: var(--mono);
+        background-color: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        padding: 0.35rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	:global(#noncanon-slide .slash-ref::before) {
+		content: '';
+		background-image: url("src/svg/left-arrow-pixel.svg");
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0 0.25rem;
+        padding: 0.35rem 0.35rem 0.35rem 1.125rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
 	:global(#realpeople-slide .slash-ref) {
 		color: var(--fanfic-black);
         font-weight: 700;
@@ -130,11 +194,12 @@
         padding: 0.35rem;
         white-space: nowrap;
 		text-transform: uppercase;
+		cursor: pointer;
 	}
 
 	:global(#realpeople-slide .slash-ref::before) {
 		content: '';
-		/* background-image: url(". d/svg/left-arrow-pixel.svg"); */
+		background-image: url("src/svg/double-left-arrow-pixel.svg");
         background-size: 18px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;
@@ -143,8 +208,39 @@
 		text-transform: uppercase;
 	}
 
-	:global(#realpeople-slide .slash-ref:hover) {
+	:global(#realpeople-slide .slash-ref:hover, #noncanon-slide .slash-ref:hover) {
 		background-color: var(--fanfic-blue);
+		color: white;
+	}
+
+	:global(#realpeople-slide .canon-ref) {
+		color: var(--fanfic-black);
+        font-weight: 700;
+        font-size: var(--14px);
+        font-family: var(--mono);
+        background-color: var(--fanfic-window-gray);
+        border-width:2px;
+        border-color: var(--window-button-stroke);
+        border-style:solid;
+        padding: 0.35rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	:global(#realpeople-slide .canon-ref::before) {
+		content: '';
+		background-image: url("src/svg/left-arrow-pixel.svg");
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0 0.25rem;
+        padding: 0.35rem 0.35rem 0.35rem 1.125rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	:global(#realpeople-slide .canon-ref:hover ) {
+		background-color: var(--fanfic-red);
 		color: white;
 	}
 </style>

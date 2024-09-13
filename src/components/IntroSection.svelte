@@ -8,6 +8,7 @@
     import Sparkles from "$components/Sparkles.svelte";
     import inView from "$actions/inView.js";
     import copy from "$data/copy.json";
+    import Cursor from "$svg/cursor-pixel.svg";
 
     let inViewTrigger = false;
     let introW;
@@ -85,7 +86,16 @@
             </div>
         {/if}
     </div>
+    <div class="prose prose-transition">
+        <Prose copy={copy.intro[5].text}/>
+    </div>
     <IntroScroll />
+    <div class="prose prose-transition">
+        <div class="cursor-icon">
+            {@html Cursor}
+        </div>
+        <p>Use the top tab buttons or the side arrow buttons to switch between chapters.</p>
+    </div>
     {#if introW && introH}
         <Sparkles {introW} {introH}/>
     {/if}
@@ -95,7 +105,7 @@
     section {
         width: 100%;
         opacity: 1;
-        padding: 0 1rem;
+        padding: 0 1rem 3rem 1rem;
     }
 
     #intro-slide {
@@ -181,9 +191,9 @@
     .popups {
         width: 100%;
         position: relative;
-        height: 100vh;
+        height: 80vh;
         max-width: 1100px;
-        margin: 0 auto;
+        margin: 10rem auto 0 auto;
         display: flex;
         flex-direction: row;
     }
@@ -192,6 +202,28 @@
         max-width: 700px;
         margin: 0 auto;
         color: var(--color-white);
+    }
+
+    :global(.prose-transition p) {
+        font-family: var(--sans);
+        font-size: var(--22px);
+        line-height: 1.85;
+        margin: 1rem 0;
+        text-align: center;
+        font-style: italic;
+        color: var(--fanfic-highlighter);
+    }
+
+    .cursor-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 auto;
+        animation: shake 1.5s cubic-bezier(.36,.07,.19,.97) infinite;
+        transform: translate3d(0, 0, 0);
+    }
+
+    :global(.cursor-icon svg polygon) {
+        fill: var(--fanfic-highlighter);
     }
 
     .fly-box {
@@ -269,6 +301,24 @@
             top: auto;
             left: auto;
             right: auto;
+        }
+    }
+
+    @keyframes shake {
+        10%, 90% {
+            transform: translate3d(-1px, 0, 0);
+        }
+        
+        20%, 80% {
+            transform: translate3d(1px, 0, 0);
+        }
+
+        30%, 50%, 70% {
+            transform: translate3d(-2px, 0, 0);
+        }
+
+        40%, 60% {
+            transform: translate3d(2px, 0, 0);
         }
     }
 </style>

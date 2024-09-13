@@ -42,7 +42,7 @@
                 <div class="underline">
                     <div>
                         <span class="icon">
-                            {#if copy.attribute == "Sun Jung" || copy.attribute == "Stefan Robinson"}
+                            {#if copy.attribute == "Sun Jung" || copy.attribute == "Stefan Robinson" || copy.attribute == "Henry Jenkins"}
                                 {@html News}
                             {:else}
                                 {@html Book}

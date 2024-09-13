@@ -71,6 +71,7 @@
         border-width:2px;
         border-color: var(--window-button-stroke);
         border-style:solid;
+        z-index: 1000;
     }
 
     .text-fit-wrapper {
@@ -165,7 +166,7 @@
         margin-top: 0;
     }
 
-    :global(#random-characters svg rect) {
+    :global(#random-characters svg rect, #random-characters svg polygon) {
         fill: white;
     }
 

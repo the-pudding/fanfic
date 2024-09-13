@@ -1,7 +1,8 @@
 <script>
     export let copy;
 
-    const stringSplit = copy.split("");
+    const wordSplit = copy.split(" ");
+    const charSplit = copy.split("");
 
     function checkVowel(char) {
         char = char.toLowerCase();
@@ -11,9 +12,13 @@
 
 
 <h3>
-    {#each stringSplit as char, i}
-    {@const isVowel = checkVowel(char)}
-        <span class="hedspan-{isVowel}">{char}</span>
+    {#each wordSplit as word, i}
+        <span class="word">
+            {#each word.split("") as char, i}
+                {@const isVowel = checkVowel(char)}
+                <span class="char hedspan-{isVowel}">{char}</span>
+            {/each}
+        </span>
     {/each}
 </h3>
 
@@ -21,13 +26,17 @@
 <style>
     h3 {
         font-size: var(--80px);
-        line-height: 1;
-        margin: 2rem auto;
+        line-height: 1.125;
+        margin: 2rem auto 0 auto;
         text-transform: uppercase;
         font-family: var(--sans);
         font-weight: 300;
         text-align: center;
         color: var(--fanfic-highlighter);
+    }
+
+    .word {
+        display: block;
     }
 
     .hedspan-true {

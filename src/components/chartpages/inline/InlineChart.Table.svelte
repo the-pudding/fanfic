@@ -149,14 +149,15 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0;
+        gap: 1rem;
     }
 
     .set-wrapper ul {
-        padding: 0 0.5rem;
+        padding: 0;
     }
 
     .list-wrapper {
-        width: 25%;
+        width: calc(25% - 0.75rem);
         display: flex;
         flex-direction: column;
         margin: 0;
@@ -176,7 +177,7 @@
         width:100%;
         display: flex;
         flex-direction: column;
-        padding: 0.5rem 0.5rem;
+        padding: 0.5rem 0;
     }
 
     .summary p {

@@ -51,8 +51,8 @@
     .left {
         border: 2px solid;
         border-color: var(--window-button-stroke);
-        height: 280px;
         width: 240px;
+        aspect-ratio: 1 /1.125;
         overflow: hidden;
         margin-top: 10rem;
         margin-right: -2rem;
@@ -74,6 +74,7 @@
         text-align: center;
         padding: 0;
         margin: -1rem 0 0 0;
+        line-height: 1;
     }
 
     .right p {
@@ -85,6 +86,7 @@
         text-align: center;
         padding: 0;
         margin: -1rem 0 0 0;
+        line-height: 1;
     }
 
     .left img {
@@ -160,29 +162,16 @@
     }
 
     @media (max-width: 600px) {
-        .faces img {
-            width: 50%;
-            z-index: 1000;
-        }
-
-        .faces img:nth-of-type(1) {
+        .left {
             margin-top: 5rem;
+            margin-right: -1rem;
         }
 
-        .bg-connecter {
-            font-size: 300px;
+        .right {
+            margin-left: -1rem;
         }
 
-        .name-mono {
-            font-size: var(--24px);
-        }
-        
-        .name-script {
-            font-size: var(--40px);
-            margin: -1rem 0 0 0;
-        }
-
-        .tag {
+        .left p, .right p {
             font-size: var(--18px);
         }
 	}

@@ -56,17 +56,12 @@
 					{#if id == "SLASH_AO3demographics0" || id == "SLASH_AO3demographics1"}
 						<div class="contents contents-{(node.data.short)}">
 							<strong>{node.data.name}</strong>
-							<span>{yootils.commas(node.value)}%</span>
+							<span>{Math.round(yootils.commas(node.value))}%</span>
 						</div>
-					{:else if id == "RPF_relTypeByFandom0" || id == "RPF_relTypeByFandom1"}
+					{:else }
 						<div class="contents contents-{(node.data.name).replace("/", "")}">
 							<strong>{node.data.name}</strong>
-							<span>{yootils.commas(node.value)}%</span>
-						</div>
-					{:else}
-						<div class="contents contents-{(node.data.name).replace("/", "")}">
-							<strong>{node.data.name}</strong>
-							<span>{yootils.commas(node.value)}</span>
+							<span>{Math.round(yootils.commas(node.value))}%</span>
 						</div>
 					{/if}
 				</div>
@@ -76,12 +71,15 @@
 
 <style>
 	.chart {
-		width: 100%;
-		height: 500px;
-		margin: 0;
+		width: calc(100% - 2rem);
+		margin: 1rem auto 2rem auto;
+		aspect-ratio: 1;
+		max-height: 500px;
 		overflow: hidden;
         background-color: #f2f2f2;
 		padding: 1rem;
+		border: 2px solid;
+		border-color: var(--window-inset-stroke);
 	}
 
 	#SLASH_AO3demographics0, #SLASH_AO3demographics1, #RPF_relTypeByFandom0, #RPF_relTypeByFandom1 {
@@ -94,6 +92,7 @@
 		height: 100%;
 		overflow: visible;
 		pointer-events: all;
+		border: 1px solid #f2f2f2;
 	}
 
 	.node:not(.leaf) {
@@ -104,10 +103,7 @@
 		width: 100%;
 		height: 100%;
 		padding: 0.3rem 0.4rem;
-		border: 1px solid #f2f2f2;
-		background-color: var(--fanfic-window-gray);
 		color: white;
-		box-sizing: border-box;
         font-family: var(--mono);
 	}
 
@@ -143,14 +139,17 @@
         background-color: var(--fanfic-window-gray); 
     }
 
-	.contents-mudane {
-		background-color: var(--fanfic-red); 
-	}
+	.contents-nr{
+        background-color: var(--fanfic-window-gray); 
+    }
 
 	strong, span {
 		display: block;
 		font-size: 12px;
 		white-space: nowrap;
 		line-height: 1;
+	}
+
+	@media (max-width: 600px) {
 	}
 </style>

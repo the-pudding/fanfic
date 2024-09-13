@@ -58,8 +58,9 @@
     </li>
 {:else}
     {#if scrollIndex >= 0 || scrollIndex == undefined}
+        {@const textColor = scrollIndex > 0 && specialClass !== "#C0B9C6" ? "white" : "#151515"}
         <li class="grid"
-            style="background-color: {specialClass}"
+            style="background-color: {specialClass}; color: {textColor}"
             on:mouseenter={handleMouseEnter}
             on:mouseleave={handleMouseLeave}
             in:fade={{ delay: index*50, duration: 300 }}
@@ -104,16 +105,20 @@
 
     .item-relationship-y.highlight-true {
         background-color: var(--fanfic-blue);
+        color: white;
         transition: background-color 1s linear;
     }
 
     .item-sexual-y.highlight-true {
         background-color: var(--fanfic-red);
+        color: white;
         transition: background-color 1s linear;
     }
 
     .highlight-true {
-        background-color: var(--fanfic-red);
+        background-color: var(--fanfic-blue);
+        color: white;
+        transition: background-color 1s linear;
     }
 
     .canon-No {

@@ -22,7 +22,7 @@
             {@const treeId = id + i}
             {@const hed = i == 0 ? "BTS" : "YouTube"}
             <div class="treemap-inner">
-                <h3>{hed}</h3>
+                <h5>{hed}</h5>
                 <InlineChartTreemap id={treeId} />
             </div>
         {/each}
@@ -36,19 +36,16 @@
         margin: 1rem auto 2rem auto;
         background: #f2f2f2;
         padding: 0;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
+        display: flex;
     }
 
     .treemap-wrapper {
 		width: 100%;
-		height: 500px;
 		margin: 0;
         display: flex;
         flex-direction: row;
 		overflow: hidden;
         background-color: #f2f2f2;
-		padding: 1rem;
         gap: 2rem;
 	}
 
@@ -57,14 +54,29 @@
         width: 100%;
         height: 100%;
         flex-direction: column;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        padding: 1rem;
     }
 
-    h3 {
+    :global(.treemap-inner .chart) {
+        border: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    h5 {
         text-align: center;
         font-family: var(--mono);
         font-weight: 700;
         font-size: var(--18px);
         margin: 0 0 0.5rem 0;
         padding: 0;
+    }
+
+    @media (max-width: 600px) {
+        .treemap-wrapper {
+            flex-direction: column;
+        }
     }
 </style>

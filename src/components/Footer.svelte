@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import inView from "$actions/inView.js";
-	import wordmark from "$svg/wordmark.svg";
+	import wordmark from "$svg/wordmark-shadow.svg";
 
 	let localURL;
 	let stories = [];
@@ -75,7 +75,6 @@
 
 <style>
 	footer {
-		background-color: var(--color-fg);
 		color: var(--color-bg);
 		font-family: var(--sans);
 		padding: 3em 1em;
@@ -108,6 +107,15 @@
 		font-weight: 900;
 		text-decoration: none;
 		border: none;
+	}
+
+	.story img {
+		border: 2px solid;
+		border-color: var(--window-button-stroke);
+	}
+
+	.story img:hover {
+		transform: scale(0.98);
 	}
 
 	.story span {

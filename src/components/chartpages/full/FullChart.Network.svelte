@@ -284,10 +284,22 @@
 		font-family: var(--sans);
 	}
 
+	:global(.span-instructions::before) {
+		content: '';
+		background-image: url("src/svg/cursor-pixel.svg");
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 0 0.25rem;
+		padding: 0.35rem 0.35rem 0.35rem 1.125rem;
+        white-space: nowrap;
+		text-transform: uppercase;
+	}
+
 	:global(.span-f) {
 		font-weight: 700;
 		font-family: var(--sans);
 		background-color: var(--fanfic-red);
+		color: white;
 		padding: 0.125rem;
 	}
 

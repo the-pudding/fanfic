@@ -23,13 +23,13 @@
             {@const treeId = id + i}
             {@const hed = i == 0 ? "Do you identify as LGBTQ+ in any form?" : "Do you identify transgender?"}
             <div class="treemap-inner">
-                <h3>{hed}</h3>
+                <h5>{hed}</h5>
                 <InlineChartTreemap id={treeId} />
             </div>
         {/each}
     </div>
     <div class="bar-wrapper">
-        <h3>What is your gender identity?</h3>
+        <h5>What is your gender identity?</h5>
         {#each data as response, i}
         <div class="row">
             <p>{response.response}</p>
@@ -45,22 +45,29 @@
 </div>
 
 <style>
+    :global(#SLASH_AO3demographics0, #SLASH_AO3demographics1) {
+        border: none;
+        margin: 0;
+        width: 100%;
+    }
+    
     .viz-wrapper {
-        width: calc(100% - 2rem);
+        width: 100%;
         margin: 1rem auto 2rem auto;
         background: #f2f2f2;
-        padding: 2rem;
+        padding: 0 1rem;
         display: flex;
         flex-direction: row;
         gap: 2rem;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
     }
 
     .treemap-wrapper {
         display: flex;
         flex-direction: column;
         width: 50%;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        padding: 1rem;
     }
 
     .treemap-inner {
@@ -71,10 +78,10 @@
     }
 
     .treemap-inner:last-of-type {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 
-    h3 {
+    h5 {
         text-align: center;
         font-family: var(--mono);
         font-weight: 700;
@@ -85,6 +92,9 @@
 
     .bar-wrapper {
         width: 50%;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        padding: 1rem;
     }
 
     .row {
@@ -92,22 +102,25 @@
         flex-direction: row;
         align-items: center;
         margin: 4px 0;
-        border: 1px solid black;
+        /* border: 1px solid black; */
     }
 
     .row p {
         font-family: var(--mono); 
-        font-size: 10px;
+        font-size: var(--12px);
         width: 9rem;
         line-height: 1.25;
         margin: 0;
         padding: 0 0 0 0.5rem;
+        font-weight: 700;
     }
 
     .bars {
         position: relative;
         height: 1.75rem;
         width: calc(100% - 9rem);
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .baseline {

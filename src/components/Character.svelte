@@ -42,7 +42,6 @@
 	.character {
         width: calc(50% - 2rem);
         height: 100%;
-        overflow-y: hidden;
     }
 
     .fly-container_left {
@@ -58,10 +57,14 @@
     }
 
     .fly-container_left.forceFlyLeft, .fly-container_right.forceFly {
-        transform: translateX(30%);
+        transform: translateX(50%);
     }
 
     .fly-container_right.forceFlyRight {
         transform: translateX(-30%);
+    }
+
+    img {
+        height: 140%;
     }
 </style>

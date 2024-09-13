@@ -21,11 +21,11 @@
     }
 
     function setState(scrollIndex, ship) {
-        if (scrollIndex == 1 && ship.relType =="M/M") {
+        if (scrollIndex == 0 && ship.relType =="M/M") {
             active = true;
-        } else if (scrollIndex ==2 && ship.isCanon == "No") {
+        } else if (scrollIndex == 1 && ship.isCanon == "No") {
             active = true;
-        } else if (scrollIndex == 3 && ship.isRPF == "Yes") {
+        } else if (scrollIndex == 2 && ship.isRPF == "Yes") {
             active = true;
         } else { active = false }
         return active;

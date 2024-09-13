@@ -85,29 +85,29 @@
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
         } else if (scrollIndex == 1) {
             d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
-            d3.selectAll("#bts-path").style("stroke", "#151515");
-            d3.selectAll("#youtube-path").style("stroke", "#151515");
+            d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
+            d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 2) {
             d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
-            d3.selectAll("#bts-path").style("stroke", "#151515");
-            d3.selectAll("#youtube-path").style("stroke", "#119C72");
+            d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
+            d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 3) {
             d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
-            d3.selectAll("#youtube-path").style("stroke", "#119C72");
+            d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 4) {
             d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
-            d3.selectAll("#youtube-path").style("stroke", "#119C72");
+            d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
@@ -177,6 +177,9 @@
 </section>
 
 <style>
+    #scrolly {
+        margin: -15% 0 0 0;
+    }
     .sticky {
         width: 100%;
 		position: sticky;

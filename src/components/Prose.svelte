@@ -69,8 +69,18 @@
         white-space: nowrap;
     }
 
-    :global(span.ship a:hover) {
+    :global(#slash-slide span.ship a:hover) {
         background-color: var(--fanfic-blue);
+        color: white;
+    }
+
+    :global(#noncanon-slide span.ship a:hover) {
+        background-color: var(--fanfic-green);
+        color: white;
+    }
+
+    :global(#realpeople-slide span.ship a:hover) {
+        background-color: var(--fanfic-red);
         color: white;
     }
 

@@ -55,19 +55,19 @@
     }
     #slash-slide {
         background: var(--fanfic-blue);
-        padding: 0 2rem;
+        padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }
 
     #noncanon-slide {
         background: var(--fanfic-green);
-        padding: 0 2rem;
+        padding: 0 2rem 10rem 2rem;
         width: 96vw;
     }
 
     #realpeople-slide {
         background: var(--fanfic-red);
-        padding: 0 2rem;
+        padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }
 
@@ -77,31 +77,28 @@
         color: var(--color-white);
     }
 
+    :global(.prose-transition p) {
+        font-family: var(--sans);
+    }
+
     .opening-ship {
         max-width: 1400px;
         margin: 0 auto; 
     }
-
-    .hed {
-        max-width: 1400px;
-        margin: 10rem auto 0 auto;
-        color: var(--fanfic-pink);
-    }
-
     .inline-chart {
-        margin: 2rem auto;
+        margin: 4rem auto;
     }
 
     .full-chart {
-        margin: 2rem auto;
+        margin: 4rem auto;
     }
 
     .hed {
         position: relative;
-        height: 10rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 6rem auto 0 auto;
     }
 
     .hed-script, .hed-sans {

@@ -1,6 +1,6 @@
 
 <script>
-    import { onMount } from 'svelte';
+    import {getContext, onMount} from 'svelte';
     import Scrolly from "$components/helpers/Scrolly.svelte";
     import data from "$data/SLASH/SLASH_topFandoms.csv";
     import { fade } from 'svelte/transition';
@@ -8,6 +8,8 @@
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     import ListBlock from "$components/ListBlock.svelte";
     import Rank from "$components/Rank.svelte";
+
+    const copy = getContext("copy");
 
     export let id;
 
@@ -29,7 +31,7 @@
         "#C0B9C6",  // Video Game
         "#C0B9C6", // Crime
         "#C0B9C6", // Thriller
-        "#119C72", // Science Fiction
+        "#0F8662", // Science Fiction
         "#C0B9C6", // Slice of Life
         "#C0B9C6", // Romance
         "#C0B9C6", // Historical
@@ -49,9 +51,6 @@
 
     let scrollIndex;
 
-    // To replace with copy once copy is set
-    let steps = [0,1,2,3];
-
     function calculateBestGrid(innerWidth, innerHeight) {
         let ratio = innerWidth/innerHeight;
         
@@ -69,7 +68,7 @@
 <section id="scrolly">
     <div class="sticky">
         <div class="chart-wrapper">
-            <ChartHeader title={"TKTK"} />
+            <ChartHeader title={"Top 50 fandoms"} />
             <div class="content-wrapper">
                 <div class="key">
                     {#if scrollIndex == 1}
@@ -99,18 +98,19 @@
         </div>
     </div>
     <Scrolly bind:value={scrollIndex}>
-        {#if steps}
-            {#each steps as text, i}
+            {#each copy.slashFandomSlides as step, i}
                 <div class="step">
-                    <p>{@html i}</p>
+                    <p>{@html step.value}</p>
                 </div>
             {/each}
-        {/if}
     </Scrolly>
     <div class="spacer" />
 </section>
 
 <style>
+    #scrolly {
+        margin: -15% 0 0 0;
+    }
     .grid {
         display: grid;
         grid-template-rows: repeat(var(--rows), 1fr);
@@ -265,6 +265,12 @@
         margin: 0 auto;
 		pointer-events: none;
 	}
+
+    .step p {
+        background: white;
+        padding: 2rem 1rem;
+        border: 1px solid var(--fanfic-black);
+    }
 
     @media (max-width: 600px) {
         .sticky {

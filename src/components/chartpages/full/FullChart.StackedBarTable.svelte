@@ -49,7 +49,7 @@
     const mmSeriesNames = Object.keys(mmData[0]).filter(d => d !== xKey);
     const ffSeriesNames = Object.keys(ffData[0]).filter(d => d !== xKey);
     const fmSeriesNames = Object.keys(fmData[0]).filter(d => d !== xKey);
-    const seriesColors = ['#1B2AA6', '#119C72', '#D03200'];
+    const seriesColors = ['#1B2AA6', '#0F8662', '#D03200'];
 
     // Makes sure the data is in number format
     mmData.forEach(d => {
@@ -274,6 +274,7 @@
         font-family: var(--mono);
         font-weight: 400;
         height: 3rem;
+        color: white;
     }
 
     .ship-name {
@@ -318,13 +319,13 @@
         border-right: 1px solid #D03200;
     }
     .canon-Semi-Canon {
-        background: #119C72;
+        background: #0F8662;
     }
     .canon-Semi-Canon .right-align {
-        border-left: 1px solid #119C72;
+        border-left: 1px solid #0F8662;
     }
     .canon-Semi-Canon .ship-name {
-        border-right: 1px solid #119C72;
+        border-right: 1px solid #0F8662;
     }
     .canon-No {
         background: #1B2AA6;
@@ -379,7 +380,7 @@
         position: relative;
         top: 0.2rem;
         margin: 0 0.25rem 0 0;
-        background: #119C72;
+        background: #0F8662;
     }
 
     @media (max-width: 600px) { 

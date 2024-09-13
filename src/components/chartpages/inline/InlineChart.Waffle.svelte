@@ -45,7 +45,7 @@
             ? "#D03200"
             : ship.isCanon == "Yes"
             ? "#1B2AA6"
-            : "#119C72";
+            : "#0F8662";
 
         // Positions tooltip
         const tooltipY = rect.top - containerRect.top + container.scrollTop - 2;

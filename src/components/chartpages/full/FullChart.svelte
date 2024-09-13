@@ -9,6 +9,7 @@
    import FullChartNetwork from "$components/chartpages/full/FullChart.Network.svelte";
    import FullChartMultiline from "$components/chartpages/full/FullChart.Multiline.svelte";
    import FullChartTreemap from "$components/chartpages/full/FullChart.Treemap.svelte";
+   import FullChartBlocks from "$components/chartpages/full/FullChart.Blocks.svelte";
    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
@@ -40,6 +41,10 @@
         {#if chartType == "treemap"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartTreemap {id} />
+        {/if}
+        {#if chartType == "blocks"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartBlocks {id} />
         {/if}
     </div>
 {/if}

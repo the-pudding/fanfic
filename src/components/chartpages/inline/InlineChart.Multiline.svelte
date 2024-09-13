@@ -25,8 +25,8 @@
         : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
     const seriesColors = id == "CANON_percentCanon"
-        ? ['#1B2AA6', '#119C72', '#D03200']
-        : ['#1B2AA6', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#119C72'];
+        ? ['#1B2AA6', '#0F8662', '#D03200']
+        : ['#1B2AA6', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#cccccc', '#0F8662'];
 
     // Used to match the data to its keys
     const axisKeys = [

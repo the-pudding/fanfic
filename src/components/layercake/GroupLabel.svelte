@@ -41,7 +41,7 @@
     } else if (group.fandom == "BTS") {
       return "#1B2AA6"
     } else if (group.fandom == "Youtube") {
-      return "#119C72"
+      return "#0F8662"
     } else if (group.fandom == "One Direction") {
       return "#D03200"
     } else {
