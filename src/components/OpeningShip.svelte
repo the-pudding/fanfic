@@ -16,7 +16,7 @@
     on:exit={exitViewFly}  
 >   
     {#if inViewTrigger}
-        <div class="left" transition:fly={{ delay: 250, duration: 300, x: -200}}>
+        <div class="left">
             <img src="./assets/images/heads/{copy.imgA}.png" alt="character"/>
             <p>
                 <span>{copy.nameAfirst}</span> 
@@ -26,7 +26,7 @@
             </p>
         </div>
         <div class="right" transition:fly={{ delay: 250, duration: 300, x: 200}}>
-            <img src="./assets/images/heads/{copy.imgB}.png" alt="character"/>
+            <img src="./assets/images/heads/{copy.imgB}_mouse.png" alt="character"/>
             <p>
                 <span>{copy.nameBfirst}</span> 
                 {#if copy.nameBlast}
@@ -54,7 +54,7 @@
         width: 240px;
         aspect-ratio: 1 /1.125;
         overflow: hidden;
-        margin-top: 10rem;
+        margin-top: 5rem;
         margin-right: -2rem;
     }
 

@@ -6,10 +6,11 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
+	--sans: "Helvetica","Arial",Tahoma,Arial,Helvetica,sans-serif;
 	--serif: "Tiempos Text Web", Iowan Old Style, Times New Roman, Times, serif;
 	--mono: "Geist Mono", Menlo, Consolas, Monaco, monospace;
 	--script: "Mea Culpa", cursive;
+	--narrow: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
 
 	/* z-index */
 	--z-bottom: -100;

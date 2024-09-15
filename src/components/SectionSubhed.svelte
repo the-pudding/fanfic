@@ -6,7 +6,7 @@
 
     function checkVowel(char) {
         char = char.toLowerCase();
-        return ['a', 'e', 'i', 'o', 'u'].includes(char);
+        return ['a', 'e', 'o'].includes(char);
     }
 </script>
 
@@ -29,7 +29,7 @@
         line-height: 1.125;
         margin: 2rem auto 0 auto;
         text-transform: uppercase;
-        font-family: var(--sans);
+        font-family: var(--narrow);
         font-weight: 300;
         text-align: center;
         color: var(--fanfic-highlighter);

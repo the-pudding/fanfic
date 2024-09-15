@@ -56,6 +56,7 @@
 	.step-inner {
 		padding: 1rem;
 		background-color: white;
+		border: 1px solid var(--fanfic-black);
 	}
 
 	:global(.step .strong) {

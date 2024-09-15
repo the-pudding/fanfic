@@ -40,8 +40,8 @@
 
 <style>
 	.character {
-        width: calc(50% - 2rem);
-        height: 100%;
+        width: calc(41%);
+        height: 170%;
     }
 
     .fly-container_left {
@@ -65,6 +65,6 @@
     }
 
     img {
-        height: 140%;
+        height: 120%;
     }
 </style>
