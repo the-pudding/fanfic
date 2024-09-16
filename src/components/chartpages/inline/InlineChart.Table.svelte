@@ -64,7 +64,7 @@
                         height={"3rem"}
                         width={"100%"}
                     />
-                {:else if id == "CANON_AUtags"}
+                {:else if id == "CANON_AUtags" || id == "SLASH_topTagsTotal"}
                     <ListBlock
                         topItem={ship.tag}
                         numItem={format(ship.count)}

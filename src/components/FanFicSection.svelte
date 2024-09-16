@@ -49,24 +49,25 @@
 <style>
     section {
         opacity: 1;
+        background-image: url("/assets/images/cloud-ascii-opacity.png");
     }
     section.isActive {
         opacity: 1;
     }
     #slash-slide {
-        background: var(--fanfic-blue);
+        background-color: var(--fanfic-blue);
         padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }
 
     #noncanon-slide {
-        background: var(--fanfic-green);
+        background-color: var(--fanfic-green);
         padding: 0 2rem 10rem 2rem;
         width: 96vw;
     }
 
     #realpeople-slide {
-        background: var(--fanfic-red);
+        background-color: var(--fanfic-red);
         padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }

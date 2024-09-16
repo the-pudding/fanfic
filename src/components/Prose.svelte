@@ -1,9 +1,32 @@
 <script>
+    import inView from "$actions/inView.js";
+    import { annotationVisible } from "$stores/misc.js";
+
+    import copyFull from "$data/copy.json";
+
     export let copy;
+
+    function showAnno(annoID) {
+        annotationVisible.set([true, +annoID]);
+    }
+
+    function hideAnno() {
+        annotationVisible.set([false, null]);
+    }
 </script>
 
 {#each copy as text, i}
-    <p>{@html text.value}</p>
+    {#if text.value.includes("annotrigger")}
+    {@const annoID = text.value.split("annotrigger")[1].split(">")[0]}
+    <p
+        use:inView={{ bottom: 100 }}
+        on:enter={() => showAnno(annoID)}
+        on:exit={hideAnno}
+    >
+        {@html text.value}</p>
+    {:else}
+        <p>{@html text.value}</p>
+    {/if}
 {/each}
 
 <style>

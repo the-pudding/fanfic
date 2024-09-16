@@ -57,12 +57,12 @@
     >
         {#if inViewTrigger == true}
             <div class="fly-box left-fly">
-                <div 
+                <!-- <div 
                     transition:fly={{ delay: 250, duration: 500, y: 500, easing: sineInOut }}
                     class="inline-chart inline-chart-sm"
                 >
                     <InlineChart chunk={copy.intro[1]} chartType={copy.intro[1].chartType} id={copy.intro[1].id} title={copy.intro[1].title}/>
-                </div>
+                </div> -->
                 <div 
                     transition:fly={{ delay: 750, duration: 500, y: 500, easing: sineInOut }}
                     class="inline-chart inline-chart-lg"
@@ -71,12 +71,12 @@
                 </div>
             </div>
             <div class="fly-box right-fly">
-                <div 
+                <!-- <div 
                     transition:fly={{ delay: 500, duration: 500, y: 500, easing: sineInOut }}
                     class="inline-chart inline-chart-sm"
                 >
                     <InlineChart chunk={copy.intro[2]} chartType={copy.intro[2].chartType} id={copy.intro[2].id} title={copy.intro[2].title}/>
-                </div>
+                </div> -->
                 <div 
                     transition:fly={{ delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
                     class="inline-chart inline-chart-lg"
