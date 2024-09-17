@@ -126,7 +126,7 @@
         </ul>
         {/if}
     </div>
-    <button on:click={expandClick} class="expand">{btnText}</button>
+    <!-- <button on:click={expandClick} class="expand">{btnText}</button> -->
 </div>
 
 
@@ -138,7 +138,7 @@
         padding: 2rem;
         display: flex;
         flex-direction: column;
-        max-height: 800px;
+        /* max-height: 800px; */
         overflow-y: hidden;
         position: relative;
         transition: max-height 1s linear;

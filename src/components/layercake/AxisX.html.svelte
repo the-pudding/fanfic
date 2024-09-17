@@ -80,4 +80,10 @@
 	.axis.snapTicks .tick.tick-0 {
 		transform: translateX(40%);
 	}
+
+	@media (max-width: 600px) { 
+       .tick {
+          font-size: 10px;
+        }
+  	}
 </style>

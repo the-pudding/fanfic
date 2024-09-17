@@ -109,7 +109,7 @@
 
 <style>
     #scrolly {
-        margin: -15% 0 0 0;
+        margin: 0;
     }
     .grid {
         display: grid;
@@ -147,7 +147,7 @@
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;
-        overflow-x: hidden;
+        overflow: hidden;
 	}
     .key {
         width: 100%;
@@ -159,6 +159,7 @@
         margin: 1.5rem 0 0.5rem 0;
         font-family: var(--mono);
         font-size: var(--12px);
+        flex-wrap: wrap;
     }
     .key p {
         margin: 0;
@@ -211,7 +212,7 @@
         background: #f2f2f2;
         border: 2px solid;
         border-color: var(--window-button-stroke);
-        overflow: hidden;
+        overflow-y: hidden;
     }
     .content-wrapper {
         width: calc(100% - 2rem);
@@ -223,6 +224,7 @@
         background-color: #f2f2f2;
         border: 2px solid;
         border-color: var(--window-inset-stroke);
+        overflow: hidden;
     }
     .fandom-wrapper {
         width: 100%;
@@ -234,6 +236,7 @@
         align-items: center;
         justify-content: center;
         background-color: #f2f2f2;
+        overflow: hidden;
     }
 
     ul {
@@ -263,7 +266,6 @@
         z-index: 1000;
         max-width: 30rem;
         margin: 0 auto;
-		pointer-events: none;
 	}
 
     .step p {
@@ -275,7 +277,10 @@
     @media (max-width: 600px) {
         .sticky {
             justify-content: start;
-            top: 5rem;
+            top: 3.5rem;
+        }
+        .key {
+            margin: 0.5rem 0;
         }
         .key p {
             font-size: 10px;
@@ -284,6 +289,10 @@
             height: 1rem;
             width: 6rem;
             margin: 0 0.25rem;
+        }
+        .key-block {
+            width: 100px;
+            padding: 0;
         }
 	}
 </style>

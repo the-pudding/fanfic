@@ -178,7 +178,7 @@
 
 <style>
     #scrolly {
-        margin: -15% 0 0 0;
+        margin: 0;
     }
     .sticky {
         width: 100%;

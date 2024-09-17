@@ -76,4 +76,10 @@
 		font-size: 12px;
 		fill: var(--fanfic-black);
 	}
+
+	@media (max-width: 600px) { 
+       text {
+          font-size: 10px;
+        }
+  	}
 </style>

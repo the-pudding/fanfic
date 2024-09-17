@@ -87,8 +87,8 @@
                 <div class="list-wrapper">
                     <h5>{relType[0]}</h5>
                     <div class="summary">
-                        <p class="key-sexual"><span>{sexualCount}</span> Sexual tags</p>
-                        <p class="key-relationship"><span>{relCount}</span> Relationship tags</p>
+                        <p class="key-sexual"><span>{sexualCount}</span> Sexual</p>
+                        <p class="key-relationship"><span>{relCount}</span> Relationship</p>
                     </div>
                     <ul>
                         {#each relType[1].slice(0,20) as tag, i}
@@ -98,7 +98,7 @@
                                 highlight={tag.type_relationship == "y" && isEntered || tag.type_sexual == "y" && isEntered}
                                 specialClass={`item-sexual-${tag.type_sexual} item-relationship-${tag.type_relationship}`}
                                 width={"100%"}
-                                height={"2.5rem"}
+                                height={"2rem"}
                             />
                         {/each}
                     </ul>
@@ -213,7 +213,7 @@
 
     @media (max-width: 600px) { 
        .list-wrapper {
-            width: 50%;
+            width: calc(50% - 0.75rem);
         }
     }
 </style>

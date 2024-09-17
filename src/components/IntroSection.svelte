@@ -94,7 +94,7 @@
         <div class="cursor-icon">
             {@html Cursor}
         </div>
-        <p>Use the top tab buttons or the side arrow buttons to switch between chapters.</p>
+        <p>Now let's explore each of these three themes. Use the top tab buttons or the side arrow buttons to switch between chapters.</p>
     </div>
     {#if introW && introH}
         <Sparkles {introW} {introH}/>
@@ -166,13 +166,13 @@
         align-items: center;
         margin: 0.25rem 0.75rem 0.25rem 0;
         color: var(--fanfic-highlighter);
-        font-family: var(--mono);
+        font-family: var(--sans);
         text-transform: uppercase;
         font-weight:700;
     }
 
     .byline a {
-        font-family: var(--mono);
+        font-family: var(--sans);
     }
 
     .byline img {
@@ -183,7 +183,7 @@
 
     .with {
         color: var(--fanfic-highlighter);
-        font-family: var(--mono);
+        font-family: var(--sans);
         font-style: italic;
         font-size: var(--12px);
     }
@@ -193,9 +193,10 @@
         position: relative;
         height: 80vh;
         max-width: 1100px;
-        margin: 10rem auto 0 auto;
+        margin: 0 auto 0 auto;
         display: flex;
         flex-direction: row;
+        z-index: 1000;
     }
 
     .prose, .hed, .inline-chart {
@@ -232,23 +233,13 @@
     }
 
     .left-fly .inline-chart:nth-of-type(1) {
-        top: 0;
+        top: 20%;
         left: 0;
     }
 
-    .left-fly .inline-chart:nth-of-type(2) {
-        top: 20%;
-        left: 5%;
-    }
-
     .right-fly .inline-chart:nth-of-type(1) {
-        top: 5%;
-        right: 10%;
-    }
-
-    .right-fly .inline-chart:nth-of-type(2) {
         top: 25%;
-        right: 5%;
+        right: 10%;
     }
 
 
@@ -281,6 +272,13 @@
         } 
         h1:last-of-type {
             margin-left: 0%;
+        }
+        .byline {
+            font-size: var(--12px);
+            margin: 0.25rem 0.5rem 0.25rem 0;
+        }
+        :global(.prose-transition p) {
+            font-size: var(--18px);
         }
         .popups {
             padding: 0;

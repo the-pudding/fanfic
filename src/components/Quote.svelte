@@ -25,8 +25,8 @@
     on:exit={exitViewQuote}
 >
     {#if inViewTrigger == true}
-        <div class="bg" transition:fly={{ delay: 750, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
-        <div class="bg" transition:fly={{ delay: 500, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
+        <!-- <div class="bg" transition:fly={{ delay: 750, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
+        <div class="bg" transition:fly={{ delay: 500, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div> -->
         <div class="real"
         transition:fly={{ delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut }}
         >
@@ -91,10 +91,10 @@
 
 <style>
     .quote {
-        position: relative;
+        /* position: relative; */
         max-width: 550px;
         margin: 6rem auto;
-        height: 340px;
+        /* height: 340px; */
     }
 
     .icon {
@@ -119,8 +119,8 @@
         margin: 0;
         background: var(--fanfic-highlighter);
         padding: 1rem;
-        position: absolute;
-        height: 340px;
+        /* position: absolute;
+        height: 340px; */
     }
 
     .bg{
@@ -205,9 +205,6 @@
     }
 
     @media (max-width: 600px) {
-        .quote, .real, .bg {
-            height: 420px;
-        }
         .quote {
             margin: 4rem 0;
         }

@@ -56,7 +56,7 @@
         transition:fade={{ delay: delay, duration: 250 }}
         class="label"
         style="
-        top:{top(group.values) * 100}%;
+        top:{(top(group.values) * 100)-2}%;
         left:{left(group.values) * 100}%;
         color:{setColors(id, i, group)};
         "
@@ -71,12 +71,18 @@
   .label {
       position: absolute;
       transform: translate(-100%, -100%) translateY(6px);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--fanfic-black);
       font-weight: 700;
       font-family: var(--mono);
       text-transform: uppercase;
       width: 8rem;
       text-align: right;
+  }
+
+  @media (max-width: 600px) { 
+       .label{
+          font-size: 10px;
+        }
   }
 </style>

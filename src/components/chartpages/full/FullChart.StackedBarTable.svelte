@@ -109,7 +109,7 @@
             <h3>{titleArray[i]}</h3>
             <div class="chart-container">
                 <LayerCake
-                    padding={{ top: 0, right: 0, bottom: 0, left: 24 }}
+                    padding={{ top: 20, right: 0, bottom: 0, left: 24 }}
                     x={d => d.data[xKey]}
                     y={yKey}
                     z={zKey}
@@ -223,6 +223,7 @@
     .chart-container {
         width: 100%;
         height: 240px;
+        padding: 0 0 0 1rem;
     }
 
     .html-axis {
@@ -343,6 +344,7 @@
         font-size: var(--14px);
         text-transform: uppercase;
         margin: 0 1rem;
+        font-weight: 700;
     }
 
     .key-Non-Canon::before, .no-text::before {
@@ -388,20 +390,17 @@
             padding: 1rem;
         }
         .key-wrapper p {
-            font-size: var(--12px);
+            font-size: 10px;
+            font-weight: 700;
             margin: 0 0.5rem;
         }
         .chart-wrapper {
             flex-direction: column;
+            margin-top: 1rem;
         }
         .group-wrapper {
             width: 100%;
-            margin-bottom: 3.5rem;
-        }
-        .group-wrapper:nth-of-type(2) {
-            border: none;
-            margin: 0;
-            margin-bottom: 3.5rem;
+            margin-bottom: 1rem;
         }
         .key-Canon::before, .key-Semi-Canon::before, .key-Non-Canon::before {
             width: 0.65rem;

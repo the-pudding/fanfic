@@ -1,8 +1,6 @@
 <script>
     import Prose from "$components/Prose.svelte";
     import copy from "$data/copy.json";
-
-    console.log(copy.methods)
 </script>
 
 <section id="methods" >
@@ -14,10 +12,9 @@
 
 <style>
     section {
-        width: 100%;
         opacity: 1;
-        padding: 0 1rem;
-        margin: 3rem 0;
+        padding: 1rem;
+        margin: 3rem 1.25rem;
         padding: 5rem 0;
     }
 

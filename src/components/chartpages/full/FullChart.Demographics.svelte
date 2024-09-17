@@ -27,6 +27,7 @@
                 <InlineChartTreemap id={treeId} />
             </div>
         {/each}
+        <p class="note">Unsure includes "questioning". NR is "no response."</p>
     </div>
     <div class="bar-wrapper">
         <h5>What is your gender identity?</h5>
@@ -73,12 +74,18 @@
     .treemap-inner {
         display: flex;
         width: 100%;
-        height: 380px;
         flex-direction: column;
     }
 
     .treemap-inner:last-of-type {
         margin-top: 2rem;
+    }
+
+    .note {
+        font-family: var(--sans);
+        font-size: 10px;
+        font-style: italic;
+        line-height: 1.25;
     }
 
     h5 {
@@ -152,6 +159,13 @@
 
         .treemap-wrapper, .bar-wrapper {
             width: 100%;
+        }
+        .row p {
+            font-size: 10px;
+            width: 7.5rem;
+        }
+        .bars {
+            width: calc(100% - 7.5rem);
         }
     }
 </style>

@@ -3,7 +3,7 @@ export default {
             children: [
                 { name: 'Yes', value: 81.4, short: "yes"},
                 { name: 'No', value: 10, short: "no"},
-                { name: 'Questioning/Unsure', value: 7.2, short: "questioning"},
-                { name: 'No response', value: 1.4, short: "nr"},
+                { name: 'Unsure', value: 7.2, short: "questioning"},
+                { name: 'NR', value: 1.4, short: "nr"},
             ]
 };

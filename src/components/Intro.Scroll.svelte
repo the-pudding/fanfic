@@ -30,7 +30,9 @@
 
 <style>
 	#scrolly {
-		margin: -15% 0;
+		position: relative;
+		margin: 0;
+		z-index: 1000;
 	}
     .sticky {
 		position: sticky;
@@ -61,6 +63,14 @@
 
 	:global(.step .strong) {
 		color: var(--fanfic-black);
+	}
+
+	:global(.step .intro-slash, .step .intro-noncanon, .step .intro-realpeople) {
+		color: var(--fanfic-black);
+		font-family: var(--sans);
+		font-weight: 700;
+		padding: 0.125rem;
+		background: var(--fanfic-highlighter);
 	}
 
 	@media (max-width: 600px) {

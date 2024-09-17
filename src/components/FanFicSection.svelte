@@ -100,6 +100,7 @@
         justify-content: center;
         align-items: center;
         margin: 6rem auto 0 auto;
+        flex-direction: column;
     }
 
     .hed-script, .hed-sans {
@@ -115,4 +116,13 @@
     .hed-sans {
         font-family: var(--sans);
     }
+
+    @media (max-width: 600px) {
+        #slash-slide, #noncanon-slide, #realpeople-slide {
+            padding: 0 1.25rem 10rem 1.25rem;
+        }
+        .hed {
+            margin: 2rem auto 0 auto;
+        }
+	}
 </style>

@@ -79,4 +79,10 @@
 	.tick text {
 		fill: var(--color-gray-900);
 	}
+
+	@media (max-width: 600px) { 
+       .tick {
+          font-size: 10px;
+        }
+  	}
 </style>

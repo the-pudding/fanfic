@@ -56,7 +56,7 @@
         flex-direction: column;
         border: 2px solid;
         border-color: var(--window-inset-stroke);
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     :global(.treemap-inner .chart) {

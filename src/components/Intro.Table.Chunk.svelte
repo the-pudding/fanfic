@@ -91,7 +91,7 @@
     .content-wrapper {
         display: flex;
         flex-direction: column;
-        padding: 0.5rem 1rem 0.5rem 2rem;
+        padding: 0.5rem 1rem 0.5rem 1.5rem;
     }
 
     .rank {
@@ -128,7 +128,7 @@
             height: 4rem;
         }
 		p {
-            font-size: var(--12px); 
+            font-size: 10px; 
         }
 	}
 </style>

@@ -15,8 +15,6 @@
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
 
-	$: console.log($annotationVisible)
-
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
 	const onTap = async ({ detail }) => {
@@ -68,9 +66,13 @@
 		const match = annotations[annoID].value;
 		return match;
 	}
+
+	let innerWidth;
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
+<svelte:window bind:innerWidth={innerWidth} />
+
 <IntroSection />
 <Tabs options={sections} />
 
@@ -78,7 +80,7 @@
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
 <div class="inner" style="transform:{translate}"
-	use:inView
+	use:inView={{ bottom: 1000 }}
 	on:enter={showTap}
 	on:exit={hideTap}
 >
@@ -89,7 +91,7 @@
 	{/if}
 </div>
 <div class="texture"></div>
-{#if $annotationVisible[0]}
+{#if $annotationVisible[0] && innerWidth > 999}
 	<div id="annotation-block">
 		<div class="bubble" in:fly={{ delay: 500, duration: 300, y: 200}} out:fade>
 			<p>{annoMatch($annotationVisible[1])}</p>
@@ -105,7 +107,7 @@
 <style>
 	#annotation-block {
 		position: fixed;
-		top: 25%;
+		top: 20%;
 		right: 0.5rem;
 		display: flex;
 		flex-direction: column;

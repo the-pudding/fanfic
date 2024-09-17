@@ -91,9 +91,10 @@
         font-family: var(--mono);
         font-size: var(--12px);
         border: 1px solid var(--fanfic-black);
-        margin: 0.25rem 0;
+        margin: 0.125rem 0;
         /* background-color: white; */
         transition: background-color 1s linear;
+        text-overflow: ellipsis;
         overflow: hidden;
     }
 
@@ -101,7 +102,9 @@
         width: calc(20% - 0.5rem);
         height: 2.5rem;
         overflow: hidden;
-        margin: 0.25rem;
+        margin: 0.125rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .item-relationship-y.highlight-true {
@@ -137,7 +140,9 @@
     li p {
         padding: 0;
         margin: 0;
-        line-height: 1.25;
+        line-height: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     
     .left {
@@ -147,6 +152,8 @@
 
     .top-item {
         font-weight: 700;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .details {
@@ -160,6 +167,15 @@
     @media (max-width: 600px) { 
         li {
             font-size: 10px;
+        }
+
+        .grid {
+            width: calc(50% - 0.5rem);
+            height: 1.25rem;
+            overflow: hidden;
+            margin: 0.125rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 </style>

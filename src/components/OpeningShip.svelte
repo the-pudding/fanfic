@@ -174,6 +174,10 @@
     }
 
     @media (max-width: 600px) {
+        .tag {
+            font-size: var(--20px);
+            padding: 2rem 0;
+        }
         .left {
             margin-top: 5rem;
             margin-right: -1rem;

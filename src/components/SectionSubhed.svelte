@@ -46,7 +46,7 @@
 
     @media (max-width: 600px) {
         h3 {
-            font-size: var(--48px);
+            font-size: var(--32px);
         }
     }
 </style>
