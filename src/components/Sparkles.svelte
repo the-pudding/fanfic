@@ -10,7 +10,7 @@
     }
 
     function generateRandomDur(max) {
-        const random = Math.floor(Math.random() * max)+1;
+        const random = Math.floor(Math.random() * max)+2;
         return random;
     }
 </script>
@@ -36,6 +36,7 @@
         top: 0;
         left: 0;
         pointer-events: none;
+        z-index: 900;
     }
 
     img {

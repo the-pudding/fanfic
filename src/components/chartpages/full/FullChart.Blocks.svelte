@@ -2,8 +2,6 @@
     import { onMount } from "svelte";
 	import * as d3 from 'd3-hierarchy';
     import copy from "$data/copy.json";
-	
-    console.log(copy.rpfBlocks);
     
     export let id;
 

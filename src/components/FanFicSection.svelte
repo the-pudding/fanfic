@@ -49,24 +49,25 @@
 <style>
     section {
         opacity: 1;
+        background-image: url("/assets/images/cloud-ascii-opacity.png");
     }
     section.isActive {
         opacity: 1;
     }
     #slash-slide {
-        background: var(--fanfic-blue);
+        background-color: var(--fanfic-blue);
         padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }
 
     #noncanon-slide {
-        background: var(--fanfic-green);
+        background-color: var(--fanfic-green);
         padding: 0 2rem 10rem 2rem;
         width: 96vw;
     }
 
     #realpeople-slide {
-        background: var(--fanfic-red);
+        background-color: var(--fanfic-red);
         padding: 0 2rem 10rem 2rem;
         width: 98vw;
     }
@@ -99,6 +100,7 @@
         justify-content: center;
         align-items: center;
         margin: 6rem auto 0 auto;
+        flex-direction: column;
     }
 
     .hed-script, .hed-sans {
@@ -114,4 +116,13 @@
     .hed-sans {
         font-family: var(--sans);
     }
+
+    @media (max-width: 600px) {
+        #slash-slide, #noncanon-slide, #realpeople-slide {
+            padding: 0 1.25rem 10rem 1.25rem;
+        }
+        .hed {
+            margin: 2rem auto 0 auto;
+        }
+	}
 </style>

@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
-	import { currSectionSTORE } from "$stores/misc.js";
+	import { currSectionSTORE, annotationVisible } from "$stores/misc.js";
+	import { fade, fly } from 'svelte/transition';
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
@@ -9,6 +10,7 @@
 	import Tap from "$components/helpers/Tap.svelte";
 	import Footer from "$components/Footer.svelte";
 	import inView from "$actions/inView.js";
+	import copy from "$data/copy.json";
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
@@ -58,9 +60,19 @@
 	// Uses inView on the sections to hide/show the tap arrows	
 	function showTap() { tapVisible = true; }
 	function hideTap() { tapVisible = false; }
+
+	function annoMatch(annoID) {
+		const annotations = copy.annoTriggers;
+		const match = annotations[annoID].value;
+		return match;
+	}
+
+	let innerWidth;
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
+<svelte:window bind:innerWidth={innerWidth} />
+
 <IntroSection />
 <Tabs options={sections} />
 
@@ -68,7 +80,7 @@
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
 <div class="inner" style="transform:{translate}"
-	use:inView
+	use:inView={{ bottom: 1000 }}
 	on:enter={showTap}
 	on:exit={hideTap}
 >
@@ -78,14 +90,72 @@
 		{/each}
 	{/if}
 </div>
-<div class="texture">
-</div>
+<div class="texture"></div>
+{#if $annotationVisible[0] && innerWidth > 999}
+	<div id="annotation-block">
+		<div class="bubble" in:fly={{ delay: 500, duration: 300, y: 200}} out:fade>
+			<p>{annoMatch($annotationVisible[1])}</p>
+		</div>
+		<img in:fly={{ delay: 0, duration: 300, y: 200}} out:fade src="./assets/images/heads/draco-malfoy.png" alt="character" />
+	</div>
+{/if}
 <MethodsSection />
 <UniversalTooltip />
 <Footer />
 
 <!-- CSS STARTS HERE -->
 <style>
+	#annotation-block {
+		position: fixed;
+		top: 20%;
+		right: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: end;
+		z-index: 1000;
+		pointer-events: none;
+	}
+	.bubble {
+		width: 200px;
+		background: white;
+		font-family: var(--sans);
+		font-size: 10px;
+		position: relative;
+		padding: 1rem;
+		border: 2px solid black;
+	}
+	.bubble p {
+		padding: 0;
+		margin: 0;
+		font-style: italic;
+	}
+	.bubble:after {
+		content: '';
+		position: absolute;
+		border-style: solid;
+		border-width: 10px 10px 0;
+		border-color: #ffffff transparent;
+		display: block;
+		width: 0;
+		z-index: 1;
+		bottom: -10px;
+		left: 55%;
+	}
+	.bubble:before {
+		content: '';
+		position: absolute;
+		border-style: solid;
+		border-width: 11px 11px 0;
+		border-color: #151515 transparent;
+		display: block;
+		width: 0;
+		z-index: 0;
+		bottom: -13px;
+		left: 55%;
+	}
+	#annotation-block img {
+		width: 160px;
+	}
 	.texture {
 		position: fixed;
 		top: 0;

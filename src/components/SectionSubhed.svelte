@@ -6,7 +6,7 @@
 
     function checkVowel(char) {
         char = char.toLowerCase();
-        return ['a', 'e', 'i', 'o', 'u'].includes(char);
+        return ['a', 'e', 'o'].includes(char);
     }
 </script>
 
@@ -46,7 +46,7 @@
 
     @media (max-width: 600px) {
         h3 {
-            font-size: var(--48px);
+            font-size: var(--32px);
         }
     }
 </style>

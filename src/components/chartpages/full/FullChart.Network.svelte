@@ -94,7 +94,7 @@
 <section id="scrolly">
     <div class="sticky">
 		<div class="chart-wrapper">
-            <ChartHeader title={"TKTK"} />
+            <ChartHeader title={"Fandom Gender Dynamics"} />
 			<div class="viz-wrapper">
 				{#each dataArray as fandom, i}
 				<div class="fandom-wrapper">
@@ -124,7 +124,7 @@
 			</div>
 		</div>
     </div>
-    <Scrolly bind:value={scrollIndex}>
+    <Scrolly bind:value={scrollIndex} top={500}>
 			{#each copy.slashNetworkSlides as step, i}
 				<div class="step">
 					<p>{@html step.value}</p>
@@ -146,7 +146,7 @@
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;
-        overflow-x: hidden;
+        overflow: hidden;
 	}
 
 	.spacer {
@@ -206,6 +206,8 @@
 		font-size: var(--20px);
 		font-weight: 700;
 		margin: 0;
+		line-height: 1;
+		text-align: center;
 	}
 
 	.bars {
@@ -319,6 +321,9 @@
 	}
 
 	@media (max-width: 600px) { 
+		.fandom-wrapper h3 {
+			font-size: var(--14px);
+		}
 		.sticky {
 			justify-content: start;
 		}
@@ -330,6 +335,26 @@
 
 		.fandom-wrapper {
 			width: 100%;
+		}
+		.bars {
+			margin: 0.5rem 0;
+		}
+		.bar-wrapper {
+			padding: 0;
+			width: 100%;
+		}
+		.bar-wrapper p {
+			font-size: 10px;
+			width: 5rem;
+		}
+		.gender-bar, .relType-bar  {
+			width: calc(100% - 5rem);
+		}
+		.gender-bar p, .relType-bar p {
+			padding: 0.25rem 0.25rem 0 0;
+			margin: 0;
+			width: auto;
+			font-size: 10px;
 		}
 	}
 </style>

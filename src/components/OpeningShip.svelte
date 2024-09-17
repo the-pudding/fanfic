@@ -58,6 +58,18 @@
         margin-right: -2rem;
     }
 
+    :global(#slash-slide .faces .left) {
+        background-color: var(--fanfic-blue);
+    }
+
+    :global(#noncanon-slide .faces .left) {
+        background-color: var(--fanfic-green);
+    }
+
+    :global(#realpeople-slide .faces .left) {
+        background-color: var(--fanfic-red);
+    }
+
     .right {
         height: 280px;
         width: 240px;
@@ -162,6 +174,10 @@
     }
 
     @media (max-width: 600px) {
+        .tag {
+            font-size: var(--20px);
+            padding: 2rem 0;
+        }
         .left {
             margin-top: 5rem;
             margin-right: -1rem;

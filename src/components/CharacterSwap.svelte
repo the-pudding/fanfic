@@ -72,6 +72,7 @@
         border-color: var(--window-button-stroke);
         border-style:solid;
         z-index: 1000;
+        position: relative;
     }
 
     .text-fit-wrapper {
@@ -180,6 +181,10 @@
         button {
             height: 40px;
             font-size: var(--12px);
+        }
+        :global(#random-characters svg) {
+            width: 0.75rem;
+            margin-top: 0;
         }
     }
 

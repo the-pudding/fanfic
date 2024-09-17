@@ -128,7 +128,7 @@
 		links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i]}));
 
 		// Construct the forces.
-		const forceNode = d3.forceManyBody().strength(-40);
+		const forceNode = d3.forceManyBody().strength(-10);
 		const forceLink = d3.forceLink(links).distance(100).id(({index: i}) => N[i]);
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
@@ -199,7 +199,7 @@
             .text(d => T[d.id])
             .attr("class", "dot-label")
 
-		if (W) link.attr("stroke-width", ({index: i}) => W[i]*1.5);
+		if (W) link.attr("stroke-width", ({index: i}) => W[i]*1.125);
 		if (L) link.attr("class", function({index: i}) {
 			let linkColor = L[i] == "M/M"
 				? "link-mm"
@@ -397,6 +397,7 @@
         border: 2px solid;
         border-color: var(--window-inset-stroke);
         background-color: var(--fanfic-black);
+        overflow: hidden;
     }
     :global(.dot-label) {
         font-family: var(--mono);
@@ -407,5 +408,9 @@
         font-weight: bold;
     }
 	@media (max-width: 600px) { 
+        .network-chart {
+            height: 200px;
+            overflow: hidden;
+        }
 	}
 </style>
