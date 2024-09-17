@@ -136,7 +136,7 @@
 		width: calc(100% - 2rem);
 		margin: 1rem auto 2rem auto;
 		aspect-ratio: 1;
-		max-height: 500px;
+		max-height: 300px;
         background-color: #f2f2f2;
 		padding: 1rem;
 		border: 2px solid;
