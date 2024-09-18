@@ -337,5 +337,9 @@
         li {
             min-width: 70px;
         }
+
+        .text-wrapper {
+            display: none;
+        }
     }
 </style>

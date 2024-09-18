@@ -52,7 +52,7 @@
     >
         <Rank rank={start+i+1} />
         <div class="content-wrapper">
-            <p class="ship-name">{(ship.ship).replace("/", " / ")}</p>
+            <p class="ship-name">{ship.ship}</p>
             <p>{format(ship.totalWorks)} fics</p>
         </div>
     </li>
@@ -91,7 +91,7 @@
     .content-wrapper {
         display: flex;
         flex-direction: column;
-        padding: 0.5rem 1rem 0.5rem 1.5rem;
+        padding: 0.25rem 1rem 0.25rem 1.5rem;
     }
 
     .rank {
@@ -123,9 +123,16 @@
         background-color: var(--fanfic-highlighter);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
         li {
-            height: 4rem;
+            height: 3rem;
+            margin: 0.25rem 0;
+        }
+    }
+
+    @media (max-width: 700px) {
+        li {
+            height: 3.5rem;
         }
 		p {
             font-size: 10px; 

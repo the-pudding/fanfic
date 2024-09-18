@@ -81,6 +81,11 @@
 
     // $: console.log(receivedData)
     $: innerWidth = 0;
+    $: ticks = innerWidth < 600 || innerWidth == undefined
+        ? ["2013", "2023"] :
+        innerWidth < 900 || innerWidth == undefined
+        ? ["2013", "2015", "2017", "2019", "2021", "2023"]
+        : ["2013", "2023"];
 </script>
 
 <svelte:window bind:innerWidth />
@@ -89,8 +94,8 @@
     {#if receivedData && receivedData[0].tooltipVisible}
         <div class="tooltip"
             transition:fade={{ duration: 300 }}
-            style="top: {receivedData[0].yPos}px;
-                    left: {receivedData[0].xPos}px"
+            style="top: {receivedData[0].yPos+20}px;
+                    left: {receivedData[0].xPos+20}px"
         >   
             <p class="year">{receivedData[0].yearValTooltip} {receivedData[0].relType}</p>
             <p class="yes-text"> Canon: {receivedData[0].yesValTooltip}%</p>
@@ -109,7 +114,7 @@
             <h3>{titleArray[i]}</h3>
             <div class="chart-container">
                 <LayerCake
-                    padding={{ top: 20, right: 0, bottom: 0, left: 24 }}
+                    padding={{ top: 20, right: 0, bottom: 20, left: 26 }}
                     x={d => d.data[xKey]}
                     y={yKey}
                     z={zKey}
@@ -121,10 +126,8 @@
                     data={data}
                 >
                     <Svg>
-                    {#if i == 0 || innerWidth < 600}
-                        <AxisY ticks={2} gridlines={false} textAnchor={"end"} />
-                    {/if}
-                    <AxisX ticks={["2013","2023"]} baseline={true} gridlines={false} snapTicks={true} />
+                    <AxisY ticks={2} gridlines={false} snapTicks={true} />
+                    <AxisX ticks={ticks} baseline={true} gridlines={false} snapTicks={true} />
                     <ColumnStacked on:customEvent={handleCustomEvent} />
                     </Svg>
                 </LayerCake>
@@ -138,7 +141,7 @@
                     <tr class="canon-row canon-{ship.isCanon}">
                         <td class="ship-name" style="width: 70%">
                             <Rank rank={i+1} />
-                            <p>{(ship.ship).replace("/", " / ")}</p>
+                            <p>{ship.ship}</p>
                         </td>
                         <td class="canon-row canon-{ship.isCanon} right-align" style="width: 30%">
                             <p>{format(ship.totalWorks)}</p>
@@ -161,13 +164,13 @@
         /* opacity: 0; */
         padding: 0.75rem;
         font-family: var(--mono);
-        font-size: var(--12px);
         line-height: 1.125;
         background: white;
         transform: translate(-50%, -100%);
         min-width: 9.5rem;
     }
     .tooltip p {
+        font-size: var(--12px);
         padding: 0;
         margin: 0;
     }
@@ -223,7 +226,7 @@
     .chart-container {
         width: 100%;
         height: 240px;
-        padding: 0 0 0 1rem;
+        padding: 0 0 0 2rem;
     }
 
     .html-axis {
@@ -385,6 +388,17 @@
         background: #0F8662;
     }
 
+    @media (max-width: 900px) {
+        .chart-wrapper {
+            flex-direction: column;
+            margin-top: 1rem;
+        }
+        .group-wrapper {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+
     @media (max-width: 600px) { 
         .viz-wrapper {
             padding: 1rem;
@@ -393,14 +407,6 @@
             font-size: 10px;
             font-weight: 700;
             margin: 0 0.5rem;
-        }
-        .chart-wrapper {
-            flex-direction: column;
-            margin-top: 1rem;
-        }
-        .group-wrapper {
-            width: 100%;
-            margin-bottom: 1rem;
         }
         .key-Canon::before, .key-Semi-Canon::before, .key-Non-Canon::before {
             width: 0.65rem;
@@ -415,6 +421,10 @@
         }
         .ship-name p, .right-align p {
             font-size: 10px;
+        }
+
+        .tooltip {
+            display: none;
         }
     }
   </style>

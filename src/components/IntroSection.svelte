@@ -197,6 +197,7 @@
         display: flex;
         flex-direction: row;
         z-index: 1000;
+        justify-content: center;
     }
 
     .prose, .hed, .inline-chart {
@@ -230,6 +231,8 @@
     .fly-box {
         width: 50%;
         position: relative;
+        display: flex;
+        justify-content: center;
     }
 
     .left-fly .inline-chart:nth-of-type(1) {
@@ -263,23 +266,7 @@
         margin: 2rem auto;
     }
 
-    @media (max-width: 600px) {
-        h1:first-of-type {
-            margin-right: 0%;
-        }
-        h1, h1:last-of-type {
-            font-size: 58px;
-        } 
-        h1:last-of-type {
-            margin-left: 0%;
-        }
-        .byline {
-            font-size: var(--12px);
-            margin: 0.25rem 0.5rem 0.25rem 0;
-        }
-        :global(.prose-transition p) {
-            font-size: var(--18px);
-        }
+    @media (max-width: 800px) {
         .popups {
             padding: 0;
             flex-direction: column;
@@ -299,6 +286,25 @@
             top: auto;
             left: auto;
             right: auto;
+        }
+    }
+
+    @media (max-width: 600px) {
+        h1:first-of-type {
+            margin-right: 0%;
+        }
+        h1, h1:last-of-type {
+            font-size: 58px;
+        } 
+        h1:last-of-type {
+            margin-left: 0%;
+        }
+        .byline {
+            font-size: var(--12px);
+            margin: 0.25rem 0.5rem 0.25rem 0;
+        }
+        :global(.prose-transition p) {
+            font-size: var(--18px);
         }
     }
 

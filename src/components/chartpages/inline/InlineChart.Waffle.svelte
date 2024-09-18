@@ -78,13 +78,13 @@
             .style("width", tooltipWidth)
             .style("height", tooltipWidth)
 
-        tooltipShip.text(`${(ship.ship).replace("/", " / ")}`)
+        tooltipShip.text(`${ship.ship}`)
         tooltipFandom.text(`${ship.fandom}`)
         tooltipWorks.text(`${format(ship.totalWorks)} fanfics`)
 
         d3.selectAll(".u-tooltip-container")
             .html(
-                `<p class="ship-text"><span class="ship-text-${ship.isCanon}">${(ship.ship).replace("/", " / ")}</span></p>
+                `<p class="ship-text"><span class="ship-text-${ship.isCanon}">${ship.ship}</span></p>
                 <p class="fandom-text">${ship.fandom}</p>
                 <p class="works-text">${format(ship.totalWorks)} fanfics</p>`
             )

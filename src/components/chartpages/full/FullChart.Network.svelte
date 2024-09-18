@@ -111,7 +111,7 @@
 							<div class="bar-wrapper" class:visible={showRelTypeBar}>
 								<p>Relationship</p>
 								<div class="relType-bar">
-									<div class:visible={showRelFF} class="relType-ff" style="width: {summaryData[i].linksFFPercent}%"><p>{Math.round(summaryData[i].linksFFPercent)}%</p></div>
+									<div class:visible={showRelFF} class="relType-ff" style="width: {summaryData[i].linksFFPercent}%"></div>
 									<div class:visible={showRelMM} class="relType-mm" style="width: {summaryData[i].linksMMPercent}%"><p>{Math.round(summaryData[i].linksMMPercent)}%</p></div>
 									<div class:visible={showRelFM} class="relType-fm" style="width: {summaryData[i].linksFMPercent}%"><p>{Math.round(summaryData[i].linksFMPercent)}%</p></div>
 								</div>
@@ -142,9 +142,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-		top: 4rem;
+		top: 2rem;
 		transition: all 1s;
-		height: 100vh;
+		height: auto;
         z-index: 1;
         overflow: hidden;
 	}
@@ -186,26 +186,26 @@
 		margin: 1rem auto 2rem auto;
 		display: flex;
 		flex-direction: row;
-		padding: 1rem;
 		align-items: center;
 		gap: 2rem;
 		overflow: hidden;
-		border-width: 2px;
-        border-color: var(--window-inset-stroke);
-        border-style: solid;
 	}
 	.fandom-wrapper {
-		width: 50%;
+		width: calc(50% - 1rem);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		border-width: 2px;
+        border-color: var(--window-inset-stroke);
+        border-style: solid;
+		padding: 1rem;
 	}
 
 	.fandom-wrapper h3 {
 		font-family: var(--mono);
 		font-size: var(--20px);
 		font-weight: 700;
-		margin: 0;
+		margin: 0 auto 0.5rem auto;
 		line-height: 1;
 		text-align: center;
 	}
@@ -320,17 +320,21 @@
 		padding: 0.125rem;
 	}
 
-	@media (max-width: 600px) { 
+	@media (max-width: 800px) {
 		.fandom-wrapper h3 {
 			font-size: var(--14px);
 		}
+	}
+
+	@media (max-width: 600px) { 
 		.sticky {
 			justify-content: start;
+			top: 4rem;
 		}
 		.viz-wrapper {
 			flex-direction: column;
 			align-items: flex-start;
-			padding: 1rem 2rem;
+			padding: 0;
 		}
 
 		.fandom-wrapper {

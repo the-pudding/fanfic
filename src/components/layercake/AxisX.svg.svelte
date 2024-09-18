@@ -28,7 +28,7 @@
 				return "start";
 			}
 			if (i === tickVals.length - 1) {
-				return "start";
+				return "middle";
 			}
 		}
 		return "middle";

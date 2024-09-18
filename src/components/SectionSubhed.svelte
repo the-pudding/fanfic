@@ -44,6 +44,12 @@
         color: var(--fanfic-highlighter);
     }
 
+    @media (max-width: 800px) {
+        h3 {
+            font-size: var(--48px);
+        }
+    }
+
     @media (max-width: 600px) {
         h3 {
             font-size: var(--32px);

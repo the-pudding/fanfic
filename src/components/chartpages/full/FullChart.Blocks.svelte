@@ -46,7 +46,6 @@
         border: 2px solid;
         border-color: var(--window-inset-stroke);
         padding: 1rem;
-        background-color: var(--fanfic-highlighter);
     }
 
     .kicker {
@@ -98,6 +97,12 @@
 
         .block {
             width: 100%;
+        }
+        h5 {
+            font-size: var(--16px); 
+        }
+        p {
+            font-size: var(--14px);
         }
     }
 </style>

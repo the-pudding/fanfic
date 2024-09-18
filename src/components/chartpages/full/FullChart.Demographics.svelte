@@ -95,6 +95,7 @@
         font-size: var(--18px);
         margin: 0 0 0.5rem 0;
         padding: 0;
+        line-height: 1.25;
     }
 
     .bar-wrapper {
@@ -150,6 +151,12 @@
         left: calc(100% + 5px);
         width: auto;
         padding: 0;
+    }
+
+    @media (max-width: 800px) {
+        h5 {
+            font-size: var(--14px);
+        }
     }
 
     @media (max-width: 600px) { 

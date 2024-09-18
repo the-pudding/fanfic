@@ -4,7 +4,7 @@ character,fandom,position
 "Harry Potter","Harry Potter",left
 "James “Bucky” Barnes","Marvel Cinematic Universe",left
 "Midoriya Izuku","My Hero Academia",left
-"Marinette Dupain-Cheng | Ladybug","Miraculous Ladybug",left
+"Marinette Dupain-Cheng","Miraculous Ladybug",left
 "Rey","Star Wars",left
 "Kara Danvers","Supergirl",left
 "Spock","Star Trek",left
@@ -13,7 +13,7 @@ character,fandom,position
 "Draco Malfoy","Harry Potter",right
 "Steve Rogers","Marvel Cinematic Universe",right
 "Bakugou Katsuki","My Hero Academia",right
-"Adrien Agreste | Chat Noir","Miraculous Ladybug",right
-"Ben Solo | Kylo Ren","Star Wars",right
+"Adrien Agreste","Miraculous Ladybug",right
+"Kylo Ren","Star Wars",right
 "Lena Luthor","Supergirl",right
 "James T. Kirk","Star Trek",right

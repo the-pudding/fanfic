@@ -77,6 +77,8 @@
         width: 0.75rem;
         height: 0.75rem;
         margin: 0 0.25rem 0 0;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     :global(.u-tooltip-container .noncanon-block::before) {

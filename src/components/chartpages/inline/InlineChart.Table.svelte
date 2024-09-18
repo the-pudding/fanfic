@@ -184,7 +184,7 @@
         font-family: var(--mono);
         font-size: 10px;
         font-weight: 700;
-        padding: 0.125rem 0;
+        padding: 0;
         margin: 0;
         text-transform: uppercase;
     }
@@ -212,6 +212,9 @@
     }   
 
     @media (max-width: 600px) { 
+        h5 {
+            font-size: var(--14px);
+        }
        .list-wrapper {
             width: calc(50% - 0.75rem);
         }

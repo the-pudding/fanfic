@@ -15,6 +15,10 @@
 		uTooltipVisible.set(true)
 		let xPos = e.clientX;
 		let yPos = e.clientY;
+		let parentEl = e.currentTarget.closest('.chart-container');
+		let rect = parentEl.getBoundingClientRect();
+		let relativeX = xPos - rect.left;
+		let relativeY = yPos - rect.top;
 		let dataIndex = e.target.dataset.id;
 		let dataGroup = e.target.classList[1].split("_")[0];
 		let relType = dataGroup.substring(0, 1) + "/" + dataGroup.substring(1);
@@ -30,11 +34,13 @@
 
 		d3.selectAll(".u-tooltip-container")
             .html(
-                `<p class="year">${yearValTooltip} ${relType}</p>
+                `<p class="year">${yearValTooltip} ${relType.toUpperCase()}</p>
 				<p class="canon-block">Canon: ${yesValTooltip}%</p>
 				<p class="semi-block">Semi-canon: ${semiValTooltip}%</p>
 				<p class="noncanon-block">Non-canon: ${noValTooltip}%</p>`
             )
+			d3.selectAll(`.group-rect`).style("opacity", 0.5)
+		d3.selectAll(`.group-rect-${yearValTooltip}`).style("opacity", 1)
 	}
 
 	function handleMouseLeave(e) {
@@ -42,7 +48,9 @@
 		let tooltipVisible = false;
 		let tooltipData = [{tooltipVisible}]
 		sendDataToParent(tooltipData)
+		d3.selectAll(`.group-rect`).style("opacity", 1)
 	}
+	console.log($data);
  </script>
 
 <g class="column-group"
@@ -55,7 +63,7 @@
 		{@const yVals = $yGet(d)}
 		{@const columnHeight = yVals[0] - yVals[1]}
 		<rect
-		  class="group-rect {relevantData}"
+		  class="group-rect {relevantData} group-rect-{d.data.year}"
 		  data-id={i}
 		  x={$xGet(d)}
 		  y={yVals[1]}

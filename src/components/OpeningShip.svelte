@@ -173,11 +173,14 @@
         padding: 3rem 0;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
         .tag {
             font-size: var(--20px);
             padding: 2rem 0;
         }
+    }
+
+    @media (max-width: 600px) {
         .left {
             margin-top: 5rem;
             margin-right: -1rem;
