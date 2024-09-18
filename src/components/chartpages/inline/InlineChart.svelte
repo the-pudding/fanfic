@@ -38,7 +38,8 @@
         {/if}
         {#if chartType == "treemap"}
             {#if title}<ChartHeader {title}/>{/if}
-            <InlineChartTreemap {id} />
+            <InlineChartTreemap {id} height={400} />
+            <p class="note">Note: Other includes romantic relationships including more than two partners, ungendered original characters, and when the author inserts themselves into the story (XReader).</p>
         {/if}
 </div>
 
@@ -48,5 +49,14 @@
         border-width:2px;
         border-color:var(--window-button-stroke);
         border-style:solid;
+    }
+
+    .note {
+        font-family: var(--sans);
+        font-size: 10px;
+        font-style: italic;
+        line-height: 1.25;
+        color: var(--fanfic-black);
+        padding: 0 1rem;
     }
 </style>

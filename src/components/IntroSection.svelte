@@ -210,7 +210,7 @@
         font-family: var(--sans);
         font-size: var(--22px);
         line-height: 1.85;
-        margin: 1rem 0;
+        margin: 5rem 0;
         text-align: center;
         font-style: italic;
         color: var(--fanfic-highlighter);

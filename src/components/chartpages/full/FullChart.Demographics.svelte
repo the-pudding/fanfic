@@ -18,31 +18,33 @@
 <svelte:window bind:innerWidth />
 
 <div class="viz-wrapper">
-    <div class="treemap-wrapper">
-        {#each treemapArray as treemap, i}
-            {@const treeId = id + i}
-            {@const hed = i == 0 ? "Do you identify as LGBTQ+ in any form?" : "Do you identify transgender?"}
-            <div class="treemap-inner">
-                <h5>{hed}</h5>
-                <InlineChartTreemap id={treeId} />
-            </div>
-        {/each}
-        <p class="note">Unsure includes "questioning". NR is "no response."</p>
-    </div>
-    <div class="bar-wrapper">
-        <h5>What is your gender identity?</h5>
-        {#each data as response, i}
-        <div class="row">
-            <p>{response.response}</p>
-            <div class="bars">
-                <div class="baseline"></div>
-                <div class="dataline" style="width: {response.percent}%">
-                    <p>{response.percent}%</p>
+    <div class="content-wrapper">
+        <div class="treemap-wrapper">
+            {#each treemapArray as treemap, i}
+                {@const treeId = id + i}
+                {@const hed = i == 0 ? "Do you identify as LGBTQ+ in any form?" : "Do you identify transgender?"}
+                <div class="treemap-inner">
+                    <h5>{hed}</h5>
+                    <InlineChartTreemap id={treeId} height={300} />
+                </div>
+            {/each}
+        </div>
+        <div class="bar-wrapper">
+            <h5>What is your gender identity?</h5>
+            {#each data as response, i}
+            <div class="row">
+                <p>{response.response}</p>
+                <div class="bars">
+                    <div class="baseline"></div>
+                    <div class="dataline" style="width: {response.percent}%">
+                        <p>{response.percent}%</p>
+                    </div>
                 </div>
             </div>
+            {/each}
         </div>
-        {/each}
     </div>
+    <p class="note">Note: Unsure includes questioning. NR is no response.</p>
 </div>
 
 <style>
@@ -58,8 +60,14 @@
         background: #f2f2f2;
         padding: 0 1rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        width: 100%;
+        display: flex;
         gap: 2rem;
+        flex-direction: row;
     }
 
     .treemap-wrapper {

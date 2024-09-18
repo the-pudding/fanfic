@@ -78,10 +78,6 @@
         color: var(--color-white);
     }
 
-    :global(.prose-transition p) {
-        font-family: var(--sans);
-    }
-
     .opening-ship {
         max-width: 1400px;
         margin: 0 auto; 

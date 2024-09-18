@@ -84,5 +84,6 @@
 		position: relative;
 		z-index: 1000;
 		padding: 0 0.75rem;
+		pointer-events: none;
 	}
 </style>

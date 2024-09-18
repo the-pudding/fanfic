@@ -125,15 +125,15 @@
         transition: background-color 1s linear;
     }
 
-    .canon-No {
+    .canon-No, .item-canon-No  {
         background-color: var(--fanfic-blue); 
     }
 
-    .canon-Yes {
+    .canon-Yes, .item-canon-Yes {
         background-color: var(--fanfic-red); 
     }
 
-    .canon-Semi-Canon {
+    .canon-Semi-Canon, .item-canon-Semi-Canon {
         background-color: var(--fanfic-green); 
     }
 

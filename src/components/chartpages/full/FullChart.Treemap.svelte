@@ -20,13 +20,14 @@
     <div class="treemap-wrapper">
         {#each treemapArray as treemap, i}
             {@const treeId = id + i}
-            {@const hed = i == 0 ? "BTS" : "YouTube"}
+            {@const hed = i == 0 ? "BTS" : "YouTube RPF"}
             <div class="treemap-inner">
                 <h5>{hed}</h5>
-                <InlineChartTreemap id={treeId} />
+                <InlineChartTreemap id={treeId} height={300} />
             </div>
         {/each}
     </div>
+    <p class="note">Note: Other includes romantic relationships including more than two partners or undgendered original characters.</p>
 </div>
 
 
@@ -37,6 +38,7 @@
         background: #f2f2f2;
         padding: 0;
         display: flex;
+        flex-direction: column;
     }
 
     .treemap-wrapper {
@@ -72,6 +74,13 @@
         font-size: var(--18px);
         margin: 0 0 0.5rem 0;
         padding: 0;
+    }
+
+    .note {
+        font-family: var(--sans);
+        font-size: 10px;
+        font-style: italic;
+        line-height: 1.25;
     }
 
     @media (max-width: 600px) {

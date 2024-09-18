@@ -14,12 +14,14 @@
 	$: isBandwidth = typeof $xScale.bandwidth === 'function';
 
 	$: tickVals = Array.isArray(ticks)
-    ? ticks
-    : isBandwidth
-      ? $xScale.domain()
-      : typeof ticks === 'function'
-        ? ticks($xScale.ticks())
-        : $xScale.ticks(ticks);
+		? ticks
+		: isBandwidth
+		? $xScale.domain()
+		: typeof ticks === 'function'
+			? ticks($xScale.ticks())
+			: $xScale.ticks(ticks);
+
+	$: halfBand = isBandwidth ? $xScale.bandwidth() / 2 : 0;
 
 
 	const textAnchor = (i) => {
@@ -48,7 +50,7 @@
 				<line class="tick-mark" y1={0} y2={6} x1={0} x2={0} />
 			{/if}
 			{#if formatTick(tick) !== "2018"}
-				<text x={0} y={yTick} dx="" dy="" text-anchor={textAnchor(i)}
+				<text x={halfBand} y={yTick} dx="" dy="" text-anchor={textAnchor(i)}
 					>{formatTick(tick)}</text
 				>
 			{/if}

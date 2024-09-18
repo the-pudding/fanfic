@@ -15,6 +15,7 @@
 	
 
 	export let id;
+	export let height;
 
 	let data;
 	let innerWidth;
@@ -57,7 +58,6 @@
 		const rect = parentEl.getBoundingClientRect();
 		const relativeX = mouseX - rect.left;
 		const relativeY = mouseY - rect.top;
-		console.log(mouseX, mouseY, relativeX, relativeY)
 
 		const relType = this.children[0].className.split(" ")[1].split("-")[1];
 		const percent = this.children[0].children[0].children[0].textContent;
@@ -85,7 +85,7 @@
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
 
-<div class="chart" id={id}>
+<div class="chart" id={id} style="max-height: {height}px">
 	<!-- <div id="tree-tooltip"
 		style="opacity: {tooltipVisible ? 1 : 0};">
 		<span><Icon name="info" /></span>
@@ -134,9 +134,8 @@
 	}
 	.chart {
 		width: calc(100% - 2rem);
-		margin: 1rem auto 2rem auto;
+		margin: 1rem auto 1rem auto;
 		aspect-ratio: 1;
-		max-height: 300px;
         background-color: #f2f2f2;
 		padding: 1rem;
 		border: 2px solid;
@@ -200,8 +199,8 @@
     }
 
     .contents-XReader {
-        background-color: var(--fanfic-window-gray); 
-		color: var(--fanfic-black);
+        background-color: var(--fanfic-black); 
+		color: white;
     }
 
     .contents-Other {

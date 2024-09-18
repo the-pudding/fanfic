@@ -23,9 +23,6 @@
     let inViewTrigger = false;
     let tooltipVisible = false;
 
-    function inViewDraw() { inViewTrigger = true; }
-    function exitViewDraw() { inViewTrigger = false; }
-
     function handleMouseEnter(e, ship) {
         uTooltipVisible.set(true)
         // Get the target element
@@ -115,13 +112,7 @@
 
 <svelte:window bind:innerWidth />
 
-<div 
-    id="chart-{id}"
-    class="chart-container"
-    use:inView
-    on:enter={inViewDraw}
-    on:exit={exitViewDraw}
->
+<div id="chart-{id}" class="chart-container">
     <div class="tooltip">
         <p class="ship-text"></p>
         <p class="fandom-text"></p>
@@ -267,10 +258,8 @@
         .label-No, .label-Semi-Canon {
             width: 106px;
         }
-        .toolip {
-            font-size: 10px;
-            width:  10px;
-            height: 10px;
+        .tooltip {
+            display: none;
         }
     }
 </style>

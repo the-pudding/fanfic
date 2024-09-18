@@ -97,7 +97,7 @@
             style="top: {receivedData[0].yPos+20}px;
                     left: {receivedData[0].xPos+20}px"
         >   
-            <p class="year">{receivedData[0].yearValTooltip} {receivedData[0].relType}</p>
+            <p class="year">{receivedData[0].yearValTooltip} {relType.toUpperCase()}</p>
             <p class="yes-text"> Canon: {receivedData[0].yesValTooltip}%</p>
             <p class="semi-text">Semi-canon: {receivedData[0].semiValTooltip}%</p>
             <p class="no-text">Non-canon: {receivedData[0].noValTooltip}%</p>

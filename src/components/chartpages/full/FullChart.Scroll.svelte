@@ -280,7 +280,7 @@
             top: 3.5rem;
         }
         .key {
-            margin: 0.5rem 0;
+            margin: 1rem 0 0 0;
         }
         .key p {
             font-size: 10px;
@@ -291,8 +291,12 @@
             margin: 0 0.25rem;
         }
         .key-block {
-            width: 100px;
-            padding: 0;
+            padding: 0 0.25rem;
+        }
+
+        .key-block::before {
+            width: 0.75rem;
+            height: 0.75rem;
         }
 	}
 </style>

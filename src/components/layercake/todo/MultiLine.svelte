@@ -62,7 +62,7 @@
 	}
 
 	rect {
-		fill: #eae9e9;
+		fill: #d9d6d6;
 	}
 
 	.scrolly-rect {

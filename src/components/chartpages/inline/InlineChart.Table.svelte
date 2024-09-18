@@ -17,10 +17,6 @@
             const dataFolder = id.split("_")[0];
             const dataPath = `./assets/data/${dataFolder}/${id}.csv`
             data = await d3.csv(dataPath);
-            
-            if (id == "SLASH_topTagsByRelType") {
-                data = d3.groups(data, d => d.relType);
-            }
         }
 	});
 
@@ -39,7 +35,7 @@
 </script>
 
 <figure>
-    {#if data && id !== "SLASH_topTagsByRelType"}
+    {#if data}
         <div class="header-row">
             {#if id == "RPF_top20"}
                 <p>Ship</p>
@@ -76,35 +72,6 @@
                 {/if}
             {/each}
         </ul>
-    {:else if data && id == "SLASH_topTagsByRelType" }
-        <div class="set-wrapper"
-            use:inView
-            on:enter={highlightRow}
-            on:exit={unhighlightRow}>
-            {#each data as relType, i}
-            {@const relCount = relType[1].filter(d => d.type_relationship === 'y').length}
-            {@const sexualCount = relType[1].filter(d => d.type_sexual === 'y').length}
-                <div class="list-wrapper">
-                    <h5>{relType[0]}</h5>
-                    <div class="summary">
-                        <p class="key-sexual"><span>{sexualCount}</span> Sexual</p>
-                        <p class="key-relationship"><span>{relCount}</span> Relationship</p>
-                    </div>
-                    <ul>
-                        {#each relType[1].slice(0,20) as tag, i}
-                            <ListBlock
-                                topItem={tag.tag}
-                                index={i}
-                                highlight={tag.type_relationship == "y" && isEntered || tag.type_sexual == "y" && isEntered}
-                                specialClass={`item-sexual-${tag.type_sexual} item-relationship-${tag.type_relationship}`}
-                                width={"100%"}
-                                height={"2rem"}
-                            />
-                        {/each}
-                    </ul>
-                </div>
-            {/each}
-        </div>
     {/if}
 </figure>
 

@@ -2,7 +2,7 @@
    import { onMount } from "svelte";
    import * as d3 from "d3";
 
-   import FullChartStackedBarTable from "$components/chartpages/full/FullChart.StackedBarTable.svelte";
+   import FullChartStackedBarScroll from "$components/chartpages/full/FullChart.StackedBarScroll.svelte";
    import FullChartScroll from "$components/chartpages/full/FullChart.Scroll.svelte";
    import FullChartPictogram from "$components/chartpages/full/FullChart.Pictogram.svelte";
    import FullChartDemographics from "$components/chartpages/full/FullChart.Demographics.svelte";
@@ -10,6 +10,7 @@
    import FullChartMultiline from "$components/chartpages/full/FullChart.Multiline.svelte";
    import FullChartTreemap from "$components/chartpages/full/FullChart.Treemap.svelte";
    import FullChartBlocks from "$components/chartpages/full/FullChart.Blocks.svelte";
+   import FullChartTable from "$components/chartpages/full/FullChart.Table.svelte";
    import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 
    export let chartType;
@@ -24,12 +25,10 @@
     <FullChartNetwork {id} />
 {:else if chartType == "multiline"}
     <FullChartMultiline {id} />
+{:else if chartType == "stackedBarScroll"}
+    <FullChartStackedBarScroll {id} />
 {:else}
     <div class="chart-wrapper">
-        {#if chartType == "stackedBarTable"}
-            {#if title}<ChartHeader {title} />{/if}
-            <FullChartStackedBarTable {id} />
-        {/if}
         {#if chartType == "pictogram"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartPictogram {id} />
@@ -45,6 +44,10 @@
         {#if chartType == "blocks"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartBlocks {id} />
+        {/if}
+        {#if chartType == "table"}
+            {#if title}<ChartHeader {title} />{/if}
+            <FullChartTable {id} />
         {/if}
     </div>
 {/if}
