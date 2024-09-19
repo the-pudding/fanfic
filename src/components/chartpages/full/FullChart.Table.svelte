@@ -19,7 +19,6 @@
             data = await d3.csv(dataPath);
             
             data = d3.groups(data, d => d.relType);
-            console.log(data)
         }
 	});
 
