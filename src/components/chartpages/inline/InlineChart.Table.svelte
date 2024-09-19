@@ -116,7 +116,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .set-wrapper ul {

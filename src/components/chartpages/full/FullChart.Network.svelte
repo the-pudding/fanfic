@@ -189,7 +189,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 2rem;
+		gap: 1rem;
 		overflow: hidden;
 	}
 	.fandom-wrapper {

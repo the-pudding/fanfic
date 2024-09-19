@@ -114,11 +114,13 @@
 				width={$xScale.bandwidth()}
 				height={$height}
 				fill={"#d9d6d6"}
+				class="disabled"
 			></rect>
 			<text
-				x={$width/2 - $width/20 + 20}
+				x={$width/2}
 				y={$height/2}
 				transform="rotate(-90,{$width/2},{$height/2-4})"
+				class="disabled"
 			>
 			No data collected in 2018
 			</text>
@@ -135,6 +137,10 @@
 
 	rect {
 		transition: y 1s ease, height 1s ease;
+	}
+
+	.disabled {
+		pointer-events: none;
 	}
 
 	text {

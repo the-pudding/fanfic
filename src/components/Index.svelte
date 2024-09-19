@@ -1,14 +1,14 @@
 <script>
-	import { onMount, onDestroy } from "svelte";
+	import { onMount } from "svelte";
 	import { get } from 'svelte/store';
 	import { currSectionSTORE, annotationVisible, scrollSLASH, scrollCANON, scrollRPF } from "$stores/misc.js";
-	import { fade, fly } from 'svelte/transition';
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
 	import FanFicSection from "$components/FanFicSection.svelte";
 	import UniversalTooltip from "$components/UniversalTooltip.svelte";
 	import MethodsSection from "$components/MethodsSection.svelte";
 	import Tap from "$components/helpers/Tap.svelte";
+	import Annotation from "$components/Annotation.svelte";
 	import Footer from "$components/Footer.svelte";
 	import inView from "$actions/inView.js";
 	import copy from "$data/copy.json";
@@ -16,7 +16,6 @@
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
 	let innerWidth;
-	let sectionTop;
 
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
@@ -38,7 +37,7 @@
 
 	onMount(() => {
 		// Subscribe to the current section store to track changes
-			currSectionSTORE.subscribe((value) => {
+		currSectionSTORE.subscribe((value) => {
 			prevSection = value;
 			updateScrollPosition(value);
 		});
@@ -75,12 +74,6 @@
 	function showTap() { tapVisible = true; }
 	function hideTap() { tapVisible = false; }
 
-	function annoMatch(annoID) {
-		const annotations = copy.annoTriggers;
-		const match = annotations[annoID].value;
-		return match;
-	}
-
 	let prevSection;
   	let scrollY;
 
@@ -95,7 +88,6 @@
 		} else if (curr === "realpeople") {
 			scrollRPF.set(scrollY);
 		}
-		// console.log({ $scrollSLASH, $scrollCANON, $scrollRPF });
 	}
 
 	function updateScrollPosition(curr) {
@@ -120,13 +112,15 @@
 			} 
 		}
 	}
+
+	$: console.log($annotationVisible)
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
 <svelte:window bind:innerWidth={innerWidth} bind:scrollY={scrollY}/>
 
 <IntroSection />
-<Tabs options={sections} />
+<Tabs options={sections} tapVisible={tapVisible} />
 
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
@@ -143,71 +137,20 @@
 	{/if}
 </div>
 <div class="texture"></div>
-{#if $annotationVisible[0] && innerWidth > 999}
-	<div id="annotation-block">
-		<div class="bubble" in:fly={{ delay: 500, duration: 300, y: 200}} out:fade>
-			<p>{annoMatch($annotationVisible[1])}</p>
-		</div>
-		<img in:fly={{ delay: 0, duration: 300, y: 200}} out:fade src="./assets/images/heads/draco-malfoy.png" alt="character" />
-	</div>
+{#if $annotationVisible[0] && innerWidth > 800}
+	<Annotation />
 {/if}
-<MethodsSection />
+<div class="methods-trigger"
+	use:inView={{ bottom: 0 }}
+	on:enter={hideTap}
+>
+	<MethodsSection />
+</div>
 <UniversalTooltip />
 <Footer />
 
 <!-- CSS STARTS HERE -->
 <style>
-	#annotation-block {
-		position: fixed;
-		top: 20%;
-		right: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		align-items: end;
-		z-index: 1000;
-		pointer-events: none;
-	}
-	.bubble {
-		width: 200px;
-		background: white;
-		font-family: var(--sans);
-		font-size: 10px;
-		position: relative;
-		padding: 1rem;
-		border: 2px solid black;
-	}
-	.bubble p {
-		padding: 0;
-		margin: 0;
-		font-style: italic;
-	}
-	.bubble:after {
-		content: '';
-		position: absolute;
-		border-style: solid;
-		border-width: 10px 10px 0;
-		border-color: #ffffff transparent;
-		display: block;
-		width: 0;
-		z-index: 1;
-		bottom: -10px;
-		left: 55%;
-	}
-	.bubble:before {
-		content: '';
-		position: absolute;
-		border-style: solid;
-		border-width: 11px 11px 0;
-		border-color: #151515 transparent;
-		display: block;
-		width: 0;
-		z-index: 0;
-		bottom: -13px;
-		left: 55%;
-	}
-	#annotation-block img {
-		width: 160px;
-	}
 	.texture {
 		position: fixed;
 		top: 0;

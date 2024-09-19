@@ -2,6 +2,7 @@
 import { currSectionSTORE } from "$stores/misc.js";
 
 export let options;
+export let tapVisible;
 
 let isActive;
 
@@ -25,7 +26,7 @@ function setTitle(option) {
 }
 </script>
 
-<div class="tabs">
+<div class="tabs tapVisible-{tapVisible}">
     {#each options as option}
     {@const isActive = stripCharacters($currSectionSTORE) == option ? true : false}
     <button on:click={onClick}
@@ -47,6 +48,9 @@ function setTitle(option) {
         top: 0;
         z-index: var(--z-overlay);
         /* background: var(--fanfic-black); */
+    }
+    .tapVisible-false {
+        position: relative;
     }
     button {
         width: 33.33%;

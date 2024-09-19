@@ -31,7 +31,9 @@
         transition:fly={{ delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut }}
         >
             <div class="attribution">
-                <img src="./assets/images/quote-icons/{copy.imgSlug}.png" />
+                {#if copy.imgSlug}
+                    <img src="./assets/images/quote-icons/{copy.imgSlug}.png" />
+                {/if}
                 <div class="credit">
                     <p class="name">{copy.attribute}</p>
                     <p class="title">{copy.title}</p>
@@ -81,6 +83,33 @@
                                 {@html Bookmark}
                             </span>
                             <p>133</p>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+            {#if copy.attribute == "@pinkniall"}
+                <div class="underline">
+                    <div class="left">
+                        <a href="{copy.url}"><p>11:44 PM · Sept. 28, 2017</p></a>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <span class="icon">
+                                {@html Quote}
+                            </span>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <span class="icon">
+                                {@html Retweet}
+                            </span>
+                            <p>402</p>
+                        </div>
+                        <div>
+                            <span class="icon">
+                                {@html Heart}
+                            </span>
+                            <p>293</p>
                         </div>
                     </div>
                 </div>

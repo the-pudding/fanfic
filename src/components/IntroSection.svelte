@@ -209,11 +209,12 @@
     :global(.prose-transition p) {
         font-family: var(--sans);
         font-size: var(--22px);
-        line-height: 1.85;
-        margin: 5rem 0;
+        line-height: 1.25;
+        margin: 1rem auto 5rem auto;
         text-align: center;
         font-style: italic;
         color: var(--fanfic-highlighter);
+        max-width: 500px;
     }
 
     .cursor-icon {

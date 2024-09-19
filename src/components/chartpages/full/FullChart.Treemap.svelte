@@ -48,7 +48,7 @@
         flex-direction: row;
 		overflow: hidden;
         background-color: #f2f2f2;
-        gap: 2rem;
+        gap: 1rem;
 	}
 
     .treemap-inner {

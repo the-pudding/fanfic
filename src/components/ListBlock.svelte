@@ -91,7 +91,7 @@
         font-family: var(--mono);
         font-size: var(--12px);
         border: 1px solid var(--fanfic-black);
-        margin: 0.125rem 0;
+        margin: 0.25rem 0;
         /* background-color: white; */
         transition: background-color 1s linear;
         text-overflow: ellipsis;
