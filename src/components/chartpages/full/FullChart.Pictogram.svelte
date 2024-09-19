@@ -4,8 +4,10 @@
     import inView from "$actions/inView.js";
     import Rank from "$components/Rank.svelte";
     import { uTooltipVisible } from "$stores/misc.js";
+    import roundCounts from "$utils/roundCounts.js";
 
     let data;
+    const format = d3.format(",");
 
     onMount(async () => {
         if (id) {
@@ -65,7 +67,8 @@
         d3.selectAll(".u-tooltip-container")
             .html(
                 `<p class="ship">${textArray[0]}</p>
-                <p>${textArray[1]}</p>`
+                <p>${textArray[1]}</p>
+                <p>${textArray[2]}</p>`
             )
     }
 
@@ -120,6 +123,7 @@
                     <div class="text-wrapper">
                         <p>{ship.ship}</p>
                         <p>{ship.fandom}</p>
+                        <p>{format(roundCounts(ship.works, "ten"))} fics</p>
                     </div>
                 </li>
             {/each}

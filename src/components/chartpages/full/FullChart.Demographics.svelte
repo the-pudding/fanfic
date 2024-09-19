@@ -8,6 +8,7 @@
     import AxisY from "$components/layercake/AxisY.svg.svelte";
     import InlineChartTreemap from "$components/chartpages/inline/InlineChart.Treemap.svelte";
     import data from '$data/SLASH/SLASH_genderIdentity.csv';
+    import roundCounts from "$utils/roundCounts.js";
 
     export let id;
     let innerWidth;
@@ -37,14 +38,14 @@
                 <div class="bars">
                     <div class="baseline"></div>
                     <div class="dataline" style="width: {response.percent}%">
-                        <p>{response.percent}%</p>
+                        <p>{roundCounts(response.percent, "whole")}%</p>
                     </div>
                 </div>
             </div>
             {/each}
         </div>
     </div>
-    <p class="note">Note: Unsure includes questioning. NR is no response.</p>
+    <p class="note">Note: Unsure includes questioning. NR is no response. Numbers may not add to 100 due to rounding.</p>
 </div>
 
 <style>

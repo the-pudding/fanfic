@@ -3,6 +3,7 @@
     import * as d3 from "d3";
     import inView from "$actions/inView.js";
     import { uTooltipVisible } from "$stores/misc.js";
+    import roundCounts from "$utils/roundCounts.js";
 
     let data;
     let groupedData;
@@ -77,13 +78,13 @@
 
         tooltipShip.text(`${ship.ship}`)
         tooltipFandom.text(`${ship.fandom}`)
-        tooltipWorks.text(`${format(ship.totalWorks)} fanfics`)
+        tooltipWorks.text(`${format(roundCounts(ship.totalWorks, "ten"))} fics`)
 
         d3.selectAll(".u-tooltip-container")
             .html(
                 `<p class="ship-text"><span class="ship-text-${ship.isCanon}">${ship.ship}</span></p>
                 <p class="fandom-text">${ship.fandom}</p>
-                <p class="works-text">${format(ship.totalWorks)} fanfics</p>`
+                <p class="works-text">${format(roundCounts(ship.totalWorks, "ten"))} fics</p>`
             )
     }
 
@@ -102,10 +103,10 @@
 
     function setLabelText(canon) {
         let labelText = canon == "Yes"
-            ? "Canon 12%"
+            ? "Canon 11.6%"
             : canon == "No"
-            ? "Non-canon 83%"
-            : "Semi-canon 5%";
+            ? "Non-canon 82.9%"
+            : "Semi-canon 5.5%";
         return labelText;
     }
 </script>
@@ -217,17 +218,17 @@
 
     .label-Yes {
         color: var(--fanfic-blue);
-        width: 4.375rem;
+        width: 5.5rem;
     }
 
     .label-No {
         color: var(--fanfic-red);
-        width: 6.625rem;
+        width: 7.75rem;
     }
 
     .label-Semi-Canon {
         color: var(--fanfic-green);
-        width: 6.625rem;
+        width: 7.75rem;
     }
 
     .ship-Yes {
@@ -249,14 +250,15 @@
 
         .label {
             height: 10px;
+            font-size: 10px;
         }
 
         .label-Yes {
-            width: 82px;
+            width: 70px;
         }
 
         .label-No, .label-Semi-Canon {
-            width: 106px;
+            width: 94px;
         }
         .tooltip {
             display: none;

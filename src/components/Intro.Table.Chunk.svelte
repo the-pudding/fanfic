@@ -3,7 +3,8 @@
     import * as d3 from "d3";
     import top20Data from "$data/INTRO/INTRO_top20.csv";
     import { fade } from 'svelte/transition';
-    import Rank from "$components/Rank.svelte"
+    import Rank from "$components/Rank.svelte";
+    import roundCounts from "$utils/roundCounts.js";
 
 	export let scrollIndex;
     export let start;
@@ -53,7 +54,7 @@
         <Rank rank={start+i+1} />
         <div class="content-wrapper">
             <p class="ship-name">{ship.ship}</p>
-            <p>{format(ship.totalWorks)} fics</p>
+            <p>{format(roundCounts(ship.totalWorks, "ten"))} fics</p>
         </div>
     </li>
     {/if}

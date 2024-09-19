@@ -112,8 +112,6 @@
 			} 
 		}
 	}
-
-	$: console.log($annotationVisible)
 </script>
 
 <!-- PAGE HTML STARTS HERE -->

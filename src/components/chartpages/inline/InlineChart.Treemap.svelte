@@ -12,6 +12,7 @@
 	import BTSdata from '$data/RPF/treemapData_BTS.js';
 	import YTdata from '$data/RPF/treemapData_YT.js';
 	import Icon from "$components/helpers/Icon.svelte";
+	import roundCounts from "$utils/roundCounts.js";
 	
 
 	export let id;
@@ -99,11 +100,11 @@
 				>
 					{#if id == "SLASH_AO3demographics0" || id == "SLASH_AO3demographics1"}
 						<div class="contents contents-{(node.data.short)}">
-							<p>{node.data.name} <span>{Math.round(yootils.commas(node.value))}%</span></p>
+							<p>{node.data.name} <span>{roundCounts(node.value, "whole")}%</span></p>
 						</div>
 					{:else }
 						<div class="contents contents-{(node.data.name).replace("/", "")}">
-							<p>{node.data.name} <span>{Math.round(yootils.commas(node.value))}%</span></p>
+							<p>{node.data.name} <span>{roundCounts(node.value, "whole")}%</span></p>
 						</div>
 					{/if}
 				</div>

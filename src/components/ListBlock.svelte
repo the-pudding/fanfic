@@ -3,6 +3,7 @@
     import { fade } from 'svelte/transition';
     import { uTooltipVisible } from "$stores/misc.js";
     import * as d3 from "d3";
+    import roundCounts from "$utils/roundCounts.js";
 
     export let topItem;
     export let secondaryItem;
@@ -15,6 +16,8 @@
     export let width;
     export let scrollIndex;
     export let data;
+
+    const format = d3.format(",");
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])
@@ -52,7 +55,7 @@
         </div>
         {#if numItem}
             <div class="right">
-                <p class="num-item">{numItem}</p>
+                <p class="num-item">{format(roundCounts(numItem, "ten"))}</p>
             </div>
         {/if}
     </li>
@@ -76,7 +79,7 @@
         </div>
         {#if numItem}
             <div class="right">
-                <p class="num-item">{numItem}</p>
+                <p class="num-item">{format(roundCounts(numItem, "ten"))}</p>
             </div>
         {/if}
         </li>

@@ -53,7 +53,7 @@
                     <ListBlock
                         topItem={ship.ship}
                         secondaryItem={ship.fandom}
-                        numItem={format(ship.fics)}
+                        numItem={ship.fics}
                         index={i}
                         highlight={ship.category == "boy band" && isEntered}
                         specialClass={""}
@@ -63,7 +63,7 @@
                 {:else if id == "CANON_AUtags" || id == "SLASH_topTagsTotal"}
                     <ListBlock
                         topItem={ship.tag}
-                        numItem={format(ship.count)}
+                        numItem={ship.count}
                         index={i}
                         highlight={ship.setting == "mundane" && isEntered}
                         specialClass={""}

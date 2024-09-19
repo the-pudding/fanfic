@@ -3,6 +3,7 @@
 	import * as d3 from "d3";
 	import { createEventDispatcher } from 'svelte';
 	import { uTooltipVisible } from "$stores/misc.js";
+	import roundCounts from "$utils/roundCounts.js";
 
 	const { data, xGet, yGet, zGet, xScale, width, height } = getContext('LayerCake');
 	const dispatch = createEventDispatcher();
@@ -51,9 +52,9 @@
 		let relType = dataGroup.substring(0, 1) + "/" + dataGroup.substring(1);
 		let tooltipVisible = false;
 
-		let noValTooltip = Math.round($data[0][dataIndex].data[`${dataGroup}_no`]);
-		let semiValTooltip = Math.round($data[0][dataIndex].data[`${dataGroup}_semi`]);
-		let yesValTooltip = Math.round($data[0][dataIndex].data[`${dataGroup}_yes`]);
+		let noValTooltip = roundCounts($data[0][dataIndex].data[`${dataGroup}_no`], "whole");
+		let semiValTooltip = roundCounts($data[0][dataIndex].data[`${dataGroup}_semi`], "whole");
+		let yesValTooltip = roundCounts($data[0][dataIndex].data[`${dataGroup}_yes`], "whole");
 		let yearValTooltip = $data[0][dataIndex].data['year'];
 
 		if (yearValTooltip !== "2018") {
@@ -67,9 +68,9 @@
 		d3.selectAll(".u-tooltip-container")
             .html(
                 `<p class="year">${yearValTooltip} ${relType.toUpperCase()}</p>
-				<p class="canon-block">Canon: ${yesValTooltip}%</p>
-				<p class="semi-block">Semi-canon: ${semiValTooltip}%</p>
-				<p class="noncanon-block">Non-canon: ${noValTooltip}%</p>`
+				<p class="canon-block">Canon: ${roundCounts(yesValTooltip, "whole")}%</p>
+				<p class="semi-block">Semi-canon: ${roundCounts(semiValTooltip, "whole")}%</p>
+				<p class="noncanon-block">Non-canon: ${roundCounts(noValTooltip, "whole")}%</p>`
             )
 		d3.selectAll(`.group-rect`).style("opacity", 0.5)
 		d3.selectAll(`.group-rect-${yearValTooltip}`).style("opacity", 1);
