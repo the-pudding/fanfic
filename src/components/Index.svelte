@@ -1,6 +1,7 @@
 <script>
-	import { onMount } from "svelte";
-	import { currSectionSTORE, annotationVisible } from "$stores/misc.js";
+	import { onMount, onDestroy } from "svelte";
+	import { get } from 'svelte/store';
+	import { currSectionSTORE, annotationVisible, scrollSLASH, scrollCANON, scrollRPF } from "$stores/misc.js";
 	import { fade, fly } from 'svelte/transition';
 	import Tabs from "$components/Tabs.svelte";
 	import IntroSection from "$components/IntroSection.svelte";
@@ -14,6 +15,8 @@
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
+	let innerWidth;
+	let sectionTop;
 
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
@@ -34,20 +37,31 @@
 	};
 
 	onMount(() => {
+		// Subscribe to the current section store to track changes
+			currSectionSTORE.subscribe((value) => {
+			prevSection = value;
+			updateScrollPosition(value);
+		});
+		
 		const slashSpans = document.querySelectorAll('span.slash-ref');
 		const canonSpans = document.querySelectorAll('span.canon-ref');
 		const rpfSpans = document.querySelectorAll('span.rpf-ref');
 
-			slashSpans.forEach(span => {
-				span.onclick = function() {
-					currSectionSTORE.set("slash")
-				};
-			});
-			canonSpans.forEach(span => {
-				span.onclick = function() {
-					currSectionSTORE.set("noncanon")
-				};
-			});
+		slashSpans.forEach(span => {
+			span.onclick = function() {
+				currSectionSTORE.set("slash")
+			};
+		});
+		canonSpans.forEach(span => {
+			span.onclick = function() {
+				currSectionSTORE.set("noncanon")
+			};
+		});
+		rpfSpans.forEach(span => {
+			span.onclick = function() {
+				currSectionSTORE.set("realpeople")
+			};
+		});
 	});
 
 	// Sets the translation style for the "inner" div, it's a long ternary statment that works like if/else
@@ -67,11 +81,49 @@
 		return match;
 	}
 
-	let innerWidth;
+	let prevSection;
+  	let scrollY;
+
+	 // Watch for changes in scrollY and currSectionSTORE
+	 $: recordSectionScroll($currSectionSTORE, scrollY);
+
+	 function recordSectionScroll(curr, scrollY) {
+		if (curr === "slash") {
+			scrollSLASH.set(scrollY);
+		} else if (curr === "noncanon") {
+			scrollCANON.set(scrollY);
+		} else if (curr === "realpeople") {
+			scrollRPF.set(scrollY);
+		}
+		// console.log({ $scrollSLASH, $scrollCANON, $scrollRPF });
+	}
+
+	function updateScrollPosition(curr) {
+		if (typeof window !== 'undefined') { // Check if window is available
+			const sectionEl = document.getElementById('section-start')
+			const sectionTopPos = sectionEl.getBoundingClientRect().top + scrollY;
+			let scrollPos;
+			if (curr === "slash") {
+				scrollPos = get(scrollSLASH); // Get the value from the store
+			} else if (curr === "noncanon") {
+				scrollPos = get(scrollCANON); // Get the value from the store
+			} else if (curr === "realpeople") {
+				scrollPos = get(scrollRPF); // Get the value from the store
+			}
+
+			// Check if scrollPos is defined
+			if (scrollPos !== undefined) {
+				scrollPos = scrollPos > sectionTopPos ? scrollPos : sectionTopPos;
+				setTimeout(() => {
+					window.scrollTo({ top: scrollPos });
+				}, 0); // Delay of 1000ms (1 second)
+			} 
+		}
+	}
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
-<svelte:window bind:innerWidth={innerWidth} />
+<svelte:window bind:innerWidth={innerWidth} bind:scrollY={scrollY}/>
 
 <IntroSection />
 <Tabs options={sections} />
@@ -79,7 +131,7 @@
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
-<div class="inner" style="transform:{translate}"
+<div id="section-start" class="inner" style="transform:{translate}"
 	use:inView={{ bottom: 1000 }}
 	on:enter={showTap}
 	on:exit={hideTap}

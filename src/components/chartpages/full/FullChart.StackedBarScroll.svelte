@@ -15,8 +15,6 @@
 
     const copy = getContext("copy");
 
-    console.log(copy.canonBarSlides)
-
     export let id;
 
     let receivedData = '';
@@ -256,6 +254,8 @@
         background: #f2f2f2;
         border: 2px solid;
         border-color: var(--window-button-stroke);
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     .content-wrapper {

@@ -213,6 +213,8 @@
         border: 2px solid;
         border-color: var(--window-button-stroke);
         overflow-y: hidden;
+        max-width: 1400px;
+        margin: 0 auto;
     }
     .content-wrapper {
         width: calc(100% - 2rem);

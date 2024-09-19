@@ -178,6 +178,8 @@
         border-width: 2px;
         border-color: var(--window-button-stroke);
         border-style: solid;
+		max-width: 1400px;
+        margin: 0 auto;
     }
 
 	.viz-wrapper {

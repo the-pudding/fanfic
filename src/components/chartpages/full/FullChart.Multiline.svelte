@@ -204,6 +204,8 @@
         border-color: var(--window-button-stroke);
         border-style:solid;
         overflow: hidden;
+        max-width: 1400px;
+        margin: 0 auto;
     }
     .content-wrapper {
         width: calc(100% - 2rem);
