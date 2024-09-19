@@ -198,6 +198,7 @@
         flex-direction: row;
         z-index: 1000;
         justify-content: center;
+        gap: 4rem;
     }
 
     .prose, .hed, .inline-chart {
@@ -230,10 +231,11 @@
     }
 
     .fly-box {
-        width: 50%;
+        width: calc(50% - 2rem);
         position: relative;
         display: flex;
         justify-content: center;
+        align-items: center;
     }
 
     .left-fly .inline-chart:nth-of-type(1) {
@@ -243,7 +245,7 @@
 
     .right-fly .inline-chart:nth-of-type(1) {
         top: 25%;
-        right: 10%;
+        right: 0;
     }
 
 
@@ -252,14 +254,12 @@
     }
 
     .inline-chart-sm {
-        width: 90%;
-        max-width: 500px;
+        width: 100%;
         height: 200px;
     }
 
     .inline-chart-lg {
-        width: 90%;
-        max-width: 500px;
+        width: 100%;
         height: 400px;
     }
 
