@@ -22,6 +22,19 @@
         }
 	});
 
+    function setRelTypeText(relType) {
+        console.log(relType)
+        if (relType == "m/m" || relType == "M/M") {
+            return "Slash (M/M)"
+        } else if (relType == "f/m" || relType == "F/M") {
+            return "Straight (F/M)"
+        } else if (relType == "f/f" || relType == "F/F") {
+            return "Femslash (F/F)"
+        } else if (relType == "all" || relType == "ALL") {
+            return "All"
+        }
+    }
+
     // Uses inView on table to trigger highlights
     function highlightRow() {
         setTimeout(() => {
@@ -54,7 +67,7 @@
         {@const sexualCount = relType[1].filter(d => d.type_sexual === 'y').length}
         {#if id == "SLASH_topTagsByRelType"}    
             <div class="list-wrapper-4">
-                <h5>{relType[0]}</h5>
+                <h5>{setRelTypeText(relType[0])}</h5>
                 <div class="summary">
                     <p class="key-sexual"><span>{sexualCount}</span> Sexual</p>
                     <p class="key-relationship"><span>{relCount}</span> Relationship</p>
@@ -64,17 +77,17 @@
                         <ListBlock
                             topItem={tag.tag}
                             index={i}
+                            blockType={"full-4"}
                             highlight={tag.type_relationship == "y" && isEntered || tag.type_sexual == "y" && isEntered}
                             specialClass={`item-sexual-${tag.type_sexual} item-relationship-${tag.type_relationship}`}
                             width={"100%"}
-                            height={"2rem"}
                         />
                     {/each}
                 </ul>
             </div>
             {:else}
                 <div class="list-wrapper-3">
-                    <h5>{relType[0]}</h5>
+                    <h5>{setRelTypeText(relType[0])}</h5>
                     <ul>
                         {#each relType[1] as ship, i}
                             <ListBlock
@@ -82,9 +95,9 @@
                                 numItem={ship.totalWorks}
                                 highlight={true}
                                 index={i}
+                                blockType={"full-3"}
                                 specialClass={`item-canon-${ship.isCanon}`}
                                 width={"100%"}
-                                height={"2rem"}
                             />
                         {/each}
                     </ul>
@@ -103,6 +116,10 @@
         background: #f2f2f2;
         color: var(--fanfic-black);
         margin: 1rem auto 2rem auto;
+        border-width: 2px;
+        border-color: var(--window-inset-stroke);
+        border-style: solid;
+        padding: 1rem;
     }
 
     .key {
@@ -177,7 +194,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .set-wrapper ul {
@@ -186,23 +203,17 @@
     }
 
     .list-wrapper-4 {
-        width: calc(25% - 0.75rem);
+        width: calc(25% - 1.5rem);
         display: flex;
         flex-direction: column;
         margin: 0;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
-        padding: 1rem;
     }
 
     .list-wrapper-3 {
-        width: calc(33% - 0.75rem);
+        width: calc(33% - 1.55rem);
         display: flex;
         flex-direction: column;
         margin: 0;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
-        padding: 1rem;
     }
 
     h5 {
@@ -210,7 +221,6 @@
         font-weight: 700;
         text-align: center;
         font-size: var(--18px);
-        text-transform: uppercase;
         margin: 0;
         padding: 0;
     }
@@ -218,8 +228,9 @@
     .summary {
         width:100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         padding: 0.5rem 0;
+        gap: 0.5rem;
     }
 
     .summary p {
@@ -240,6 +251,7 @@
         display: inline-block;
         border: 2px solid;
         border-color: var(--window-inset-stroke);
+        margin-right: -0.125rem;
     }  
     
     .key-sexual span {
@@ -251,27 +263,43 @@
         display: inline-block;
         border: 2px solid;
         border-color: var(--window-inset-stroke);
+        margin-right: -0.125rem;
     }  
+
+    @media (max-width: 1200px) { 
+        .summary {
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+    }
     
     @media (max-width: 900px) { 
         .list-wrapper-4 {
-            width: calc(50% - 0.75rem);
+            width: calc(50% - 1rem);
+        }
+        .summary {
+            flex-direction: row;
+            gap: 1rem;
+            padding: 0.5rem 0 0 0;
         }
     }
 
     @media (max-width: 800px) { 
         h5 {
-            font-size: var(--14px);
+            font-size: var(--18px);
+        }
+    }
+
+    @media(max-width: 700px) {
+        .list-wrapper-3 {
+            width: 100%;
         }
     }
 
     @media (max-width: 600px) { 
        .list-wrapper-4 {
             width: 100%;
-        }
-        .list-wrapper-3 {
-            width: 100%;
-        }
+       }
 
         .key {
             font-size: 10px;

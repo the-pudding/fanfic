@@ -2,9 +2,16 @@
     import { uTooltipVisible } from "$stores/misc.js";
 
     $: innerWidth = 0;
+    $: scrollY = 0;
+
+    function checkScroll(scrollY) {
+        uTooltipVisible.set(false);
+    }
+
+    $: checkScroll(scrollY);
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth bind:scrollY />
 
 {#if innerWidth <= 600}
     <div class="u-tooltip-container" class:tooltipVisible={$uTooltipVisible}>

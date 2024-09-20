@@ -22,7 +22,6 @@
 <div class="quote"
     use:inView={{ bottom: 100 }} 
     on:enter={inViewQuote}
-    on:exit={exitViewQuote}
 >
     {#if inViewTrigger == true}
         <!-- <div class="bg" transition:fly={{ delay: 750, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
@@ -50,14 +49,14 @@
                                 {@html Book}
                             {/if}
                         </span>
-                        <a href="{copy.url}"><p>{copy.source}</p></a>
+                        <a href="{copy.url}">{copy.source}</a>
                     </div>
                 </div>
             {/if}
             {#if copy.attribute == "@thvsparadise"}
                 <div class="underline">
                     <div class="left">
-                        <a href="{copy.url}"><p>11:55 PM · Nov 5, 2020</p></a>
+                        <a href="{copy.url}">11:55 PM · Nov 5, 2020</a>
                     </div>
                     <div class="right">
                         <div>
@@ -90,7 +89,7 @@
             {#if copy.attribute == "@pinkniall"}
                 <div class="underline">
                     <div class="left">
-                        <a href="{copy.url}"><p>11:44 PM · Sept. 28, 2017</p></a>
+                        <a href="{copy.url}">11:44 PM · Sept. 28, 2017</a>
                     </div>
                     <div class="right">
                         <div>
@@ -226,12 +225,14 @@
         margin: 0.25rem 0.25rem 0 0;
     }
 
-    .underline div p {
+    .underline div a {
         font-family: var(--mono);
         padding: 0;
         margin: 0;
         font-size: var(--12px);
         line-height: 1.25;
+        text-decoration: underline;
+        border-bottom: 0;
     }
 
     @media (max-width: 600px) {
@@ -246,7 +247,7 @@
             font-size: var(--12px);
             line-height: 1.25;
         }
-        .title, .underline div p {
+        .title, .underline div a {
             font-size: 10px;
             line-height: 1.25;
         }

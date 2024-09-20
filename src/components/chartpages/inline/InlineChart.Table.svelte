@@ -57,7 +57,7 @@
                         index={i}
                         highlight={ship.category == "boy band" && isEntered}
                         specialClass={""}
-                        height={"3rem"}
+                        blockType={"inline-layer"}
                         width={"100%"}
                     />
                 {:else if id == "CANON_AUtags" || id == "SLASH_topTagsTotal"}

@@ -246,6 +246,10 @@
         .ship {
             width: 10px;
             height: 10px;
+            transition: none;
+        }
+        .ship:hover {
+            outline: 2px solid var(--fanfic-black);
         }
 
         .label {

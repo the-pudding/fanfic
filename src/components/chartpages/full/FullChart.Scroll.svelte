@@ -74,7 +74,7 @@
                         <p class="key-block key-block-scifi">Sci-Fi</p>
                         <p class="key-block key-block-superhero">Superhero</p>
                         <p class="key-block key-block-video">Video Game</p>
-                        <p class="key-block key-block-other">Other</p>
+                        <!-- <p class="key-block key-block-other">Other</p> -->
                     {/if}
                 </div>
                 <div class="fandom-wrapper">
@@ -359,8 +359,13 @@
     }
 
     @media (max-width: 700px) {
+        .key {
+            max-width: 90%;
+            margin: 1rem auto 0 auto;
+            height: 2rem;
+        }
         .column-wrapper {
-            width: calc(50% - 1rem);
+            width: calc(50% - 0.5rem);
         }
         .fandom-wrapper {
             padding: 0.5rem 1rem 1rem 1rem;

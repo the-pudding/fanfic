@@ -42,10 +42,10 @@
     ]);
 
     function setTextColor(color) {
-        if (color !== "#C0B9C6") {
-            return "#ffffff"
-        } else {
+        if (color == "#C0B9C6" || color == "#96AC0B") {
             return "#151515"
+        } else {
+            return "#ffffff"
         }
 
     }
@@ -69,7 +69,7 @@
 {#if blockType !== "grid"}
     <li 
         style="height: {height}; width: {width}"
-        class="highlight-{highlight} {specialClass}"
+        class="highlight-{highlight} {specialClass} single-line-ellipsis {blockType}"
     >
         <div class="left">
             <Rank rank={index+1} />
@@ -88,13 +88,18 @@
     </li>
 {:else}
     {#if scrollIndex >= 0 || scrollIndex == undefined}
-        {@const textColor = scrollIndex == 1 && specialClass !== "#C0B9C6" 
+        <!-- {@const textColor = scrollIndex <= 1 && specialClass !== "#C0B9C6" 
             ? "#151515" 
-            : scrollIndex == 2 && specialClass !== "#C0B9C6" 
+            : scrollIndex == 2 && specialClass !== "#C0B9C6" || scrollIndex == 2 && specialClass !== "#96AC0B"
             ? "#ffffff" : "#151515"
-        }
+        } -->
+        {@const textColor = scrollIndex <= 1 && specialClass !== "#C0B9C6"
+            ? "#151515"
+            : scrollIndex == 2 && specialClass == "#C0B9C6" || scrollIndex == 2 && specialClass == "#96AC0B"
+            ? "#151515"
+            : "#ffffff"}
         <li class="grid"
-            style="background-color: {specialClass}; color: {textColor}"
+            style="background-color:{specialClass}; color:{textColor}"
             on:mouseenter={handleMouseEnter}
             on:mouseleave={handleMouseLeave}
             in:fade={{ delay: index*50, duration: 300 }}
@@ -128,14 +133,21 @@
         margin: 0.25rem 0;
         /* background-color: white; */
         transition: background-color 1s linear;
-        text-overflow: ellipsis;
         overflow: hidden;
     }
 
     .grid {
         width: 100%;
-        height: 3.5rem;
+        height: 3rem;
         cursor: pointer;
+    }
+
+    .full-3 {
+        height: 3rem;
+    }
+
+    .inline-layer {
+        height: 2.5rem;
     }
 
     .item-relationship-y.highlight-true {
@@ -172,19 +184,26 @@
         padding: 0;
         margin: 0;
         line-height: 1;
-        text-overflow: ellipsis;
-        overflow: hidden;
+    }
+
+    .grid .left {
+        width: 100%;
     }
     
     .left {
+        width: calc(100% - 4rem);
         display: flex;
         flex-direction: column;
+        overflow-wrap: break-word;
+    }
+
+    .right {
+        width: 4rem;
+        text-align: right;
     }
 
     .top-item {
         font-weight: 700;
-        text-overflow: ellipsis;
-        overflow: hidden;
     }
 
     .details {
@@ -195,13 +214,77 @@
         padding: 0.25rem;
     }
 
-    @media(max-width: 700px) {
-        .grid {
-            height: 1.25rem;
+    @media (max-width: 1200px) { 
+        .full-4 .top-item {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 20ch;      
+            white-space: nowrap; 
         }
+    }
 
+    @media(max-width: 900px) {
+        .full-4 .top-item {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 40ch;      
+            white-space: nowrap; 
+        }
+    }
+
+    @media(max-width: 800px) {
+        .grid {
+            height: 2.5rem;
+        }
         li {
             font-size: 10px;
+        }
+        .full-3 {
+            height: 3.5rem;
+        }
+        .left {
+            width: calc(100% - 3.5rem);
+        }
+
+        .right {
+            width: 3.5rem;
+        }
+    }
+
+    @media(max-width: 700px) {
+        .grid {
+            height:1.25rem;
+        }
+
+        .grid .top-item {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 30ch;      
+            white-space: nowrap; 
+        }
+        .full-3 {
+            height: 2.25rem;
+        }
+    }
+
+    @media(max-width: 550px) {
+        .grid .top-item {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 25ch;      
+            white-space: nowrap; 
+        }
+    }
+
+    @media(max-width: 500px) {
+        .grid .top-item {
+            width: 15ch;      
+        }
+    }
+
+    @media(max-width: 400px) {
+        .grid .top-item {
+            width: 12ch;      
         }
     }
 </style>

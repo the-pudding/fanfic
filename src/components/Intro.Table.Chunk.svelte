@@ -133,7 +133,7 @@
 
     @media (max-width: 700px) {
         li {
-            height: 3rem;
+            height: 3.75rem;
         }
 		p {
             font-size: 10px; 

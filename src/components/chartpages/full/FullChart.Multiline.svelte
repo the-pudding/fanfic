@@ -75,6 +75,7 @@
 
     function updateScrollSteps(scrollIndex) {
         if (scrollIndex == undefined) {
+            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 0);
             // d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 0);
         } else if (scrollIndex == 0) {
             yDomain.set([0, 100000]);

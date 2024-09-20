@@ -14,7 +14,7 @@
 			dataUrl: "./assets/data/SLASH/networkHP.json"
 		},
 		{
-			fandom: "Marvel Cinematic Universe",
+			fandom: "MCU",
 			dataUrl: "./assets/data/SLASH/networkMCU.json"
 		}
 	];
@@ -191,15 +191,15 @@
 		align-items: center;
 		gap: 1rem;
 		overflow: hidden;
+		border-width: 2px;
+        border-color: var(--window-inset-stroke);
+        border-style: solid;
 	}
 	.fandom-wrapper {
 		width: calc(50% - 1rem);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		border-width: 2px;
-        border-color: var(--window-inset-stroke);
-        border-style: solid;
 		padding: 1rem;
 	}
 
@@ -350,13 +350,13 @@
 		font-weight: 700;
 		font-family: var(--sans);
 		background-color: #96AC0B;
-		color: white;
+		color: var(--fanfic-black);
 		padding: 0.125rem;
 	}
 
-	@media (max-width: 800px) {
+	@media (max-width: 700px) {
 		.fandom-wrapper h3 {
-			font-size: var(--14px);
+			font-size: var(--18px);
 		}
 	}
 

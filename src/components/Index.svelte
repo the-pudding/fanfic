@@ -241,7 +241,7 @@
 
 	:global(#noncanon-slide .slash-ref::before) {
 		content: '';
-		background-image: url("src/svg/left-arrow-pixel.svg");
+		background-image: url("/src/svg/left-arrow-pixel.svg");
         background-size: 18px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;
@@ -267,7 +267,7 @@
 
 	:global(#realpeople-slide .slash-ref::before) {
 		content: '';
-		background-image: url("src/svg/double-left-arrow-pixel.svg");
+		background-image: url("/src/svg/double-left-arrow-pixel.svg");
         background-size: 18px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;
@@ -298,7 +298,7 @@
 
 	:global(#realpeople-slide .canon-ref::before) {
 		content: '';
-		background-image: url("src/svg/left-arrow-pixel.svg");
+		background-image: url("/src/svg/left-arrow-pixel.svg");
         background-size: 18px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;

@@ -312,17 +312,15 @@
         transform: translate(-50%, 0) scale(0.95);
     }
 
-    @media (max-width: 600px) { 
-        .chart-container {
-            padding: 1rem;
-        }
+    @media (max-width: 1000px) {
         .key {
             flex-wrap: wrap;
             margin-left: -2rem;
             margin-bottom: 2rem;
+            align-items: center;
         }
         .key-block {
-            width: 50%;
+            width: 33%;
             padding: 0 0.5rem;
             margin: 0;
         }
@@ -330,6 +328,17 @@
         .key-text {
             padding: 0 0 0 0.5rem;
             width: 100px;
+        }
+    }
+
+    @media (max-width: 600px) { 
+        .chart-container {
+            padding: 1rem;
+        }
+        .key-block {
+            width: 50%;
+            padding: 0 0.5rem;
+            margin: 0;
         }
         .img-block {
             padding: 0 0.25rem 0 0;

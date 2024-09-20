@@ -48,7 +48,10 @@
         flex-direction: row;
 		overflow: hidden;
         background-color: #f2f2f2;
-        gap: 1rem;
+        gap: 2rem;
+        border: 2px solid;
+        padding: 1rem;
+        border-color: var(--window-inset-stroke);
 	}
 
     .treemap-inner {
@@ -56,9 +59,6 @@
         width: 100%;
         height: 100%;
         flex-direction: column;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
-        padding: 1rem 0;
     }
 
     :global(.treemap-inner .chart) {
@@ -83,7 +83,7 @@
         line-height: 1.25;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
         .treemap-wrapper {
             flex-direction: column;
         }

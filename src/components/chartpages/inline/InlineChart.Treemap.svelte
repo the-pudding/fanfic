@@ -145,7 +145,8 @@
 	}
 	#RPF_relTypeByFandom0, #RPF_relTypeByFandom1 {
 		border: 0;
-		margin: 0 auto;
+		margin: 0;
+		width: 100%;
 	}
 
 	#SLASH_AO3demographics0, #SLASH_AO3demographics1, #RPF_relTypeByFandom0, #RPF_relTypeByFandom1 {

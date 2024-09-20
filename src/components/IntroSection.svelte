@@ -53,7 +53,6 @@
     <div class="popups"
         use:inView={{ bottom: 100 }} 
         on:enter={inViewPopup}
-        on:exit={exitViewPopup}
     >
         {#if inViewTrigger == true}
             <div class="fly-box left-fly">

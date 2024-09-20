@@ -32,6 +32,7 @@
         font-size: var(--18px);
         line-height: 1.85;
         margin: 2rem 0;
+        font-weight: 500;
     }
 
     :global(.strong) {
