@@ -45,7 +45,7 @@
             {/each}
         </div>
     </div>
-    <p class="note">Note: Unsure includes questioning. NR is no response. Numbers may not add to 100 due to rounding.</p>
+    <p class="note">Note: Unsure includes questioning. NR is no response. All numbers rounded to the nearest whole number and may not add to 100 due to rounding.</p>
 </div>
 
 <style>
@@ -69,14 +69,14 @@
         display: flex;
         gap: 2rem;
         flex-direction: row;
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
     }
 
     .treemap-wrapper {
         display: flex;
         flex-direction: column;
         width: 50%;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
         padding: 1rem;
     }
 
@@ -109,8 +109,6 @@
 
     .bar-wrapper {
         width: 50%;
-        border: 2px solid;
-        border-color: var(--window-inset-stroke);
         padding: 1rem;
     }
 
@@ -128,7 +126,7 @@
         width: 9rem;
         line-height: 1.25;
         margin: 0;
-        padding: 0 0 0 0.5rem;
+        padding: 0;
         font-weight: 700;
     }
 
@@ -164,21 +162,24 @@
 
     @media (max-width: 800px) {
         h5 {
-            font-size: var(--14px);
+            font-size: var(--16px);
         }
-    }
 
-    @media (max-width: 600px) { 
-        .viz-wrapper {
+        .content-wrapper {
             flex-direction: column;
         }
 
         .treemap-wrapper, .bar-wrapper {
             width: 100%;
         }
+    }
+
+    @media (max-width: 600px) { 
+
         .row p {
             font-size: 10px;
             width: 7.5rem;
+            padding: 0;
         }
         .bars {
             width: calc(100% - 7.5rem);

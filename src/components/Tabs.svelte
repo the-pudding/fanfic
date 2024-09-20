@@ -2,9 +2,7 @@
 import { currSectionSTORE } from "$stores/misc.js";
 
 export let options;
-export let tapVisible;
-
-let isActive;
+export let tabVisible;
 
 function stripCharacters(string) {
     let stripped = string.replace(/[^A-Z0-9]/ig, '').toLowerCase();
@@ -26,7 +24,7 @@ function setTitle(option) {
 }
 </script>
 
-<div class="tabs tapVisible-{tapVisible}">
+<div class="tabs tabVisible-{tabVisible}">
     {#each options as option}
     {@const isActive = stripCharacters($currSectionSTORE) == option ? true : false}
     <button on:click={onClick}
@@ -49,8 +47,8 @@ function setTitle(option) {
         z-index: var(--z-overlay);
         /* background: var(--fanfic-black); */
     }
-    .tapVisible-false {
-        position: relative;
+    .tabVisible-false {
+        opacity: 0;
     }
     button {
         width: 33.33%;

@@ -46,6 +46,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        min-height: 240px;
     }
 
     .left {

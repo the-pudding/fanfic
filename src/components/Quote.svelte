@@ -123,6 +123,7 @@
         /* position: relative; */
         max-width: 550px;
         margin: 6rem auto;
+        min-height: 240px;
         /* height: 340px; */
     }
 

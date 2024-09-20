@@ -36,7 +36,7 @@
     :global(.u-tooltip-container p) {
         margin: 0;
         padding: 0;
-        line-height: 1.25;
+        line-height: 1.5;
         font-size: var(--12px);
     }
 

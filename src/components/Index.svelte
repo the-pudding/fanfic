@@ -15,7 +15,9 @@
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
+	let tabVisible = true;
 	let innerWidth;
+	let innerHeight;
 
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
@@ -73,6 +75,8 @@
 	// Uses inView on the sections to hide/show the tap arrows	
 	function showTap() { tapVisible = true; }
 	function hideTap() { tapVisible = false; }
+	function showTab() { tabVisible = true; }
+	function hideTab() { tabVisible = false; }
 
 	let prevSection;
   	let scrollY;
@@ -115,16 +119,16 @@
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
-<svelte:window bind:innerWidth={innerWidth} bind:scrollY={scrollY}/>
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} bind:scrollY={scrollY}/>
 
 <IntroSection />
-<Tabs options={sections} tapVisible={tapVisible} />
+<Tabs options={sections} tabVisible={tabVisible}/>
 
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
 <div id="section-start" class="inner" style="transform:{translate}"
-	use:inView={{ bottom: 1000 }}
+	use:inView={{ bottom: innerHeight }}
 	on:enter={showTap}
 	on:exit={hideTap}
 >
@@ -139,8 +143,9 @@
 	<Annotation />
 {/if}
 <div class="methods-trigger"
-	use:inView={{ bottom: 0 }}
-	on:enter={hideTap}
+	use:inView={{ bottom: innerHeight }}
+	on:enter={hideTab}
+	on:exit={showTab}
 >
 	<MethodsSection />
 </div>

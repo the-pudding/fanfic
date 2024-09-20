@@ -21,7 +21,34 @@
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])
-      .interpolator(d3.interpolateRgb("#FFAAB9", "#E2FF8E"));
+      .interpolator(d3.interpolateRgb("#E2FF8E","#7380D0"));
+
+    const genres = ['Superhero', 'Fantasy', 'Science Fiction', 'Sports', 'Video Game', 'Crime', 'Slice of Life', 'Thriller', 'Romance', 'Historical'];
+    
+    const genreColorScale = d3.scaleOrdinal()
+        .domain(genres)
+        .range([
+        "#D03200", // Superhero
+        "#1B2AA6", // Fantasy
+        "#119C72", // Science Fiction
+        "#C0B9C6", // Sports
+        "#96AC0B",  // Video Game
+        "#C0B9C6", // Crime
+        "#C0B9C6", // Thriller
+        "#C0B9C6", // Thriller
+        "#C0B9C6", // Slice of Life
+        "#C0B9C6", // Romance
+        "#C0B9C6", // Historical
+    ]);
+
+    function setTextColor(color) {
+        if (color !== "#C0B9C6") {
+            return "#ffffff"
+        } else {
+            return "#151515"
+        }
+
+    }
 
     function handleMouseEnter() {
         uTooltipVisible.set(true);
@@ -30,7 +57,7 @@
             .html(
                 `<p class="fandom">${data.fandom}</p>
                 <p><span style="background-color:${genderColorScale(data.menPercent)}">${Math.round(data.womenPercent)}% women / ${Math.round(data.menPercent)}% men</span></p>
-                <p>${data.genre}</p>`
+                <p><span style="color:${setTextColor(genreColorScale(data.genre))}; background-color:${genreColorScale(data.genre)}">${data.genre}</span></p>`
             )
     }
 
@@ -61,7 +88,11 @@
     </li>
 {:else}
     {#if scrollIndex >= 0 || scrollIndex == undefined}
-        {@const textColor = scrollIndex > 0 && specialClass !== "#C0B9C6" ? "white" : "#151515"}
+        {@const textColor = scrollIndex == 1 && specialClass !== "#C0B9C6" 
+            ? "#151515" 
+            : scrollIndex == 2 && specialClass !== "#C0B9C6" 
+            ? "#ffffff" : "#151515"
+        }
         <li class="grid"
             style="background-color: {specialClass}; color: {textColor}"
             on:mouseenter={handleMouseEnter}
@@ -102,12 +133,9 @@
     }
 
     .grid {
-        width: calc(20% - 0.5rem);
-        height: 2.5rem;
-        overflow: hidden;
-        margin: 0.125rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
+        width: 100%;
+        height: 3.5rem;
+        cursor: pointer;
     }
 
     .item-relationship-y.highlight-true {
@@ -167,18 +195,13 @@
         padding: 0.25rem;
     }
 
-    @media (max-width: 600px) { 
-        li {
-            font-size: 10px;
+    @media(max-width: 700px) {
+        .grid {
+            height: 1.25rem;
         }
 
-        .grid {
-            width: calc(50% - 0.5rem);
-            height: 1.25rem;
-            overflow: hidden;
-            margin: 0.125rem;
-            text-overflow: ellipsis;
-            overflow: hidden;
+        li {
+            font-size: 10px;
         }
     }
 </style>

@@ -17,21 +17,23 @@
     let cols = 5;
 
     const genres = [...new Set(data.map(item => item.genre))];
+    console.log(genres)
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])
-      .interpolator(d3.interpolateRgb("#D03E00", "#1B2AA6"));
+      .interpolator(d3.interpolateRgb("#E2FF8E","#7380D0"));
     
     const genreColorScale = d3.scaleOrdinal()
         .domain(genres)
         .range([
-        "#1B2AA6", // Fantasy
         "#D03200", // Superhero
+        "#1B2AA6", // Fantasy
+        "#119C72", // Science Fiction
         "#C0B9C6", // Sports
-        "#C0B9C6",  // Video Game
+        "#96AC0B",  // Video Game
         "#C0B9C6", // Crime
         "#C0B9C6", // Thriller
-        "#0F8662", // Science Fiction
+        "#C0B9C6", // Thriller
         "#C0B9C6", // Slice of Life
         "#C0B9C6", // Romance
         "#C0B9C6", // Historical
@@ -51,16 +53,8 @@
 
     let scrollIndex;
 
-    function calculateBestGrid(innerWidth, innerHeight) {
-        let ratio = innerWidth/innerHeight;
-        
-        grid = ratio > 1 ? [5, 10] : [10, 5];
-    }
-
     let innerWidth;
     let innerHeight;
-    let grid = [];
-    $: calculateBestGrid(innerWidth, innerHeight);
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight/>
@@ -77,22 +71,100 @@
                     <p>More women</p>
                     {:else if scrollIndex == 2}
                         <p class="key-block key-block-fantasy">Fantasy</p>
-                        <p class="key-block key-block-superhero">Superhero</p>
                         <p class="key-block key-block-scifi">Sci-Fi</p>
+                        <p class="key-block key-block-superhero">Superhero</p>
+                        <p class="key-block key-block-video">Video Game</p>
                         <p class="key-block key-block-other">Other</p>
                     {/if}
                 </div>
                 <div class="fandom-wrapper">
-                    {#each data as fandom, i}
-                        <ListBlock
-                            data={fandom}
-                            topItem={fandom.fandom}
-                            index={i}
-                            blockType={"grid"}
-                            scrollIndex={scrollIndex}
-                            specialClass={setColorScale(scrollIndex, fandom)}
-                        />
-                    {/each}
+                    {#if innerWidth > 699}
+                        <div class="column-wrapper">
+                            {#each data.slice(0,10) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                        <div class="column-wrapper">
+                            {#each data.slice(10,20) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i+10}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                        <div class="column-wrapper">
+                            {#each data.slice(20,30) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i+20}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                        <div class="column-wrapper">
+                            {#each data.slice(30,40) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i+30}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                        <div class="column-wrapper">
+                            {#each data.slice(40,50) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i+40}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                    {:else}
+                        <div class="column-wrapper">
+                            {#each data.slice(0,25) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                        <div class="column-wrapper">
+                            {#each data.slice(25,50) as fandom, i}
+                                <ListBlock
+                                    data={fandom}
+                                    topItem={fandom.fandom}
+                                    index={i+25}
+                                    blockType={"grid"}
+                                    scrollIndex={scrollIndex}
+                                    specialClass={setColorScale(scrollIndex, fandom)}
+                                />
+                            {/each}
+                        </div>
+                    {/if}
                 </div>
             </div>
         </div>
@@ -167,7 +239,7 @@
         font-weight: 700;
     }
     .key-box-gender {
-        background-image: linear-gradient(to right, #1B2AA6, #D03E00);
+        background-image: linear-gradient(to right, #7380D0, #E2FF8E);
         height: 1.5rem;
         width: 10rem;
         border: 2px solid;
@@ -200,6 +272,9 @@
     .key-block-scifi::before {
         background: var(--fanfic-green);
     }
+    .key-block-video::before {
+        background: #96AC0B;
+    }
     .key-block-other::before {
         background: var(--fanfic-window-gray);
     }
@@ -228,6 +303,7 @@
         border-color: var(--window-inset-stroke);
         overflow: hidden;
     }
+
     .fandom-wrapper {
         width: 100%;
         display: flex;
@@ -239,6 +315,11 @@
         justify-content: center;
         background-color: #f2f2f2;
         overflow: hidden;
+        gap: 1rem;
+    }
+
+    .column-wrapper {
+        width: calc(20% - 1rem);
     }
 
     ul {
@@ -274,6 +355,16 @@
         background: white;
         padding: 2rem 1rem;
         border: 1px solid var(--fanfic-black);
+        pointer-events: auto;
+    }
+
+    @media (max-width: 700px) {
+        .column-wrapper {
+            width: calc(50% - 1rem);
+        }
+        .fandom-wrapper {
+            padding: 0.5rem 1rem 1rem 1rem;
+        }
     }
 
     @media (max-width: 600px) {

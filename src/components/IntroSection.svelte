@@ -191,9 +191,9 @@
     .popups {
         width: 100%;
         position: relative;
-        height: 100vh;
+        min-height: 100vh;
         max-width: 1100px;
-        margin: 0 auto 0 auto;
+        margin: 0 auto 5rem auto;
         display: flex;
         flex-direction: row;
         z-index: 1000;
@@ -271,7 +271,7 @@
         .popups {
             padding: 0;
             flex-direction: column;
-            height: auto;
+            gap: 2rem;
         }
         .fly-box {
             width: 100%;
@@ -280,7 +280,6 @@
             width: 100%;
             position: relative;
             height: auto;
-            margin: 2rem 0;
         }
         .left-fly .inline-chart:nth-of-type(1), .left-fly .inline-chart:nth-of-type(2),
         .right-fly .inline-chart:nth-of-type(1), .right-fly .inline-chart:nth-of-type(2) {
