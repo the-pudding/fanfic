@@ -17,7 +17,6 @@
     let cols = 5;
 
     const genres = [...new Set(data.map(item => item.genre))];
-    console.log(genres)
 
     const genderColorScale = d3.scaleDiverging()
       .domain([0, 50, 100])

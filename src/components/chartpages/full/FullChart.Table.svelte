@@ -23,7 +23,6 @@
 	});
 
     function setRelTypeText(relType) {
-        console.log(relType)
         if (relType == "m/m" || relType == "M/M") {
             return "Slash (M/M)"
         } else if (relType == "f/m" || relType == "F/M") {
