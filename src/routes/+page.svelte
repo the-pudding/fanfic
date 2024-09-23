@@ -20,6 +20,8 @@
 	const { title, description, url, keywords } = copy;
 	setContext("copy", copy);
 	setContext("data", data.data);
+
+	console.log(title)
 </script>
 
 <Meta {title} {description} {url} {preloadFont} {keywords} />

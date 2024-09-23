@@ -1,7 +1,7 @@
 <script>
 	export let title = "Title TK";
 	export let description = "Description TK";
-	export let url = "https://pudding.cool";
+	export let url = "https://pudding.cool/2024/20/fanfic";
 	export let keywords = "";
 	export let preloadFont = [];
 </script>
