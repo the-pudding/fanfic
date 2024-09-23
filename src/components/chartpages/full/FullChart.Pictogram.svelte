@@ -26,8 +26,8 @@
 
     function findMatchingPictogram(ship, letter) {
         let gender = letter == "A"
-            ? (ship.gender).split("/")[0]
-            : (ship.gender).split("/")[1];
+            ? ship.genderA
+            : ship.genderB
             gender = gender == "M"
                 ? "man"
                 : gender == "F"
