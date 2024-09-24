@@ -5,6 +5,8 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import ChartHeader from "$components/chartpages/ChartHeader.svelte";
 	import NetworkChart from "$components/chartpages/full/FullChart.Network.Chart.svelte";
+	import hpNetworkData from "$data/SLASH/SLASH_harryPotterShips.csv";
+	import mcuNetworkData from "$data/SLASH/SLASH_mcuShips.csv";
 	
 	const copy = getContext("copy");
 
@@ -29,12 +31,55 @@
 	let showRelFF = false;
 	let showRelFM = false;
 
-	onMount(async function() {
-		let dataHP = await d3.json("./assets/data/SLASH/networkHP.json");
-		let dataMCU = await d3.json("./assets/data/SLASH/networkMCU.json");
+	function formatData(data) {
+        const nodes = [];
+        const links = [];
+        const nodeMap = {};
 
-		calculateVals(dataHP, "Harry Potter");
-		calculateVals(dataMCU, "Marvel Cinematic Universe");
+        data.forEach((entry) => {
+            const { partnerA, partnerAID, partnerAGender, partnerB, partnerBID, partnerBGender, relType, totalWorks } = entry;
+
+            // Add Partner A if not already in the nodes
+            if (!nodeMap[partnerAID]) {
+                const nodeA = {
+                    name: partnerA,
+                    gender: partnerAGender,
+                    group: 1,
+                    index: parseInt(partnerAID)
+                };
+
+                nodes.push(nodeA);
+                nodeMap[partnerAID] = nodeA;
+            }
+
+            // Add Partner B if not already in the nodes
+            if (!nodeMap[partnerBID]) {
+                const nodeB = {
+                    name: partnerB,
+                    gender: partnerBGender,
+                    group: 1,
+                    index: parseInt(partnerBID)
+                };
+                nodes.push(nodeB);
+                nodeMap[partnerBID] = nodeB;  // Map to track added nodes
+            }
+
+            // Create a link
+            const link = {
+                source: parseInt(partnerAID),
+                target: parseInt(partnerBID),
+                value: parseInt(totalWorks),
+                relType: relType
+            };
+            links.push(link);
+        });
+
+        return { nodes, links };
+    }
+
+	onMount(async function() {
+		calculateVals(formatData(hpNetworkData), "Harry Potter");
+		calculateVals(formatData(mcuNetworkData), "Marvel Cinematic Universe");
 		blockReady = true;
 
 
@@ -59,23 +104,19 @@
         const nodesCount = data.nodes.length;
         const nodesMCount = data.nodes.filter(d => d.gender == "M").length;
         const nodesFCount = data.nodes.filter(d => d.gender == "F").length;
-        const nodesOtherCount = data.nodes.filter(d => d.gender == "Other").length;
         const nodesMPercent = nodesMCount/nodesCount*100;
         const nodesFPercent = nodesFCount/nodesCount*100;
-        const nodesOtherPercent = nodesOtherCount/nodesCount*100;
 
         // LINKS
         const linksCount = data.links.length;
-        const linksMMCount = data.links.filter(d => d.relType == "M/M").length;
-        const linksFFCount = data.links.filter(d => d.relType == "F/F").length;
-        const linksFMCount = data.links.filter(d => d.relType == "F/M").length;
-        const linksOtherCount = data.links.filter(d => d.relType == "Other").length;
+        const linksMMCount = data.links.filter(d => d.relType == "MM").length;
+        const linksFFCount = data.links.filter(d => d.relType == "FF").length;
+        const linksFMCount = data.links.filter(d => d.relType == "FM").length;
         const linksMMPercent = linksMMCount/linksCount*100;
         const linksFFPercent = linksFFCount/linksCount*100;
         const linksFMPercent = linksFMCount/linksCount*100;
-        const linksOtherPercent = linksOtherCount/linksCount*100;
 
-        summaryData.push({fandom, nodesCount, nodesMPercent, nodesFPercent, nodesOtherPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent, linksOtherPercent});
+        summaryData.push({fandom, nodesCount, nodesMPercent, nodesFPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent });
 	}
 
 	function updateScrollSteps(scrollIndex) {
@@ -142,9 +183,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-		top: 2rem;
+		top: 0;
 		transition: all 1s;
-		height: auto;
+		height: 100vh;
         z-index: 1;
         overflow: hidden;
 	}
@@ -297,6 +338,30 @@
 		padding: 0.35rem 0.35rem 0.35rem 1.125rem;
         white-space: nowrap;
 		text-transform: uppercase;
+	}
+
+	:global(.span-fnetwork) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-red);
+		color: white;
+		padding: 0.125rem;
+	}
+
+	:global(.span-mnetwork) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-blue);
+		color: white;
+		padding: 0.125rem;
+	}
+
+	:global(.span-fmnetwork) {
+		font-weight: 700;
+		font-family: var(--sans);
+		background-color: var(--fanfic-green);
+		color: white;
+		padding: 0.125rem;
 	}
 
 	:global(.span-f) {

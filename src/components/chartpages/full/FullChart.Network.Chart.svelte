@@ -2,6 +2,8 @@
 <script>
     import {onMount} from 'svelte';
     import * as d3 from "d3";
+    import hpNetworkData from "$data/SLASH/SLASH_harryPotterShips.csv";
+	import mcuNetworkData from "$data/SLASH/SLASH_mcuShips.csv";
 
     export let fandom;
     export let scrollIndex;
@@ -26,40 +28,86 @@
 
     let summaryData = [];
 
+    function formatData(data) {
+        const nodes = [];
+        const links = [];
+        const nodeMap = {};
+
+        data.forEach((entry) => {
+            const { partnerA, partnerAID, partnerAGender, partnerB, partnerBID, partnerBGender, relType, totalWorks } = entry;
+
+            // Add Partner A if not already in the nodes
+            if (!nodeMap[partnerAID]) {
+                const nodeA = {
+                    name: partnerA,
+                    gender: partnerAGender,
+                    group: 1,
+                    index: parseInt(partnerAID)
+                };
+
+                nodes.push(nodeA);
+                nodeMap[partnerAID] = nodeA;
+            }
+
+            // Add Partner B if not already in the nodes
+            if (!nodeMap[partnerBID]) {
+                const nodeB = {
+                    name: partnerB,
+                    gender: partnerBGender,
+                    group: 1,
+                    index: parseInt(partnerBID)
+                };
+                nodes.push(nodeB);
+                nodeMap[partnerBID] = nodeB;  // Map to track added nodes
+            }
+
+            // Create a link
+            const link = {
+                source: parseInt(partnerAID),
+                target: parseInt(partnerBID),
+                value: parseInt(totalWorks),
+                relType: relType
+            };
+            links.push(link);
+        });
+
+        return { nodes, links };
+    }
+
 	function calculateVals(data) {
         // NODES
         const nodesCount = data.nodes.length;
         const nodesMCount = data.nodes.filter(d => d.gender == "M").length;
         const nodesFCount = data.nodes.filter(d => d.gender == "F").length;
-        const nodesOtherCount = data.nodes.filter(d => d.gender == "Other").length;
         const nodesMPercent = nodesMCount/nodesCount*100;
         const nodesFPercent = nodesFCount/nodesCount*100;
-        const nodesOtherPercent = nodesOtherCount/nodesCount*100;
 
         // LINKS
         const linksCount = data.links.length;
-        const linksMMCount = data.nodes.filter(d => d.relType == "M/M").length;
-        const linksFFCount = data.nodes.filter(d => d.relType == "F/F").length;
-        const linksFMCount = data.nodes.filter(d => d.relType == "F/M").length;
-        const linksOtherCount = data.nodes.filter(d => d.relType == "Other").length;
+        const linksMMCount = data.nodes.filter(d => d.relType == "MM").length;
+        const linksFFCount = data.nodes.filter(d => d.relType == "FF").length;
+        const linksFMCount = data.nodes.filter(d => d.relType == "FM").length;
         const linksMMPercent = linksMMCount/linksCount*100;
         const linksFFPercent = linksFFCount/linksCount*100;
         const linksFMPercent = linksFMCount/linksCount*100;
-        const linksOtherPercent = linksOtherCount/linksCount*100;
 
-        summaryData.push({nodesCount, nodesMPercent, nodesFPercent, nodesOtherPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent, linksOtherPercent});
+        summaryData.push({nodesCount, nodesMPercent, nodesFPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent });
 	}
 
     onMount(async function() {
         let data = await d3.json(fandom.dataUrl);
 
-        calculateVals(data);
+        let formatedData = fandom.fandom == "Harry Potter"
+            ? formatData(hpNetworkData)
+            : formatData(mcuNetworkData);
 
-		let chart = ForceGraph(data, {
+        calculateVals(formatedData);
+
+		let chart = ForceGraph(formatedData, {
 			nodeId: d => d.index,
 			nodeGender: d => d.gender,
 			nodeTitle: d => `${d.name}`,
-			linkStrokeWidth: l => Math.sqrt(l.value)/20,
+			linkStrokeWidth: l => Math.sqrt(l.value)/10,
 			linkStroke: l => l.relType,
 			width,
 			height,
@@ -70,14 +118,14 @@
 		// SELECTIONS
 		nodes = d3.selectAll(".network-chart svg rect");
         hpNodes = d3.selectAll("#harrypotter-network svg g rect");
-        mcuNodes = d3.selectAll("#marvelcinematicuniverse-network svg g rect");
-		mNodes = d3.selectAll(".network-chart svg g .node-m");
-		fNodes = d3.selectAll(".network-chart svg g .node-f");
+        mcuNodes = d3.selectAll("#mcu-network svg g rect");
+		mNodes = d3.selectAll(".network-chart svg g rect.M");
+		fNodes = d3.selectAll(".network-chart svg g rect.F");
 
         links = d3.selectAll(".network-chart svg g line");
-        mmLinks= d3.selectAll(".network-chart svg g .link-mm");
-        ffLinks= d3.selectAll(".network-chart svg g .link-ff");
-        fmLinks= d3.selectAll(".network-chart svg g .link-fm");
+        mmLinks= d3.selectAll(".network-chart svg g line.MM");
+        ffLinks= d3.selectAll(".network-chart svg g line.FF");
+        fmLinks= d3.selectAll(".network-chart svg g line.FM");
         containerDiv = d3.selectAll(".network-chart");
 		
 		mounted = true;
@@ -90,45 +138,33 @@
 		links // an iterable of link objects (typically [{source, target}, …])
 	}, {
 		nodeId = d => d.id, // given d in nodes, returns a unique identifier (string)
-		nodeGender, // given d in nodes, returns an (ordinal) value for color
-		// nodeGroups, // an array of ordinal values representing the node groups
-		nodeTitle, // given d in nodes, a title string
-		nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
-		nodeStroke = "#151515", // node stroke color
-		nodeStrokeWidth = 1, // node stroke width, in pixels
-		nodeStrokeOpacity = 1, // node stroke opacity
-		nodeRadius = 7, // node radius, in pixels
-        nodeWidth = 12,
+		nodeGender = d => d.gender,
+		nodeTitle = d => d.name, // given d in nodes, a title string
 		nodeStrength,
 		linkSource = ({source}) => source, // given d in links, returns a node identifier string
 		linkTarget = ({target}) => target, // given d in links, returns a node identifier string
-		linkStroke, // link stroke color
-		linkStrokeOpacity = 0, // link stroke opacity
-		linkStrokeWidth = 1.5, // given d in links, returns a stroke width in pixels
-		linkStrokeLinecap = "round", // link stroke linecap
+		linkStroke = ({relType}) => relType.replace("/", ""), // link stroke color
+		linkStrokeWidth = ({value}) => value, // given d in links, returns a stroke width in pixels
 		linkStrength,
-		colors = d3.schemeTableau10, // an array of color strings, for the node groups
 		width = divW, // outer width, in pixels
 		height = divW, // outer height, in pixels
 		invalidation // when this promise resolves, stop the simulation
 	} = {}) {
 		// Compute values.
 		const N = d3.map(nodes, nodeId).map(intern);
+        const G = d3.map(nodes, nodeGender).map(intern);
+        const T = d3.map(nodes, nodeTitle).map(intern);
 		const LS = d3.map(links, linkSource).map(intern);
 		const LT = d3.map(links, linkTarget).map(intern);
-		if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
-		const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
-		const G = nodeGender == null ? null : d3.map(nodes, nodeGender).map(intern);
-		const W = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
-		const L = typeof linkStroke !== "function" ? null : d3.map(links, linkStroke);
-		const gender = d3.map(nodes, nodeId).map(intern);
+        const LR = d3.map(links, linkStroke).map(intern);
+        const LW = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
 
 		// Replace the input nodes and links with mutable objects for the simulation.
-		nodes = d3.map(nodes, (_, i) => ({id: N[i]}));
-		links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i]}));
+		nodes = d3.map(nodes, (_, i) => ({id: N[i], gender: G[i], title: T[i]}));
+		links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i], relType: LR[i], value: LW[i]}));
 
 		// Construct the forces.
-		const forceNode = d3.forceManyBody().strength(-10);
+		const forceNode = d3.forceManyBody().strength(-width/8);
 		const forceLink = d3.forceLink(links).distance(100).id(({index: i}) => N[i]);
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
@@ -147,26 +183,25 @@
 				.attr("style", "max-width: 100%; height: auto; height: intrinsic;");
 
 		const link = svg.append("g")
-				.attr("stroke", typeof linkStroke !== "function" ? linkStroke : null)
-				.attr("stroke-width", typeof linkStrokeWidth !== "function" ? linkStrokeWidth : null)
-				.attr("stroke-linecap", linkStrokeLinecap)
                 .selectAll("line")
                 .data(links)
-                .join("line");
+                .join("line")
+                .attr("class", linkStroke) 
+                .attr("stroke-width", d => d.value/1.5)
 
 		const node = svg.append("g")
-				.attr("fill", nodeFill)
-				.attr("stroke", nodeStroke)
-				.attr("stroke-opacity", nodeStrokeOpacity)
-				.attr("stroke-width", nodeStrokeWidth)
+				.attr("fill", "#c6c6c6")
+				.attr("stroke", "#151515")
+				.attr("stroke-opacity", 1)
+				.attr("stroke-width", 1)
                 .selectAll("rect")
                 .data(nodes)
                 .join("rect")
-				.attr("width", nodeWidth )   
-                .attr("height", nodeWidth )
-                .attr("x", d => d.x - nodeWidth  / 2)
-                .attr("y", d => d.y - nodeWidth  / 2)
-				.attr("fill", "#C0B9C6")
+				.attr("width", 12 )   
+                .attr("height", 12 )
+                .attr("x", d => d.x - 12  / 2)
+                .attr("y", d => d.y - 12  / 2)
+				.attr("class", nodeGender) 
                 .on("mouseover", function(event, d) {
                     node.style("opacity", 0.1);
                     link.style("opacity", 0.1);
@@ -196,25 +231,9 @@
             .selectAll('text')
             .data(nodes)
             .join('text')
-            .text(d => T[d.id])
-            .attr("class", "dot-label")
-
-		if (W) link.attr("stroke-width", ({index: i}) => W[i]*1.125);
-		if (L) link.attr("class", function({index: i}) {
-			let linkColor = L[i] == "M/M"
-				? "link-mm"
-				: L[i] == "F/F"
-				? "link-ff"
-				: L[i] == "F/M"
-				? "link-fm"
-				: "link-gen"
-			return linkColor
-		});
-		if (G) node.attr("class", function({index: i}) {
-			let fillColor = G[i] == "M" ? "node-m" : "node-f"
-			return fillColor
-		});
-		if (T) node.append("text").text(({index: i}) => T[i]);
+            .text(d => d.title)
+            .attr("class", "dot-label");
+    
 		if (invalidation != null) invalidation.then(() => simulation.stop());
 
 		function intern(value) {
@@ -229,8 +248,8 @@
 				.attr("y2", d => d.target.y);
 
             node
-                .attr("x", d => d.x - nodeWidth  / 2)
-                .attr("y", d => d.y - nodeWidth  / 2);
+                .attr("x", d => d.x - 12  / 2)
+                .attr("y", d => d.y - 12 / 2);
             
             textElems
                 .attr("x", d => d.x + 10)
@@ -249,13 +268,13 @@
             containerDiv.style("pointer-events", "none");
             links.attr("opacity", 0).attr("stroke", "#C0B9C6");
             hpNodes
-                .attr("fill", "#C0B9C6")
+                .style("fill", "#C0B9C6")
                 .transition()
                 .delay((d,i) => i*20)
                 .duration(500)
                 .attr("opacity", 1);
             mcuNodes
-                .attr("fill", "#C0B9C6")
+                .style("fill", "#C0B9C6")
                 .transition()
                 .delay((d,i) => i*20)
                 .duration(500)
@@ -267,12 +286,12 @@
                 .attr("opacity", 1)
                 .transition()
                 .duration(500)
-                .attr("fill", "#D03E00");
+                .style("fill", "#D03E00");
             mNodes
                 .attr("opacity", 1)
                 .transition()
                 .duration(500)
-                .attr("fill", "#C0B9C6");
+                .style("fill", "#C0B9C6");
         } else if (mounted && scrollIndex == 2) {
             containerDiv.style("pointer-events", "none");
             links.attr("opacity", 0).attr("stroke", "#C0B9C6");
@@ -280,95 +299,96 @@
                 .attr("opacity", 1)
                 .transition()
                 .duration(500)
-                .attr("fill", "#C0B9C6");
+                .style("fill", "#C0B9C6");
             mNodes
                 .attr("opacity", 1)
                 .transition()
                 .duration(500)
-                .attr("fill", "#1B2AA6");
+                .style("fill", "#1B2AA6");
         } else if (mounted && scrollIndex == 3) {
             containerDiv.style("pointer-events", "none");
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
+            mNodes.attr("opacity", 1).style("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).style("fill", "#D03E00");
             links
                 .transition()
                 .duration(500)
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0.6);
         } else if (mounted && scrollIndex == 4) {
             containerDiv.style("pointer-events", "none");
-            mNodes.attr("opacity", 0.25).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
+            mNodes.attr("opacity", 0.25).style("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).style("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#D03E00")
+                .style("stroke", "#D03E00")
                 .attr("opacity", 0.6);
             fmLinks
                 .transition()
                 .duration(1000)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
         } else if (mounted && scrollIndex == 5) {
             containerDiv.style("pointer-events", "none");
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 0.25).attr("fill", "#D03E00");
+            mNodes.attr("opacity", 1).style("fill", "#1B2AA6");
+            fNodes.attr("opacity", 0.25).style("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#1B2AA6")
+                .style("stroke", "#1B2AA6")
                 .attr("opacity", 0.6);
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
             fmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
         } else if (mounted && scrollIndex == 6) {
             containerDiv.style("pointer-events", "none");
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
+            mNodes.attr("opacity", 1).style("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).style("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#C0B9C6")
+                .style("stroke", "#C0B9C6")
                 .attr("opacity", 0);
             fmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#119C72")
+                .style("stroke", "#119C72")
                 .attr("opacity", 0.6);
         } else if (mounted && scrollIndex == 7) {
             containerDiv.style("pointer-events", "auto").style("cursor", "pointer");
-            mNodes.attr("opacity", 1).attr("fill", "#1B2AA6");
-            fNodes.attr("opacity", 1).attr("fill", "#D03E00");
+            mNodes.attr("opacity", 1).style("fill", "#1B2AA6");
+            fNodes.attr("opacity", 1).style("fill", "#D03E00");
             mmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#1B2AA6")
+                .style("stroke", "#1B2AA6")
                 .attr("opacity", 0.6);
             ffLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#D03E00")
+                .style("stroke", "#D03E00")
                 .attr("opacity", 0.6);
             fmLinks
                 .transition()
                 .duration(500)
-                .attr("stroke", "#119C72")
+                .style("stroke", "#119C72")
                 .attr("opacity", 0.6);
         }
 	}
@@ -399,6 +419,27 @@
         background-color: var(--fanfic-black);
         overflow: hidden;
     }
+
+    :global(.network-chart rect.M) {
+        fill: var(--fanfic-blue);
+    }
+
+    :global(.network-chart rect.F) {
+        fill: var(--fanfic-red);
+    }
+
+    :global(.network-chart line.MM) {
+        stroke: var(--fanfic-blue);
+    }
+
+    :global(.network-chart line.FF) {
+        stroke: var(--fanfic-red);
+    }
+
+    :global(.network-chart line.FM) {
+        stroke: var(--fanfic-green);
+    }
+
     :global(.dot-label) {
         font-family: var(--mono);
         font-size: 12px;
