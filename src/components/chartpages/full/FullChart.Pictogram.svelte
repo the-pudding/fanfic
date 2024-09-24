@@ -130,7 +130,7 @@
         </ul>
         {/if}
     </div>
-    <!-- <button on:click={expandClick} class="expand">{btnText}</button> -->
+    <button on:click={expandClick} class="expand">{btnText}</button>
 </div>
 
 
@@ -142,12 +142,18 @@
         padding: 2rem;
         display: flex;
         flex-direction: column;
-        /* max-height: 800px; */
+        max-height: 900px;
         overflow-y: hidden;
         position: relative;
         transition: max-height 1s linear;
         border: 2px solid;
         border-color: var(--window-inset-stroke);
+    }
+
+    .isExpanded {
+        max-height: none;
+        overflow-y: visible;
+        transition: max-height 1s linear;
     }
 
     .key {
@@ -186,12 +192,6 @@
     .img-block img {
         width: 24px;
         margin-right: -0.25rem;
-    }
-
-    .isExpanded {
-        max-height: none;
-        overflow-y: visible;
-        transition: max-height 1s linear;
     }
 
     .list-wrapper {

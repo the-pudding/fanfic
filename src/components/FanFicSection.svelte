@@ -128,6 +128,10 @@
         transform: translate3d(0, 0, 0);
     }
 
+    .bottom-hint {
+        margin-top: 4rem;
+    }
+
     .bottom-hint p {
         font-family: var(--sans);
         font-size: var(--22px);
