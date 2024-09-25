@@ -57,11 +57,11 @@
     }
 
     .fly-container_left.forceFlyLeft, .fly-container_right.forceFly {
-        transform: translateX(50%);
+        transform: translateX(62%);
     }
 
     .fly-container_right.forceFlyRight {
-        transform: translateX(-30%);
+        transform: translateX(-18%);
     }
 
     img {
