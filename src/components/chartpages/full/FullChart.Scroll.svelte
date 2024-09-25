@@ -13,8 +13,7 @@
 
     export let id;
 
-    let rows = 10;
-    let cols = 5;
+    console.log(data)
 
     const genres = [...new Set(data.map(item => item.genre))];
 
