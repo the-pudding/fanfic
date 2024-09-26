@@ -95,7 +95,6 @@
 	}
 
     onMount(async function() {
-        let data = await d3.json(fandom.dataUrl);
 
         let formatedData = fandom.fandom == "Harry Potter"
             ? formatData(hpNetworkData)
