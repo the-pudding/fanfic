@@ -32,9 +32,11 @@
 		nodes.forEach(createObserver);
 	};
 
+	let previousValue = undefined;
+
 	const mostInView = () => {
 		let maxRatio = 0;
-		let maxIndex = 0;
+		let maxIndex = -1;
 		for (let i = 0; i < steps.length; i++) {
 			if (steps[i] > maxRatio) {
 				maxRatio = steps[i];
@@ -42,8 +44,33 @@
 			}
 		}
 
-		if (maxRatio > 0) value = maxIndex;
-		else value = undefined;
+		const hasScrolledPastFirstStep = steps[0] > 0.5;
+		const hasScrolledPastLastStep = steps[steps.length - 1] > 0.5;
+
+		if (maxRatio > 0) {
+			// Set value to the most visible step
+			value = maxIndex;
+		} else if (hasScrolledPastFirstStep && !hasScrolledPastLastStep) {
+			// User is above the first step
+			value = undefined;
+		} else if (!hasScrolledPastFirstStep && hasScrolledPastLastStep) {
+			// User has scrolled past the last step
+			value = value;
+		}
+
+		// Determine scroll direction and adjust value transitions
+		if (previousValue !== undefined && value !== undefined) {
+			if (value > previousValue) {
+				// Scrolling down, continue the sequence
+				previousValue = value;
+			} else if (value < previousValue) {
+				// Scrolling up, reverse the sequence
+				previousValue = value;
+			}
+		} else {
+			// Initial or boundary conditions
+			previousValue = value;
+		}
 	};
 
 	const createObserver = (node, index) => {

@@ -9,6 +9,7 @@
     export let scrollIndex;
 
     let divW;
+    let pageInnerWidth;
 
     let width = divW;
     let height = divW;
@@ -27,6 +28,7 @@
     let containerDiv;
 
     let summaryData = [];
+    let formatedData;
 
     function formatData(data) {
         const nodes = [];
@@ -94,25 +96,33 @@
         summaryData.push({nodesCount, nodesMPercent, nodesFPercent, linksCount, linksMMPercent, linksFFPercent, linksFMPercent });
 	}
 
+    function setupChart(data) {
+        console.log("chart")
+        if (data) {
+            let chart = ForceGraph(data, {
+                nodeId: d => d.index,
+                nodeGender: d => d.gender,
+                nodeTitle: d => `${d.name}`,
+                linkStrokeWidth: l => Math.sqrt(l.value)/10,
+                linkStroke: l => l.relType,
+                width,
+                height,
+            });
+            
+            d3.select(element).html(''); // Clear the existing chart (if any)
+            d3.select(element).append(() => chart);
+        }
+    }
+
     onMount(async function() {
 
-        let formatedData = fandom.fandom == "Harry Potter"
+        formatedData = fandom.fandom == "Harry Potter"
             ? formatData(hpNetworkData)
             : formatData(mcuNetworkData);
 
         calculateVals(formatedData);
 
-		let chart = ForceGraph(formatedData, {
-			nodeId: d => d.index,
-			nodeGender: d => d.gender,
-			nodeTitle: d => `${d.name}`,
-			linkStrokeWidth: l => Math.sqrt(l.value)/10,
-			linkStroke: l => l.relType,
-			width,
-			height,
-		});
-		
-		d3.select(element).append(() => chart);
+		setupChart(formatedData);
 
 		// SELECTIONS
 		nodes = d3.selectAll(".network-chart svg rect");
@@ -163,14 +173,19 @@
 		links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i], relType: LR[i], value: LW[i]}));
 
 		// Construct the forces.
-		const forceNode = d3.forceManyBody().strength(-width/8);
-		const forceLink = d3.forceLink(links).distance(100).id(({index: i}) => N[i]);
+        const forceX = pageInnerWidth > 600 ? d3.forceX().strength(0) : d3.forceX().strength(0);  // Custom strength for x-axis
+        const forceY = pageInnerWidth > 600 ? d3.forceY().strength(0) : d3.forceY().strength(0.1); // Custom strength for y-axis
+		const forceNode = pageInnerWidth > 600 ? d3.forceManyBody().strength(-width/10) : d3.forceManyBody().strength(-width/20);
+		const forceLink = pageInnerWidth > 600 ? d3.forceLink(links).distance(100).id(({index: i}) => N[i]) : d3.forceLink(links).distance(50).id(({index: i}) => N[i]);
+        const nodeSize = pageInnerWidth > 600 ? 14 : 10;
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
 		const simulation = d3.forceSimulation(nodes)
 				.force("link", forceLink)
 				.force("charge", forceNode)
+                .force("x", forceX) // Custom x-axis force
+                .force("y", forceY) // Custom y-axis force
                 .force("r", d3.forceRadial(function(d, i) { return divW/100; }))
 				.force("center",  d3.forceCenter())
 				.on("tick", ticked);
@@ -196,10 +211,10 @@
                 .selectAll("rect")
                 .data(nodes)
                 .join("rect")
-				.attr("width", 12 )   
-                .attr("height", 12 )
-                .attr("x", d => d.x - 12  / 2)
-                .attr("y", d => d.y - 12  / 2)
+				.attr("width", nodeSize )   
+                .attr("height", nodeSize )
+                .attr("x", d => d.x - nodeSize  / 2)
+                .attr("y", d => d.y - nodeSize  / 2)
 				.attr("class", nodeGender) 
                 .on("mouseover", function(event, d) {
                     node.style("opacity", 0.1);
@@ -251,8 +266,9 @@
                 .attr("y", d => d.y - 12 / 2);
             
             textElems
-                .attr("x", d => d.x + 10)
-                .attr("y", d => d.y);
+                .attr("x", d => d.x > 0 ? d.x - 10 : d.x + 10)
+                .attr("y", d => d.y)
+                .attr("text-anchor", d => d.x > 0 ? "end" : "start");
 		}
 
 		return Object.assign(svg.node());
@@ -399,8 +415,24 @@
             .toLowerCase()
             .replace(/[^a-z0-9]/g, '');
     }
+
+    function debounce(fn, delay) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+            fn(...args);
+            }, delay);
+        };
+    }
+
+    const debouncedSetupChart = debounce(setupChart, 200);
+
+    $: pageInnerWidth, debouncedSetupChart(formatedData);
 </script>
 
+
+<svelte:window bind:innerWidth={pageInnerWidth} />
 
 <div bind:clientWidth={divW} class="network-chart" id="{cleanString(fandom.fandom)}-network" bind:this={element}>	</div>
 
@@ -408,6 +440,7 @@
 <style>
     .network-chart {
         width: 100%;
+        aspect-ratio: 1;
         pointer-events: none;
         cursor: none;
         display: flex;

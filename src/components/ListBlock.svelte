@@ -93,7 +93,7 @@
             : scrollIndex == 2 && specialClass !== "#C0B9C6" || scrollIndex == 2 && specialClass !== "#96AC0B"
             ? "#ffffff" : "#151515"
         } -->
-        {@const textColor = scrollIndex <= 1 && specialClass !== "#C0B9C6"
+        {@const textColor = scrollIndex == undefined && specialClass || scrollIndex <= 1 && specialClass !== "#C0B9C6"
             ? "#151515"
             : scrollIndex == 2 && specialClass == "#C0B9C6" || scrollIndex == 2 && specialClass == "#96AC0B"
             ? "#151515"

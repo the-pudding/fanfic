@@ -130,6 +130,7 @@
 	}
 
 	$: updateScrollSteps(scrollIndex);
+	$: console.log({scrollIndex})
 </script>
 
 <section id="scrolly">
@@ -264,7 +265,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 0 4rem 0.125rem 2rem;
+		padding: 0 0 0.125rem 0 ;
 		opacity: 0;
 		transition: opacity 0.25s linear;
 	}
@@ -276,7 +277,7 @@
 		font-size: 12px;
 		text-transform: uppercase;
 		font-weight: 700;
-		width: 10rem;
+		width: 8rem;
 		text-align: right;
 		line-height: 1;
 	}
@@ -422,6 +423,10 @@
 	@media (max-width: 700px) {
 		.fandom-wrapper h3 {
 			font-size: var(--18px);
+			margin: 0 auto;
+		}
+		.bar-wrapper p {
+			font-size: 10px;
 		}
 	}
 
@@ -438,6 +443,14 @@
 
 		.fandom-wrapper {
 			width: 100%;
+			padding: 0 1rem;
+		}
+		.fandom-wrapper:first-of-type {
+			padding-top: 1rem;
+			padding-bottom: 0.5rem
+		}
+		.fandom-wrapper:last-of-type {
+			padding-bottom: 1rem;
 		}
 		.bars {
 			margin: 0.5rem 0;
