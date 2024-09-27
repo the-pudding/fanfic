@@ -128,7 +128,7 @@
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
 <div id="section-start" class="inner" style="transform:{translate}"
-	use:inView={{ bottom: innerHeight }}
+	use:inView={{ bottom: innerHeight-100 }}
 	on:enter={showTap}
 	on:exit={hideTap}
 >
@@ -143,7 +143,7 @@
 	<Annotation />
 {/if}
 <div class="methods-trigger"
-	use:inView={{ bottom: innerHeight }}
+	use:inView={{ bottom: innerHeight-100 }}
 	on:enter={hideTab}
 	on:exit={showTab}
 >

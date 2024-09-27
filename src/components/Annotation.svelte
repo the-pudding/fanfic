@@ -3,6 +3,8 @@
     import { fade, fly } from 'svelte/transition';
     import copy from "$data/copy.json";
 
+	let fadeDuration = 500;
+
     function annoMatch(annoID) {
         if ($annotationVisible[1] !== null) {
             let annotations = $currSectionSTORE == "slash" 
@@ -32,13 +34,23 @@
         }
         return img
     }
+
+	function hideAnnoSectionChange($currSectionSTORE) { 
+		console.log("change")
+		fadeDuration = 0;
+		setTimeout(() => {
+			fadeDuration = 500;
+		}, 500)
+	}
+
+	$: $currSectionSTORE, hideAnnoSectionChange();
 </script>
 
 <div id="annotation-block">
-    <div class="bubble" in:fly={{ delay: 300, duration: 300, y: 100}} out:fade>
+    <div class="bubble" in:fly={{ delay: 300, duration: 300, y: 100}} out:fade={{duration: fadeDuration}}>
         <p>{@html annoMatch($annotationVisible[1])}</p>
     </div>
-    <div class="img-wrapper" in:fly={{ delay: 0, duration: 300, y: 100}} out:fade>
+    <div class="img-wrapper" in:fly={{ delay: 0, duration: 300, y: 100}} out:fade={{duration: fadeDuration}}>
         {#if $annotationVisible[1] % 2 === 0}
             <img src="./assets/images/heads/{imgMatch($annotationVisible[1])}.png" alt="character" />
         {:else if $annotationVisible[1] % 2 !== 0}
