@@ -3,16 +3,22 @@
     import charactersData from "$data/INTRO/INTRO_characters.csv";
     import Icon from "$components/helpers/Icon.svelte";
     import Select from "$components/helpers/Select.svelte";
-    import { characterPairSTORE } from "$stores/misc.js";
+    import { characterPairSTORE, forceFlyLeft, forceFlyRight } from "$stores/misc.js";
+    import { tick, onDestroy, onMount } from 'svelte';
     import ChartHeader from "$components/chartpages/ChartHeader.svelte";
     import { fit, parent_style } from "@leveluptuts/svelte-fit";
     import Shuffle from "$svg/shuffle-pixel.svg";
 
     const leftData = charactersData.filter(d => d.position == "left");
     const rightData = charactersData.filter(d => d.position == "right");
-    let shake = true;
+    let shake = true; 
 
-    characterPairSTORE.set(generateRandom());
+    onMount(() => {
+        setTimeout(() => {
+            forceFlyLeft.set(true);
+            forceFlyRight.set(true);
+        }, 400); 
+    })
 
     function generateRandom() {
         const min = 1;
@@ -26,12 +32,48 @@
         return [leftCharacter, rightCharacter]
     }
 
-    function randomClick() {
-        // When the random button is clicked, generate a new pair of random characters and set the store to them
-        characterPairSTORE.set(generateRandom());
+    async function randomClick() {
+        await tick();
 
+        let prevChars = $characterPairSTORE;
+        let currChars = generateRandom();
+
+        if (prevChars[0] !== currChars[0] && prevChars[1] !== currChars[1]) {
+            forceFlyLeft.set(false);
+            forceFlyRight.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set(currChars);
+                forceFlyLeft.set(true);
+                forceFlyRight.set(true);
+            }, 400);
+        } else if (prevChars[0] !== currChars[0] && prevChars[1] == currChars[1]){
+            forceFlyLeft.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set([currChars[0], prevChars[1]]);
+                forceFlyLeft.set(true);
+            }, 400);
+        } else if (prevChars[0] == currChars[0] && prevChars[1] !== currChars[1]) {
+            forceFlyRight.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set([prevChars[0], currChars[1]]);
+                forceFlyRight.set(true);
+            }, 400);
+        } else {
+            forceFlyLeft.set(true);
+            forceFlyRight.set(true);
+        }
         shake = false;
     }
+
+    // If the left character changes reset animation
+    async function storeChangeLeft() {
+        await tick();
+        forceFlyLeft = false;
+        setTimeout(() => {
+            forceFlyLeft = true;
+        }, 500);
+    }
+
     // Everytime the character pair changes
     $: characterPairSTORE.set(generateRandom());
 </script>
@@ -43,8 +85,8 @@
         <div class="text-fit-wrapper" style={parent_style}>
             <p use:fit={{min_size: 12, max_size:400 }} class="stage-bg">The Pudding</p>
         </div>
-        <Character characterID={$characterPairSTORE[0]} position={"left"} />
-        <Character characterID={$characterPairSTORE[1]} position={"right"} />
+        <Character characterID={$characterPairSTORE[0]} position={"left"}/>
+        <Character characterID={$characterPairSTORE[1]} position={"right"}/>
     </div>
 	<div class="controls">
         <Select id="leftSelect" options={leftData} value={leftData[$characterPairSTORE[0]].character} position={"left"}/>

@@ -13,8 +13,6 @@
 
     export let id;
 
-    console.log(data)
-
     const genres = [...new Set(data.map(item => item.genre))];
 
     const genderColorScale = d3.scaleDiverging()

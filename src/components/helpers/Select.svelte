@@ -1,8 +1,9 @@
 <script>
-	import { characterPairSTORE, charactersDataLEFT, charactersDataRIGHT } from "$stores/misc.js";
+	import { characterPairSTORE, forceFlyLeft, forceFlyRight } from "$stores/misc.js";
 	import charactersData from "$data/INTRO/INTRO_characters.csv";
 	import { csvFormat } from "d3";
 	import filterCharacters from "$utils/filterCharacters";
+	import { tick } from 'svelte';
 
 	const leftData = charactersData.filter(d => d.position == "left");
     const rightData = charactersData.filter(d => d.position == "right");
@@ -24,13 +25,41 @@
 		return match
 	}
 
-	function onChange() {
+	async function onChange() {
+		await tick();
 		const oppSelect = position == "left" ? "rightSelect" : "leftSelect";
 		const oppSelectVal = document.getElementById(oppSelect).value;
 		const leftCharacter = position == "left" ? value : oppSelectVal;
 		const rightCharacter = position == "right" ? value : oppSelectVal;
-		const characterPair = [findMatchingID(leftCharacter, "left"), findMatchingID(rightCharacter, "right")];
-		characterPairSTORE.set(characterPair)	
+		const characterPair = [findMatchingID(leftCharacter, "left"), findMatchingID(rightCharacter, "right")];	
+
+        let prevChars = $characterPairSTORE;
+        let currChars = characterPair;
+
+		if (prevChars[0] !== currChars[0] && prevChars[1] !== currChars[1]) {
+            forceFlyLeft.set(false);
+            forceFlyRight.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set(currChars);
+                forceFlyLeft.set(true);
+                forceFlyRight.set(true);
+            }, 400);
+        } else if (prevChars[0] !== currChars[0] && prevChars[1] == currChars[1]){
+            forceFlyLeft.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set([currChars[0], prevChars[1]]);
+                forceFlyLeft.set(true);
+            }, 400);
+        } else if (prevChars[0] == currChars[0] && prevChars[1] !== currChars[1]) {
+            forceFlyRight.set(false);
+            setTimeout(() => {
+                characterPairSTORE.set([prevChars[0], currChars[1]]);
+                forceFlyRight.set(true);
+            }, 400);
+        } else {
+            forceFlyLeft.set(true);
+            forceFlyRight.set(true);
+        }
 	}
 </script>
 
