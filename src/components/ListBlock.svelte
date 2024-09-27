@@ -87,7 +87,6 @@
         {/if}
     </li>
 {:else}
-    {#if scrollIndex >= 0 || scrollIndex == undefined}
         <!-- {@const textColor = scrollIndex <= 1 && specialClass !== "#C0B9C6" 
             ? "#151515" 
             : scrollIndex == 2 && specialClass !== "#C0B9C6" || scrollIndex == 2 && specialClass !== "#96AC0B"
@@ -95,15 +94,15 @@
         } -->
         {@const textColor = scrollIndex == undefined && specialClass || scrollIndex <= 1 && specialClass !== "#C0B9C6"
             ? "#151515"
-            : scrollIndex == 2 && specialClass == "#C0B9C6" || scrollIndex == 2 && specialClass == "#96AC0B"
+            : scrollIndex == 2 && specialClass == "#C0B9C6" || scrollIndex == 2 && specialClass == "#96AC0B" || scrollIndex == "exit" && specialClass == "#C0B9C6" || scrollIndex == "exit" && specialClass == "#96AC0B"
             ? "#151515"
             : "#ffffff"}
+        <!-- {@const opacity = scrollIndex !== undefined ? 1 : 0}
+        {@const opacityTransition = scrollIndex !== undefined ? 0.125 : 0} -->
         <li class="grid"
-            style="background-color:{specialClass}; color:{textColor}"
+            style="background-color:{specialClass}; color:{textColor};"
             on:mouseenter={handleMouseEnter}
-            on:mouseleave={handleMouseLeave}
-            in:fade={{ delay: index*50, duration: 300 }}
-            out:fade={{ delay: 50, duration: 300 }}>
+            on:mouseleave={handleMouseLeave}>
         <div class="left">
             <Rank rank={index+1} />
             <div class="details">
@@ -120,7 +119,6 @@
         {/if}
         </li>
     {/if}
-{/if}
 
 <style>
     li {
@@ -131,9 +129,8 @@
         font-size: var(--12px);
         border: 1px solid var(--fanfic-black);
         margin: 0.25rem 0;
-        /* background-color: white; */
-        transition: background-color 1s linear;
         overflow: hidden;
+        transition: all 0.5s linear 0s;
     }
 
     .grid {

@@ -36,7 +36,6 @@
     }
 
 	function hideAnnoSectionChange($currSectionSTORE) { 
-		console.log("change")
 		fadeDuration = 0;
 		setTimeout(() => {
 			fadeDuration = 500;

@@ -46,7 +46,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        min-height: 240px;
+        min-height: 450px;
         overflow-x: hidden;
     }
 
@@ -182,18 +182,33 @@
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
+        .faces {
+            min-height: 260px;
+        }
         .left {
             margin-top: 5rem;
             margin-right: -1rem;
+            width: 200px;
         }
 
         .right {
             margin-left: -1rem;
+            width: 200px;
         }
 
         .left p, .right p {
             font-size: var(--18px);
         }
 	}
+
+    @media (max-width: 500px) {
+        .left {
+            width: 180px;
+        }
+
+        .right {
+            width: 180px;
+        }
+    }
 </style>

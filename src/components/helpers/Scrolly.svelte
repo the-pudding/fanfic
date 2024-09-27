@@ -32,44 +32,41 @@
 		nodes.forEach(createObserver);
 	};
 
-	let previousValue = undefined;
+	let previousRatios = new Array(steps.length).fill(0);
 
 	const mostInView = () => {
 		let maxRatio = 0;
 		let maxIndex = -1;
+		let hasExitedLastStep = false;
 		for (let i = 0; i < steps.length; i++) {
 			if (steps[i] > maxRatio) {
 				maxRatio = steps[i];
 				maxIndex = i;
 			}
+
+			// Check if the step has exited (was in view, now not in view)
+			if (previousRatios[i] > 0 && steps[i] === 0) {
+				// Step has exited
+				if (i === steps.length - 1) {
+					// Handle exiting the last step
+					hasExitedLastStep = true;
+				}
+			}
+
+			// Update the previousRatios for the next tick
+			previousRatios[i] = steps[i];
 		}
 
-		const hasScrolledPastFirstStep = steps[0] > 0.5;
-		const hasScrolledPastLastStep = steps[steps.length - 1] > 0.5;
 
 		if (maxRatio > 0) {
 			// Set value to the most visible step
 			value = maxIndex;
-		} else if (hasScrolledPastFirstStep && !hasScrolledPastLastStep) {
-			// User is above the first step
-			value = undefined;
-		} else if (!hasScrolledPastFirstStep && hasScrolledPastLastStep) {
-			// User has scrolled past the last step
-			value = value;
-		}
-
-		// Determine scroll direction and adjust value transitions
-		if (previousValue !== undefined && value !== undefined) {
-			if (value > previousValue) {
-				// Scrolling down, continue the sequence
-				previousValue = value;
-			} else if (value < previousValue) {
-				// Scrolling up, reverse the sequence
-				previousValue = value;
-			}
+		} else if (hasExitedLastStep) {
+			// Only set to exitStep if the last step has been scrolled past
+			value = "exit";
 		} else {
-			// Initial or boundary conditions
-			previousValue = value;
+			// If no steps are in view and we haven't passed the last step, it might mean we're above the first step
+			value = undefined;
 		}
 	};
 

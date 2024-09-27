@@ -18,6 +18,7 @@
 
     // Defaults
     let steps = [0,1,2,3];
+    let mounted = false;
     let data;
     let xKey = 'year';
     let yKey = 'fanfics';
@@ -59,6 +60,8 @@
             groupTo: zKey,
             valueTo: yKey
         });
+
+        mounted = true;
 	});
 
 
@@ -74,39 +77,38 @@
     xDomain.set([2013, 2017])
 
     function updateScrollSteps(scrollIndex) {
-        if (scrollIndex == undefined) {
-            // d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 0);
-            // d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 0);
+        if (mounted && scrollIndex == undefined) {
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 0);
         } else if (scrollIndex == 0) {
             yDomain.set([0, 100000]);
             xDomain.set([2013,2017]);
-            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 0);
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 0);
             d3.selectAll("#bts-path").style("stroke", "#C0B9C6");
             d3.selectAll("#youtube-path").style("stroke", "#C0B9C6");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
         } else if (scrollIndex == 1) {
-            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
             d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 2) {
-            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
             d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 3) {
-            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
             d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
-        } else if (scrollIndex == 4) {
-            d3.selectAll(".content-wrapper .rect-overlay").style("opacity", 1);
+        } else if (scrollIndex == 4 || scrollIndex == "exit") {
+            d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6");
             d3.selectAll("#youtube-path").style("stroke", "#0F8662");
             d3.selectAll("#onedirection-path").style("stroke", "#D03200");
@@ -128,6 +130,8 @@
             }
             lastScrollY = scrollY;
     }
+
+    $: console.log(scrollIndex)
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />

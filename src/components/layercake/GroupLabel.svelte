@@ -56,7 +56,7 @@
         transition:fade={{ delay: delay, duration: 250 }}
         class="label"
         style="
-        top:{(top(group.values) * 100)-2}%;
+        top:{(top(group.values) * 100)}%;
         left:{left(group.values) * 100}%;
         color:{setColors(id, i, group)};
         "

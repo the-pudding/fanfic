@@ -40,7 +40,7 @@
             return "transparent"
         } else if (scrollIndex == 1) {
             return genderColorScale(fandom.menPercent); 
-        } else if (scrollIndex == 2) {
+        } else if (scrollIndex == 2 || scrollIndex == "exit") {
             return genreColorScale(fandom.genre); 
         } else {
             return "transparent"

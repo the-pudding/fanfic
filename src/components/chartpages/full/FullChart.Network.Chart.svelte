@@ -97,7 +97,6 @@
 	}
 
     function setupChart(data) {
-        console.log("chart")
         if (data) {
             let chart = ForceGraph(data, {
                 nodeId: d => d.index,
@@ -111,7 +110,21 @@
             
             d3.select(element).html(''); // Clear the existing chart (if any)
             d3.select(element).append(() => chart);
+
+            // SELECTIONS
+            nodes = d3.selectAll(".network-chart svg rect");
+            hpNodes = d3.selectAll("#harrypotter-network svg g rect");
+            mcuNodes = d3.selectAll("#mcu-network svg g rect");
+            mNodes = d3.selectAll(".network-chart svg g rect.M");
+            fNodes = d3.selectAll(".network-chart svg g rect.F");
+
+            links = d3.selectAll(".network-chart svg g line");
+            mmLinks= d3.selectAll(".network-chart svg g line.MM");
+            ffLinks= d3.selectAll(".network-chart svg g line.FF");
+            fmLinks= d3.selectAll(".network-chart svg g line.FM");
+            containerDiv = d3.selectAll(".network-chart");
         }
+
     }
 
     onMount(async function() {
@@ -123,19 +136,6 @@
         calculateVals(formatedData);
 
 		setupChart(formatedData);
-
-		// SELECTIONS
-		nodes = d3.selectAll(".network-chart svg rect");
-        hpNodes = d3.selectAll("#harrypotter-network svg g rect");
-        mcuNodes = d3.selectAll("#mcu-network svg g rect");
-		mNodes = d3.selectAll(".network-chart svg g rect.M");
-		fNodes = d3.selectAll(".network-chart svg g rect.F");
-
-        links = d3.selectAll(".network-chart svg g line");
-        mmLinks= d3.selectAll(".network-chart svg g line.MM");
-        ffLinks= d3.selectAll(".network-chart svg g line.FF");
-        fmLinks= d3.selectAll(".network-chart svg g line.FM");
-        containerDiv = d3.selectAll(".network-chart");
 		
 		mounted = true;
     })

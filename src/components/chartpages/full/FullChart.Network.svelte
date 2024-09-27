@@ -120,17 +120,17 @@
 	}
 
 	function updateScrollSteps(scrollIndex) {
-		showGenderBar = scrollIndex > 0 ? true : false;
-		showGenderF = scrollIndex > 0 ? true : false;
-		showGenderM = scrollIndex > 1 ? true : false;
-		showRelTypeBar = scrollIndex > 3 ? true : false;
-		showRelFF = scrollIndex > 3 ? true : false;
-		showRelMM = scrollIndex > 4 ? true : false;
-		showRelFM = scrollIndex > 5 ? true : false;
+		showGenderBar = scrollIndex > 0 || scrollIndex == "exit" ? true : false;
+		showGenderF = scrollIndex > 0 || scrollIndex == "exit" ? true : false;
+		showGenderM = scrollIndex > 1 || scrollIndex == "exit"  ? true : false;
+		showRelTypeBar = scrollIndex > 3 || scrollIndex == "exit" ? true : false;
+		showRelFF = scrollIndex > 3 || scrollIndex == "exit" ? true : false;
+		showRelMM = scrollIndex > 4 || scrollIndex == "exit" ? true : false;
+		showRelFM = scrollIndex > 5 || scrollIndex == "exit" ? true : false;
 	}
 
 	$: updateScrollSteps(scrollIndex);
-	$: console.log({scrollIndex})
+	// $: console.log({scrollIndex})
 </script>
 
 <section id="scrolly">
@@ -143,17 +143,17 @@
 					<h3>{fandom.fandom}</h3>
 					{#if blockReady}
 						<div class="bars">
-							<div class="bar-wrapper" class:visible={showGenderBar}>
+							<div class="bar-wrapper">
 								<p>Gender</p>
 								<div class="gender-bar">
 									<div class:visible={showGenderF}  class="gender-f" style="width: {summaryData[i].nodesFPercent}%"><p>{Math.round(summaryData[i].nodesFPercent)}%</p></div>
 									<div class:visible={showGenderM}  class="gender-m" style="width: {summaryData[i].nodesMPercent}%"><p>{Math.round(summaryData[i].nodesMPercent)}%</p></div>
 								</div>
 							</div>
-							<div class="bar-wrapper" class:visible={showRelTypeBar}>
+							<div class="bar-wrapper">
 								<p>Relationship</p>
 								<div class="relType-bar">
-									<div class:visible={showRelFF} class="relType-ff" style="width: {summaryData[i].linksFFPercent}%"></div>
+									<div class:visible={showRelFF} class="relType-ff" style="width: {summaryData[i].linksFFPercent}%"><p>{Math.round(summaryData[i].linksFFPercent)}</p></div>
 									<div class:visible={showRelMM} class="relType-mm" style="width: {summaryData[i].linksMMPercent}%"><p>{Math.round(summaryData[i].linksMMPercent)}%</p></div>
 									<div class:visible={showRelFM} class="relType-fm" style="width: {summaryData[i].linksFMPercent}%"><p>{Math.round(summaryData[i].linksFMPercent)}%</p></div>
 								</div>
@@ -266,7 +266,7 @@
 		flex-direction: row;
 		align-items: center;
 		padding: 0 0 0.125rem 0 ;
-		opacity: 0;
+		opacity: 1;
 		transition: opacity 0.25s linear;
 	}
 
@@ -332,7 +332,7 @@
 
 	:global(.span-instructions::before) {
 		content: '';
-		background-image: url("src/svg/cursor-pixel.svg");
+		background-image: url("/src/svg/cursor-pixel.svg");
         background-size: 18px;
         background-repeat: no-repeat;
         background-position: 0 0.25rem;
@@ -428,6 +428,9 @@
 		.bar-wrapper p {
 			font-size: 10px;
 		}
+		.relType-ff p {
+			display: none;
+		}
 	}
 
 	@media (max-width: 600px) { 
@@ -471,6 +474,15 @@
 			margin: 0;
 			width: auto;
 			font-size: 10px;
+		}
+		.relType-ff p {
+			display: inline-block;
+		}
+	}
+
+	@media(max-width: 400px) {
+		.relType-ff p {
+			display: none;
 		}
 	}
 </style>

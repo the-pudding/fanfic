@@ -65,7 +65,7 @@
 		fill: #d9d6d6;
 	}
 
-	.scrolly-rect {
+	.scrollyRect {
 		opacity: 0;
 	}
 
