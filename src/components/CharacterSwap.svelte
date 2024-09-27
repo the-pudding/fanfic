@@ -173,9 +173,11 @@
         margin: 1rem auto;
         display: flex;
         flex-direction: row;
-        gap: 1.5rem;
+        gap: 1rem;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        padding: 0 2rem;
     }
 
     button {
@@ -183,8 +185,10 @@
         gap: 0.5rem;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         height: 50px;
         font-family: var(--mono);
+        font-size: var(--14px);
     }
 
     .shake {
@@ -219,14 +223,19 @@
         }
         .controls {
             gap: 0.5rem;
+            padding: 0;
         }
         button {
             height: 40px;
+            width: 60px;
             font-size: var(--12px);
         }
         :global(#random-characters svg) {
             width: 0.75rem;
             margin-top: 0;
+        }
+        #random-characters span {
+            display: none;
         }
     }
 

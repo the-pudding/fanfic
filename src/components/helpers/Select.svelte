@@ -78,7 +78,9 @@
 	.select {
 		position: relative;
 		font-family: var(--mono);
-		width: 50%;
+		width: 100%;
+		max-width: 240px;
+		font-size: var(--14px);
 	}
 
 	label {
@@ -100,10 +102,13 @@
 		border-width:2px;
         border-color: var(--window-button-stroke);
         border-style:solid;
-		padding: 0.5em;
+		padding: 0.5em 2.5em 0.5em 0.5em;
 		appearance: none;
 		line-height: 1.4;
 		color: var(--fanfic-black);
+		text-overflow: ellipsis;
+		overflow: hidden;   
+		white-space: nowrap; 
 	}
 
 	.select-left {
