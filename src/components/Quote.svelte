@@ -221,6 +221,12 @@
         color: var(--fanfic-black);
     }
 
+    .right p {
+        font-family: var(--mono);
+        font-size: 12px;
+        margin: 0;
+    }
+
     :global(.underline div svg) {
         margin: 0.25rem 0.25rem 0 0;
     }
@@ -261,7 +267,10 @@
             gap: 0.5rem;
         }
         .right {
-            justify-content: space-between;
+            justify-content: start;
+        }
+        .right p {
+            font-size: 10px;
         }
     }
 </style>

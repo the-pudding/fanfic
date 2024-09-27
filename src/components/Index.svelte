@@ -139,7 +139,7 @@
 	{/if}
 </div>
 <div class="texture"></div>
-{#if $annotationVisible[0] && innerWidth > 800}
+{#if $annotationVisible[0]}
 	<Annotation />
 {/if}
 <div class="methods-trigger"

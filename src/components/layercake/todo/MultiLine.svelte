@@ -10,6 +10,7 @@
 	export let curve = curveStep;
 	export let inViewTrigger; 
 	export let id;
+	export let scrollIndex;
 
 	const { data, xGet, yGet, zGet, width, height } = getContext('LayerCake');
 
@@ -26,7 +27,7 @@
 <g class="line-group">
 	{#each $data as group}
 		<!-- {@debug group} -->
-		{#if inViewTrigger}
+		{#if inViewTrigger || scrollIndex == "exit"}
 		<path
 			in:draw={{ duration: 1000 }}
 			class='path-line'

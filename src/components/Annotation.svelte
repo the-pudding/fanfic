@@ -70,6 +70,16 @@
 		pointer-events: none;
 	}
 
+	:global(#annotation-block a) {
+        color: var(--fanfic-black);
+		font-weight: 500;
+		cursor: pointer;
+    }
+
+	:global(#annotation-block a:hover) {
+       opacity: 0.75;
+    }
+
     :global(#annotation-block .strong) {
         color: var(--fanfic-black);
     }
@@ -79,8 +89,9 @@
 		font-family: var(--sans);
 		font-size: 10px;
 		position: relative;
-		padding: 1rem;
+		padding: 0.75rem;
 		border: 2px solid black;
+		pointer-events: auto;
 	}
 	.bubble p {
 		padding: 0;
@@ -113,5 +124,14 @@
 	}
 	#annotation-block img {
 		width: 160px;
+	}
+
+	@media(max-width: 800px) {
+		#annotation-block img {
+			width: 120px;
+		}
+		.bubble {
+			width: 140px;
+		}
 	}
 </style>

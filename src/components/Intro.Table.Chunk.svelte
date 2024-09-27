@@ -42,7 +42,7 @@
 
 <ul class="intro-table-chunk">
     {#each top20Data.slice(start, end) as ship, i}
-    {#if scrollIndex >= 0}
+    {#if scrollIndex >= 0 || scrollIndex == "exit"}
     <li in:fade={{ delay: setDelay(start, set, i), duration: 300 }}
         out:fade={{ delay: 50, duration: 300 }}
         class="ship 
