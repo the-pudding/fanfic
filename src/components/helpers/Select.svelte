@@ -85,7 +85,6 @@
 
 	label {
 		position: absolute;
-		top: -1000%;
 		font-family: inherit;
 		font-weight: inherit;
 		font-size: 0em;
