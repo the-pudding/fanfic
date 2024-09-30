@@ -13,7 +13,7 @@
 
 
     function calNumChunks(innerWidth) {
-        let chunks = innerWidth < 900 ? [0,1] : [0,1,2,3];
+        let chunks = innerWidth <= 800 ? [0,1] : [0,1,2,3];
         return chunks;
     }
 
@@ -71,8 +71,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        height: 100vh;
-        padding: 2rem 0;
+        padding: 1rem 0;
         position: relative;
     }
 
@@ -82,5 +81,6 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        gap: 1rem;
     }
 </style>

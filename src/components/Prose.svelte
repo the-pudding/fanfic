@@ -113,4 +113,10 @@
             margin: 1.5rem 0;
         }
     }
+
+    @media (max-width: 400px) {
+        p {
+            font-size: var(--14px);
+        }
+    }
 </style>

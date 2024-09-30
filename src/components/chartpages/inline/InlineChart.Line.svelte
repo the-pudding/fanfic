@@ -109,6 +109,7 @@
     @media (max-width: 600px) { 
         .chart-container {
             padding: 1rem;
+            height: 300px;
         }
     }
 

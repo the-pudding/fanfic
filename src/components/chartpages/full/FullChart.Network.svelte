@@ -438,6 +438,9 @@
 			justify-content: start;
 			top: 4rem;
 		}
+		.step p {
+			font-size: var(--16px);
+		}
 		.viz-wrapper {
 			flex-direction: column;
 			align-items: flex-start;
@@ -483,6 +486,10 @@
 	@media(max-width: 400px) {
 		.relType-ff p {
 			display: none;
+		}
+
+		.step p {
+			font-size: var(--14px);
 		}
 	}
 </style>

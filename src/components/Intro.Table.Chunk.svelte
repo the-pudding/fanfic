@@ -64,14 +64,13 @@
 
 <style>
     ul {
-        width: 100%;
+        width: calc(25% - 0.5rem);
         list-style: none;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0 0.5rem;
         margin: 0;
+        padding: 0;
     }
 
     li {
@@ -84,7 +83,7 @@
         flex-direction: row;
         background-color: var(--fanfic-window-gray);
         transition: background-color 250ms linear;
-        height: 4rem;
+        height: 4.25rem;
         position: relative;
     }
     
@@ -124,16 +123,19 @@
         background-color: var(--fanfic-highlighter);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
+        ul {
+            width: calc(50% - 0.5rem);
+        }
         li {
-            height: 3rem;
+            height: 3.75rem;
             margin: 0.25rem 0;
         }
     }
 
     @media (max-width: 700px) {
         li {
-            height: 3.75rem;
+            height: 3.5rem;
         }
 		p {
             font-size: 10px; 

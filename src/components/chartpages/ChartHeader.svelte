@@ -58,4 +58,10 @@
             font-size: var(--14px);
         }
     }
+
+    @media (max-width: 400px) {
+        h3 {
+            font-size: var(--12px);
+        }
+    }
 </style>

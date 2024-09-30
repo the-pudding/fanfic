@@ -61,7 +61,7 @@
 <style>
     #annotation-block {
 		position: fixed;
-		top: 20%;
+		top: 10%;
 		right: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -131,7 +131,7 @@
 			width: 120px;
 		}
 		.bubble {
-			width: 140px;
+			width: 160px;
 		}
 	}
 </style>

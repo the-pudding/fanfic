@@ -206,6 +206,10 @@
         color: var(--color-white);
     }
 
+    :global(.prose-transition) {
+        margin: 2rem 0 !important;
+    }
+
     :global(.prose-transition p) {
         font-family: var(--sans);
         font-size: var(--22px);

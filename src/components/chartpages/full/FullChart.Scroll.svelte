@@ -213,7 +213,6 @@
         align-items: center;
 		top: 0;
 		transition: all 1s;
-		height: 100vh;
         z-index: 1;
         overflow: hidden;
 	}
@@ -373,6 +372,9 @@
             justify-content: start;
             top: 3.5rem;
         }
+        .step p {
+            font-size: var(--16px);
+        }
         .key {
             margin: 1rem 0 0 0;
         }
@@ -393,4 +395,10 @@
             height: 0.75rem;
         }
 	}
+
+    @media (max-width: 400px) {
+        .step p {
+            font-size: var(--14px);
+        }
+    }
 </style>

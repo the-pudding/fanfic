@@ -96,4 +96,12 @@ function setTitle(option) {
             padding: 0.5rem;
         }
 	}
+
+    @media (max-width: 400px) {
+        button {
+            font-size: var(--12px);
+            height: 2.25rem;
+            padding: 0.5rem;
+        }
+	}
 </style>

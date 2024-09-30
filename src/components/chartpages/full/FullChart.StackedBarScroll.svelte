@@ -135,7 +135,7 @@
                     <p class="key-block key-block-non-canon">Non-Canon</p>
                 </div>
                 <LayerCake
-                    padding={{ top: 20, right: 0, bottom: 100, left: 26 }}
+                    padding={{ top: 20, right: 5, bottom: 100, left: 26 }}
                     x={d => d.data[xKey]}
                     y={yKey}
                     z={zKey}
@@ -237,9 +237,8 @@
 		position: sticky;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-		top: 0;
+		top: 4rem;
 		transition: all 1s;
 		height: 100vh;
         z-index: 1;
@@ -273,7 +272,7 @@
         font-family: var(--mono);
         font-weight: 700;
         font-size: var(--18px);
-        margin: 0 0 0.5rem 24px;
+        margin: 0 0 0.5rem 0;
     }
 
     .key {
@@ -287,6 +286,7 @@
         font-family: var(--mono);
         font-size: var(--12px);
         flex-wrap: wrap;
+        gap: 1rem;
     }
     .key p {
         margin: 0;
@@ -295,7 +295,6 @@
     }
     .key-block {
         position: relative;
-        padding: 0 1rem;
         text-transform: uppercase;
         font-weight: 700;
     }
@@ -363,10 +362,7 @@
 
         .key {
             font-size: 10px;
-        }
-
-        .key-block {
-            padding: 0 0.5rem;
+            gap: 0.25rem
         }
 
         .key-block::before {
@@ -374,8 +370,18 @@
             height: 0.75rem;
         }
 
-        :global(#sticky-CANON_percentRelType .tick:nth-child(even) ) {
+        :global(#sticky-CANON_percentRelType .x-axis .tick:nth-child(even) ) {
             display: none;
+        }
+
+        .content-wrapper {
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .step p {
+            font-size: var(--14px);
         }
     }
 </style>

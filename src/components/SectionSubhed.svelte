@@ -55,4 +55,10 @@
             font-size: var(--32px);
         }
     }
+
+    @media (max-width: 400px) {
+        h3 {
+            font-size: var(--28px);
+        }
+    }
 </style>

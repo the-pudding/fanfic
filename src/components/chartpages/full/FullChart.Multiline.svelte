@@ -302,6 +302,9 @@
             justify-content: start;
             top: 5rem;
         }
+        .step p {
+            font-size: var(--16px);
+        }
         .key p {
             font-size: 10px;
         }
@@ -311,4 +314,10 @@
             margin: 0 0.25rem;
         }
 	}
+
+    @media (max-width: 400px) {
+        .step p {
+            font-size: var(--14px);
+        }
+    }
 </style>
