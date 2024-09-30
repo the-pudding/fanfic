@@ -40,7 +40,7 @@
       return zRange[i]
     } else if (group.fandom == "BTS") {
       return "#1B2AA6"
-    } else if (group.fandom == "Youtube") {
+    } else if (group.fandom == "Youtube RPF") {
       return "#0F8662"
     } else if (group.fandom == "One Direction") {
       return "#D03200"
@@ -51,7 +51,7 @@
 </script>
   
 {#each $data as group,i}
-  {#if inViewTrigger && id == "CANON_percentCanon" || inViewLabelC && group.fandom == "BTS" || inViewLabelB && group.fandom == "Youtube" || inViewLabelA && group.fandom == "One Direction"}
+  {#if inViewTrigger && id == "CANON_percentCanon" || inViewLabelC && group.fandom == "BTS" || inViewLabelB && group.fandom == "Youtube RPF" || inViewLabelA && group.fandom == "One Direction"}
       <div
         transition:fade={{ delay: delay, duration: 250 }}
         class="label"

@@ -126,7 +126,7 @@
                     <p class="no-text">Non-canon: {receivedData[0].noValTooltip}%</p>
                 </div>
             {/if}
-            <ChartHeader title={"Canon status by relationship type"} />
+            <ChartHeader title={"Canon status by relationship"} />
             <div class="content-wrapper">
                 <h5>{currTitle}</h5>
                 <div class="key">
@@ -242,6 +242,7 @@
 		transition: all 1s;
 		height: 100svh;
         z-index: 1;
+        justify-content: center;
 	}
 
     .chart-wrapper {

@@ -103,10 +103,10 @@
 
     function setLabelText(canon) {
         let labelText = canon == "Yes"
-            ? "Canon 11.6%"
+            ? "Canon 12%"
             : canon == "No"
-            ? "Non-canon 82.9%"
-            : "Semi-canon 5.5%";
+            ? "Non-canon 83%"
+            : "Semi-canon 6%";
         return labelText;
     }
 </script>
@@ -218,17 +218,17 @@
 
     .label-Yes {
         color: var(--fanfic-blue);
-        width: 5.5rem;
+        width: 4.35rem;
     }
 
     .label-No {
         color: var(--fanfic-red);
-        width: 7.75rem;
+        width: 6.6rem;
     }
 
     .label-Semi-Canon {
         color: var(--fanfic-green);
-        width: 7.75rem;
+        width: 6.6rem;
     }
 
     .ship-Yes {
@@ -258,11 +258,11 @@
         }
 
         .label-Yes {
-            width: 70px;
+            width: 58px;
         }
 
         .label-No, .label-Semi-Canon {
-            width: 94px;
+            width: 82px;
         }
         .tooltip {
             display: none;

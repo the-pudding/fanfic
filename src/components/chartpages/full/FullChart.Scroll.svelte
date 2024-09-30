@@ -206,6 +206,7 @@
 
     .sticky {
         width: 100%;
+        height: 100svh;
 		position: sticky;
         display: flex;
         flex-direction: column;

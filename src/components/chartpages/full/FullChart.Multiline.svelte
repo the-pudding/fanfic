@@ -84,26 +84,26 @@
             xDomain.set([2013,2017]);
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 0);
             d3.selectAll("#bts-path").style("stroke", "#C0B9C6").style("opacity", 1);
-            d3.selectAll("#youtube-path").style("stroke", "#C0B9C6").style("opacity", 1);
+            d3.selectAll("#youtuberpf-path").style("stroke", "#C0B9C6").style("opacity", 1);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 1);
         } else if (scrollIndex == 1) {
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#C0B9C6").style("opacity", 1);
-            d3.selectAll("#youtube-path").style("stroke", "#C0B9C6").style("opacity", 1);
+            d3.selectAll("#youtuberpf-path").style("stroke", "#C0B9C6").style("opacity", 1);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 1);
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 2) {
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#C0B9C6").style("opacity", 1);
-            d3.selectAll("#youtube-path").style("stroke", "#0F8662").style("opacity", 1);
+            d3.selectAll("#youtuberpf-path").style("stroke", "#0F8662").style("opacity", 1);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 0.5);
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);
         } else if (scrollIndex == 3) {
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6").style("opacity", 1);
-            d3.selectAll("#youtube-path").style("stroke", "#0F8662").style("opacity", 0.5);
+            d3.selectAll("#youtuberpf-path").style("stroke", "#0F8662").style("opacity", 0.5);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 0.5);
             yDomain.set([0, 400000]);
             xDomain.set([2013,2023]);

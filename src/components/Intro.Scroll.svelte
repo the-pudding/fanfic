@@ -42,6 +42,8 @@
         z-index: 1;
         overflow-x: hidden;
 		pointer-events: none;
+		display: flex;
+		justify-content: center;
 	}
 	.spacer {
 		height: 75vh;

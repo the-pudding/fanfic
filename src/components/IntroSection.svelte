@@ -207,7 +207,7 @@
     }
 
     :global(.prose-transition) {
-        margin: 2rem 0 !important;
+        margin: 2rem auto !important;
     }
 
     :global(.prose-transition p) {

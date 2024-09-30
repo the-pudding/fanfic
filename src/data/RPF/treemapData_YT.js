@@ -2,9 +2,9 @@ export default {
 	name: 'identity',
             children: [
                 { name: 'Gen', value: 68.4},
-                { name: 'M/M', value: 24.6},
+                { name: 'M/M', value: 21.1},
                 { name: 'F/F', value: 1.8},
                 { name: 'F/M', value: 1.8},
-                { name: 'Other', value: 3.5}
+                { name: 'Other', value: 7}
             ]
 };
