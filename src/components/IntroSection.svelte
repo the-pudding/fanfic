@@ -190,7 +190,7 @@
     .popups {
         width: 100%;
         position: relative;
-        min-height: 100vh;
+        min-height: 100svh;
         max-width: 1100px;
         margin: 0 auto 5rem auto;
         display: flex;

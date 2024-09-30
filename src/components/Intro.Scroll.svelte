@@ -38,7 +38,7 @@
 		position: sticky;
 		top: 0;
 		transition: all 1s;
-		min-height: 100vh;
+		min-height: 100svh;
         z-index: 1;
         overflow-x: hidden;
 		pointer-events: none;

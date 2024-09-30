@@ -186,7 +186,7 @@
         align-items: center;
 		top: 0;
 		transition: all 1s;
-		height: 100vh;
+		height: 100svh;
         z-index: 1;
         overflow: hidden;
 	}

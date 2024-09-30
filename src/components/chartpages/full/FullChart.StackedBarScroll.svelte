@@ -240,7 +240,7 @@
         align-items: center;
 		top: 4rem;
 		transition: all 1s;
-		height: 100vh;
+		height: 100svh;
         z-index: 1;
 	}
 
