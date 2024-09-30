@@ -130,7 +130,6 @@
 	}
 
 	$: updateScrollSteps(scrollIndex);
-	// $: console.log({scrollIndex})
 </script>
 
 <section id="scrolly">

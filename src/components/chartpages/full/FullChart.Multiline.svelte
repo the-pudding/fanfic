@@ -123,8 +123,6 @@
             }
             lastScrollY = scrollY;
     }
-
-    $: console.log(scrollIndex)
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />

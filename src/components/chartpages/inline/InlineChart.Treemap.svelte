@@ -192,7 +192,7 @@
 
     .contents-Gen  {
         background-color: #96AC0B; 
-		color: white;
+		color: var(--fanfic-black); 
     }
 
     .contents-FF, .contents-questioning {

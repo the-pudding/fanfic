@@ -89,12 +89,12 @@
         <Character characterID={$characterPairSTORE[1]} position={"right"}/>
     </div>
 	<div class="controls">
-        <Select id="leftSelect" options={leftData} value={leftData[$characterPairSTORE[0]].character} position={"left"}/>
+        <Select id="leftSelect" label="left character select" options={leftData} value={leftData[$characterPairSTORE[0]].character} position={"left"}/>
         <button on:click={randomClick} id="random-characters" class:shake={shake}>
             <span>Random</span>
             {@html Shuffle}
         </button>
-        <Select id="rightSelect" options={rightData} value={rightData[$characterPairSTORE[1]].character} position={"right"}/>
+        <Select id="rightSelect" label="right character select" options={rightData} value={rightData[$characterPairSTORE[1]].character} position={"right"}/>
     </div>
 </section>
 

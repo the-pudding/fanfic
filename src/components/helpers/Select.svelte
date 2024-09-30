@@ -84,11 +84,14 @@
 	}
 
 	label {
-		display: inline-block;
+		position: absolute;
+		top: -1000%;
 		font-family: inherit;
 		font-weight: inherit;
-		font-size: 1em;
-		margin-bottom: 0.25em;
+		font-size: 0em;
+		margin-bottom: 0;
+		height: 0;
+		visibility: hidden;
 	}
 
 	select {

@@ -75,7 +75,7 @@
                 </div>
                 <div class="fandom-wrapper">
                     {#if innerWidth > 699}
-                        <div class="column-wrapper">
+                        <ul class="column-wrapper">
                             {#each data.slice(0,10) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -86,8 +86,8 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
-                        <div class="column-wrapper">
+                        </ul>
+                        <ul class="column-wrapper">
                             {#each data.slice(10,20) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -98,8 +98,8 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
-                        <div class="column-wrapper">
+                        </ul>
+                        <ul class="column-wrapper">
                             {#each data.slice(20,30) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -110,8 +110,8 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
-                        <div class="column-wrapper">
+                        </ul>
+                        <ul class="column-wrapper">
                             {#each data.slice(30,40) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -122,8 +122,8 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
-                        <div class="column-wrapper">
+                        </ul>
+                        <ul class="column-wrapper">
                             {#each data.slice(40,50) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -134,9 +134,9 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
+                        </ul>
                     {:else}
-                        <div class="column-wrapper">
+                        <ul class="column-wrapper">
                             {#each data.slice(0,25) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -147,8 +147,8 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
-                        <div class="column-wrapper">
+                        </ul>
+                        <ul class="column-wrapper">
                             {#each data.slice(25,50) as fandom, i}
                                 <ListBlock
                                     data={fandom}
@@ -159,7 +159,7 @@
                                     specialClass={setColorScale(scrollIndex, fandom)}
                                 />
                             {/each}
-                        </div>
+                        </ul>
                     {/if}
                 </div>
             </div>

@@ -79,7 +79,6 @@
     const titleArray = ["M/M", "F/F", "F/M"];
     const canonArray = ["Canon", "Semi-Canon", "Non-Canon"];
 
-    // $: console.log(receivedData)
     $: innerWidth = 0;
     $: ticks = innerWidth < 600 || innerWidth == undefined
         ? ["2013", "2023"] :
