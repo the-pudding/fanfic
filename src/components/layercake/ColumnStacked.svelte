@@ -14,29 +14,21 @@
 
 	// Ensure transitions apply when data changes
 	function applyTransitions() {
-		const rectSelection = d3.selectAll("rect"); // Select all rects
+		const rectSelection = d3.selectAll("rect");
 		if (!rectSelection.empty()) {
-		// Use D3's .data() to bind the data to rect elements if not already done
-		rectSelection
-			.data($data) // Bind the data (ensure this is the correct data structure)
-			.transition() // Start transition
-			.duration(1000)
-			.attr("y", d => {
-				const yVals = $yGet(d); // Extract the y values from your nested data
-				if (yVals && yVals[1] !== undefined) {
-					return yVals[1]; // Use the second y-value from your data
-				} else {
-					return 0; // Fallback value if y is undefined
-				}
+			rectSelection
+				.data($data)
+				.transition()
+				.duration(1000)
+				.attr("y", d => {
+					const yVals = $yGet(d) || [0, 0];
+					return normalizeSmallValues(yVals[1]);  // Normalize small values to 0
 				})
 				.attr("height", d => {
-				const yVals = $yGet(d); // Extract the y values from your nested data
-				if (yVals && yVals.length === 2) {
-					return yVals[0] - yVals[1]; // Calculate the height based on the two y-values
-				} else {
-					return 0; // Fallback value if height is undefined
-				}
-			})
+					const yVals = $yGet(d) || [0, 0];
+					let yHeight = yVals[0] - yVals[1];
+					return yHeight > 0 ? normalizeSmallValues(yHeight) : 0;  // Ensure height is never negative
+				});
 		}
 	}
 
@@ -84,6 +76,10 @@
 		d3.selectAll(`.group-rect`).style("opacity", 1)
 	}
 
+	function normalizeSmallValues(value, threshold = 1e-6) {
+		return Math.abs(value) < threshold ? 0 : value;
+	}
+
 	afterUpdate(() => {
 		applyTransitions();
 	});
@@ -96,8 +92,8 @@
 	{#each $data as series, i}
 	  {@const relevantData = $data[i].key}
 	  {#each series as d, i}
-		{@const yVals = $yGet(d)}
-		{@const columnHeight = yVals[0] - yVals[1]}
+	  {@const yVals = $yGet(d) || [0, 0]}  // Fallback to [0, 0] if yVals is undefined
+	  {@const columnHeight = yVals[0] > yVals[1] ? normalizeSmallValues(yVals[0] - yVals[1]) : 0}  // Ensure height is never negative
 		{#if d.data.year !== "2018"}
 			<rect
 			class="group-rect {relevantData} group-rect-{d.data.year}"
@@ -105,26 +101,28 @@
 			x={$xGet(d)}
 			y={yVals[1]}
 			width={$xScale.bandwidth()}
-			height={columnHeight}
+			height={columnHeight || 0}
 			fill={$zGet(series)}
 			></rect>
 		{:else}
-			<rect
-				x={$xGet(d)}
-				y={0}
-				width={$xScale.bandwidth()}
-				height={$height}
-				fill={"#d9d6d6"}
-				class="disabled"
-			></rect>
-			<text
-				x={$width/2}
-				y={$height/2}
-				transform="rotate(-90,{$width/2},{$height/2-4})"
-				class="disabled"
-			>
-			No data collected in 2018
-			</text>
+ 			{#if $height > 0}
+				<rect
+					x={$xGet(d)}
+					y={0}
+					width={$xScale.bandwidth()}
+					height={$height}
+					fill={"#d9d6d6"}
+					class="disabled"
+				></rect>
+				<text
+					x={$width/2}
+					y={$height/2}
+					transform="rotate(-90,{$width/2},{$height/2-4})"
+					class="disabled"
+				>
+				No data collected in 2018
+				</text>
+			{/if}
 		{/if}
 	  {/each}
 	{/each}

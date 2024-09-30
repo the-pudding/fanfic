@@ -26,6 +26,7 @@
     let ffLinks;
     let fmLinks;
     let containerDiv;
+    let nodeSize;
 
     let summaryData = [];
     let formatedData;
@@ -134,7 +135,7 @@
             : formatData(mcuNetworkData);
 
         calculateVals(formatedData);
-
+        nodeSize = pageInnerWidth > 600 ? 14 : 10;
 		setupChart(formatedData);
 		
 		mounted = true;
@@ -169,15 +170,20 @@
         const LW = typeof linkStrokeWidth !== "function" ? null : d3.map(links, linkStrokeWidth);
 
 		// Replace the input nodes and links with mutable objects for the simulation.
-		nodes = d3.map(nodes, (_, i) => ({id: N[i], gender: G[i], title: T[i]}));
+		nodes = d3.map(nodes, (_, i) => ({
+            id: N[i], 
+            gender: G[i], 
+            title: T[i], 
+            width: nodeSize, 
+            height: nodeSize
+         }));
 		links = d3.map(links, (_, i) => ({source: LS[i], target: LT[i], relType: LR[i], value: LW[i]}));
 
 		// Construct the forces.
-        const forceX = pageInnerWidth > 600 ? d3.forceX().strength(0) : d3.forceX().strength(0);  // Custom strength for x-axis
+        const forceX = d3.forceX().strength(0);  // Custom strength for x-axis
         const forceY = pageInnerWidth > 600 ? d3.forceY().strength(0) : d3.forceY().strength(0.1); // Custom strength for y-axis
 		const forceNode = pageInnerWidth > 600 ? d3.forceManyBody().strength(-width/10) : d3.forceManyBody().strength(-width/20);
 		const forceLink = pageInnerWidth > 600 ? d3.forceLink(links).distance(100).id(({index: i}) => N[i]) : d3.forceLink(links).distance(50).id(({index: i}) => N[i]);
-        const nodeSize = pageInnerWidth > 600 ? 14 : 10;
 		if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
 		if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
@@ -262,8 +268,10 @@
 				.attr("y2", d => d.target.y);
 
             node
-                .attr("x", d => d.x - 12  / 2)
-                .attr("y", d => d.y - 12 / 2);
+                .attr("width", nodeSize )   
+                .attr("height", nodeSize )
+                .attr("x", d => d.x ? d.x - nodeSize / 2 : 0)  // Fallback to 0 if undefined
+                .attr("y", d => d.y ? d.y - nodeSize / 2 : 0); // Fallback to 0 if undefined
             
             textElems
                 .attr("x", d => d.x > 0 ? d.x - 10 : d.x + 10)
