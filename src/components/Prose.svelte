@@ -112,11 +112,15 @@
             line-height: 1.65;
             margin: 1.5rem 0;
         }
+
+        :global(span.ship a) {
+            padding: 0.25rem;
+        }
     }
 
     @media (max-width: 400px) {
-        p {
-            font-size: var(--14px);
+        :global(span.ship a) {
+            font-size: var(--12px);
         }
     }
 </style>

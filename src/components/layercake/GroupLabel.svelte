@@ -70,7 +70,7 @@
 <style>
   .label {
       position: absolute;
-      transform: translate(-100%, -100%) translateY(6px);
+      transform: translate(-100%, -100%) translateY(0px);
       font-size: 12px;
       color: var(--fanfic-black);
       font-weight: 700;

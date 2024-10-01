@@ -69,7 +69,7 @@
                         <p class="key-block key-block-fantasy">Fantasy</p>
                         <p class="key-block key-block-scifi">Sci-Fi</p>
                         <p class="key-block key-block-superhero">Superhero</p>
-                        <p class="key-block key-block-video">Video Game</p>
+                        <p class="key-block key-block-video">Game</p>
                         <!-- <p class="key-block key-block-other">Other</p> -->
                     {/if}
                 </div>
@@ -228,6 +228,7 @@
         font-family: var(--mono);
         font-size: var(--12px);
         flex-wrap: wrap;
+        gap: 0.5rem;
     }
     .key p {
         margin: 0;
@@ -244,7 +245,7 @@
     }
     .key-block {
         position: relative;
-        padding: 0 1rem;
+        padding: 0;
         text-transform: uppercase;
         font-weight: 700;
     }
@@ -356,12 +357,11 @@
 
     @media (max-width: 700px) {
         .key {
-            max-width: 90%;
-            margin: 1rem auto 0 auto;
-            height: 2rem;
+            margin: 0.75rem auto 0 auto;
         }
         .column-wrapper {
             width: calc(50% - 0.5rem);
+            gap: 0.125rem;
         }
         .fandom-wrapper {
             padding: 0.5rem 1rem 1rem 1rem;
@@ -377,7 +377,7 @@
             font-size: var(--16px);
         }
         .key {
-            margin: 1rem 0 0 0;
+            margin: 0.75rem 0 0 0;
         }
         .key p {
             font-size: 10px;
@@ -388,12 +388,13 @@
             margin: 0 0.25rem;
         }
         .key-block {
-            padding: 0 0.25rem;
+            padding: 0;
         }
 
         .key-block::before {
             width: 0.75rem;
             height: 0.75rem;
+            margin: 0 0.125rem 0 0;
         }
 	}
 

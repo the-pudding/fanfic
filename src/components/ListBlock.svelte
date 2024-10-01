@@ -128,7 +128,6 @@
         font-family: var(--mono);
         font-size: var(--12px);
         border: 1px solid var(--fanfic-black);
-        margin: 0.25rem 0;
         overflow: hidden;
         transition: all 0.5s linear 0s;
     }
@@ -137,6 +136,7 @@
         width: 100%;
         height: 3rem;
         cursor: pointer;
+        margin: 0;
     }
 
     .full-3 {
@@ -244,7 +244,7 @@
         }
 
         .right {
-            width: 3.5rem;
+            width: 3rem;
         }
     }
 
@@ -260,7 +260,7 @@
             white-space: nowrap; 
         }
         .full-3 {
-            height: 2.25rem;
+            height: 2.5rem;
         }
     }
 

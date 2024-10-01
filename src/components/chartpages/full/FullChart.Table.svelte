@@ -132,6 +132,7 @@
         font-family: var(--mono);
         font-size: var(--12px);
         flex-wrap: wrap;
+        gap: 0.5rem;
     }
     .key p {
         margin: 0;
@@ -140,7 +141,6 @@
     }
     .key-block {
         position: relative;
-        padding: 0 1rem;
         text-transform: uppercase;
         font-weight: 700;
     }
@@ -185,6 +185,9 @@
     ul {
         width: 100%;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
     }
 
     .set-wrapper {
@@ -230,6 +233,7 @@
         flex-direction: row;
         padding: 0.5rem 0;
         gap: 0.5rem;
+        justify-content: center;
     }
 
     .summary p {
@@ -290,6 +294,9 @@
     }
 
     @media(max-width: 700px) {
+        ul {
+            gap: 0.125rem;
+        }
         .list-wrapper-3 {
             width: 100%;
         }
@@ -304,13 +311,10 @@
             font-size: 10px;
         }
 
-        .key-block {
-            padding: 0 0.5rem;
-        }
-
         .key-block::before {
             width: 0.75rem;
             height: 0.75rem;
+            margin: 0 0.125rem 0 0;
         }
     }
 </style>

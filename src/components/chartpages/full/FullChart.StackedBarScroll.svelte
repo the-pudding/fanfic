@@ -167,7 +167,7 @@
 
 
 <style>
-        .tooltip {
+    .tooltip {
         position: absolute;
         overflow: hidden;
         border: 1px solid var(--fanfic-black);
@@ -287,7 +287,7 @@
         font-family: var(--mono);
         font-size: var(--12px);
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.5rem;
     }
     .key p {
         margin: 0;
@@ -363,12 +363,13 @@
 
         .key {
             font-size: 10px;
-            gap: 0.25rem
+            gap: 0.5rem;
         }
 
         .key-block::before {
             width: 0.75rem;
             height: 0.75rem;
+            margin: 0 0.125rem 0 0;
         }
 
         :global(#sticky-CANON_percentRelType .x-axis .tick:nth-child(even) ) {

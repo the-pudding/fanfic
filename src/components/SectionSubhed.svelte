@@ -58,7 +58,7 @@
 
     @media (max-width: 400px) {
         h3 {
-            font-size: var(--28px);
+            font-size: 30px;
         }
     }
 </style>

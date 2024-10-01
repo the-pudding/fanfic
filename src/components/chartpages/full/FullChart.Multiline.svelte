@@ -206,7 +206,7 @@
     .content-wrapper {
         width: calc(100% - 2rem);
         margin: 1rem auto 2rem auto;
-        height: 50vh;
+        height: 60svh;
         padding: 1rem;
         display: flex;
         flex-direction: column; 
@@ -297,8 +297,7 @@
 
     @media (max-width: 600px) {
         .sticky {
-            justify-content: start;
-            top: 5rem;
+            top: 4rem;
         }
         .step p {
             font-size: var(--16px);

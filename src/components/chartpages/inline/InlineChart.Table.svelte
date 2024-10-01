@@ -36,6 +36,13 @@
 
 <figure>
     {#if data}
+        <div class="key">
+            {#if id == "RPF_top20"}
+                <p class="key-block key-block-highlight">Boy bands</p>
+            {:else}
+                <p class="key-block key-block-highlight">Everyday settings</p>
+            {/if}
+        </div>
         <div class="header-row">
             {#if id == "RPF_top20"}
                 <p>Ship</p>
@@ -105,9 +112,48 @@
         margin: 0;
     }
 
+    .key {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 1.5rem;
+        margin: 0rem 0 0.5rem 0;
+        font-family: var(--mono);
+        font-size: var(--12px);
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .key p {
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .key-block {
+        position: relative;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .key-block::before {
+        width: 1rem;
+        height: 1rem;
+        content: '';
+        border: 2px solid;
+        border-color: var(--window-inset-stroke);
+        display: inline-block;
+        position: relative;
+        top: 0.25rem;
+        margin: 0 0.25rem 0 0;
+        background-color: var(--fanfic-blue);
+    }
+
     ul {
         width: 100%;
         padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
     }
 
     .set-wrapper {
@@ -179,11 +225,24 @@
     }   
 
     @media (max-width: 600px) { 
+        ul {
+            gap: 0.125rem;
+        }
         h5 {
             font-size: var(--14px);
         }
        .list-wrapper {
             width: calc(50% - 0.75rem);
+        }
+
+        .key {
+            font-size: 10px;
+        }
+
+        .key-block::before {
+            width: 0.75rem;
+            height: 0.75rem;
+            margin: 0 0.125rem 0 0;
         }
     }
 </style>
