@@ -320,5 +320,9 @@
             height: 0.75rem;
             margin: 0 0.125rem 0 0;
         }
+
+        .header-row p {
+            font-size: 10px;
+        }
     }
 </style>

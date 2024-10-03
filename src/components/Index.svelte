@@ -12,12 +12,15 @@
 	import Footer from "$components/Footer.svelte";
 	import inView from "$actions/inView.js";
 	import copy from "$data/copy.json";
+	import * as d3 from "d3";
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
 	let tabVisible = true;
 	let innerWidth;
 	let innerHeight;
+	let clientHeight;
+	let mounted = false;
 
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
@@ -63,6 +66,9 @@
 				currSectionSTORE.set("realpeople")
 			};
 		});
+
+		mounted = true;
+		getSectionEnd($currSectionSTORE, scrollY, mounted);
 	});
 
 	// Sets the translation style for the "inner" div, it's a long ternary statment that works like if/else
@@ -80,9 +86,6 @@
 
 	let prevSection;
   	let scrollY;
-
-	 // Watch for changes in scrollY and currSectionSTORE
-	 $: recordSectionScroll($currSectionSTORE, scrollY);
 
 	 function recordSectionScroll(curr, scrollY) {
 		if (curr === "slash") {
@@ -116,18 +119,53 @@
 			} 
 		}
 	}
+
+	let sectionTruncate;
+
+	function getSectionEnd($currSectionSTORE, scrollY, mounted) {
+		if (mounted) {
+			let element = document.querySelector(`#${$currSectionSTORE}-slide .bottom-hint`);
+			let footer = document.querySelector("footer");
+
+			if (element) {
+				const rect = element.getBoundingClientRect();
+				const elementBottom = rect.bottom + scrollY;
+				const sectionTop = document.querySelector('#section-start').getBoundingClientRect().top + scrollY;
+				sectionTruncate = elementBottom - sectionTop + 200;
+			}
+
+			if (footer) {
+				const footerBottom = footer.offsetTop + footer.offsetHeight;
+				console.log('Footer Bottom:', footerBottom);
+				document.documentElement.style.height = `${footerBottom}px`;
+
+				let maxHeight = footer.getBoundingClientRect().bottom + scrollY;
+				console.log({scrollY, maxHeight})
+				if (scrollY >= maxHeight - innerHeight) {
+					window.scrollTo(0, maxHeight-innerHeight);  // Stop scrolling beyond maxHeight
+				}
+			}
+
+		}
+	}
+
+	// Watch for changes in scrollY and currSectionSTORE
+	$: recordSectionScroll($currSectionSTORE, scrollY);
+	$: getSectionEnd($currSectionSTORE, scrollY, mounted);
+	$: console.log(clientHeight)
 </script>
 
 <!-- PAGE HTML STARTS HERE -->
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} bind:scrollY={scrollY}/>
 
+<div class="content-wrapper" bind:clientHeight={clientHeight}>
 <IntroSection />
 <Tabs options={sections} tabVisible={tabVisible}/>
 
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
 	<Tap on:tap={onTap} full={false} showArrows={true} enableKeyboard={true} size={"50%"} />
 </div>
-<div id="section-start" class="inner" style="transform:{translate}"
+<div id="section-start" class="inner" style="transform:{translate}; height: {sectionTruncate}px"
 	use:inView={{ bottom: innerHeight-100 }}
 	on:enter={showTap}
 	on:exit={hideTap}
@@ -151,6 +189,7 @@
 </div>
 <UniversalTooltip />
 <Footer />
+</div>
 
 <!-- CSS STARTS HERE -->
 <style>

@@ -13,7 +13,6 @@
                 ? copy.annoTriggersCanon
                 : copy.annoTriggersRPF;
             const match = annotations[annoID].text[0].value;
-			console.log(annotations[annoID])
             return match;  
         }
 	}
@@ -35,7 +34,7 @@
 		}, 500)
 	}
 
-	$: $currSectionSTORE, hideAnnoSectionChange();
+	$: $currSectionSTORE, hideAnnoSectionChange($currSectionSTORE);
 </script>
 
 <div id="annotation-block">
