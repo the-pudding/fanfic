@@ -71,7 +71,7 @@
 		color: var(--fanfic-black);
 		font-family: var(--sans);
 		font-weight: 700;
-		padding: 0.125rem;
+		padding: 0.25rem;
 		background: var(--fanfic-highlighter);
 	}
 

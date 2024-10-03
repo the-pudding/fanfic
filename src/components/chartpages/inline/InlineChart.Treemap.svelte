@@ -24,8 +24,8 @@
 	
 	if (id == "SLASH_AO3demographics0") { data = demo1Data } 
 	else if (id == "SLASH_AO3demographics1") { data = demo2Data } 
-	else if (id == "RPF_relTypeByFandom0") { data = BTSdata } 
-	else if (id == "RPF_relTypeByFandom1") { data = YTdata } 
+	else if (id == "RPF_relTypeByFandomBTS") { data = BTSdata } 
+	else if (id == "RPF_relTypeByFandomYT") { data = YTdata } 
 	else { data = slashData } 
 
 	const treemap = d3.treemap();
@@ -49,49 +49,11 @@
 		y1: selected.y1,
 		y2: selected.y0
 	};
-
-	let tooltipVisible = true;
-
-	function handleMouseOver(e) {
-		const mouseX = e.clientX;
-  		const mouseY = e.clientY;
-		const parentEl = e.currentTarget.closest('.chart');
-		const rect = parentEl.getBoundingClientRect();
-		const relativeX = mouseX - rect.left;
-		const relativeY = mouseY - rect.top;
-
-		const relType = this.children[0].className.split(" ")[1].split("-")[1];
-		const percent = this.children[0].children[0].children[0].textContent;
-		tooltipVisible = true;
-		const tooltip = d3.selectAll("#tree-tooltip");
-		tooltip.style("top", `${relativeY}px`).style("left", `${relativeX}px`);
-
-		if (relType == "MM") {
-			tooltip.select("p").text("Slash: Same gender relationships between men")
-		} else if (relType == "FF") {
-			tooltip.select("p").text("Femslash: Same gender relationships between women")
-		} else if (relType == "FM") {
-			tooltip.select("p").text("Heterosexual relationships")
-		} else if (relType == "Gen") {
-			tooltip.select("p").text("Friendships (donated by &)")
-		} else if (relType == "Other") {
-			tooltip.select("p").text("Other relationships, including more than two partners, original characters, and XReader")
-		}
-	}
-
-	function handleMouseLeave() {
-		tooltipVisible = false;
-	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
 
 <div class="chart" id={id} style="max-height: {height}px">
-	<!-- <div id="tree-tooltip"
-		style="opacity: {tooltipVisible ? 1 : 0};">
-		<span><Icon name="info" /></span>
-		<p></p>
-	</div> -->
 	<Pancake.Chart x1={$extents.x1} x2={$extents.x2} y1={$extents.y1} y2={$extents.y2}>
 		<Treemap {root} let:node>
 				<div

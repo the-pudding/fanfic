@@ -345,7 +345,7 @@
 		font-family: var(--sans);
 	    background-color: var(--fanfic-blue);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
     }
 
     :global(.step p .canon) {
@@ -353,7 +353,7 @@
 		font-family: var(--sans);
 	    background-color: var(--fanfic-red);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
     }
 
     @media (max-width: 600px) { 

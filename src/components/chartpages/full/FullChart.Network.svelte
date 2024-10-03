@@ -345,7 +345,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-red);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-mnetwork) {
@@ -353,7 +353,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-blue);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-fmnetwork) {
@@ -361,7 +361,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-green);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-f) {
@@ -369,7 +369,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-highlighter);
 		color: var(--fanfic-black);
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-m) {
@@ -377,14 +377,14 @@
 		font-family: var(--sans);
 		background-color: #7380D0;
 		color: var(--fanfic-black);
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 	:global(.span-fm) {
 		font-weight: 700;
 		font-family: var(--sans);
 		background-color: var(--fanfic-green);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-fantasy) {
@@ -392,7 +392,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-blue);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-superhero) {
@@ -400,7 +400,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-red);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-scifi) {
@@ -408,7 +408,7 @@
 		font-family: var(--sans);
 		background-color: var(--fanfic-green);
 		color: white;
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	:global(.span-video) {
@@ -416,7 +416,7 @@
 		font-family: var(--sans);
 		background-color: #96AC0B;
 		color: var(--fanfic-black);
-		padding: 0.125rem;
+		padding: 0.25rem;
 	}
 
 	@media (max-width: 700px) {

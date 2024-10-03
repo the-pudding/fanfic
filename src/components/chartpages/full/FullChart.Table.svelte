@@ -87,6 +87,10 @@
             {:else}
                 <div class="list-wrapper-3">
                     <h5>{setRelTypeText(relType[0])}</h5>
+                    <div class="header-row">
+                            <p>Ship</p>
+                            <p>Fanfics</p>
+                    </div>
                     <ul>
                         {#each relType[1] as ship, i}
                             <ListBlock
@@ -223,7 +227,7 @@
         font-weight: 700;
         text-align: center;
         font-size: var(--18px);
-        margin: 0;
+        margin: 0 0 1rem 0;
         padding: 0;
     }
 

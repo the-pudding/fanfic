@@ -275,7 +275,7 @@
         background-color: var(--fanfic-red);
         font-weight: 700;
         font-family: var(--sans);
-        padding: 0.125rem;
+        padding: 0.25rem;
         color: white;
     }
 
@@ -283,7 +283,7 @@
         background-color: var(--fanfic-green);
         font-weight: 700;
         font-family: var(--sans);
-        padding: 0.125rem;
+        padding: 0.25rem;
         color: white;
     }
 
@@ -291,7 +291,7 @@
         background-color: var(--fanfic-blue);
         font-weight: 700;
         font-family: var(--sans);
-        padding: 0.125rem;
+        padding: 0.25rem;
         color: white;
     }
 

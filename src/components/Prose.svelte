@@ -106,6 +106,62 @@
         color: white;
     }
 
+    :global(.span-black) {
+        background-color: var(--fanfic-black);
+        color: white;
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
+    :global(.span-blue) {
+        background-color: var(--fanfic-blue);
+        color: white;
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
+    :global(#slash-slide .span-blue) {
+        border: 1px solid white;
+    }
+
+    :global(.span-red) {
+        background-color: var(--fanfic-red);
+        color: white;
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
+    :global(#realpeople-slide .span-red) {
+        border: 1px solid white;
+    }
+
+    :global(.span-green) {
+        background-color: var(--fanfic-green);
+        color: white;
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
+    :global(.span-moss) {
+        background-color: #96AC0B;
+        color: var(--fanfic-black);
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
+    :global(.span-gray) {
+        background-color: var(--fanfic-window-gray);
+        color: var(--fanfic-black);
+        font-weight: 700;
+        font-family: var(--sans);
+        padding: 0.25rem;
+    }
+
     @media (max-width: 600px) {
         p {
             font-size: var(--16px);

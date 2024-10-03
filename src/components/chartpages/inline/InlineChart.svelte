@@ -39,7 +39,11 @@
         {#if chartType == "treemap"}
             {#if title}<ChartHeader {title}/>{/if}
             <InlineChartTreemap {id} height={400} />
-            <p class="note">Note: Other includes romantic relationships including more than two partners, ungendered original characters, and when the author inserts themselves into the story (XReader). Numbers may not add to 100 due to rounding.</p>
+            {#if id !== "RPF_relTypeByFandomBTS"}
+                <p class="note">Note: Other includes romantic relationships including more than two partners, ungendered original characters, and when the author inserts themselves into the story (XReader). Numbers may not add to 100 due to rounding.</p>
+            {:else}
+            <p class="note">Note: Other includes romantic relationships with more than two partners and ungendered original characters. Numbers may not add to 100 due to rounding.</p>
+            {/if}
         {/if}
 </div>
 
