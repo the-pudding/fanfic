@@ -45,7 +45,7 @@
                 <img alt="Caitlyn Ralph avatar" src="./assets/images/quote-icons/caitlyn-ralph.png" /><a href="https://pudding.cool/author/caitlyn-ralph/">Caitlyn Ralph</a>
             </p>
         </div>
-        <p class="with">With data from <a href="https://centrumlumina.tumblr.com/">centreoftheselights</a></p>
+        <p class="with">With data from <a href="https://archiveofourown.org/users/centreoftheselights">centreoftheselights</a></p>
     </div>
     <div class="prose">
         <Prose copy={copy.intro[0].text}/>

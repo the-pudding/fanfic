@@ -11,27 +11,20 @@
                 ? copy.annoTriggersSlash
                 : $currSectionSTORE == "noncanon"
                 ? copy.annoTriggersCanon
-                : copy.annoTriggersRPF
-            const match = annotations[annoID].value;
+                : copy.annoTriggersRPF;
+            const match = annotations[annoID].text[0].value;
+			console.log(annotations[annoID])
             return match;  
         }
 	}
 
     function imgMatch(annoID) {
-        let img
-        if (annoID % 2 === 0) {
-            img = $currSectionSTORE == "slash" 
-                ? "draco-malfoy" :
-                $currSectionSTORE == "noncanon"
-                ? "castiel"
-                : "jeon-jungkook"
-        } else {
-            img = $currSectionSTORE == "slash" 
-                ? "harry-potter" :
-                $currSectionSTORE == "noncanon"
-                ? "dean-winchester"
-                : "harry-styles"
-        }
+        let annotations = $currSectionSTORE == "slash" 
+                ? copy.annoTriggersSlash
+                : $currSectionSTORE == "noncanon"
+                ? copy.annoTriggersCanon
+                : copy.annoTriggersRPF;
+		const img = annotations[annoID].character;
         return img
     }
 
@@ -50,11 +43,7 @@
         <p>{@html annoMatch($annotationVisible[1])}</p>
     </div>
     <div class="img-wrapper" in:fly={{ delay: 0, duration: 300, y: 100}} out:fade={{duration: fadeDuration}}>
-        {#if $annotationVisible[1] % 2 === 0}
-            <img src="./assets/images/heads/{imgMatch($annotationVisible[1])}.png" alt="character" />
-        {:else if $annotationVisible[1] % 2 !== 0}
-            <img src="./assets/images/heads/{imgMatch($annotationVisible[1])}.png" style="transform: scaleX(-1)" alt="character" />
-        {/if}
+        <img src="./assets/images/heads/annos/{imgMatch($annotationVisible[1])}.png" alt="character" />
     </div>
 </div>
 
