@@ -4,26 +4,26 @@ export default {
         {
             name: 'M/M',
             children: [
-                { name: 'M/M', value: 56.6868919 }
+                { name: 'M/M', value: 52.01795691 }
             ]
         },
         {
             name: 'F/M',
             children: [
-                { name: 'F/M', value: 18.74793044 },
+                { name: 'F/M', value: 18.05112589 },
             ]
         },
         {
             name: 'Gen',
-            children: [{ name: 'Gen', value: 10.52833128 }]
+            children: [{ name: 'Gen', value: 14.17861041 }]
         },
         {
             name: 'F/F',
-            children: [{ name: 'F/F', value: 4.678498743 }]
+            children: [{ name: 'F/F', value: 5.504227727 }]
         },
         {
             name: 'Other',
-            children: [{ name: 'Other', value: 9.358347639 }]
+            children: [{ name: 'Other', value: 10.24807906 }]
         },
     ] 
 };

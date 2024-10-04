@@ -136,11 +136,9 @@
 
 			if (footer) {
 				const footerBottom = footer.offsetTop + footer.offsetHeight;
-				console.log('Footer Bottom:', footerBottom);
 				document.documentElement.style.height = `${footerBottom}px`;
 
 				let maxHeight = footer.getBoundingClientRect().bottom + scrollY;
-				console.log({scrollY, maxHeight})
 				if (scrollY >= maxHeight - innerHeight) {
 					window.scrollTo(0, maxHeight-innerHeight);  // Stop scrolling beyond maxHeight
 				}
@@ -152,7 +150,6 @@
 	// Watch for changes in scrollY and currSectionSTORE
 	$: recordSectionScroll($currSectionSTORE, scrollY);
 	$: getSectionEnd($currSectionSTORE, scrollY, mounted);
-	$: console.log(clientHeight)
 </script>
 
 <!-- PAGE HTML STARTS HERE -->

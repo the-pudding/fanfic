@@ -40,17 +40,18 @@
 </g>
 <g class="rect-overlay" class:scrollyRect={id == "RPF_topFandomsTime"}>
 	<rect 
-		x={$width/2 - $width/20}
-		width={$width/10}
-		height={$height}
+		x={$width/2 - $width/12}
+		y={-4}
+		width={$width/12}
+		height={$height+4}
 	>
 	</rect>
 	<text
-		x={$width/2 - $width/20 + 20}
-		y={$height/2}
-		transform="rotate(-90,{$width/2},{$height/2-4})"
+		x={$width/2 - $width/12}
+		y={$height/2+4}
+		transform="rotate(-90,{$width/2 - $width/20},{$height/2-4})"
 	>
-		No data collected in 2018
+	No data collected in 2018
 	</text>
 </g>
 

@@ -82,7 +82,6 @@
 		calculateVals(formatData(mcuNetworkData), "Marvel Cinematic Universe");
 		blockReady = true;
 
-
 		d3.selectAll(".span-hp-nodesCount").text(summaryData[0].nodesCount);
 		d3.selectAll(".span-mcu-nodesCount").text(summaryData[1].nodesCount);
 		d3.selectAll(".span-hp-mCount").text(Math.round(summaryData[0].nodesMPercent));

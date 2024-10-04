@@ -103,7 +103,7 @@
 
     function setLabelText(canon) {
         let labelText = canon == "Yes"
-            ? "Canon 12%"
+            ? "Canon 11%"
             : canon == "No"
             ? "Non-canon 83%"
             : "Semi-canon 6%";

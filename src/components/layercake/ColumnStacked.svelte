@@ -14,7 +14,7 @@
 
 	// Ensure transitions apply when data changes
 	function applyTransitions() {
-		const rectSelection = d3.selectAll("rect");
+		const rectSelection = d3.selectAll(".group-rect rect");
 		if (!rectSelection.empty()) {
 			rectSelection
 				.data($data)
@@ -115,10 +115,9 @@
 					class="disabled"
 				></rect>
 				<text
-					x={$width/2}
-					y={$height/2}
-					transform="rotate(-90,{$width/2},{$height/2-4})"
-					class="disabled"
+					x={$width/2 - $width/12}
+					y={$height/2+4}
+					transform="rotate(-90,{$width/2 - $width/20},{$height/2.08})"
 				>
 				No data collected in 2018
 				</text>

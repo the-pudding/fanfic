@@ -27,8 +27,10 @@
     let groupedData;
     $: innerWidth = 0;
     $: ticks = innerWidth < 600 || innerWidth == undefined
-        ? ["2013", "2023"]
-        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
+        ? ["2013", "2024"] :
+        innerWidth < 1000 || innerWidth == undefined
+        ? ["2013", "2015", "2017", "2019", "2021", "2023"]
+        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
     const tweenOptions = {
 		duration: 300,
 		easing: eases.cubicInOut
@@ -92,21 +94,21 @@
             d3.selectAll("#youtuberpf-path").style("stroke", "#C0B9C6").style("opacity", 1);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 1);
             yDomain.set([0, 400000]);
-            xDomain.set([2013,2023]);
+            xDomain.set([2013,2024]);
         } else if (scrollIndex == 2) {
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#C0B9C6").style("opacity", 1);
             d3.selectAll("#youtuberpf-path").style("stroke", "#0F8662").style("opacity", 1);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 0.5);
             yDomain.set([0, 400000]);
-            xDomain.set([2013,2023]);
+            xDomain.set([2013,2024]);
         } else if (scrollIndex == 3) {
             d3.selectAll(".content-wrapper .scrollyRect").style("opacity", 1);
             d3.selectAll("#bts-path").style("stroke", "#1B2AA6").style("opacity", 1);
             d3.selectAll("#youtuberpf-path").style("stroke", "#0F8662").style("opacity", 0.5);
             d3.selectAll("#onedirection-path").style("stroke", "#D03200").style("opacity", 0.5);
             yDomain.set([0, 400000]);
-            xDomain.set([2013,2023]);
+            xDomain.set([2013,2024]);
         } 
 	}
 

@@ -16,10 +16,10 @@
     let inViewTrigger = false;
     $: innerWidth = 0;
     $: ticks = innerWidth < 600 || innerWidth == undefined
-        ? ["2013", "2023"] :
-        innerWidth < 900 || innerWidth == undefined
+        ? ["2013", "2024"] :
+        innerWidth < 1000 || innerWidth == undefined
         ? ["2013", "2015", "2017", "2019", "2021", "2023"]
-        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
+        : ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
 
     // Used to match the data to its keys
     const axisKeys = [
