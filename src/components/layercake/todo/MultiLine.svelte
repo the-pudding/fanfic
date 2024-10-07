@@ -47,9 +47,11 @@
 	>
 	</rect>
 	<text
-		x={$width/2 - $width/12}
-		y={$height/2+4}
-		transform="rotate(-90,{$width/2 - $width/20},{$height/2-4})"
+		x={$width / 2}
+		y={$height / 2}
+		transform="rotate(-90, {$width / 2}, {$height / 2})"
+		text-anchor="middle"
+		dy={-$width/12/2 + 4}
 	>
 	No data collected in 2018
 	</text>

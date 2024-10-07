@@ -30,6 +30,7 @@
       if (string == "no_percent") { return "Non-Canon"}
       else if (string == "semi_percent") { return "Semi-Canon"}
       else if (string == "yes_percent") { return "Canon"}
+      else if (string == "Youtube RPF") { return "YouTube"}
       else {
         return string
       }
@@ -54,7 +55,7 @@
   {#if inViewTrigger && id == "CANON_percentCanon" || inViewLabelC && group.fandom == "BTS" || inViewLabelB && group.fandom == "Youtube RPF" || inViewLabelA && group.fandom == "One Direction"}
       <div
         transition:fade={{ delay: delay, duration: 250 }}
-        class="label"
+        class="label label-{id}"
         style="
         top:{(top(group.values) * 100)}%;
         left:{left(group.values) * 100}%;
@@ -70,7 +71,7 @@
 <style>
   .label {
       position: absolute;
-      transform: translate(-100%, -100%) translateY(0px);
+      transform: translate(-100%, -100%) translateY(30px);
       font-size: 12px;
       color: var(--fanfic-black);
       font-weight: 700;
@@ -78,6 +79,14 @@
       text-transform: uppercase;
       width: 8rem;
       text-align: right;
+  }
+
+  .label-RPF_topFandomsTime {
+    transform: translate(-100%, -100%) translateY(12px);
+  }
+
+  .label-RPF_topFandomsTime:nth-of-type(2) {
+    transform: translate(-100%, -100%) translateY(36px);
   }
 
   @media (max-width: 600px) { 
