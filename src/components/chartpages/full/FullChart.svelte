@@ -48,6 +48,9 @@
         {#if chartType == "table"}
             {#if title}<ChartHeader {title} />{/if}
             <FullChartTable {id} />
+            {#if id == "SLASH_topTagsByRelType"}
+            <p class="note">Note: Although Alpha/Beta/Omega Dynamics (or the <a href=https://en.wikipedia.org/wiki/Omegaverse>Omegaverse</a>) can exist in romantic, erotic, and sexual contexts it has been classified as a "sexual" tag because of its roots in erotic slash fanfiction and how it is largely used on AO3 today.</p>
+            {/if}
         {/if}
     </div>
 {/if}
@@ -72,5 +75,22 @@
         margin: 0;
         font-size: var(--18px);
         padding: 0.25rem 0;
+    }
+
+    .note {
+        font-family: var(--sans);
+        font-size: 10px;
+        font-style: italic;
+        line-height: 1.25;
+        color: var(--fanfic-black);
+        padding: 0 1rem;
+    }
+
+    .note a {
+        color: var(--fanfic-black);
+    }
+
+    .note a:hover {
+        opacity: 0.75;
     }
 </style>

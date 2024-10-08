@@ -33,10 +33,10 @@
         <div class="top-byline">
             <p class="byline">By</p>
             <p class="byline">
-                <img alt="Ashley Cai avatar" src="./assets/images/quote-icons/ashley-cai.png" /><a href="">Ashley Cai</a>
+                <img alt="Ashley Cai avatar" src="./assets/images/quote-icons/ashley-cai.png" /><a href="https://pudding.cool/author/ashley-cai/">Ashley Cai</a>
             </p>
             <p class="byline">
-                <img alt="Florina Sutanto avatar" src="./assets/images/quote-icons/florina-sutanto.png" /><a href="">Florina Sutanto</a>
+                <img alt="Florina Sutanto avatar" src="./assets/images/quote-icons/florina-sutanto.png" /><a href="https://pudding.cool/author/florina-sutanto/">Florina Sutanto</a>
             </p>
             <p class="byline">    
                 <img alt="Jan Diehm avatar" src="./assets/images/quote-icons/jan-diehm.png" /><a href="https://pudding.cool/author/jan-diehm/">Jan Diehm</a>
