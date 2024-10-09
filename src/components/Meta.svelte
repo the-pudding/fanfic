@@ -1,8 +1,8 @@
 <script>
-	export let title = "Title TK";
-	export let description = "Description TK";
-	export let url = "https://pudding.cool/2024/20/fanfic";
-	export let keywords = "";
+	export let title = "Who gets shipped and why?";
+	export let description = "An analysis of the top fanfic relationship pairings on Archive of Our Own from 2013–2024.";
+	export let url = "https://pudding.cool/2024/10/fanfic";
+	export let keywords = "fanfic, fanfiction, fan, fic, fiction, ao3, relationship, ship, slash, femslash, canon, non-canon, rpf, real person fiction, data, analysis, couple, pair, friendship";
 	export let preloadFont = [];
 </script>
 
