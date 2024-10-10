@@ -30,10 +30,10 @@
         .range([
         "#D03200", // Superhero
         "#1B2AA6", // Fantasy
-        "#119C72", // Science Fiction
-        "#C0B9C6", // Sports
-        "#96AC0B",  // Video Game
         "#C0B9C6", // Crime
+        "#119C72", // Science Fiction
+        "#96AC0B",  // Video Game
+        "#C0B9C6", // Sports
         "#C0B9C6", // Thriller
         "#C0B9C6", // Thriller
         "#C0B9C6", // Slice of Life
