@@ -135,8 +135,8 @@
     .grid {
         width: 100%;
         height: 3rem;
-        cursor: pointer;
         margin: 0;
+        pointer-events: none;
     }
 
     .full-3 {
@@ -261,6 +261,13 @@
         }
         .full-3 {
             height: 2.5rem;
+        }
+    }
+
+    @media(max-width: 600px) {
+        .grid {
+            cursor: pointer;
+            pointer-events: auto;
         }
     }
 
