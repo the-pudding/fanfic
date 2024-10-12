@@ -4,6 +4,7 @@
     import * as d3 from "d3";
     import hpNetworkData from "$data/SLASH/SLASH_harryPotterShips.csv";
 	import mcuNetworkData from "$data/SLASH/SLASH_mcuShips.csv";
+    import reducedMotion from "$stores/reducedMotion.js";
 
     export let fandom;
     export let scrollIndex;
@@ -293,13 +294,13 @@
             hpNodes
                 .style("fill", "#C0B9C6")
                 .transition()
-                .delay((d,i) => i*20)
+                .delay((d,i) => !$reducedMotion ? i*20 : 0)
                 .duration(500)
                 .attr("opacity", 1);
             mcuNodes
                 .style("fill", "#C0B9C6")
                 .transition()
-                .delay((d,i) => i*20)
+                .delay((d,i) => !$reducedMotion ? i*20 : 0)
                 .duration(500)
                 .attr("opacity", 1);
         } else if (mounted && scrollIndex == 1) {

@@ -256,4 +256,10 @@
             transform: translate3d(2px, 0, 0);
         }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        .shake {
+            animation: none;
+        } 
+    }
 </style>

@@ -1,4 +1,5 @@
 <script>
+    import reducedMotion from "$stores/reducedMotion.js";
     import { fly } from 'svelte/transition';
     import { sineInOut } from 'svelte/easing';
     import CharacterSwap from "$components/CharacterSwap.svelte";
@@ -56,28 +57,16 @@
     >
         {#if inViewTrigger == true}
             <div class="fly-box left-fly">
-                <!-- <div 
-                    transition:fly={{ delay: 250, duration: 500, y: 500, easing: sineInOut }}
-                    class="inline-chart inline-chart-sm"
-                >
-                    <InlineChart chunk={copy.intro[1]} chartType={copy.intro[1].chartType} id={copy.intro[1].id} title={copy.intro[1].title}/>
-                </div> -->
                 <div 
-                    transition:fly={{ delay: 750, duration: 500, y: 500, easing: sineInOut }}
+                    transition:fly={ !$reducedMotion ? { delay: 750, duration: 500, y: 500, easing: sineInOut } : undefined }
                     class="inline-chart inline-chart-lg"
                 >
                     <InlineChart chunk={copy.intro[3]} chartType={copy.intro[3].chartType} id={copy.intro[3].id} title={copy.intro[3].title}/>
                 </div>
             </div>
             <div class="fly-box right-fly">
-                <!-- <div 
-                    transition:fly={{ delay: 500, duration: 500, y: 500, easing: sineInOut }}
-                    class="inline-chart inline-chart-sm"
-                >
-                    <InlineChart chunk={copy.intro[2]} chartType={copy.intro[2].chartType} id={copy.intro[2].id} title={copy.intro[2].title}/>
-                </div> -->
                 <div 
-                    transition:fly={{ delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut }}
+                transition:fly={ !$reducedMotion ? { delay: 1000, duration: 500, y: 500, opacity: 0.5, easing: sineInOut } : undefined }
                     class="inline-chart inline-chart-lg"
                 >
                     <InlineChart chunk={copy.intro[4]} chartType={copy.intro[4].chartType} id={copy.intro[4].id} title={copy.intro[4].title}/>
@@ -95,7 +84,7 @@
         </div>
         <p>Now let's explore each of these three themes. Use the top tab buttons or the side arrow buttons to switch between chapters.</p>
     </div>
-    {#if introW && introH}
+    {#if introW && introH && !$reducedMotion}
         <Sparkles {introW} {introH}/>
     {/if}
 </section>
@@ -327,5 +316,11 @@
         40%, 60% {
             transform: translate3d(2px, 0, 0);
         }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .cursor-icon {
+            animation: none;
+        } 
     }
 </style>

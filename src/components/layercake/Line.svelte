@@ -2,6 +2,7 @@
 	import { getContext } from "svelte";
 	import { line, curveStep } from "d3";
 	import { draw, fade } from 'svelte/transition';
+	import reducedMotion from "$stores/reducedMotion.js";
 
 	const { data, xGet, yGet, width, height } = getContext("LayerCake");
 
@@ -14,7 +15,7 @@
 </script>
 
 {#if inViewTrigger}
-	<path in:draw={{ duration: 1000 }} d={pathD} {stroke} />
+	<path in:draw={!$reducedMotion ? { duration: 1000 } : { duration: 0 }} d={pathD} {stroke} />
 	<!-- <rect 
 		transition:fade={{ delay: 250, duration: 300 }} 
 

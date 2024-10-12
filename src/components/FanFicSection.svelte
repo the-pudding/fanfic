@@ -169,4 +169,10 @@
             margin: 2rem auto 0 auto;
         }
 	}
+
+    @media (prefers-reduced-motion: reduce) {
+        .cursor-icon {
+            animation: none;
+        } 
+    }
 </style>

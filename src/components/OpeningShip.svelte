@@ -1,6 +1,7 @@
 <script>
     import { fly } from 'svelte/transition';
     import inView from "$actions/inView.js";
+    import reducedMotion from "$stores/reducedMotion.js";
 
     export let copy;
 
@@ -16,7 +17,7 @@
     on:exit={exitViewFly}  
 >   
     {#if inViewTrigger}
-        <div class="left" transition:fly={{ delay: 250, duration: 300, x: -200}}>
+        <div class="left" transition:fly={!$reducedMotion ? { delay: 250, duration: 300, x: -200} : undefined}>
             <img src="./assets/images/heads/{copy.imgA}.png" alt="character"/>
             <p>
                 <span>{copy.nameAfirst}</span> 
@@ -25,7 +26,7 @@
                 {/if}
             </p>
         </div>
-        <div class="right" transition:fly={{ delay: 250, duration: 300, x: 200}}>
+        <div class="right" transition:fly={!$reducedMotion ? { delay: 250, duration: 300, x: 200} : undefined}>
             <img src="./assets/images/heads/{copy.imgB}.png" alt="character"/>
             <p>
                 <span>{copy.nameBfirst}</span> 

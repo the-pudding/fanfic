@@ -1,5 +1,6 @@
 <script>
 	import { getContext } from "svelte";
+    import reducedMotion from "$stores/reducedMotion.js";
     import * as d3 from "d3";
     import top20Data from "$data/INTRO/INTRO_top20.csv";
     import { fade } from 'svelte/transition';
@@ -43,8 +44,8 @@
 <ul class="intro-table-chunk">
     {#each top20Data.slice(start, end) as ship, i}
     {#if scrollIndex >= 0 || scrollIndex == "exit"}
-    <li in:fade={{ delay: setDelay(start, set, i), duration: 300 }}
-        out:fade={{ delay: 50, duration: 300 }}
+    <li in:fade={!$reducedMotion ? { delay: setDelay(start, set, i), duration: 300 } : undefined}
+        out:fade={!$reducedMotion ? { delay: 50, duration: 300 } : undefined}
         class="ship 
         ship-relType-{stripData(ship.relType)}
         ship-canon-{stripData(ship.isCanon)}

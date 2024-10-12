@@ -13,6 +13,7 @@
 	import inView from "$actions/inView.js";
 	import copy from "$data/copy.json";
 	import * as d3 from "d3";
+	import reducedMotion from "$stores/reducedMotion.js";
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
@@ -347,4 +348,10 @@
 		background-color: var(--fanfic-red);
 		color: white;
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+        #section-start {
+			transition: transform 0s;
+		}
+    }
 </style>

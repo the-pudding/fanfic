@@ -9,6 +9,7 @@
     import News from "$svg/newspaper-pixel.svg";
     import Heart from "$svg/heart-pixel.svg";
     import Quote from "$svg/quote-pixel.svg";
+    import reducedMotion from "$stores/reducedMotion.js";
 
     export let copy;
 
@@ -24,10 +25,8 @@
     on:enter={inViewQuote}
 >
     {#if inViewTrigger == true}
-        <!-- <div class="bg" transition:fly={{ delay: 750, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div>
-        <div class="bg" transition:fly={{ delay: 500, duration: 250, y: 100, opacity: 0, easing: sineInOut }}></div> -->
         <div class="real"
-        transition:fly={{ delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut }}
+        transition:fly={!$reducedMotion ? { delay: 250, duration: 250, y: 100, opacity: 0, easing: sineInOut } : undefined}
         >
             <div class="attribution">
                 {#if copy.imgSlug}

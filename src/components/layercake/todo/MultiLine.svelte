@@ -6,6 +6,7 @@
 	import { getContext } from 'svelte';
 	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
 	import { draw, fade } from 'svelte/transition';
+	import reducedMotion from "$stores/reducedMotion.js";
 
 	export let curve = curveStep;
 	export let inViewTrigger; 
@@ -29,7 +30,7 @@
 		<!-- {@debug group} -->
 		{#if inViewTrigger || scrollIndex == "exit"}
 		<path
-			in:draw={{ duration: 1000 }}
+			in:draw={!$reducedMotion ? { duration: 1000 } : { duration: 0 }}
 			class='path-line'
 			id='{cleanText(group.fandom)}-path'
 			d='{path(group.values)}'

@@ -2,6 +2,7 @@
     import { currSectionSTORE, annotationVisible } from "$stores/misc.js";
     import { fade, fly } from 'svelte/transition';
     import copy from "$data/copy.json";
+	import reducedMotion from "$stores/reducedMotion.js";
 
 	let fadeDuration = 500;
 
@@ -38,10 +39,10 @@
 </script>
 
 <div id="annotation-block">
-    <div class="bubble" in:fly={{ delay: 300, duration: 300, y: 100}} out:fade={{duration: fadeDuration}}>
+    <div class="bubble" in:fly={!$reducedMotion ? { delay: 300, duration: 300, y: 100} : undefined} out:fade={!$reducedMotion ? {duration: fadeDuration} : undefined}>
         <p>{@html annoMatch($annotationVisible[1])}</p>
     </div>
-    <div class="img-wrapper" in:fly={{ delay: 0, duration: 300, y: 100}} out:fade={{duration: fadeDuration}}>
+    <div class="img-wrapper" in:fly={!$reducedMotion ? { delay: 0, duration: 300, y: 100} : undefined} out:fade={!$reducedMotion ? {duration: fadeDuration} : undefined}>
         <img src="./assets/images/heads/annos/{imgMatch($annotationVisible[1])}.png" alt="character" />
     </div>
 </div>
