@@ -2,7 +2,7 @@
 	import { getContext } from "svelte";
 	import { line, curveStep } from "d3";
 	import { draw, fade } from 'svelte/transition';
-	import reducedMotion from "$stores/reducedMotion.js";
+	import { reducedMotion } from "$stores/reducedMotion.js";
 
 	const { data, xGet, yGet, width, height } = getContext("LayerCake");
 

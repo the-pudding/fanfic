@@ -9,7 +9,7 @@
     import News from "$svg/newspaper-pixel.svg";
     import Heart from "$svg/heart-pixel.svg";
     import Quote from "$svg/quote-pixel.svg";
-    import reducedMotion from "$stores/reducedMotion.js";
+    import { reducedMotion } from "$stores/reducedMotion.js";
 
     export let copy;
 

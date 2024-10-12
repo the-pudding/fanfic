@@ -6,7 +6,7 @@
 	import { getContext } from 'svelte';
 	import { line, curveLinear, curveStep, curveStepAfter, curveStepBefore } from "d3";
 	import { draw, fade } from 'svelte/transition';
-	import reducedMotion from "$stores/reducedMotion.js";
+	import { reducedMotion } from "$stores/reducedMotion.js";
 
 	export let curve = curveStep;
 	export let inViewTrigger; 

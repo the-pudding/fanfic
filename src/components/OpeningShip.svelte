@@ -1,7 +1,7 @@
 <script>
     import { fly } from 'svelte/transition';
     import inView from "$actions/inView.js";
-    import reducedMotion from "$stores/reducedMotion.js";
+    import { reducedMotion } from "$stores/reducedMotion.js";
 
     export let copy;
 

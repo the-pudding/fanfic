@@ -71,4 +71,9 @@
         }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        .sparkles {
+            display: none;
+        }
+    }
 </style>

@@ -4,7 +4,7 @@
 <script>
 	import { PlayCircle, PauseCircle } from "lucide-svelte";
 	import { browser } from "$app/environment";
-	import reducedMotion from "$stores/reducedMotion.js";
+	import { reducedMotion } from "$stores/reducedMotion.js";
 	import mq from "$stores/mq.js";
 
 	export let color = "currentColor";

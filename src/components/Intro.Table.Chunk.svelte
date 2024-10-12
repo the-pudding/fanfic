@@ -1,6 +1,6 @@
 <script>
 	import { getContext } from "svelte";
-    import reducedMotion from "$stores/reducedMotion.js";
+    import { reducedMotion } from "$stores/reducedMotion.js";
     import * as d3 from "d3";
     import top20Data from "$data/INTRO/INTRO_top20.csv";
     import { fade } from 'svelte/transition';

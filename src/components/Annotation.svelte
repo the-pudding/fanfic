@@ -2,7 +2,7 @@
     import { currSectionSTORE, annotationVisible } from "$stores/misc.js";
     import { fade, fly } from 'svelte/transition';
     import copy from "$data/copy.json";
-	import reducedMotion from "$stores/reducedMotion.js";
+	import { reducedMotion } from "$stores/reducedMotion.js";
 
 	let fadeDuration = 500;
 

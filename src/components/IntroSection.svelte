@@ -1,5 +1,5 @@
 <script>
-    import reducedMotion from "$stores/reducedMotion.js";
+    import { reducedMotion } from "$stores/reducedMotion.js";
     import { fly } from 'svelte/transition';
     import { sineInOut } from 'svelte/easing';
     import CharacterSwap from "$components/CharacterSwap.svelte";

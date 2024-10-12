@@ -13,7 +13,7 @@
 	import inView from "$actions/inView.js";
 	import copy from "$data/copy.json";
 	import * as d3 from "d3";
-	import reducedMotion from "$stores/reducedMotion.js";
+	import { reducedMotion } from "$stores/reducedMotion.js";
 
 	let sections = ["slash", "noncanon", "realpeople"];
 	let tapVisible = false;
@@ -22,6 +22,8 @@
 	let innerHeight;
 	let clientHeight;
 	let mounted = false;
+
+	
 
 	// Handles tap events for slash, canon, and RPF sections
 	// A little hacky, but we can do it this way because we know the exact behaviors
@@ -157,7 +159,13 @@
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} bind:scrollY={scrollY}/>
 
 <div class="content-wrapper" bind:clientHeight={clientHeight}>
+	{#if $reducedMotion}
+    <p>Reduced motion is enabled.</p>
+{:else}
+    <p>Reduced motion is disabled.</p>
+{/if}
 <IntroSection />
+
 <Tabs options={sections} tabVisible={tabVisible}/>
 
 <div class="tap-wrapper" class:tapVisible={tapVisible}>
