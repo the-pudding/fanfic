@@ -159,11 +159,6 @@
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} bind:scrollY={scrollY}/>
 
 <div class="content-wrapper" bind:clientHeight={clientHeight}>
-	{#if $reducedMotion}
-    <p>Reduced motion is enabled.</p>
-{:else}
-    <p>Reduced motion is disabled.</p>
-{/if}
 <IntroSection />
 
 <Tabs options={sections} tabVisible={tabVisible}/>
