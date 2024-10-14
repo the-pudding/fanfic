@@ -5,21 +5,21 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Derek Hale/Stiles Stilinski,Teen Wolf,Fantasy,,63573,M/M,No,No
 2024,"James ""Bucky"" Barnes/Steve Rogers",Marvel Cinematic Universe,Superhero,Marvel,58508,M/M,No,No
 2024,Sirius Black/Remus Lupin,Harry Potter,Fantasy,,50280,M/M,No,No
-2024,Bakugou Katsuki/Midoriya Izuku,My Hero Academia,Fantasy,,42852,M/M,No,No
+2024,Bakugou Katsuki/Midoriya Izuku,My Hero Academia,Superhero,,42852,M/M,No,No
 2024,Steve Rogers/Tony Stark,Marvel Cinematic Universe,Superhero,Marvel,42143,M/M,No,No
 2024,Lán Zhàn/Wèi Yīng,Módào Zǔshī,Fantasy,,37617,M/M,Yes,No
 2024,Merlin/Arthur Pendragon,Merlin,Fantasy,,33355,M/M,No,No
 2024,Keith/Lance,Voltron: Legendary Defender,Fantasy,Voltron,32753,M/M,No,No
 2024,Dazai Osamu/Nakahara Chuuya,Bungou Stray Dogs,Fantasy,,32716,M/M,No,No
 2024,Dean Winchester/Sam Winchester,Supernatural,Fantasy,,31002,M/M,No,No
-2024,Bakugou Katsuki/Kirishima Eijirou,My Hero Academia,Fantasy,,30256,M/M,No,No
+2024,Bakugou Katsuki/Kirishima Eijirou,My Hero Academia,Superhero,,30256,M/M,No,No
 2024,Magnus Bane/Alec Lightwood,Mortal Instruments Series,Fantasy,The Shadowhunter Chronicles,29452,M/M,Yes,No
 2024,Will Graham/Hannibal Lecter,Hannibal,Thriller,,28306,M/M,Yes,No
 2024,Steve Harrington/Eddie Munson,Stranger Things,Thriller,,25391,M/M,No,No
 2024,Katsuki Yuuri/Victor Nikiforov,Yuri!!! on Ice,Sports,,24747,M/M,Yes,No
 2024,"Evan ""Buck"" Buckley/Eddie Diaz",9-1-1,Crime,,23954,M/M,No,No
-2024,Midoriya Izuku/Todoroki Shouto,My Hero Academia,Fantasy,,23132,M/M,No,No
-2024,Aizawa Shouta/Yamada Hizashi,My Hero Academia,Fantasy,,22545,M/M,No,No
+2024,Midoriya Izuku/Todoroki Shouto,My Hero Academia,Superhero,,23132,M/M,No,No
+2024,Aizawa Shouta/Yamada Hizashi,My Hero Academia,Superhero,,22545,M/M,No,No
 2024,Iwaizumi Hajime/Oikawa Tooru,Haikyuu!!,Sports,,19826,M/M,No,No
 2024,Hinata Shouyou/Kageyama Tobio,Haikyuu!!,Sports,,18819,M/M,No,No
 2024,James T. Kirk/Spock,Star Trek,Science Fiction,Star Trek,18055,M/M,No,No
@@ -46,8 +46,8 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Miya Atsumu/Sakusa Kiyoomi,Haikyuu!!,Sports,,12326,M/M,No,No
 2024,Jack Harkness/Ianto Jones,Torchwood,Science Fiction,,12276,M/M,Yes,No
 2024,Alhaitham/Kaveh,Genshin Impact,Video Game,,11890,M/M,No,No
-2024,Bakugou Katsuki/Todoroki Shouto,My Hero Academia,Fantasy,,11682,M/M,No,No
-2024,Dabi/Hawks,My Hero Academia,Fantasy,,11658,M/M,No,No
+2024,Bakugou Katsuki/Todoroki Shouto,My Hero Academia,Superhero,,11682,M/M,No,No
+2024,Dabi/Hawks,My Hero Academia,Superhero,,11658,M/M,No,No
 2024,Enjolras/Grantaire,Les Misérables,Historical,,11600,M/M,Semi-Canon,No
 2024,Roronoa Zoro/Sanji Vinsmoke,One Piece,Fantasy,,11539,M/M,No,No
 2024,Bilbo Baggins/Thorin Oakenshield,The Hobbit,Fantasy,Tolkien,11473,M/M,No,No
@@ -70,7 +70,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,"James ""Bucky"" Barnes/Tony Stark",Marvel Cinematic Universe,Superhero,Marvel,9515,M/M,No,No
 2024,Peter Parker/Wade Wilson,Marvel Cinematic Universe,Superhero,Marvel,9494,M/M,Semi-Canon,No
 2024,Peter Hale/Stiles Stilinski,Teen Wolf,Fantasy,,8988,M/M,No,No
-2024,Kaminari Denki/Shinsou Hitoshi,My Hero Academia,Fantasy,,8906,M/M,No,No
+2024,Kaminari Denki/Shinsou Hitoshi,My Hero Academia,Superhero,,8906,M/M,No,No
 2024,Peter Parker/Tony Stark,Marvel Cinematic Universe,Superhero,Marvel,8870,M/M,No,No
 2024,Obi-Wan Kenobi/Darth Vader,Star Wars,Science Fiction,Star Wars,8734,M/M,No,No
 2024,Akutagawa Ryuunosuke/Nakajima Atsushi,Bungou Stray Dogs,Fantasy,,8631,M/M,No,No
@@ -146,7 +146,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Tim Drake/Kon-El,Batman,Superhero,DC Comics,4880,M/M,No,No
 2024,England/France,Hetalia: Axis Powers,Historical,,4845,M/M,No,No
 2024,Shěn Wēi/Zhào Yúnlán,Guardian,Crime,,4816,M/M,Yes,No
-2024,Midoriya Izuku/Shinsou Hitoshi,My Hero Academia,Fantasy,,4803,M/M,No,No
+2024,Midoriya Izuku/Shinsou Hitoshi,My Hero Academia,Superhero,,4803,M/M,No,No
 2024,Hatake Kakashi/Uchiha Obito,Naruto,Fantasy,,4754,M/M,No,No
 2024,Cecil Palmer/Carlos Robles,Welcome to Night Vale,Science Fiction,,4708,M/M,Yes,No
 2024,Azumane Asahi/Nishinoya Yuu,Haikyuu!!,Sports,,4673,M/M,No,No
@@ -205,7 +205,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Alastor/Lucifer Magne,Hazbin Hotel,Fantasy,,3696,M/M,No,No
 2024,Adam/Shiro,Voltron: Legendary Defender,Fantasy,Voltron,3694,M/M,Yes,No
 2024,"Rafael Barba/Dominick ""Sonny"" Carisi Jr.",Law & Order: SVU,Crime,,3693,M/M,No,No
-2024,Dabi/Shimura Tenko,My Hero Academia,Fantasy,,3687,M/M,No,No
+2024,Dabi/Shimura Tenko,My Hero Academia,Superhero,,3687,M/M,No,No
 2024,Mòběi-jūn/Shàng Qīnghuá,The Scum Villain's Self-Saving System,Romance,,3683,M/M,Yes,No
 2024,Klavier Gavin/Apollo Justice,Ace Attorney,Video Game,,3672,M/M,No,No
 2024,Fushiguro Megumi/Ryoumen Sukuna,Jujutsu Kaisen,Fantasy,,3658,M/M,No,No
@@ -256,7 +256,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Mike Ross/Harvey Specter,Suits,Slice of Life,,3085,M/M,No,No
 2024,Wu Xie/Zhang Qiling,The Grave Robbers' Chronicles,,3069,M/M,No,No
 2024,"Kenny McCormick/Leopold ""Butters"" Stotch",South Park,Slice of Life,,3039,M/M,No,No
-2024,Kirishima Eijirou/Midoriya Izuku,My Hero Academia,Fantasy,,3038,M/M,No,No
+2024,Kirishima Eijirou/Midoriya Izuku,My Hero Academia,Superhero,,3038,M/M,No,No
 2024,Monkey D. Luffy/Roronoa Zoro,One Piece,Fantasy,,3027,M/M,No,No
 2024,Six-eared Macaque/Monkey King,LEGO Monkie Kid,Fantasy,LEGO,3012,M/M,No,No
 2024,South Italy/Spain,Hetalia: Axis Powers,Historical,,2995,M/M,No,No
@@ -266,7 +266,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Bokuto Koutarou/Kuroo Tetsurou,Haikyuu!!,Sports,,2933,M/M,No,No
 2024,Damen/Laurent,Captive Prince,Fantasy,,2931,M/M,Semi-Canon,No
 2024,"Evan ""Buck"" Buckley/Tommy Kinard",9-1-1,Crime,,2896,M/M,Yes,No
-2024,Aizawa Shouta/Yagi Toshinori,My Hero Academia,Fantasy,,2891,M/M,No,No
+2024,Aizawa Shouta/Yagi Toshinori,My Hero Academia,Superhero,,2891,M/M,No,No
 2024,Aventurine/Dr. Ratio,Honkai: Star Rail,Video Game,,2879,M/M,No,No
 2024,Kamisato Ayato/Thoma,Genshin Impact,Video Game,,2867,M/M,No,No
 2024,Xiǎo Xīngchén/Xuē Yáng,Módào Zǔshī,Fantasy,,2867,M/M,No,No
@@ -295,7 +295,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Hanamura Yosuke/Persona 4 Protagonist,Persona,Video Game,Persona,2700,M/M,No,No
 2024,Sirius Black/Severus Snape,Harry Potter,Fantasy,,2698,M/M,No,No
 2024,Megatron/Optimus Prime,Transformers,Science Fiction,,2681,M/M,No,No
-2024,Takami KeigoTodoroki Enji,My Hero Academia,Fantasy,,2674,M/M,No,No
+2024,Takami KeigoTodoroki Enji,My Hero Academia,Superhero,,2674,M/M,No,No
 2024,Ferdinand von Aegir/Hubert von Vestra,Fire Emblem,Video Game,,2672,M/M,No,No
 2024,Kravitz/Taako,The Adventure Zone,Fantasy,,2661,M/M,Yes,No
 2024,Kurapika/Leorio Paladiknight,Hunter X Hunter,Fantasy,,2649,M/M,No,No
@@ -334,7 +334,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Genos/Saitama,One-Punch Man,Superhero,,2348,M/M,No,No
 2024,Persona 5 Protagonist/Sakamoto Ryuji,Persona 5,Video Game,Persona,2348,M/M,No,No
 2024,Guillermo de la Cruz/Nandor the Relentless,What We Do in the Shadows,Fantasy,,2342,M/M,Semi-Canon,No
-2024,Sero Hanta/Todoroki Shouto,My Hero Academia,Fantasy,,2334,M/M,No,No
+2024,Sero Hanta/Todoroki Shouto,My Hero Academia,Superhero,,2334,M/M,No,No
 2024,Valentino/Vox,Hazbin Hotel,Fantasy,,2320,M/M,Yes,No
 2024,Kaidan Alenko/Male Shepard,Mass Effect Trilogy,Video Game,Mass Effect,2319,M/M,No,No
 2024,Phayu/Rain,Love in the Air,Romance,,2318,M/M,Yes,No
@@ -351,7 +351,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Daniel LaRusso/Johnny Lawrence,Karate Kid,Slice of Life,,2203,M/M,No,No
 2024,Todd Anderson/Neil Perry,Dead Poets Society,Slice of Life,,2199,M/M,No,No
 2024,Stede Bonnet/Israel Hands,Our Flag Means Death,Romance,,2198,M/M,No,No
-2024,Kaminari Denki/Kirishima Eijirou,My Hero Academia,Fantasy,,2175,M/M,No,No
+2024,Kaminari Denki/Kirishima Eijirou,My Hero Academia,Superhero,,2175,M/M,No,No
 2024,Mac McDonald/Dennis Reynolds,It's Always Sunny in Philadelphia,Slice of Life,,2172,M/M,Semi-Canon,No
 2024,"Klaus Hargreeves/David ""Dave"" Katz",The Umbrella Academy,Science Fiction,,2171,M/M,Yes,No
 2024,Chris Argent/Peter Hale,Teen Wolf,Fantasy,,2161,M/M,No,No
@@ -389,11 +389,11 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Kuroo Tetsurou/Sawamura Daichi,Haikyuu!!,Sports,,1969,M/M,No,No
 2024,Anders/Fenris,Dragon Age II,Video Game,Dragon Age,1960,M/M,No,No
 2024,Natsu Dragneel/Gray Fullbuster,Fairy Tail,Fantasy,,1953,M/M,No,No
-2024,Amajiki Tamaki/Toogata Mirio,My Hero Academia,Fantasy,,1952,M/M,No,No
+2024,Amajiki Tamaki/Toogata Mirio,My Hero Academia,Superhero,,1952,M/M,No,No
 2024,Hanamura Yosuke/Narukami Yu,Persona,Video Game,Persona,1949,M/M,No,No
 2024,Lio Fotia/Galo Thymos,Promare,Science Fiction,,1946,M/M,No,No
 2024,Original Percival Graves/Newt Scamander,Fantastic Beasts and Where to Find Them,Fantasy,,1946,M/M,No,No
-2024,Bakugou Katsuki/Kaminari Denki,My Hero Academia,Fantasy,,1945,M/M,No,No
+2024,Bakugou Katsuki/Kaminari Denki,My Hero Academia,Superhero,,1945,M/M,No,No
 2024,Kambe Daisuke/Katou Haru,Fugou Keiji: Balance:Unlimited,Crime,,1945,M/M,No,No
 2024,Zack Fair/Cloud Strife,Final Fantasy VII,Video Game,Final Fantasy,1937,M/M,No,No
 2024,Choi Jongho/Kang Yeosang,ATEEZ,Kpop,,1929,M/M,No,No
@@ -416,7 +416,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Benny Lafitte/Dean Winchester,Supernatural,Fantasy,,1877,M/M,No,No
 2024,China/Russia,Star Wars,Science Fiction,Star Wars,1871,M/M,No,No
 2024,Lán Huàn/Niè Míngjué,Módào Zǔshī,Fantasy,,1870,M/M,No,No
-2024,Kaminari Denki/Sero Hanta,My Hero Academia,Fantasy,,1867,M/M,No,No
+2024,Kaminari Denki/Sero Hanta,My Hero Academia,Superhero,,1867,M/M,No,No
 2024,Atem/Mutou Yuugi,Yu-Gi-Oh!,Video Game,Yu-Gi-Oh!,1848,M/M,No,No
 2024,Draco Malfoy/Ron Weasley,Harry Potter,Fantasy,,1847,M/M,No,No
 2024,Ikari Shinji/Nagisa Kaworu,Neon Genesis Evangelion,Science Fiction,,1847,M/M,Semi-Canon,No
@@ -425,7 +425,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Dib/Zim,Invader ZIM,Science Fiction,,1835,M/M,No,No
 2024,John Egbert/Karkat Vantas,Homestuck,Science Fiction,,1831,M/M,No,No
 2024,Leon S. Kennedy/Chris Redfield,Resident Evil,Video Game,,1823,M/M,No,No
-2024,Bakugou Katsuki/Shinsou Hitoshi,My Hero Academia,Fantasy,,1817,M/M,No,No
+2024,Bakugou Katsuki/Shinsou Hitoshi,My Hero Academia,Superhero,,1817,M/M,No,No
 2024,Baji Keisuke/MatsuNoChifuyu,Tokyo Revengers,Science Fiction,,1813,M/M,No,No
 2024,"Derek ""Nursey"" Nurse/ William ""Dex"" Poindexter",Check Please!,Sports,,1809,M/M,No,No
 2024,Teddy Altman/Billy Kaplan,Young Avengers,Superhero,Marvel,1804,M/M,Yes,No
@@ -510,7 +510,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Francis Crozier/James Fitzjames,The Terror,Thriller,,1502,M/M,No,No
 2024,Oliver/Elio Perlman,Call Me By Your Name,Romance,,1502,M/M,Yes,No
 2024,Fuji Shuusuke/Tezuka Kunimitsu,Prince of Tennis,Sports,,1500,M/M,No,No
-2024,Midoriya Izuku/Shigaraki Tomura,My Hero Academia,Fantasy,,1497,M/M,No,No
+2024,Midoriya Izuku/Shigaraki Tomura,My Hero Academia,Superhero,,1497,M/M,No,No
 2024,Pannacotta Fugo/Narancia Ghirga,JoJo's Bizarre Adventure,Fantasy,,1497,M/M,No,No
 2024,Alhaitham/Cyno,Genshin Impact,Video Game,,1489,M/M,No,No
 2024,Agron/Nasir,Spartacus Series,Historical,,1488,M/M,Yes,No
@@ -562,7 +562,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,MK/Red Son,LEGO Monkie Kid,Fantasy,LEGO,1349,M/M,No,No
 2024,Chirrut Îmwe/Baze Malbus,Star Wars,Science Fiction,Star Wars,1347,M/M,No,No
 2024,Barry Allen/Hal Jordan,The Flash,Superhero,DC Comics,1346,M/M,No,No
-2024,Eraserhead/Midoriya Izuku,My Hero Academia,Fantasy,,1345,M/M,No,No
+2024,Eraserhead/Midoriya Izuku,My Hero Academia,Superhero,,1345,M/M,No,No
 2024,Kyle Broflovski/Kenny McCormick,South Park,Slice of Life,,1343,M/M,No,No
 2024,Corey Bryant/Mason Hewitt,Teen Wolf,Fantasy,,1342,M/M,Yes,No
 2024,Oswald Cobblepot/Jim Gordon,Gotham,Superhero,,1339,M/M,No,No
@@ -628,7 +628,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Jack Frost/Pitch Black,Rise of the Guardians,Fantasy,,1208,M/M,No,No
 2024,"Barnaby ""Bunny"" Brooks Jr./Kaburagi T. Kotetsu",Tiger & Bunny,Superhero,,1207,M/M,Yes,No
 2024,Chris Pine/Zachary Quinto,Star Trek RPF,Science Fiction,,1207,M/M,No,No
-2024,Bakugou Masaru/Bakugou Mitsuki,My Hero Academia,Fantasy,,1199,M/M,No,No
+2024,Bakugou Masaru/Bakugou Mitsuki,My Hero Academia,Superhero,,1199,M/M,No,No
 2024,Virgil Sanders/Janus Sanders,Sanders Sides,Slice of Life,,1198,M/M,No,No
 2024,Aomine Daiki/Kuroko Tetsuya,Kuroko's Basketball,Sports,,1198,M/M,No,No
 2024,Erestor/Glorfindel,Lord of the Rings,Fantasy,Tolkien,1197,M/M,No,No
@@ -657,7 +657,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Pavel Chekov/Hikaru Sulu,Star Trek,Science Fiction,Star Trek,1175,M/M,No,No
 2024,"Murdoc Niccals/Stuart ""2D"" Pot",Gorillaz,Western Artist,,1172,M/M,No,No
 2024,Fukuzawa Yukichi/Mori Ougai,Bungou Stray Dogs,Fantasy,,1171,M/M,No,No
-2024,Kaminari Denki/Midoriya Izuku,My Hero Academia,Fantasy,,1171,M/M,No,No
+2024,Kaminari Denki/Midoriya Izuku,My Hero Academia,Superhero,,1171,M/M,No,No
 2024,Gwaine/Percival,Merlin,Fantasy,,1169,M/M,No,No
 2024,Dorian Pavus/Male Trevelyan,Dragon Age,Video Game,Dragon Age,1167,M/M,Yes,No
 2024,Kita Shinsuke/Miya Atsumu,Haikyuu!!,Sports,,1167,M/M,No,No
@@ -667,7 +667,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Noé Archiviste/Vanitas,The Case Study of Vanitas,Fantasy,,1160,M/M,No,No
 2024,Breakdown/Knock Out,Transformers,Science Fiction,,1159,M/M,Yes,No
 2024,Aonung/Neteyam te Suli Tsyeyk'itan,Avatar,Fantasy,,1157,M/M,No,No
-2024,Monoma Neito/Shinsou Hitoshi,My Hero Academia,Fantasy,,1154,M/M,No,No
+2024,Monoma Neito/Shinsou Hitoshi,My Hero Academia,Superhero,,1154,M/M,No,No
 2024,Dwalin/Ori,The Hobbit,Fantasy,Tolkien,1147,M/M,No,No
 2024,BruNoBuccellati/GiorNoGiovanna,JoJo's Bizarre Adventure,Fantasy,,1139,M/M,No,No
 2024,Din Djarin/Cobb Vanth,Star Wars,Science Fiction,Star Wars,1139,M/M,No,No
@@ -689,7 +689,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Ennoshita Chikara/Tanaka Ryuunosuke,Haikyuu!!,Sports,,1111,M/M,No,No
 2024,Leon S. Kennedy/Luis Serra,Resident Evil,Video Game,,1105,M/M,No,No
 2024,Berlin/Palermo,Money Heist,Crime,,1104,M/M,Yes,No
-2024,Kirishima Eijirou/Todoroki Shouto,My Hero Academia,Fantasy,,1104,M/M,No,No
+2024,Kirishima Eijirou/Todoroki Shouto,My Hero Academia,Superhero,,1104,M/M,No,No
 2024,Hugh Culber/Paul Stamets,Star Trek,Science Fiction,Star Trek,1103,M/M,Yes,No
 2024,Draco Malfoy/Theodore Nott,Harry Potter,Fantasy,,1096,M/M,No,No
 2024,Harry Hart/Merlin,Kingsman: The Secret Service,Crime,Kingsman,1096,M/M,No,No
@@ -705,7 +705,7 @@ year,ship,fandom,Genre,collapsedFandom,totalWorks,relType,isCanon,isRPF
 2024,Todd Brotzman/Dirk Gently,Dirk Gently's Holistic Detective Agency,Crime,,1085,M/M,No,No
 2024,Bram Greenfeld/Simon Spier,Love Simon,Romance,,1083,M/M,Yes,No
 2024,Aesop Carl/Joseph Desaulnier,Identity V,Video Game,,1082,M/M,No,No
-2024,Iida Tenya/Midoriya Izuku,My Hero Academia,Fantasy,,1082,M/M,No,No
+2024,Iida Tenya/Midoriya Izuku,My Hero Academia,Superhero,,1082,M/M,No,No
 2024,Momota Kaito/Saihara Shuichi,Danganronpa,Video Game,Danganronpa,1076,M/M,Semi-Canon,No
 2024,Seo Moonjo/Yoon Jongwoo,Strangers from Hell,Thriller,,1076,M/M,No,No
 2024,Jonathan Crane/Edward Nygma,Batman,Superhero,DC Comics,1074,M/M,No,No
